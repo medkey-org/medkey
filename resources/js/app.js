@@ -1,0 +1,1 @@
+var application = new Application();

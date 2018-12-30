@@ -1,0 +1,6 @@
+.b-workplace {
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-start;
+    flex-basis: 0;
+}

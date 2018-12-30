@@ -1,0 +1,9 @@
+<?php
+
+return [
+    'class' => \app\common\db\Connection::class,
+    'dsn' => APP_DB_CONNECTION . ':host=' . APP_DB_HOST . ';dbname=' . APP_DB_NAME,
+    'username' => APP_DB_USERNAME,
+    'password' => APP_DB_PASSWORD,
+    'charset' => 'utf8',
+];

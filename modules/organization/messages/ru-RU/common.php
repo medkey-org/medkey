@@ -1,0 +1,28 @@
+<?php
+
+return [
+    'Department' => 'Подразделение',
+    'List of workplans' => 'Список рабочих планов',
+    'Position' => 'Должность',
+    'Title' => 'Наименование',
+    'Short title' => 'Короткое наименование',
+    'Title department' => 'Наименование подразделения',
+    'Title organization' => 'Наименование организации',
+    'Description' => 'Описание',
+    'Employees' => 'Сотрудники',
+    'Employee' => 'Сотрудник',
+    'Employee\'s data' => 'Данные сотрудника',
+    'List of employees' => 'Список сотрудников',
+    'Full name' => 'ФИО',
+    'Last name' => 'Фамилия',
+    'First name' => 'Имя',
+    'Middle name' => 'Отчество',
+    'Birthday' => 'Дата рождения',
+    'Sex' => 'Пол',
+    'User' => 'Пользователь',
+    'Phones' => 'Телефоны',
+    'Phone(s)' => 'Телефон(ы)',
+    'Positions' => 'Позиции',
+    'E-mail' => 'E-mail',
+    'Organization' => 'Организация',
+];

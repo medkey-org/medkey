@@ -1,0 +1,66 @@
+.b-schedule {
+    position: relative;
+    display: flex;
+    /*align-items: flex-start;*/
+    flex-direction: column;
+    /*flex-basis: 0;*/
+    width: 65%;
+    /*flex-wrap: nowrap;*/
+    justify-content: flex-end;
+}
+.schedule {
+    display: flex;
+    flex-direction: row;
+    font-size: 14px;
+}
+.calendar {
+    text-align: right;
+}
+.btn-calendar {
+    border-radius: 0 !important;
+    margin-bottom: 2px !important;
+}
+.schedule__column {
+    display: flex;
+    flex-direction: column;
+    flex-basis: 100%;
+    border-top: 1px black solid;
+    border-bottom: 1px black solid;
+    border-left: 1px black solid;
+}
+.schedule__column:last-child {
+    border-right: 1px black solid;
+}
+.schedule__employee {
+    background-color: #bfd1e0;
+    border-bottom: 1px black solid;
+    padding: 5px;
+    font-weight: 500;
+}
+.schedule__speciality {
+    background-color: #dfe8f0;
+    padding: 5px;
+    border-bottom: 1px black solid;
+}
+.schedule__patient-record {
+    display: flex;
+}
+.schedule__patient-record {
+    border-bottom: 1px black solid;
+}
+.patient-name {
+    padding: 5px;
+    cursor: pointer;
+}
+.patient-name:hover {
+    text-decoration: underline;
+}
+.schedule__patient-record:last-child {
+    border-bottom: none;
+}
+.record-time {
+    padding: 5px;
+    text-align: center;
+    border-right: 1px black solid;
+    background-color: #bfd1e0;
+}

@@ -1,0 +1,99 @@
+{
+    "name": "medkey/medkey",
+    "description": "Medkey Healthcare Information System",
+    "keywords": ["medkey", "his", "healthcare", "application", "ehr", "emr"],
+    "homepage": "https://www.medkey.org",
+    "type": "application",
+    "license": "GPL-3.0-only",
+    "authors": [
+        {
+            "name": "Dzhamal Tayibov",
+            "email": "prohps@gmail.com",
+            "homepage": "http://www.medkey.org",
+            "role": "Founder and core developer"
+        },
+        {
+            "name": "Dmitry Grudinin",
+            "email": "dogrudinin@gmail.com",
+            "homepage": "http://www.medkey.org",
+            "role": "Founder and project lead"
+        }
+    ],
+    "support": {
+        "email": "info@medkey.org",
+        "wiki": "https://medkey.org/wiki",
+        "chat": "https://t.me/medkey_talks"
+    },
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://asset-packagist.org"
+        },
+        {
+            "type": "git",
+            "url": "git@github.com:medkey-org/composer-plugin.git"
+        }
+    ],
+    "require": {
+        "php": "^7.1.3",
+        "yiisoft/yii2": "2.0.15.1",
+        "yiisoft/yii2-bootstrap": "2.0.8",
+        "yiisoft/yii2-jui": "2.0.7",
+        "yiisoft/yii2-queue": "~2.0",
+        "medkey/composer-plugin": "dev-master",
+        "kartik-v/yii2-widget-datepicker": "v1.4.3",
+        "kartik-v/yii2-widget-datetimepicker": "v1.4.4",
+        "kartik-v/yii2-widget-select2": "v2.1.1",
+        "kartik-v/yii2-widget-timepicker": "v1.0.3",
+        "unclead/yii2-multiple-input": "2.14.0",
+        "moneyphp/money": "3.*",
+        "symfony/expression-language": "4.2.*",
+        "symfony/workflow": "4.2.*",
+        "symfony/dotenv": "4.2.*",
+        "symfony/config": "4.2.*",
+        "zendframework/zend-permissions-acl": "2.7",
+        "npm-asset/backbone": "1.3.3",
+        "npm-asset/underscore": "1.8.3",
+        "machour/yii2-jquery-flot": "^1.0@dev"
+    },
+    "require-dev": {
+        "composer/composer": "*",
+        "codeception/codeception": "*",
+        "phpunit/phpunit": "*",
+        "stecman/symfony-console-completion": "*",
+        "symfony/console": "*",
+        "yiisoft/yii2-debug": "*",
+        "yiisoft/yii2-gii": "*",
+        "yiisoft/yii2-faker": "*"
+    },
+    "config": {
+        "process-timeout": 9999,
+        "disable-tls": true,
+        "secure-http": false,
+        "fxp-asset": {
+            "enabled": false
+        }
+    },
+    "scripts": {
+        "post-create-project-cmd": [
+            "yii\\composer\\Installer::postCreateProject"
+        ]
+    },
+    "extra": {
+        "yii\\composer\\Installer::postCreateProject": {
+            "setPermission": [
+                {
+                    "runtime": "0777",
+                    "web/assets": "0777",
+                    "bin": "0755"
+                }
+            ],
+            "generateCookieValidationKey": [
+                "config/web.php"
+            ]
+        }
+    },
+    "autoload": {
+        "psr-4": { "app\\common\\": "common"}
+    }
+}

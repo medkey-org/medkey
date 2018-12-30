@@ -1,0 +1,1 @@
+var Dashboard_OrderChart = Chart.extend();

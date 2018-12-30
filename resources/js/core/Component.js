@@ -1,0 +1,7 @@
+/**
+ *
+ * @constructor
+ */
+var Component = function () {
+
+};

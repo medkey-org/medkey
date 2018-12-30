@@ -1,0 +1,14 @@
+addDefaultCharset UTF8
+Options +FollowSymLinks
+RewriteEngine On
+
+# if a directory or a file exists, use it directly
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+# otherwise forward it to index.php
+RewriteRule . index.php
+
+<IfModule mod_php5.c>
+  php_flag engine on
+</IfModule>

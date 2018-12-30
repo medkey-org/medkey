@@ -1,0 +1,39 @@
+.patient-card {
+    background-color: #edf3f9;
+    padding-top: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    min-height: 250px;
+    margin-right: 2px;
+}
+.patient-title {
+    font-size: 16px;
+}
+.patient-fio {
+    text-decoration: underline;
+    font-size: 14px;
+}
+.patient-title-policy {
+    font-size: 16px;
+}
+.patient-policy {
+    text-decoration: underline;
+    font-size: 14px;
+}
+.b-patient {
+    position: relative;
+    width: 35%;
+}
+.hr {
+    color: #dae4ef;
+    border-color: #dae4ef;
+    margin-left: -10px;
+    margin-right: -10px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+.patient-header {
+    margin-top: 2px;
+    margin-bottom: 7px;
+    white-space: nowrap;
+}

@@ -1,0 +1,48 @@
+.employee-name {
+    cursor: pointer;
+    margin-left: 3px;
+    opacity: 0.8;
+}
+.employee-name:hover {
+    opacity: 1;
+}
+.row-employee {
+    margin-bottom: 3px;
+    border: 1px solid lightgray;
+}
+.row-employee .datetime {
+    border-top: 1px solid lightgray;
+    display: none;
+}
+.row-employee .datetime input {
+    display: none;
+}
+.medworker-schedule {
+    text-align: center;
+}
+.employee-schedule-time {
+    font-weight: 500;
+    display: inline-block;
+    margin: 5px;
+    padding: 17px;
+    /*border-radius: 3px;*/
+    background-color: #F0F8FF;
+    cursor: pointer;
+}
+.employee-schedule-time:hover {
+    box-shadow: inset 0 0 60px rgba(0,0,0,0.1);
+}
+.employee-schedule-time.record {
+    background-color: #FFE4E1;
+}
+.attendance-record {
+    border: 1px solid lightgray;
+    display: inline-block;
+    padding: 10px;
+    cursor: pointer;
+    margin-top: 10px;
+    font-weight: 500;
+}
+.attendance-record:hover {
+    box-shadow: inset 0 0 60px rgba(0,0,0,0.1);
+}
