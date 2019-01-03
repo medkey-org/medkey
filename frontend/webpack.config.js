@@ -5,7 +5,7 @@ const MergeIntoSingleFilePlugin = require('webpack-merge-and-include-globally');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const vendorPath = '../vendor';
 const appPath = '../';
-const assetPath = '../vendor/medkey/common/assets';
+const assetPath = '../common/assets';
 const webRoot = path.join(__dirname, "../web/bundles/");
 const uglifyJS = require("uglify-js");
 
