@@ -8,4 +8,10 @@ namespace app\common\service;
  */
 interface ApplicationServiceInterface
 {
+    public function setProprietary($obj);
+    public function getProprietary();
+    public function isAllowed($privilege, $proprietary = null);
+    public function getResourceId();
+    public function aclAlias();
+    public function getPrivileges();
 }

@@ -1,4 +1,7 @@
 <?php
+/**
+ * @copyright 2012-2019 Medkey
+ */
 
 Yii::setAlias('@tests', dirname(__DIR__) . '/tests/codeception');
 

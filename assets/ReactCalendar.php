@@ -5,7 +5,7 @@ use app\common\web\AssetBundle;
 
 /**
  * Class ReactCalendar
- * 
+ * @deprecated use webpack
  */
 class ReactCalendar extends AssetBundle
 {

@@ -5,7 +5,7 @@ use app\common\web\AssetBundle;
 
 /**
  * Class Redux
- * * @copyright 2012-2019 Medkey
+ * @deprecated use webpack
  */
 class Redux extends AssetBundle
 {

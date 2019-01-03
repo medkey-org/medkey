@@ -5,7 +5,7 @@ use app\common\web\AssetBundle;
 
 /**
  * Class AppAsset
- *
+ * @deprecated use webpack
  */
 class AppAsset extends AssetBundle
 {

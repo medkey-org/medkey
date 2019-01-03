@@ -1,4 +1,7 @@
 <?php
+/**
+ * @copyright 2012-2019 Medkey
+ */
 
 $params = require(__DIR__ . '/params.php');
 

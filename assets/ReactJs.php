@@ -5,8 +5,7 @@ use app\common\web\AssetBundle;
 
 /**
  * Class ReactJs
- *
- *  <prohps@gmail.com>
+ * @deprecated use webpack
  */
 class ReactJs extends AssetBundle
 {

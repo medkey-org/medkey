@@ -1,4 +1,7 @@
 <?php
+/**
+ * @copyright 2012-2019 Medkey
+ */
 
 return [
     'class' => \app\common\db\Connection::class,

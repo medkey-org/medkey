@@ -1,3 +1,7 @@
+/**
+ * @copyright 2012-2019 Medkey
+ */
+
 const path = require('path');
 const fs = require('fs');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");

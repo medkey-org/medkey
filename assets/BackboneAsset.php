@@ -5,6 +5,7 @@ use app\common\web\AssetBundle;
 
 /**
  * Class BackboneAsset
+ * @deprecated use webpack
  */
 class BackboneAsset extends AssetBundle
 {
