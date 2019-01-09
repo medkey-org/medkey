@@ -1,0 +1,22 @@
+<VirtualHost *:80>
+    ServerName medkey.local
+
+    ServerAdmin webmaster@localhost
+    DocumentRoot /var/www/medkey/web
+
+    <Directory /var/www/medkey/web>
+        RewriteEngine on
+        RewriteCond %{REQUEST_FILENAME} !-f
+        RewriteCond %{REQUEST_FILENAME} !-d
+        RewriteRule . index.php
+
+        Options Indexes FollowSymLinks MultiViews
+        AllowOverride None
+        Order allow,deny
+        allow from all
+        Require all granted
+    </Directory>
+
+    ErrorLog ${APACHE_LOG_DIR}/medkey.error.log
+    CustomLog ${APACHE_LOG_DIR}/medkey.access.log combined
+</VirtualHost>
