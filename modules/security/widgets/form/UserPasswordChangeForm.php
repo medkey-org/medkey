@@ -44,7 +44,7 @@ class UserPasswordChangeForm extends FormWidget
         echo $form->field($model, 'userId')->hiddenInput();
         echo $form->field($model, 'password')->passwordInput();
         echo $form->field($model, 'passwordRepeat')->passwordInput();
-        echo Html::submitButton(\Yii::t('app', 'save'), [
+        echo Html::submitButton(\Yii::t('app', 'Save'), [
             'class' => 'btn btn-primary',
             'icon'  => 'saved'
         ]);

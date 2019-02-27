@@ -6,6 +6,7 @@ use app\common\db\ActiveRecord;
 use app\common\db\ResponsibilityEntityInterface;
 use app\common\helpers\CommonHelper;
 use app\common\validators\ForeignKeyValidator;
+use app\modules\medical\MedicalModule;
 use app\modules\organization\models\orm\Employee;
 use app\modules\workplan\models\orm\Workplan;
 
@@ -25,10 +26,10 @@ class Attendance extends ActiveRecord implements ResponsibilityEntityInterface
     const STATUS_PROGRESS = 2; // red
     const STATUS_ARCHIVE = 3; // red
     const STATUS_CANCEL = 4; // blue
-    const STATUS_CONFIRM = 5; // ожидает подтв // red
-    const STATUS_ABSENCE = 6; // пропустил прием // red
+    const STATUS_CONFIRM = 5; // Waiting for confirmation // red
+    const STATUS_ABSENCE = 6; // Missed visit // red
     /**
-     * Типы приёма
+     * Attendance types
      */
     const TYPE_INVALID = 0;
     const TYPE_TIME = 1;
@@ -80,7 +81,7 @@ class Attendance extends ActiveRecord implements ResponsibilityEntityInterface
                         ]);
                 },
                 'targetAttribute' => ['employee_id', 'ehr_id', 'datetime', 'type', 'status'],
-                'message' => 'Такая запись уже существует.',
+                'message' => MedicalModule::t('attendance', 'Record already exists'),
             ],
 //            [ 'datetime', 'date', 'format' => CommonHelper::FORMAT_DATETIME_UI ],
         ];
@@ -162,13 +163,13 @@ class Attendance extends ActiveRecord implements ResponsibilityEntityInterface
     public function attributeLabelsOverride()
     {
         return [
-            'ehr_id' => 'Мед. карта',
-            'workplan_id' => 'Рабочий план',
-            'status' => 'Статус',
-            'datetime' => 'Время приёма',
-            'type' => 'Тип',
-            'number' => 'Номер',
-            'employee_id' => 'Сотрудник',
+            'ehr_id' => MedicalModule::t('attendance','EHR'),
+            'workplan_id' => MedicalModule::t('attendance','Workplan'),
+            'status' => MedicalModule::t('attendance','Status'),
+            'datetime' => MedicalModule::t('attendance','Planned at'),
+            'type' => MedicalModule::t('attendance','Type'),
+            'number' => MedicalModule::t('attendance','Number'),
+            'employee_id' => MedicalModule::t('attendance','Employee'),
         ];
     }
 }

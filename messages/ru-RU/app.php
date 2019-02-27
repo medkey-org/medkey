@@ -61,6 +61,10 @@ return [
     'Service price list' => 'Прайс-лист услуг',
     'paid' => 'Оплата',
     'Updated At' => 'Дата обновления',
+    'version' => 'версия',
+    'Select value...' => 'Выберите значение...',
+    'Nothing found' => 'Ничего не найдено',
+
     /**
      * Addresses
      */

@@ -118,7 +118,7 @@ class EhrGrid extends GridView
                         [
                             'class' => 'form-control',
                             'empty' => true,
-                            'placeholder' => 'Выберите значение ...'
+                            'placeholder' => \Yii::t('app', 'Select value...'),
                         ],
                         [
                             'allowClear' => true,
@@ -153,7 +153,7 @@ class EhrGrid extends GridView
                         'data' => $data,
                         'options' => [
                             'id' => UniqueKey::generate('patientId'),
-                            'placeholder' => 'Выберите значение ...'
+                            'placeholder' => \Yii::t('app', 'Select value...'),
                         ],
                         'pluginOptions' => [
                             'allowClear' => true,

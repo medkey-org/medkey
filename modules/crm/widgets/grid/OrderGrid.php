@@ -109,7 +109,7 @@ class OrderGrid extends GridView
                         [
                             'class' => 'form-control',
                             'empty' => true,
-                            'placeholder' => 'Выберите значение ...'
+                            'placeholder' => \Yii::t('app', 'Select value...'),
                         ],
                         [
                             'allowClear' => true,

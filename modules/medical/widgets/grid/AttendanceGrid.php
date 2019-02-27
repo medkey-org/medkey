@@ -133,7 +133,7 @@ class AttendanceGrid extends GridView
                         'data' => ArrayHelper::map(Employee::find()->notDeleted()->all(), 'id', 'fullName'),
                         'options' => [
                             'id' => UniqueKey::generate('employeeId'),
-                            'placeholder' => 'Выберите значение ...',
+                            'placeholder' => \Yii::t('app', 'Select value...'),
                         ],
                         'pluginOptions' => [
                             'allowClear' => true,
@@ -164,13 +164,13 @@ class AttendanceGrid extends GridView
                         'data' => $data,
                         'options' => [
                             'id' => UniqueKey::generate('ehrId'),
-                            'placeholder' => 'Выберите значение ...'
+                            'placeholder' => \Yii::t('app', 'Select value...'),
                         ],
                         'pluginOptions' => [
                             'allowClear' => true,
                             'minimumInputLength' => 1,
                             'language' => [
-                                'errorLoading' => new JsExpression("function () { return 'Ничего не найдено.'; }"),
+                                'errorLoading' => new JsExpression("function () { return '" . \Yii::t('app', 'Nothing found') ."'; }"),
                             ],
                             'ajax' => [
                                 'url' => Url::to(['/medical/rest/ehr/index']),
@@ -210,7 +210,7 @@ class AttendanceGrid extends GridView
                         'data' => $data,
                         'options' => [
                             'id' => UniqueKey::generate('patientId'),
-                            'placeholder' => 'Выберите значение ...'
+                            'placeholder' => \Yii::t('app', 'Select value...'),
                         ],
                         'pluginOptions' => [
                             'allowClear' => true,
@@ -245,7 +245,7 @@ class AttendanceGrid extends GridView
                         [
                             'class' => 'form-control',
                             'empty' => true,
-                            'placeholder' => 'Выберите значение ...'
+                            'placeholder' => \Yii::t('app', 'Select value...'),
                         ],
                         [
                             'allowClear' => true,
@@ -270,7 +270,7 @@ class AttendanceGrid extends GridView
                         [
                             'class' => 'form-control',
                             'empty' => true,
-                            'placeholder' => 'Выберите значение ...'
+                            'placeholder' => \Yii::t('app', 'Select value...'),
                         ],
                         [
                             'allowClear' => true,
