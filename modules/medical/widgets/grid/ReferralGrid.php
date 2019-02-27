@@ -130,7 +130,8 @@ class ReferralGrid extends GridView
                         [
                             'class' => 'form-control',
                             'empty' => true,
-                            'placeholder' => 'Выберите значение ...'],
+                            'placeholder' => \Yii::t('app', 'Select value...'),
+                        ],
                         [
                             'allowClear' => true,
 //                            'minimumInputLength' => 1,
@@ -164,7 +165,7 @@ class ReferralGrid extends GridView
                         'data' => $data,
                         'options' => [
                             'id' => UniqueKey::generate('ehrId'),
-                            'placeholder' => 'Выберите значение ...'
+                            'placeholder' => \Yii::t('app', 'Select value...'),
                         ],
                         'pluginOptions' => [
                             'allowClear' => true,
@@ -210,7 +211,7 @@ class ReferralGrid extends GridView
                         'data' => $data,
                         'options' => [
                             'id' => UniqueKey::generate('patientId'),
-                            'placeholder' => 'Выберите значение ...'
+                            'placeholder' => \Yii::t('app', 'Select value...'),
                         ],
                         'pluginOptions' => [
                             'allowClear' => true,

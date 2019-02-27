@@ -4,6 +4,7 @@ namespace app\modules\medical\models\form;
 use app\common\base\Model;
 use app\common\helpers\CommonHelper;
 use app\common\logic\orm\HumanTrait;
+use app\modules\medical\MedicalModule;
 use yii\validators\EmailValidator;
 use yii\validators\RequiredValidator;
 
@@ -149,17 +150,6 @@ class Patient extends Model
                 $key = $attribute . '[' . $index . '][type]';
                 $this->addError($key, 'Необходимо заполнить значение.');
             }
-//            $error = null;
-//            $requiredValidator->validate($row['phone'], $error);
-//            if (!empty($error)) {
-//                $key = $attribute . '[' . $index . '][phone]';
-//                $this->addError($key, $error);
-//            }
-//            $requiredValidator->validate($row['type'], $error);
-//            if (!empty($error)) {
-//                $key = $attribute . '[' . $index . '][type]';
-//                $this->addError($key, $error);
-//            }
         }
     }
 
@@ -169,25 +159,27 @@ class Patient extends Model
     public function attributeLabels()
     {
         return [
-            'last_name' => 'Фамилия',
-            'first_name' => 'Имя',
-            'middle_name' => 'Отчество',
-            'birthday' => 'Дата рождения',
-            'snils' => 'СНИЛС',
-            'inn' => 'ИНН',
-            'birthplace' => 'Место рождения',
-            'race_type' => 'Раса',
-            'children_count' => 'Кол-во детей',
-            'education_type' => 'Образование',
-            'citizenship' => 'Гражданство',
-            'sex' => 'Пол',
-            'status' => 'Статус',
-            'fullName' => 'Полное имя',
-            'phones' => 'Телефоны',
-            'emails' => 'Emails',
-            'addresses' => 'Адреса',
-            'passportSeries' => 'Серия паспорта',
-            'passportNumber' => 'Номер паспорта',
+            'last_name' => MedicalModule::t('patient','Last name'),
+            'first_name' => MedicalModule::t('patient','First name'),
+            'middle_name' => MedicalModule::t('patient','Middle name'),
+            'birthday' => MedicalModule::t('patient','Date of birth'),
+            'snils' => MedicalModule::t('patient','SSN'),
+            'inn' => MedicalModule::t('patient','ITIN'),
+            'birthplace' => MedicalModule::t('patient','Place of birth'),
+            'race_type' => MedicalModule::t('patient','Race'),
+            'children_count' => MedicalModule::t('patient','Children count'),
+            'education_type' => MedicalModule::t('patient','Education'),
+            'citizenship' => MedicalModule::t('patient','Citizenship'),
+            'sex' => MedicalModule::t('patient','Sex'),
+            'status' => MedicalModule::t('patient','Status'),
+            'fullName' => MedicalModule::t('patient','Full name'),
+            'phones' => MedicalModule::t('patient','Phone numbers'),
+            'emails' => MedicalModule::t('patient','Emails'),
+            'addresses' => MedicalModule::t('patient','Address list'),
+            'passport' => MedicalModule::t('patient','Passport data'),
+
+            'passportSeries' => MedicalModule::t('patient','Passport series'),
+            'passportNumber' => MedicalModule::t('patient','Passport number'),
         ];
     }
 }

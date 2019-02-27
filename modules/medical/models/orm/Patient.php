@@ -8,6 +8,7 @@ use app\common\logic\orm\PassportTrait;
 use app\common\logic\orm\PhoneTrait;
 use app\common\logic\orm\AddressTrait;
 use app\common\helpers\CommonHelper;
+use app\modules\medical\MedicalModule;
 
 /**
  * Class Patient
@@ -57,24 +58,24 @@ class Patient extends ActiveRecord
     public function attributeLabelsOverride()
     {
         return [
-            'last_name' => 'Фамилия',
-            'first_name' => 'Имя',
-            'middle_name' => 'Отчество',
-            'birthday' => 'Дата рождения',
-            'snils' => 'СНИЛС',
-            'inn' => 'ИНН',
-            'birthplace' => 'Место рождения',
-            'race_type' => 'Раса',
-            'children_count' => 'Кол-во детей',
-            'education_type' => 'Образование',
-            'citizenship' => 'Гражданство',
-            'sex' => 'Пол',
-            'status' => 'Статус',
-            'fullName' => 'Полное имя',
-            'phones' => 'Телефоны',
-            'emails' => 'Emails',
-            'addresses' => 'Адреса',
-            'passport' => 'Паспортные данные',
+            'last_name' => MedicalModule::t('patient','Last name'),
+            'first_name' => MedicalModule::t('patient','First name'),
+            'middle_name' => MedicalModule::t('patient','Middle name'),
+            'birthday' => MedicalModule::t('patient','Date of birth'),
+            'snils' => MedicalModule::t('patient','SSN'),
+            'inn' => MedicalModule::t('patient','ITIN'),
+            'birthplace' => MedicalModule::t('patient','Place of birth'),
+            'race_type' => MedicalModule::t('patient','Race'),
+            'children_count' => MedicalModule::t('patient','Children count'),
+            'education_type' => MedicalModule::t('patient','Education'),
+            'citizenship' => MedicalModule::t('patient','Citizenship'),
+            'sex' => MedicalModule::t('patient','Sex'),
+            'status' => MedicalModule::t('patient','Status'),
+            'fullName' => MedicalModule::t('patient','Full name'),
+            'phones' => MedicalModule::t('patient','Phone numbers'),
+            'emails' => MedicalModule::t('patient','Emails'),
+            'addresses' => MedicalModule::t('patient','Address list'),
+            'passport' => MedicalModule::t('patient','Passport data'),
         ];
     }
 

@@ -12,6 +12,7 @@ use app\common\widgets\ActiveForm;
 use app\common\widgets\MultipleInput;
 use app\common\wrappers\Block;
 use app\modules\medical\application\PatientServiceInterface;
+use app\modules\medical\MedicalModule;
 use app\modules\medical\models\form\Patient;
 use app\modules\medical\widgets\grid\EhrGrid;
 use app\modules\medical\widgets\grid\PolicyGrid;
@@ -78,7 +79,7 @@ class PatientCard extends CardView
     {
         return [
             'personal' => [
-                'title' => 'Данные пациента',
+                'title' => MedicalModule::t('patient', 'Patient data'),
                 'items' => [
                     [
                         'items' => [
@@ -224,21 +225,18 @@ class PatientCard extends CardView
                 ],
             ],
             'contacts' => [
-                'title' => 'Контактные данные пациента',
+                'title' => MedicalModule::t('patient', 'Patient\'s contact data'),
                 'items' => [
                     [
                         'items' => [
                             [
                                 'attribute' => 'phones',
-//                                    'colSize' => 4,
-//                                    'labelSize' => 2,
-//                                    'valueSize' => 10,
                                 'scenarios' => [
                                     'default' => [
                                         'value' => function ($model) {
                                             $phones = $model->phones;
                                             if (empty($phones) || !is_array($phones)) {
-                                                return 'Телефоны не найдены'; // todo normalize text
+                                                return MedicalModule::t('common', 'Phone numbers not found');
                                             }
                                             $content = '';
                                             $count = count($phones);
@@ -260,7 +258,7 @@ class PatientCard extends CardView
                                                     [
                                                         'name' => 'type',
                                                         'type' => 'dropDownList',
-                                                        'title' => 'Тип',
+                                                        'title' => MedicalModule::t('common', 'Type'),
                                                         'items' => Phone::typeListData(),
                                                         'enableError' => true,
 
@@ -268,12 +266,12 @@ class PatientCard extends CardView
                                                     [
                                                         'type' => MaskedInput::class,
                                                         'name'  => 'phone',
-                                                        'title' => 'Телефон',
+                                                        'title' => MedicalModule::t('common', 'Phone number'),
                                                         'options' => [
                                                             'options' => [
                                                                 'class' => 'form-control',
                                                             ],
-                                                            'mask' => '+7 (999) 999-99-99', // todo more country
+                                                            'mask' => '+7 (999) 999-99-99',
                                                         ],
                                                         'enableError' => true,
                                                     ],
@@ -288,7 +286,7 @@ class PatientCard extends CardView
                                                     [
                                                         'name' => 'type',
                                                         'type' => 'dropDownList',
-                                                        'title' => 'Тип',
+                                                        'title' => MedicalModule::t('common', 'Type'),
                                                         'items' => Phone::typeListData(),
                                                         'enableError' => true,
 
@@ -296,12 +294,12 @@ class PatientCard extends CardView
                                                     [
                                                         'type' => MaskedInput::class,
                                                         'name'  => 'phone',
-                                                        'title' => 'Телефон',
+                                                        'title' =>  MedicalModule::t('common', 'Phone number'),
                                                         'options' => [
                                                             'options' => [
                                                                 'class' => 'form-control',
                                                             ],
-                                                            'mask' => '+7 (999) 999-99-99', // todo more country
+                                                            'mask' => '+7 (999) 999-99-99',
                                                         ],
                                                         'enableError' => true,
                                                     ],
@@ -314,15 +312,12 @@ class PatientCard extends CardView
                             [
                                 'attribute' => 'emails',
                                 'multiline' => true,
-//                                'colSize' => 4,
-//                                'labelSize' => 2,
-//                                'valueSize' => 10,
                                 'scenarios' => [
                                     'default' => [
                                         'value' => function ($model) {
                                             $emails = $model->emails;
                                             if (empty($emails) || !is_array($emails)) {
-                                                return 'Адреса не найдены'; // todo normalize text
+                                                return  MedicalModule::t('common', 'Addresses not found');
                                             }
                                             $content = '';
                                             $count = count($emails);
@@ -343,14 +338,14 @@ class PatientCard extends CardView
                                                 'columns' => [
                                                     [
                                                         'name' => 'type',
-                                                        'type' => 'dropDownList', // @todo проработать, возможно можно удалить нафиг
-                                                        'title' => 'Тип',
+                                                        'type' => 'dropDownList',
+                                                        'title' => MedicalModule::t('common', 'Type'),
                                                         'items' => Email::typeListData(),
                                                         'enableError' => true,
                                                     ],
                                                     [
                                                         'name'  => 'address',
-                                                        'title' => 'Адрес',
+                                                        'title' => MedicalModule::t('common', 'Address'),
                                                         'enableError' => true,
                                                     ],
                                                 ],
@@ -363,14 +358,14 @@ class PatientCard extends CardView
                                                 'columns' => [
                                                     [
                                                         'name' => 'type',
-                                                        'type' => 'dropDownList', // @todo проработать, возможно можно удалить нафиг
-                                                        'title' => 'Тип',
+                                                        'type' => 'dropDownList',
+                                                        'title' => MedicalModule::t('common', 'Type'),
                                                         'items' => Email::typeListData(),
                                                         'enableError' => true,
                                                     ],
                                                     [
                                                         'name'  => 'address',
-                                                        'title' => 'Адрес',
+                                                        'title' => MedicalModule::t('common', 'Address'),
                                                         'enableError' => true,
                                                     ],
                                                 ],
@@ -393,7 +388,7 @@ class PatientCard extends CardView
                                         'value' => function ($model) {
                                             $addresses = $model->addresses;
                                             if (empty($addresses) || !is_array($addresses)) {
-                                                return 'Адреса не найдены'; // todo normalize text
+                                                return MedicalModule::t('common','Addresses not found');
                                             }
                                             $content = '';
                                             $count = count($addresses);
@@ -428,7 +423,7 @@ class PatientCard extends CardView
                                                 'columns' => [
                                                     [
                                                         'name' => 'type',
-                                                        'type' => 'dropDownList', // @todo проработать, возможно можно удалить нафиг
+                                                        'type' => 'dropDownList',
                                                         'title' => \Yii::t('app', 'Type address'),
                                                         'items' => Address::typeListData(),
                                                         'enableError' => true,
@@ -483,7 +478,7 @@ class PatientCard extends CardView
                                                 'columns' => [
                                                     [
                                                         'name' => 'type',
-                                                        'type' => 'dropDownList', // @todo проработать, возможно можно удалить нафиг
+                                                        'type' => 'dropDownList',
                                                         'title' => \Yii::t('app', 'Type address'),
                                                         'items' => Address::typeListData(),
                                                         'enableError' => true,
@@ -539,7 +534,7 @@ class PatientCard extends CardView
                 ],
             ],
             'documents' => [
-                'title' => 'Документы пациента',
+                'title' => MedicalModule::t('patient', 'Patient documents'),
                 'items' => [
                     [
                         'items' => [
@@ -604,11 +599,11 @@ class PatientCard extends CardView
                                     'update' => [
                                         'label' => false,
                                         'value' =>
-                                            Html::submitButton(\Yii::t('app', 'save'), [
+                                            Html::submitButton(\Yii::t('app', 'Save'), [
                                                 'class' => 'btn btn-primary',
                                                 'icon'  => 'saved'
                                             ])
-                                            . '&nbsp' . Html::button(\Yii::t('app', 'cancel'), [
+                                            . '&nbsp' . Html::button(\Yii::t('app', 'Cancel'), [
                                                 'class' => 'btn btn-default',
                                                 'data-card-switch' => 'default'
                                             ])
@@ -616,11 +611,11 @@ class PatientCard extends CardView
                                     'create' => [
                                         'label' => false,
                                         'value' =>
-                                            Html::submitButton(\Yii::t('app', 'save'), [
+                                            Html::submitButton(\Yii::t('app', 'Save'), [
                                                 'class' => 'btn btn-primary',
                                                 'icon'  => 'saved'
                                             ])
-                                            . '&nbsp' . Html::button(\Yii::t('app', 'cancel'), [
+                                            . '&nbsp' . Html::button(\Yii::t('app', 'Cancel'), [
                                                 'class' => 'btn btn-default',
                                                 'data-card-switch' => 'default'
                                             ])
@@ -646,7 +641,7 @@ class PatientCard extends CardView
                         'patientId' => $model->id
                     ]);
                 },
-                'header' => 'Медицинские карты'
+                'header' => MedicalModule::t('common', 'EHRs'),
             ],
             'policy' => [
                 'value' => function ($model) {
@@ -654,7 +649,7 @@ class PatientCard extends CardView
                         'patientId' => $model->id,
                     ]);
                 },
-                'header' => 'Полисы',
+                'header' => MedicalModule::t('common', 'Policies'),
             ],
         ];
     }
