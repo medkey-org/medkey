@@ -1,5 +1,5 @@
 <?php
-namespace app\common\port\rest\controllers;
+namespace app\common\rest\controllers;
 
 use app\common\bots\SkypeBotServiceInterface;
 use app\common\rest\Controller;

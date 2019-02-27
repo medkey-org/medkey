@@ -1,19 +1,38 @@
 <?php
-namespace app\common\port\rest\controllers;
+namespace app\common\rest\controllers;
 
+use app\common\db\ActiveRecordRegistry;
 use app\common\filters\QueryParamAuth;
 use app\common\rest\Controller;
-use app\common\workflow\HandlerManagerInterface;
+use yii\base\Module;
 use yii\filters\AccessControl;
 use yii\web\ForbiddenHttpException;
 
 /**
- * Class HandlerRegistryController
+ * Class ActiveRecordRegistryController
  * @package Common\REST
  * @copyright 2012-2019 Medkey
  */
-class HandlerRegistryController extends Controller
+class ActiveRecordRegistryController extends Controller
 {
+    /**
+     * @var ActiveRecordRegistry
+     */
+    public $registry;
+
+    /**
+     * ActiveRecordRegistryController constructor.
+     * @param string $id
+     * @param Module $module
+     * @param ActiveRecordRegistry $registry
+     * @param array $config
+     */
+    public function __construct($id, Module $module, ActiveRecordRegistry $registry, array $config = [])
+    {
+        $this->registry = $registry;
+        parent::__construct($id, $module, $config);
+    }
+
     /**
      * @inheritdoc
      */
@@ -41,11 +60,9 @@ class HandlerRegistryController extends Controller
             ],
         ]);
     }
-
-    public function actionHandlerRegistry($module, $handlerType)
+    
+    public function actionRegistry($module)
     {
-        return $this->asJson(\Yii::$container
-            ->get(HandlerManagerInterface::class)
-            ->registryMethods($module, $handlerType));
+        return $this->asJson(ActiveRecordRegistry::registry($module));
     }
 }
