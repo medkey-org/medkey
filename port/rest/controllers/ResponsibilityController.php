@@ -1,5 +1,5 @@
 <?php
-namespace app\common\port\rest\controllers;
+namespace app\port\rest\controllers;
 
 use app\common\base\Module;
 use app\common\db\ActiveRecord;

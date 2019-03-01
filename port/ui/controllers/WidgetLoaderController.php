@@ -1,5 +1,5 @@
 <?php
-namespace app\common\port\ui\controllers;
+namespace app\port\ui\controllers;
 
 use app\common\filters\QueryParamAuth;
 use app\common\web\Controller;

@@ -23,6 +23,8 @@ Thumbs.db
 .env
 env.php
 
+test.php
+
 #/tests
 #codeception.yml
 

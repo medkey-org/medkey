@@ -1,5 +1,5 @@
 <?php
-namespace app\common\port\cli\controllers;
+namespace app\port\cli\controllers;
 
 use app\common\console\Controller;
 use app\modules\incident\application\FileServiceInterface;

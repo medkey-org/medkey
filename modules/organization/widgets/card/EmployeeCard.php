@@ -5,7 +5,6 @@ use app\common\card\CardView;
 use app\common\helpers\CommonHelper;
 use app\common\helpers\Html;
 use app\common\helpers\Url;
-use app\common\logic\orm\Address;
 use app\common\logic\orm\Email;
 use app\common\logic\orm\Phone;
 use app\common\widgets\ActiveForm;
@@ -14,7 +13,6 @@ use app\common\wrappers\Block;
 use app\modules\organization\application\EmployeeServiceInterface;
 use app\modules\organization\models\orm\Employee;
 use app\modules\organization\OrganizationModule;
-use app\modules\security\models\orm\User;
 use yii\widgets\MaskedInput;
 use app\modules\organization\models\form\Employee as EmployeeForm;
 
