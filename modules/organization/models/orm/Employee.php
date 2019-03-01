@@ -35,13 +35,13 @@ use app\modules\security\models\orm\User;
  */
 class Employee extends ActiveRecord
 {
+    const SEX_MALE = 1;
+    const SEX_FEMALE = 2;
+
     use HumanTrait;
     use PhoneTrait;
     use EmailTrait;
     use AddressTrait;
-
-    const SEX_MALE = 1;
-    const SEX_FEMALE = 2;
 
     /**
      * @inheritdoc
