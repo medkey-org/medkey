@@ -43,9 +43,6 @@ class User extends \yii\web\User
 
     public function getCurrentLang(): ?string
     {
-        if ($this->getIsGuest()) {
-            return null;
-        }
         return $this->userService->getCurrentUserLanguage();
     }
 }
