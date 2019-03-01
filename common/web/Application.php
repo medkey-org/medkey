@@ -31,5 +31,6 @@ class Application extends \yii\web\Application
             $this->setDynamicModules($this->dynamicModuleDI);
         }
         parent::init();
+        $this->language = $this->getUser()->getCurrentLang();
     }
 }

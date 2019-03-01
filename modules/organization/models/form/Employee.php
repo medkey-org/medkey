@@ -20,7 +20,7 @@ class Employee extends Model
 
     const SEX_MALE = 1;
     const SEX_FEMALE = 2;
-    
+
     public $id;
     public $user_id;
     public $first_name;
@@ -134,7 +134,7 @@ class Employee extends Model
      */
     public function validatePhones($attribute)
     {
-        $requiredValidator = new RequiredValidator();
+//        $requiredValidator = new RequiredValidator();
 
         if (!is_array($this->{$attribute})) {
             return null;
