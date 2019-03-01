@@ -21,7 +21,6 @@ $config = [
     'homeUrl' => ['/dashboard/ui/dashboard/index'],
     'version' => '1.0',
     'sourceLanguage' => 'en-US',
-    'language' => 'ru-RU',
     'components' => [
         'request' => [
             'class' => \app\common\web\Request::class,

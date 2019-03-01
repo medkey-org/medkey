@@ -50,6 +50,18 @@ class UserService extends ApplicationService implements UserServiceInterface
         return User::findOne($id);
     }
 
+    public function getCurrentUserLanguage(): ?string
+    {
+        if (\Yii::$app->user->isGuest) {
+            return !empty(locale_accept_from_http($_SERVER['HTTP_ACCEPT_LANGUAGE'])) ? locale_accept_from_http($_SERVER['HTTP_ACCEPT_LANGUAGE']) : null;
+        }
+
+        /** @var User $user */
+        $user = \Yii::$app->user->identity;
+
+        return $user->language;
+    }
+
     /**
      * @inheritdoc
      */
