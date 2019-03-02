@@ -74,7 +74,7 @@ class User extends ActiveRecord implements IdentityInterface
             ],
             [ ['acl_role_id'], ForeignKeyValidator::class, ],
             [ ['status'], 'integer', ],
-            [ ['login',], 'string' ],
+            [ ['login', 'language'], 'string' ],
             [ ['login', 'password_hash'], 'required', 'on' => ActiveRecord::SCENARIO_CREATE ],
             [ ['password_hash'], 'filter', 'filter' => function ($value) {
                 return \Yii::$app->security->generatePasswordHash($value);
