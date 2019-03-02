@@ -84,13 +84,13 @@ class UserService extends ApplicationService implements UserServiceInterface
     public function updateUser($form)
     {
         if (!$this->isAllowed('updateUser')) {
-            throw new AccessApplicationServiceException('Доступ к списку пользователей запрещён.');
+            throw new AccessApplicationServiceException('Доступ к редактированию пользователей запрещён.');
         }
         $user = User::findOneEx($form->id);
         $user->setScenario('update');
         $user->loadForm($form);
         if (!$user->save()) {
-            throw new ApplicationServiceException('Не удалось сохранить пользователя.');
+            throw new ApplicationServiceException('Не удалось отредактировать пользователя.');
         }
         return $user;
     }

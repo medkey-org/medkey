@@ -104,6 +104,27 @@ class Acl extends Seed
             [
                 'module' => 'security',
                 'type' => '1',
+                'entity_type' => 'UserService',
+                'action' => 'createUser',
+                'acl_role_id' => ArrayHelper::findBy($aclRoles, ['name' => 'admin'])->id
+            ],
+            [
+                'module' => 'security',
+                'type' => '1',
+                'entity_type' => 'UserService',
+                'action' => 'updateUser',
+                'acl_role_id' => ArrayHelper::findBy($aclRoles, ['name' => 'admin'])->id
+            ],
+            [
+                'module' => 'security',
+                'type' => '1',
+                'entity_type' => 'AclService',
+                'action' => 'getAclList',
+                'acl_role_id' => ArrayHelper::findBy($aclRoles, ['name' => 'admin'])->id
+            ],
+            [
+                'module' => 'security',
+                'type' => '1',
                 'entity_type' => 'AclService',
                 'action' => 'getAclList',
                 'acl_role_id' => ArrayHelper::findBy($aclRoles, ['name' => 'admin'])->id
