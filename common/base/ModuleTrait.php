@@ -78,6 +78,9 @@ trait ModuleTrait
      */
     public function createControllerByID($id)
     {
+        if (PHP_SAPI == php_sapi_name()) {
+            return parent::createControllerByID($id);
+        }
         $pos = strrpos($id, '/');
         if ($pos === false) {
             $prefix = '';
