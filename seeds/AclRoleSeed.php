@@ -1,5 +1,5 @@
 <?php
-namespace app\seeds\install;
+namespace app\seeds;
 
 use app\common\seeds\Seed;
 use app\modules\security\models\orm\AclRole;

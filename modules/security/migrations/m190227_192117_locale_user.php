@@ -2,6 +2,7 @@
 
 use app\common\db\Migration;
 use app\modules\security\models\orm\User;
+
 /**
  * Class m190227_192117_locale_user
  */

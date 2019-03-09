@@ -19,6 +19,9 @@ class Module extends \yii\base\Module
             $class = get_class($this);
             if (($pos = strrpos($class, '\\')) !== false) {
                 // меняем controllers->port и используем prefix
+                if (php_sapi_name() === 'cli') {
+                    $this->controllerNamespace = substr($class, 0, $pos) . '\\commands';
+                }
                 $this->controllerNamespace = substr($class, 0, $pos) . '\\port';
             }
         }
