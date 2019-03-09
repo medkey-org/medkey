@@ -18,7 +18,7 @@ class Application extends \yii\console\Application
      */
     public function init()
     {
-        $this->controllerNamespace = 'app\port';
+        $this->controllerNamespace = 'app\commands';
         $this->_widgetNamespace = 'app\widgets';
         $this->_ormNamespace = 'app\models\orm';
         $this->_workflowNamespace = 'app\workflow';
