@@ -78,7 +78,7 @@ trait ModuleTrait
      */
     public function createControllerByID($id)
     {
-        if (PHP_SAPI == php_sapi_name()) {
+        if (PHP_SAPI == 'cli') {
             return parent::createControllerByID($id);
         }
         $pos = strrpos($id, '/');
