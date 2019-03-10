@@ -153,7 +153,7 @@ class EhrCard extends CardView
                                     'default' => [
                                         'value' => function (Ehr $model) {
                                             if ($model->patient instanceof Patient) {
-                                                return $model->patient->fullName;
+                                                return Html::a($model->patient->fullName, Url::to(['/medical/ui/patient/view/', 'id' => $model->patient->id]));
                                             }
                                             return '';
                                         }
