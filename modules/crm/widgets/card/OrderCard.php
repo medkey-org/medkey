@@ -35,11 +35,15 @@ class OrderCard extends CardView
      * @var EhrServiceInterface
      */
     public $ehrService;
+    /**
+     * @var OrderServiceInterface
+     */
     public $orderService;
 
     /**
      * OrderCard constructor.
      * @param EhrServiceInterface $ehrService
+     * @param OrderServiceInterface $orderService
      * @param array $config
      */
     public function __construct(EhrServiceInterface $ehrService, OrderServiceInterface $orderService, array $config = [])

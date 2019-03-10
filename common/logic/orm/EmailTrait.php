@@ -12,9 +12,6 @@ use app\common\logic\orm\Email;
  */
 trait EmailTrait
 {
-    /**
-     * @return \yii\db\ActiveQueryInterface|array
-     */
     public function getEmails()
     {
         return $this->hasMany(Email::class, ['entity_id' => 'id'])

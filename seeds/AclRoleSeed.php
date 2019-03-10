@@ -18,7 +18,7 @@ class AclRoleSeed extends Seed
         $this->data = [
             [
                 'name' => 'admin',
-                'short_name' => 'adm',
+                'short_name' => 'admin',
                 'description' => 'admin',
             ],
         ];
