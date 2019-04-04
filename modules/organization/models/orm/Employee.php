@@ -23,9 +23,6 @@ use app\modules\security\models\orm\User;
  * @property int $sex
  * @property int $education
  * @property string $birthday
- * @property string $skype_bot_id
- * @property string $skype_code
- * @property string $skype_service_url
  * @property-read int $sexName
  * @property-read string $fullName
  * @property-read Phone[] $phones
@@ -67,10 +64,9 @@ class Employee extends ActiveRecord
             ],
             [ ['first_name', 'middle_name', 'last_name'], 'match', 'pattern' => '/^[АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЬЫЪЭЮЯабвгдеёжзийклмнопрстуфхцчшщьыъэюяa-zA-Z\-]+$/' ],
 
-            [ ['first_name', 'last_name', 'middle_name', 'skype_code', 'skype_bot_id', 'skype_service_url' ],
+            [ ['first_name', 'last_name', 'middle_name' ],
                 'string',
             ],
-            [ ['skype_code'], 'unique' ],
             [ ['user_id'], ForeignKeyValidator::class, ],
             [ ['status', 'sex', 'education'],
                 'integer',

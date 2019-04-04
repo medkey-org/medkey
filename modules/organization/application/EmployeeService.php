@@ -142,7 +142,6 @@ class EmployeeService extends ApplicationService implements EmployeeServiceInter
                 'scenario' => ActiveRecord::SCENARIO_CREATE
             ]);
             $model->loadForm($employeeForm);
-            $model->skype_code = $this->createSkypeCode();
             if (!$model->save()) {
                 throw new ApplicationServiceException('Не удалось сохранить сотрудника.');
             }
@@ -186,14 +185,6 @@ class EmployeeService extends ApplicationService implements EmployeeServiceInter
             $this->saveEmails($model->id, $employeeForm->emails);
             $this->saveAddresses($model->id, $employeeForm->addresses);
 
-            if (is_array($employeeForm->emails)) {
-                foreach ($employeeForm->emails as $email) {
-                    if (empty($email['type']) || empty($email['address'])) {
-                        continue;
-                    }
-                    $this->sendSkypeCodeByEmail($email['address'], $model->skype_code);
-                }
-            }
             $transaction->commit();
         } catch (\Exception $e) {
             $transaction->rollBack();
@@ -310,42 +301,4 @@ class EmployeeService extends ApplicationService implements EmployeeServiceInter
         return $employeeForm;
     }
 
-    private function createSkypeCode()
-    {
-        do {
-            $code = substr(md5(\Yii::$app->security->generateRandomString()), 0, 6);
-        } while (!is_null($this->getEmployeeBySkypeCode($code)));
-
-        return $code;
-    }
-
-    /**
-     * @param $text
-     * @return array|bool|null|\yii\db\ActiveRecord
-     */
-    public function getEmployeeBySkypeCode($text)
-    {
-        $employee = Employee::find()
-            ->where([
-                'skype_code' => $text,
-            ])
-            ->notDeleted()
-            ->one();
-        if (isset($employee)) {
-            return $employee;
-        }
-
-        return null;
-    }
-
-    public function getEmployeeBySkypeId($id)
-    {
-        $employee = Employee::find()
-            ->where([
-                'skype_bot_id' => $id,
-            ])
-            ->notDeleted()
-            ->one();
-        return $employee;
-    }
 }
