@@ -1,5 +1,5 @@
 <?php
-namespace app\seeds\install;
+namespace app\seeds;
 
 use app\common\helpers\ArrayHelper;
 use app\common\seeds\Seed;
@@ -99,6 +99,27 @@ class Acl extends Seed
                 'type' => '1',
                 'entity_type' => 'ReferralService',
                 'action' => 'getReferralById',
+                'acl_role_id' => ArrayHelper::findBy($aclRoles, ['name' => 'admin'])->id
+            ],
+            [
+                'module' => 'security',
+                'type' => '1',
+                'entity_type' => 'UserService',
+                'action' => 'createUser',
+                'acl_role_id' => ArrayHelper::findBy($aclRoles, ['name' => 'admin'])->id
+            ],
+            [
+                'module' => 'security',
+                'type' => '1',
+                'entity_type' => 'UserService',
+                'action' => 'updateUser',
+                'acl_role_id' => ArrayHelper::findBy($aclRoles, ['name' => 'admin'])->id
+            ],
+            [
+                'module' => 'security',
+                'type' => '1',
+                'entity_type' => 'AclService',
+                'action' => 'getAclList',
                 'acl_role_id' => ArrayHelper::findBy($aclRoles, ['name' => 'admin'])->id
             ],
             [

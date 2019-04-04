@@ -11,9 +11,6 @@ use app\common\db\ActiveRecord;
  */
 trait AddressTrait
 {
-    /**
-     * @return \yii\db\ActiveQueryInterface
-     */
     public function getAddresses()
     {
         return $this->hasMany(Address::class, ['entity_id' => 'id'])

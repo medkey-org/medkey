@@ -10,6 +10,7 @@ use app\modules\security\models\finders\UserFinder;
  */
 interface UserServiceInterface
 {
+    public function getCurrentUserLanguage(): ?string;
     public function getUserList(UserFinder $form);
     public function getAccessTokenByLoginAndPassword($login, $password);
     public function getUserForm($raw);

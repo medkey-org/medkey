@@ -18,7 +18,7 @@ class User extends Model
     public $status;
     public $acl_role_id;
     public $auth_key;
-
+    public $language;
     public $aclRole = [];
 
     /**
@@ -33,12 +33,28 @@ class User extends Model
             ],
             [ 'status', 'integer' ],
             [ ['acl_role_id'], ForeignKeyValidator::class, ],
-            [ ['login', 'password_hash'], 'string' ],
+            [ ['login', 'password_hash', 'language'], 'string' ],
             [ ['login',], 'required', 'on' => ['create', 'update'], ],
             [ ['password_hash'], 'required', 'on' => ['create'] ],
             [ ['password_hash'], 'filter', 'filter' => function ($value) {
                 return \Yii::$app->security->generatePasswordHash($value);
             }, 'on' => 'create' ],
+        ];
+    }
+
+    public function getLanguageById(string $id): string
+    {
+        $languages = $this::listLanguage();
+        if (!empty($languages[$id])) {
+
+        }
+    }
+
+    public static function listLanguage(): array
+    {
+        return [
+            UserOrm::LANG_EN => 'English',
+            UserOrm::LANG_RU => 'Russian',
         ];
     }
 

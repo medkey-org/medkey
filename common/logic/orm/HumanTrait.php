@@ -1,8 +1,6 @@
 <?php
 namespace app\common\logic\orm;
 
-use app\common\helpers\ArrayHelper;
-
 /**
  * Trait HumanTrait
  *
@@ -55,8 +53,8 @@ trait HumanTrait
     public static function sexListData()
     {
         return [
-            self::SEX_MALE => 'Male',
-            self::SEX_FEMALE => 'Female',
+            static::SEX_MALE => 'Male',
+            static::SEX_FEMALE => 'Female',
         ];
     }
 

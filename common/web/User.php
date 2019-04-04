@@ -1,6 +1,7 @@
 <?php
 namespace app\common\web;
 
+use app\modules\security\application\UserServiceInterface;
 use app\modules\security\models\orm\User as UserOrm;
 
 /**
@@ -10,10 +11,19 @@ use app\modules\security\models\orm\User as UserOrm;
  */
 class User extends \yii\web\User
 {
-    /**
-     * @var array
-     */
     public $loginUrl = ['/security/ui/user/login-form'];
+    public $userService;
+
+    /**
+     * User constructor.
+     * @param UserServiceInterface $userService
+     * @param array $config
+     */
+    public function __construct(UserServiceInterface $userService, array $config = [])
+    {
+        $this->userService = $userService;
+        parent::__construct($config);
+    }
 
     /**
      * @return bool
@@ -29,5 +39,10 @@ class User extends \yii\web\User
             return true;
         }
         return false;
+    }
+
+    public function getCurrentLang(): ?string
+    {
+        return $this->userService->getCurrentUserLanguage();
     }
 }

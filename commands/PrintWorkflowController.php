@@ -1,5 +1,5 @@
 <?php
-namespace app\common\port\cli\controllers;
+namespace app\commands;
 
 use app\common\console\Controller;
 use app\common\workflow\WorkflowManagerInterface;

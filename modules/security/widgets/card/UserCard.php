@@ -114,15 +114,15 @@ class UserCard extends CardView
                                     ],
                                     'update' => [
                                         'value' => function (UserForm $model, ActiveForm $form) {
-                                            return '';
+                                            return '*******';
                                         },
-                                        'label' => false,
+//                                        'label' => false,
                                     ],
                                     'default' => [
                                         'value' => function (UserForm $model) {
-                                            return '';
+                                            return '********';
                                         },
-                                        'label' => false,
+//                                        'label' => false,
                                     ],
                                 ]
                             ]
@@ -132,7 +132,6 @@ class UserCard extends CardView
                         'items' => [
                             [
                                 'attribute' => 'acl_role_id',
-                                'colSize' => 6,
                                 'scenarios' => [
                                     'create' => [
                                         'value' => function (UserForm $model, ActiveForm $form) {
@@ -160,7 +159,33 @@ class UserCard extends CardView
                                         }
                                     ]
                                 ]
-                            ]
+                            ],
+                            [
+                                'attribute' => 'language',
+                                'scenarios' => [
+                                    'create' => [
+                                        'value' => function (UserForm $model, ActiveForm $form) {
+                                            return $form
+                                                ->field($model, 'language')
+                                                ->select2(UserForm::listLanguage())
+                                                ->label(false);
+                                        }
+                                    ],
+                                    'update' => [
+                                        'value' => function (UserForm $model, ActiveForm $form) {
+                                            return $form
+                                                ->field($model, 'language')
+                                                ->select2(UserForm::listLanguage())
+                                                ->label(false);
+                                        }
+                                    ],
+                                    'default' => [
+                                        'value' => function (UserForm $form) {
+                                            return $form->language;
+                                        }
+                                    ],
+                                ],
+                            ],
                         ],
                     ],
                     [

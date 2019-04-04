@@ -1,5 +1,5 @@
 <?php
-namespace app\common\port\rest\controllers;
+namespace app\port\rest\controllers;
 
 use app\common\db\ActiveRecordRegistry;
 use app\common\filters\QueryParamAuth;

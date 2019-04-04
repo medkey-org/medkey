@@ -1,8 +1,7 @@
 <?php
-namespace app\seeds\install;
+namespace app\seeds;
 
 use app\common\helpers\ArrayHelper;
-use app\common\helpers\CommonHelper;
 use app\common\seeds\Seed;
 use app\modules\organization\models\orm\Employee;
 
@@ -24,9 +23,9 @@ class EmployeeSeed extends Seed
             [
                 'user_id' => ArrayHelper::findBy($users, ['login' => 'admin'])->id,
                 'first_name' => 'administrator',
-                'middle_name' => '',
+                'middle_name' => 'administrator',
                 'last_name' => 'administrator',
-                'birthday' => \Yii::$app->formatter->asDate(time(), CommonHelper::FORMAT_DATE_DB),
+                'birthday' => '1970-01-01',
                 'sex' => Employee::SEX_MALE,
             ]
         ];

@@ -1,5 +1,5 @@
 <?php
-namespace app\seeds\install;
+namespace app\seeds;
 
 use app\common\seeds\Seed;
 use app\modules\security\models\orm\AclRole;
@@ -18,7 +18,7 @@ class AclRoleSeed extends Seed
         $this->data = [
             [
                 'name' => 'admin',
-                'short_name' => 'adm',
+                'short_name' => 'admin',
                 'description' => 'admin',
             ],
         ];

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "3c68003fb8391943277f9f54211fa77d",
+    "content-hash": "440acf7772e097fb496080d3e96217ca",
     "packages": [
         {
             "name": "bower-asset/bootstrap",
@@ -602,6 +602,40 @@
                 "wiki": "https://medkey.org/wiki"
             },
             "time": "2018-12-31T08:28:32+00:00"
+        },
+        {
+            "name": "medkey/module-template",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "git@github.com:medkey-org/module-template.git",
+                "reference": "a57e2a75dc4d45d56e287c5297d48409b5b56dd8"
+            },
+            "require": {
+                "php": "^7.1.3"
+            },
+            "type": "medkey-module",
+            "autoload": {
+                "psr-4": {
+                    "app\\modules\\module-template\\": ""
+                }
+            },
+            "license": [
+                "Apache License 2.0"
+            ],
+            "description": "Medkey module template",
+            "homepage": "https://medkey.org",
+            "keywords": [
+                "medkey",
+                "module",
+                "template"
+            ],
+            "support": {
+                "email": "info@medkey.org",
+                "wiki": "https://medkey.org/wiki",
+                "chat": "https://t.me/medkey_talks"
+            },
+            "time": "2019-01-03T10:28:18+00:00"
         },
         {
             "name": "moneyphp/money",
@@ -5220,6 +5254,7 @@
     "minimum-stability": "stable",
     "stability-flags": {
         "medkey/composer-plugin": 20,
+        "medkey/module-template": 20,
         "machour/yii2-jquery-flot": 20
     },
     "prefer-stable": false,
