@@ -21,7 +21,7 @@ class Application extends \yii\web\Application
      */
     public function init()
     {
-        $this->controllerNamespace = 'app\common\port';
+        $this->controllerNamespace = 'app\port';
         $this->_widgetNamespace = 'app\widgets';
         $this->_ormNamespace = 'app\models\orm';
         $this->_workflowNamespace = 'app\workflow';
@@ -31,5 +31,6 @@ class Application extends \yii\web\Application
             $this->setDynamicModules($this->dynamicModuleDI);
         }
         parent::init();
+        $this->language = $this->getUser()->getCurrentLang();
     }
 }

@@ -1,5 +1,5 @@
 <?php
-namespace app\common\port\cli\controllers;
+namespace app\commands;
 
 use app\common\console\Controller;
 use app\common\seeds\Seed;
@@ -19,18 +19,17 @@ class SeedController extends Controller
 	/**
 	 * @var string
 	 */
-	public $defaultFilename = 'database_seeder';
+	public $defaultFilename = null;
 
 
 	/**
-	 * @param string      $className
-	 * @param string|null $pathPart
-	 * @return int
+     * Example: php bin seed/apply Package.
 	 */
 	public function actionApply($className = null, $pathPart = null)
 	{
 		if (!$className) {
-			$className = $this->defaultFilename;
+		    return $this->stdout("Enter seed name." . PHP_EOL);
+//			$className = $this->defaultFilename;
 		}
 		$this->seeder($pathPart)->safeApply($className, function (Seed $seed) {
 			$className = get_class($seed);
@@ -41,9 +40,7 @@ class SeedController extends Controller
 	}
 
 	/**
-	 * @param string      $className
-	 * @param string|null $pathPart
-	 * @return int
+	 * Create seed.
 	 */
 	public function actionCreate($className, $pathPart = null)
 	{
@@ -54,7 +51,7 @@ class SeedController extends Controller
 	}
 
 	/**
-	 * @param null|int $limit
+	 * List of seeds package.
 	 */
 	public function actionList($limit = null)
 	{
@@ -66,17 +63,17 @@ class SeedController extends Controller
 	}
 
 	/**
-	 * @param string $models
+	 *
 	 */
-	public function actionExport($models)
-	{
-		$models = explode(',', $models);
-		$files = $this->seeder()->export($models, 'app\seeds\export', '@app/seeds/export');
-
-		foreach ($files as $file) {
-			$this->line("Export seed `{$file}` successfully created");
-		}
-	}
+//	public function actionExport($models)
+//	{
+//		$models = explode(',', $models);
+//		$files = $this->seeder()->export($models, 'app\seeds\export', '@app/seeds/export');
+//
+//		foreach ($files as $file) {
+//			$this->line("Export seed `{$file}` successfully created");
+//		}
+//	}
 
     /**
      * @param null $pathPart

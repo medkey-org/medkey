@@ -63,7 +63,7 @@ class WorkflowTransition extends Model
             'to_id' => 'Конечный статус',
             'handler_type' => 'Тип-обработчик перехода',
             'handler_method' => 'Функция-обработчик перехода',
-            'middleware' => 'Middleware',
+            'middleware' => 'Middleware UI Modal',
         ];
     }
 }

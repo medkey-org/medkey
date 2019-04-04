@@ -17,7 +17,6 @@ $config = [
     ],
     'version' => '1.0',
     'dynamicModule' => true,
-    'controllerNamespace' => 'app\commands',
     'components' => [
         'cache' => [
             'class' => 'yii\caching\FileCache',
@@ -27,18 +26,6 @@ $config = [
         ],
         'acl' => [
             'class' => \app\common\acl\Acl::class,
-        ],
-        'urlManager' => [
-            'baseUrl' => '',
-            'enablePrettyUrl' => true,
-            'showScriptName' => false,
-            'rules' => [
-                [
-                    'pattern' => '<module>/<controller>/<action>',
-                    'route' => '<module>/<controller>/<action>',
-                    'suffix' => ''
-                ],
-            ]
         ],
         'log' => [
             'targets' => [
