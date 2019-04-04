@@ -1,15 +1,16 @@
 <?php
+
 return [
     'PatientListDashlet' => [
-        'title' => 'Список пациентов'
+        'title' => \Yii::t('app','Patient list'),
     ],
     'OrderListDashlet' => [
-        'title' => 'Список заказов'
+        'title' => \Yii::t('app','Order list'),
     ],
     'OrderChartDashlet' => [
-        'title' => 'График заказов'
+        'title' => \Yii::t('app','Order statistics'),
     ],
     'EhrListDashlet' => [
-        'title' => 'Список медицинских карт'
+        'title' => \Yii::t('app','EHR list'),
     ],
 ];
