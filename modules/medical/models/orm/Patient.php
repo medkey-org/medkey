@@ -11,7 +11,27 @@ use app\common\helpers\CommonHelper;
 use app\modules\medical\MedicalModule;
 
 /**
- * Class Patient
+ * Patient ORM
+ *
+ * @property string $last_name
+ * @property string $first_name
+ * @property string $middle_name
+ * @property int $birthday
+ * @property string $snils
+ * @property string $inn
+ * @property string $birthplace
+ * @property int $race_type
+ * @property int $children_count
+ * @property int $education_type
+ * @property int $citizenship
+ * @property int $sex
+ * @property int $status
+ * @property string $passport
+ * @property int|string $patient_id
+ * @property-read string $fullName
+ * @property-read string[] $phones
+ * @property-read string[] $emails
+ * @property-read string[] $addresses
  *
  * @package Module\Medical
  * @copyright 2012-2019 Medkey
