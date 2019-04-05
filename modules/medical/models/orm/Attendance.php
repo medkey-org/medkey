@@ -11,16 +11,25 @@ use app\modules\organization\models\orm\Employee;
 use app\modules\workplan\models\orm\Workplan;
 
 /**
- * Class Attendance
+ * Attendance ORM
  *
- * @property int $status
  * @property int $type
+ * @property int|string $ehr_id
+ * @property int|string workplan_id
+ * @property int $status
+ * @property int $datetime
+ * @property int|string $number
+ * @property int|string $employee_id
+ * @property int|string $referral_id
  *
  * @package Module\Medical
  * @copyright 2012-2019 Medkey
  */
 class Attendance extends ActiveRecord implements ResponsibilityEntityInterface
 {
+    /**
+     * Attendance statuses
+     */
     const STATUS_INVALID = 0; // blue
     const STATUS_NEW = 1; // red
     const STATUS_PROGRESS = 2; // red
@@ -34,7 +43,7 @@ class Attendance extends ActiveRecord implements ResponsibilityEntityInterface
     const TYPE_INVALID = 0;
     const TYPE_TIME = 1;
     const TYPE_QUEUE = 2;
-    const TYPE_HOSPITAL = 7; // @todo очень сомнительно хранить такой тип здесь, подумать потом
+    const TYPE_HOSPITAL = 7; // Todo incorrect type for attendance
     const ATTENDANCE_DURATION = 1800; // seconds
 
 
@@ -93,10 +102,10 @@ class Attendance extends ActiveRecord implements ResponsibilityEntityInterface
     public static function types()
     {
         return [
-            self::TYPE_INVALID => 'Инвалидный',
-            self::TYPE_TIME => 'По записи',
-            self::TYPE_QUEUE => 'По живой очереди',
-            self::TYPE_HOSPITAL => 'Госпитализация',
+            self::TYPE_INVALID => MedicalModule::t('ehr', 'By limited abilities'),
+            self::TYPE_TIME => MedicalModule::t('ehr','By attendance'),
+            self::TYPE_QUEUE => MedicalModule::t('ehr','By queue'),
+            self::TYPE_HOSPITAL => MedicalModule::t('ehr','By hospitalization'),
         ];
     }
 
@@ -115,13 +124,13 @@ class Attendance extends ActiveRecord implements ResponsibilityEntityInterface
     public static function statuses()
     {
         return [
-            self::STATUS_INVALID => 'Инвалидный',
-            self::STATUS_NEW => 'Новый',
-            self::STATUS_PROGRESS => 'В процессе',
-            self::STATUS_ARCHIVE => 'В архите',
-            self::STATUS_CANCEL => 'Отменен',
-            self::STATUS_CONFIRM => 'Ждет подтверждения',
-            self::STATUS_ABSENCE => 'Пропуск приёма',
+            self::STATUS_INVALID => MedicalModule::t('ehr','Invalid'),
+            self::STATUS_NEW => MedicalModule::t('ehr','New'),
+            self::STATUS_PROGRESS => MedicalModule::t('ehr','In progress'),
+            self::STATUS_ARCHIVE => MedicalModule::t('ehr','Archived'),
+            self::STATUS_CANCEL => MedicalModule::t('ehr','Cancelled'),
+            self::STATUS_CONFIRM => MedicalModule::t('ehr','Waiting for confirm'),
+            self::STATUS_ABSENCE => MedicalModule::t('ehr','Absence'),
         ];
     }
 
@@ -169,7 +178,7 @@ class Attendance extends ActiveRecord implements ResponsibilityEntityInterface
             'datetime' => MedicalModule::t('attendance','Planned at'),
             'type' => MedicalModule::t('attendance','Type'),
             'number' => MedicalModule::t('attendance','Number'),
-            'employee_id' => MedicalModule::t('attendance','Employee'),
+            'employee_id' => MedicalModule::t('attendance','Doctor'),
         ];
     }
 }
