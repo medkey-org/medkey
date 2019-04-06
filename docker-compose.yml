@@ -1,0 +1,52 @@
+version: '3'
+services:
+  app:
+#    environment:
+#    - XDEBUG_CONFIG
+    build:
+      dockerfile: docker/app/Dockerfile
+      context: .
+    volumes:
+#    - composer_cache:/root/.composer
+    - .:/var/www/medkey
+    ports:
+    - 9004:80
+    depends_on:
+    - db
+  db:
+    restart: always
+    build:
+      dockerfile: docker/db/Dockerfile
+      context: .
+    # More on logging with Postgres: https://www.postgresql.org/docs/current/static/runtime-config-logging.html
+#    command: postgres -c logging_collector=on -c log_destination=stderr -c log_directory=/var/log/postgresql
+    environment:
+      POSTGRES_PASSWORD: 12345
+      POSTGRES_DB: medkey
+    ports:
+    - 9005:6432
+#    volumes:
+#    - ./tsearch/dict:/usr/share/postgresql/9.4/tsearch_data:rw
+#    - pgdata:/var/lib/postgresql/data
+#    - ./docker/db/logs:/var/log/postgresql
+  node:
+    image: "node:latest"
+#    environment:
+#    - http_proxy='http://mill07.lpr.jet.msk.su:2270'
+#    - https_proxy='http://mill07.lpr.jet.msk.su:2270'
+#    - XDEBUG_CONFIG
+    working_dir: /var/www/medkey/frontend
+    volumes:
+    - .:/var/www/medkey/frontend
+#  mq:
+#    image: "rabbitmq:3-management"
+#    environment:
+#      RABBITMQ_ERLANG_COOKIE: "hgl64lz53jdf5nz"
+#      RABBITMQ_DEFAULT_USER: "rabbitmq"
+#      RABBITMQ_DEFAULT_PASS: "rabbitmq"
+#    ports:
+#      - 15672:15672
+#      - 5672:5672
+#volumes:
+#  pgdata:
+#  composer_cache:
