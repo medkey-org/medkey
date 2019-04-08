@@ -24,7 +24,7 @@ services:
       POSTGRES_PASSWORD: 12345
       POSTGRES_DB: medkey
     ports:
-    - 9005:6432
+    - 9005:5432
 #    volumes:
 #    - ./tsearch/dict:/usr/share/postgresql/9.4/tsearch_data:rw
 #    - pgdata:/var/lib/postgresql/data

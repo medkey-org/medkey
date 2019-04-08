@@ -45,6 +45,6 @@ RUN chmod a+x /usr/local/bin/codecept
 ## github-token user
 #RUN composer config -g github-oauth.github.com token
 #
-RUN composer global require "fxp/composer-asset-plugin:^1.3.1"
+#RUN composer global require "fxp/composer-asset-plugin:^1.3.1"
 
 WORKDIR /var/www/medkey
