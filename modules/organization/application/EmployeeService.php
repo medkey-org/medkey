@@ -142,7 +142,7 @@ class EmployeeService extends ApplicationService implements EmployeeServiceInter
                 'scenario' => ActiveRecord::SCENARIO_CREATE
             ]);
             $model->loadForm($employeeForm);
-            $model->skype_code = $this->createSkypeCode();
+//            $model->skype_code = $this->createSkypeCode();
             if (!$model->save()) {
                 throw new ApplicationServiceException('Не удалось сохранить сотрудника.');
             }
