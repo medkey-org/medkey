@@ -6,7 +6,13 @@ use app\common\validators\ForeignKeyValidator;
 use app\modules\organization\OrganizationModule;
 
 /**
- * Class Department
+ * Department ORM
+ *
+ * @property int $organization_id
+ * @property string $title
+ * @property string $short_title
+ * @property string $description
+ *
  * @package Module\Organization
  * @copyright 2012-2019 Medkey
  */
