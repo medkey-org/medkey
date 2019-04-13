@@ -144,4 +144,204 @@ return [
             ]
         ]
     ],
+    [
+        'key' => 'cabinet',
+        'label' => 'Кабинеты',
+        'ormClass' => \app\modules\organization\models\orm\Cabinet::className(),
+        'config' => [
+            'createForm' => [
+                'ormClass' => \app\modules\organization\models\orm\Cabinet::className(),
+                'action' => Url::to(['/organization/ui/cabinet/create']),
+                'validationUrl' => Url::to(['/organization/ui/cabinet/validate-create']),
+                'attributes' => [
+                    'number',
+                    'description',
+                    [
+                        'attribute' => 'department_id',
+                        'type' => 'dropdown',
+                        'value' => function () {
+                            $deps = \app\modules\organization\models\orm\Department::find()->with('organization')->all();
+                            $list = [];
+                            foreach ($deps as $dep) {
+                                if (!($dep instanceof \app\modules\organization\models\orm\Department)
+                                    || !isset($dep->organization)
+                                    || !($dep->organization instanceof \app\modules\organization\models\orm\Organization)) {
+                                    continue;
+                                }
+                                $list[$dep->id] = $dep->organization->title . ' - ' . $dep->title;
+                            }
+                            return $list;
+                        },
+                    ],
+                ]
+            ],
+            'updateForm' => [
+                'ormClass' => \app\modules\organization\models\orm\Cabinet::className(),
+                'action' => Url::to(['/organization/ui/cabinet/update']),
+                'validationUrl' => Url::to(['/organization/ui/cabinet/validate-update']),
+                'attributes' => [
+                    'number',
+                    'description',
+                    [
+                        'attribute' => 'department_id',
+                        'type' => 'dropdown',
+                        'value' => function () {
+                            $deps = \app\modules\organization\models\orm\Department::find()->with('organization')->all();
+                            $list = [];
+                            foreach ($deps as $dep) {
+                                if (!($dep instanceof \app\modules\organization\models\orm\Department)
+                                    || !isset($dep->organization)
+                                    || !($dep->organization instanceof \app\modules\organization\models\orm\Organization)) {
+                                    continue;
+                                }
+                                $list[$dep->id] = $dep->organization->title . ' - ' . $dep->title;
+                            }
+                            return $list;
+                        },
+                    ],
+                ]
+            ],
+            'grid' => [
+                'finderClass' => \app\modules\organization\models\finders\CabinetFinder::className(),
+                'columns' => [
+                    'number',
+                    'description',
+                    [
+                        'header' => 'Организация',
+                        'attribute' => 'department.organization.title',
+                    ],
+                    [
+                        'header' => 'Подразделение',
+                        'attribute' => 'department.title',
+                    ],
+                ]
+            ]
+        ]
+    ],
+    [
+        'key' => 'medical-service',
+        'label' => 'Медицинские услуги',
+        'ormClass' => \app\modules\medical\models\orm\Service::class,
+        'config' => [
+            'createForm' => [
+                'ormClass' => \app\modules\medical\models\orm\Service::class,
+                'action' => Url::to(['/medical/rest/service/create']),
+                'validationUrl' => Url::to(['/medical/rest/service/validate-create']),
+                'attributes' => [
+                    'code',
+                    'title',
+                    'short_title',
+                    'description',
+                    [
+                        'attribute' => 'speciality_id',
+                        'type' => 'dropdown',
+                        'value' => function () {
+                            return \app\modules\medical\models\orm\Speciality::listAll();
+                        },
+                    ],
+                ]
+            ],
+            'updateForm' => [
+                'ormClass' => \app\modules\medical\models\orm\Service::class,
+                'action' => Url::to(['/medical/rest/service/update']),
+                'validationUrl' => Url::to(['/medical/rest/service/validate-update']),
+                'attributes' => [
+                    'code',
+                    'title',
+                    'short_title',
+                    'description',
+                    [
+                        'attribute' => 'speciality_id',
+                        'type' => 'dropdown',
+                        'value' => function () {
+                            return \app\modules\medical\models\orm\Speciality::listAll();
+                        },
+                    ],
+                ]
+            ],
+            'grid' => [
+                'finderClass' => \app\modules\medical\models\finders\ServiceFinder::class,
+                'columns' => [
+                    'code',
+                    'title',
+                    'short_title',
+                    'description',
+                    [
+                        'header' => 'Медицинские услуги',
+                        'attribute' => 'speciality.title'
+                    ],
+                ]
+            ]
+        ]
+    ],
+    [
+        'key' => 'medical-speciality',
+        'label' => 'Медицинские специальности',
+        'ormClass' => \app\modules\medical\models\orm\Speciality::class,
+        'config' => [
+            'createForm' => [
+                'ormClass' => \app\modules\medical\models\orm\Speciality::class,
+                'action' => Url::to(['/medical/rest/speciality/create']),
+                'validationUrl' => Url::to(['/medical/rest/speciality/validate-create']),
+                'attributes' => [
+                    'title',
+                    'short_title',
+                    'description',
+                ]
+            ],
+            'updateForm' => [
+                'ormClass' => \app\modules\medical\models\orm\Speciality::class,
+                'action' => Url::to(['/medical/rest/speciality/update']),
+                'validationUrl' => Url::to(['/medical/rest/speciality/validate-update']),
+                'attributes' => [
+                    'title',
+                    'short_title',
+                    'description',
+                ]
+            ],
+            'grid' => [
+                'finderClass' => \app\modules\medical\models\finders\SpecialityFinder::class,
+                'columns' => [
+                    'title',
+                    'short_title',
+                    'description',
+                ]
+            ]
+        ]
+    ],
+    [
+        'key' => 'medical-insurance',
+        'label' => 'Страховые компании',
+        'ormClass' => \app\modules\medical\models\orm\Insurance::class,
+        'config' => [
+            'createForm' => [
+                'ormClass' => \app\modules\medical\models\orm\Insurance::class,
+                'action' => Url::to(['/medical/rest/insurance/create']),
+                'validationUrl' => Url::to(['/medical/rest/insurance/validate-create']),
+                'attributes' => [
+                    'title',
+                    'short_title',
+                    'code',
+                ]
+            ],
+            'updateForm' => [
+                'ormClass' => \app\modules\medical\models\orm\Insurance::class,
+                'action' => Url::to(['/medical/rest/insurance/update']),
+                'validationUrl' => Url::to(['/medical/rest/insurance/validate-update']),
+                'attributes' => [
+                    'title',
+                    'short_title',
+                    'code',
+                ]
+            ],
+            'grid' => [
+                'finderClass' => \app\modules\medical\models\finders\InsuranceFinder::class,
+                'columns' => [
+                    'title',
+                    'short_title',
+                    'code',
+                ]
+            ]
+        ]
+    ],
 ];
