@@ -157,17 +157,20 @@ return [
                     'number',
                     'description',
                     [
-                        'attribute' => 'organization_id',
-                        'type' => 'dropdown',
-                        'value' => function () {
-                            return \app\modules\organization\models\orm\Organization::listAll();
-                        },
-                    ],
-                    [
                         'attribute' => 'department_id',
                         'type' => 'dropdown',
                         'value' => function () {
-                            return \app\modules\organization\models\orm\Department::listAll();
+                            $deps = \app\modules\organization\models\orm\Department::find()->with('organization')->all();
+                            $list = [];
+                            foreach ($deps as $dep) {
+                                if (!($dep instanceof \app\modules\organization\models\orm\Department)
+                                    || !isset($dep->organization)
+                                    || !($dep->organization instanceof \app\modules\organization\models\orm\Organization)) {
+                                    continue;
+                                }
+                                $list[$dep->id] = $dep->organization->title . ' - ' . $dep->title;
+                            }
+                            return $list;
                         },
                     ],
                 ]
@@ -180,17 +183,20 @@ return [
                     'number',
                     'description',
                     [
-                        'attribute' => 'organization_id',
-                        'type' => 'dropdown',
-                        'value' => function () {
-                            return \app\modules\organization\models\orm\Organization::listAll();
-                        },
-                    ],
-                    [
                         'attribute' => 'department_id',
                         'type' => 'dropdown',
                         'value' => function () {
-                            return \app\modules\organization\models\orm\Department::listAll();
+                            $deps = \app\modules\organization\models\orm\Department::find()->with('organization')->all();
+                            $list = [];
+                            foreach ($deps as $dep) {
+                                if (!($dep instanceof \app\modules\organization\models\orm\Department)
+                                    || !isset($dep->organization)
+                                    || !($dep->organization instanceof \app\modules\organization\models\orm\Organization)) {
+                                    continue;
+                                }
+                                $list[$dep->id] = $dep->organization->title . ' - ' . $dep->title;
+                            }
+                            return $list;
                         },
                     ],
                 ]
@@ -202,7 +208,7 @@ return [
                     'description',
                     [
                         'header' => 'Организация',
-                        'attribute' => 'organization.title',
+                        'attribute' => 'department.organization.title',
                     ],
                     [
                         'header' => 'Подразделение',

@@ -5,7 +5,12 @@ use app\common\db\ActiveRecord;
 use app\modules\organization\OrganizationModule;
 
 /**
- * Class Organization
+ * Organization ORM
+ *
+ * @property string $title
+ * @property string $short_title
+ * @property string $description
+ *
  * @package Module\Organization
  * @copyright 2012-2019 Medkey
  */
