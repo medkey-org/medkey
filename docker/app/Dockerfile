@@ -24,16 +24,17 @@ RUN docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-di
 #RUN sed -i '1 a xdebug.remote_enable=on' /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
 #RUN sed -i '1 a xdebug.idekey=PHPSTORM' /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
 
-#RUN mkdir -p ~/.ssh
+RUN mkdir -p ~/.ssh
 #COPY .ssh/yii2queue /root/.ssh/id_rsa
 #COPY .ssh/yii2queue.pub /root/.ssh/id_rsa.pub
 #RUN ls /root/.ssh/ -la
 #RUN chmod 600 /root/.ssh/id_rsa
-#RUN ssh-keyscan -t rsa 127.0.0.§ >> /root/.ssh/known_hosts
 
+RUN ssh-keyscan -t rsa 127.0.0.1 >> /root/.ssh/known_hosts
+RUN ssh-keyscan github.com >> ~/.ssh/known_hosts
 RUN rm -rf /etc/apache2/sites-enabled/000-default.conf
 COPY docker/app/medkey.conf /etc/apache2/sites-available/
-COPY docker/app/php.ini /usr/local/etc/php/
+#COPY docker/app/php.ini /usr/local/etc/php/
 
 RUN a2enmod rewrite && service apache2 restart && a2ensite medkey.conf
 
@@ -43,8 +44,8 @@ RUN curl -LsS http://codeception.com/codecept.phar -o /usr/local/bin/codecept
 RUN chmod a+x /usr/local/bin/codecept
 
 ## github-token user
-#RUN composer config -g github-oauth.github.com token
-#
-#RUN composer global require "fxp/composer-asset-plugin:^1.3.1"
+RUN composer config -g github-oauth.github.com b3d3fc73aa36d5b4ce65b6d5948c4cce0d8b47f5
 
 WORKDIR /var/www/medkey
+COPY . /var/www/medkey
+RUN composer install
