@@ -33,7 +33,7 @@ RUN mkdir -p ~/.ssh
 RUN ssh-keyscan -t rsa 127.0.0.1 >> /root/.ssh/known_hosts
 RUN ssh-keyscan github.com >> ~/.ssh/known_hosts
 RUN rm -rf /etc/apache2/sites-enabled/000-default.conf
-COPY docker/app/medkey.conf /etc/apache2/sites-available/
+COPY docker/backend/medkey.conf /etc/apache2/sites-available/
 #COPY docker/app/php.ini /usr/local/etc/php/
 
 RUN a2enmod rewrite && service apache2 restart && a2ensite medkey.conf
@@ -49,3 +49,12 @@ RUN composer config -g github-oauth.github.com b3d3fc73aa36d5b4ce65b6d5948c4cce0
 WORKDIR /var/www/medkey
 COPY . /var/www/medkey
 RUN composer install
+
+RUN curl -sL https://deb.nodesource.com/setup_11.x -o nodesource_setup.sh
+RUN bash nodesource_setup.sh
+RUN apt-get install nodejs -y
+RUN npm install npm@6.9.0 -g
+WORKDIR /var/www/medkey/frontend
+RUN npm install
+RUN npm run build-prod
+WORKDIR /var/www/medkey
