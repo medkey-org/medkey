@@ -1,17 +1,28 @@
-version: '3.3'
+version: '3.7'
 services:
   app:
 #    environment:
 #    - XDEBUG_CONFIG
     build:
-      dockerfile: docker/app/Dockerfile
+      dockerfile: docker/backend/Dockerfile
       context: .
     volumes:
-#    - composer_cache:/root/.composer
-      - /var/www/medkey/vendor
-      - .:/var/www/medkey
+      - type: volume
+        source: vendor
+        target: /var/www/medkey/vendor
+      - type: volume
+        source: node_modules
+        target: /var/www/medkey/frontend/node_modules
+      - type: volume
+        source: static
+        target: /var/www/medkey/web/bundles
+      - type: bind
+        source: .
+        target: /var/www/medkey
     ports:
       - 8084:80
+    depends_on:
+      - db
   db:
     image: postgres:11.2
     restart: always
@@ -22,3 +33,20 @@ services:
       POSTGRES_PASSWORD: postgres
       POSTGRES_DB: medkey
       PGDATA: /var/lib/postgresql/data
+#  nodejs:
+#    build:
+#      dockerfile: docker/nodejs/Dockerfile
+#      context: .
+#    volumes:
+#      - type: volume
+#        source: frontend
+#        target: /var/www/medkey/frontend/node_modules
+#      - type: volume
+#        source: vendor
+#        target: /var/www/medkey/vendor
+#    depends_on:
+#      - app
+volumes:
+  vendor:
+  node_modules:
+  static:
