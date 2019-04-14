@@ -19,6 +19,9 @@ services:
       - type: bind
         source: .
         target: /var/www/medkey
+      - type: bind
+        source: .env.prod
+        target: /var/www/medkey/.env
     ports:
       - 8084:80
     depends_on:
