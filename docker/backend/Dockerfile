@@ -48,6 +48,7 @@ RUN composer config -g github-oauth.github.com b3d3fc73aa36d5b4ce65b6d5948c4cce0
 
 WORKDIR /var/www/medkey
 COPY . /var/www/medkey
+COPY .env.prod .env
 RUN composer install
 
 RUN curl -sL https://deb.nodesource.com/setup_11.x -o nodesource_setup.sh
@@ -57,4 +58,5 @@ RUN npm install npm@6.9.0 -g
 WORKDIR /var/www/medkey/frontend
 RUN npm install
 RUN npm run build-prod
-WORKDIR /var/www/medkey
+#RUN php bin migrate --interactive = 0
+#RUN php bin seed Package
