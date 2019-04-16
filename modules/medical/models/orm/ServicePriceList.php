@@ -3,6 +3,7 @@ namespace app\modules\medical\models\orm;
 
 use app\common\db\ActiveRecord;
 use app\common\helpers\CommonHelper;
+use app\modules\medical\MedicalModule;
 
 /**
  * Class ServicePriceList
@@ -58,10 +59,10 @@ class ServicePriceList extends ActiveRecord
     public function attributeLabelsOverride()
     {
         return [
-            'name' => 'Имя',
-            'status' => 'Статус',
-            'start_date' => 'Дата начала',
-            'end_date' => 'Дата конца',
+            'name' => MedicalModule::t('servicePriceList', 'Name'),
+            'status' => MedicalModule::t('servicePriceList','Status'),
+            'start_date' => MedicalModule::t('servicePriceList','Start date'),
+            'end_date' => MedicalModule::t('servicePriceList','End date'),
         ];
     }
 }
