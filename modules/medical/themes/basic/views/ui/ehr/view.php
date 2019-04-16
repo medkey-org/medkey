@@ -5,9 +5,9 @@
 use app\modules\medical\MedicalModule;
 use app\modules\medical\widgets\card\EhrCard;
 
-$this->title = MedicalModule::t('common', 'Medkey');
-$this->params['breadcrumbs'][] = ['url' => '/medical/ui/ehr/index', 'label' => 'Список медицинских карт'];
-$this->params['breadcrumbs'][] = 'Карточка медицинской карты';
+$this->title = MedicalModule::t('ehr', 'EHR') . ' ' . $model->number;
+$this->params['breadcrumbs'][] = ['url' => '/medical/ui/ehr/index', 'label' => MedicalModule::t('ehr', 'EHR registry')];
+$this->params['breadcrumbs'][] = $this->title;
 
 ?>
 
