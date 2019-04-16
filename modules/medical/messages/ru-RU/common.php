@@ -8,4 +8,5 @@ return [
     'List of patients' => 'Список пациентов',
     'List of ehrs' => 'Список медицинских карт',
     'Attendance\'s data' => 'Данные записи на прием',
+    'Value can\'t be empty' => 'Необходимо заполнить значение',
 ];

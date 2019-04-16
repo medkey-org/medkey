@@ -145,10 +145,10 @@ class Patient extends Model
             }
             if (!empty($row['type']) && empty($row['phone'])) {
                 $key = $attribute . '[' . $index . '][phone]';
-                $this->addError($key, 'Необходимо заполнить значение.');
+                $this->addError($key, MedicalModule::t('common', 'Value can\'t be empty'));
             } elseif (empty($row['type']) && !empty($row['phone'])) {
                 $key = $attribute . '[' . $index . '][type]';
-                $this->addError($key, 'Необходимо заполнить значение.');
+                $this->addError($key, MedicalModule::t('common', 'Value can\'t be empty'));
             }
         }
     }
