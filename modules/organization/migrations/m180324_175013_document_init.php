@@ -30,7 +30,7 @@ class m180324_175013_document_init extends Migration
             'number' => $this->integer(),
             'series' => $this->integer(),
             'type' => $this->smallInteger(),
-            'patient_id' => $this->string(),
+            'patient_id' => $this->foreignKeyId(),
         ]);
 
     }
