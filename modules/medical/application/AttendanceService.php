@@ -17,6 +17,7 @@ use app\modules\medical\models\form\Attendance as AttendanceForm;
 use app\modules\medical\models\orm\Patient;
 use app\modules\medical\models\orm\Referral;
 use yii\base\Model;
+use yii\data\DataProviderInterface;
 
 /**
  * Class AttendanceService
@@ -28,7 +29,7 @@ class AttendanceService extends ApplicationService implements AttendanceServiceI
     /**
      * @inheritdoc
      */
-    public function getAttendanceById($id)
+    public function getAttendanceById($id): Attendance
     {
         $model = Attendance::findOne($id);
         if (!$this->isAllowed('getAttendanceById')) {
@@ -41,7 +42,7 @@ class AttendanceService extends ApplicationService implements AttendanceServiceI
      * @todo rename into bySchedule
      * @inheritdoc
      */
-    public function cancelAttendance(string $attendanceId, string $referralId)
+    public function cancelAttendance(string $attendanceId, string $referralId): Attendance
     {
         $referral = Referral::findOneEx($referralId);
         $attendance = Attendance::findOneEx($attendanceId);
@@ -58,7 +59,7 @@ class AttendanceService extends ApplicationService implements AttendanceServiceI
      * @todo rename to bySchedule
      * @inheritdoc
      */
-    public function createAttendanceBySchedule(Dto $dto)
+    public function createAttendanceBySchedule(Dto $dto): Attendance
     {
         if (!$this->isAllowed('createAttendanceBySchedule')) {
             throw new AccessApplicationServiceException(MedicalModule::t('attendance', 'Access restricted'));
@@ -100,7 +101,7 @@ class AttendanceService extends ApplicationService implements AttendanceServiceI
     /**
      * @inheritdoc
      */
-    public function getAttendanceList(Model $form)
+    public function getAttendanceList(Model $form): DataProviderInterface
     {
         /** @var $form AttendanceFilter */
         if (!$this->isAllowed('getAttendanceList')) {
@@ -166,7 +167,7 @@ class AttendanceService extends ApplicationService implements AttendanceServiceI
     /**
      * @inheritdoc
      */
-    public function checkRecordByDatetime(string $ehrId, string $employeeId, $datetime)
+    public function checkRecordByDatetime(string $ehrId, string $employeeId, $datetime): string
     {
         $attendance = Attendance::find()
             ->notDeleted()
