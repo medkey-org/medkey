@@ -1,0 +1,15 @@
+<?php
+
+return [
+    'Add employee record' => 'Добавление записи сотрудника',
+    'Update employee record' => 'Обновление записи сотрудника',
+    'Get employee record' => 'Получение записи сотрудника',
+    'Get employees list' => 'Получение списка записей сотрудников',
+
+    'Access to the employees list restricted' => 'Доступ к получению списка сотрудников запрещён',
+    'Can\'t save employee record' => 'Не удалось сохранить запись сотрудника',
+    'Can\'t save employee\'s E-mail(s)' => 'Не удалось сохранить E-mail(ы) сотрудника',
+    'Can\'t save employee\'s phone(s)' => 'Не удалось сохранить телефон(ы) сотрудника',
+    'Can\'t save employee\'s address(es)' => 'Не удалось сохранить адрес(а) сотрудника',
+
+];
