@@ -24,4 +24,13 @@ return [
     'By attendance' => 'По записи',
     'By queue' => 'По живой очереди',
     'By hospitalization' => 'Госпитализация',
+
+    // Attendance Service
+    'Appointments' => 'Запись на приём',
+    'View appointment' => 'Просмотр карточки записи на приём',
+    'Create appointment' => 'Создать запись на прием',
+    'Cancel appointment' => 'Отменить запись на прием',
+    'View appointment list' => 'Просмотр списка записей на прием',
+    'Access restricted' => 'Доступ запрещён',
+    'Can\'t save record. Reason:' => 'Не удалось сохранить запись. Причина: ',
 ];

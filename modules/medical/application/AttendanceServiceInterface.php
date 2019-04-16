@@ -2,7 +2,6 @@
 namespace app\modules\medical\application;
 
 use app\common\dto\Dto;
-use yii\base\Model;
 
 /**
  * Interface AttendanceServiceInterface
@@ -11,9 +10,35 @@ use yii\base\Model;
  */
 interface AttendanceServiceInterface
 {
+    /**
+     * @param string|integer $id
+     * @return \app\modules\medical\models\orm\Attendance
+     */
     public function getAttendanceById($id);
+
+    /**
+     * @param string|integer $ehrId
+     * @param string|integer $employeeId
+     * @param $datetime
+     * @return boolean
+     */
     public function checkRecordByDatetime(string $ehrId, string $employeeId, $datetime);
+
+    /**
+     * @param string|integer $attendanceId
+     * @param string|integer $referralId
+     */
     public function cancelAttendance(string $attendanceId, string $referralId);
-    public function getAttendanceList(Model $form);
+
+    /**
+     * @param \yii\base\Model $form
+     * @return \app\modules\medical\models\orm\Attendance[]
+     */
+    public function getAttendanceList(\yii\base\Model $form);
+
+    /**
+     * @param Dto $dto
+     * @return \app\modules\medical\models\orm\Attendance
+     */
     public function createAttendanceBySchedule(Dto $dto);
 }

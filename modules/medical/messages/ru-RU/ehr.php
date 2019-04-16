@@ -17,4 +17,8 @@ return [
     'Conclusion' => 'Заключение',
     'Visit date' => 'Дата приёма',
     'Visit type' => 'Тип приёма',
+
+    // EHR Service
+    'EHR list' => 'Просмотр списка ЭМК',
+    'Access restricted' => 'Доступ запрещён',
 ];
