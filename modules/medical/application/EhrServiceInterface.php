@@ -12,14 +12,14 @@ use yii\base\Model;
 interface EhrServiceInterface
 {
     /**
-     * @param string $id
+     * @param string|integer $id
      * @return ActiveRecord
      */
     public function getEhrById($id);
 
     /**
      * @param Model $form
-     * @return mixed
+     * @return \app\modules\medical\models\orm\Ehr[]
      */
     public function getEhrList(Model $form);
 }
