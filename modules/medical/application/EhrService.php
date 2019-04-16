@@ -20,7 +20,7 @@ class EhrService extends ApplicationService implements EhrServiceInterface
     /**
      * @inheritdoc
      */
-    public function getEhrById($id)
+    public function getEhrById($id): Ehr
     {
         return Ehr::find()
             ->notDeleted()
@@ -34,7 +34,7 @@ class EhrService extends ApplicationService implements EhrServiceInterface
     /**
      * @inheritdoc
      */
-    public function getEhrList(Model $form)
+    public function getEhrList(Model $form): ActiveDataProvider
     {
         /** @var $form EhrFilter */
         if (!$this->isAllowed('getEhrList')) {

@@ -3,6 +3,7 @@ namespace app\modules\medical\application;
 
 use app\common\data\ActiveDataProvider;
 use app\common\db\ActiveRecord;
+use app\common\db\Exception;
 use app\common\helpers\ArrayHelper;
 use app\common\helpers\CommonHelper;
 use app\common\helpers\Json;
@@ -16,9 +17,12 @@ use app\common\service\exception\ApplicationServiceException;
 use app\modules\medical\MedicalModule;
 use app\modules\medical\models\finders\PatientFilter;
 use app\modules\medical\models\orm\Patient;
+use yii\base\InvalidConfigException;
 use yii\base\InvalidValueException;
 use yii\base\Model;
 use app\modules\medical\models\form\Patient as PatientForm;
+use yii\data\DataProviderInterface;
+use yii\db\ActiveRecordInterface;
 
 /**
  * Class PatientService
@@ -47,10 +51,12 @@ class PatientService extends ApplicationService implements PatientServiceInterfa
     }
 
     /**
-     * @param string $patientId
-     * @param array $emails
-     * @return void
+     * @param string|integer $patientId
+     * @param string[] $emails
+     * @return void|null
      * @throws ApplicationServiceException
+     * @throws Exception
+     * @throws InvalidConfigException
      */
     protected function saveEmails($patientId, $emails)
     {
@@ -83,10 +89,12 @@ class PatientService extends ApplicationService implements PatientServiceInterfa
     }
 
     /**
-     * @param string $patientId
-     * @param array $phones
-     * @return void
+     * @param string|integer $patientId
+     * @param string[] $phones
+     * @return void|null
      * @throws ApplicationServiceException
+     * @throws Exception
+     * @throws InvalidConfigException
      */
     protected function savePhones($patientId, $phones)
     {
@@ -119,9 +127,11 @@ class PatientService extends ApplicationService implements PatientServiceInterfa
     }
 
     /**
-     * @param string $patientId
-     * @param array $addresses
+     * @param string|integer $patientId
+     * @param string[] $addresses
      * @return void|null
+     * @throws Exception
+     * @throws InvalidConfigException
      */
     protected function saveAddresses($patientId, $addresses)
     {
@@ -140,7 +150,11 @@ class PatientService extends ApplicationService implements PatientServiceInterfa
             return null;
         }
         foreach ($addresses as $address) {
-            if (empty($address['type']) || empty($address['city'])) {
+            if (!isset($address['type'])
+                || !isset($address['city'])
+                || empty($address['type'])
+                || empty($address['city'])
+            ) {
                 continue;
             }
             $model = new Address();
@@ -154,7 +168,7 @@ class PatientService extends ApplicationService implements PatientServiceInterfa
     /**
      * @inheritdoc
      */
-    public function addPatient(PatientForm $patientForm)
+    public function addPatient(PatientForm $patientForm): ActiveRecordInterface
     {
         if (!($patientForm instanceof PatientForm)) {
             throw new InvalidValueException(MedicalModule::t('patient', 'Form is not an instance of class ') . PatientForm::class);
@@ -181,6 +195,13 @@ class PatientService extends ApplicationService implements PatientServiceInterfa
         return $model;
     }
 
+    /**
+     * @param string|integer $patientId
+     * @param string $series
+     * @param string $number
+     * @throws Exception
+     * @throws InvalidConfigException
+     */
     public function savePassport($patientId, $series, $number)
     {
         $patient = Patient::findOneEx($patientId);
@@ -196,7 +217,7 @@ class PatientService extends ApplicationService implements PatientServiceInterfa
     /**
      * @inheritdoc
      */
-    public function updatePatient(string $id, PatientForm $patientForm)
+    public function updatePatient(string $id, PatientForm $patientForm): ActiveRecordInterface
     {
         if (!($patientForm instanceof PatientForm)) {
             throw new InvalidValueException(MedicalModule::t('patient', 'Form is not an instance of class ') . PatientForm::class);
@@ -226,7 +247,7 @@ class PatientService extends ApplicationService implements PatientServiceInterfa
     /**
      * @inheritdoc
      */
-    public function getPatientList(Model $form)
+    public function getPatientList(Model $form): DataProviderInterface
     {
         /** @var $form PatientFilter */
         if (!$this->isAllowed('getPatientList')) {
@@ -262,7 +283,7 @@ class PatientService extends ApplicationService implements PatientServiceInterfa
         ]);
     }
 
-    public function getPatientById($id)
+    public function getPatientById($id): ActiveRecordInterface
     {
         if (!$this->isAllowed('getPatientById')) {
             throw new AccessApplicationServiceException(MedicalModule::t('patient', 'Access restricted'));

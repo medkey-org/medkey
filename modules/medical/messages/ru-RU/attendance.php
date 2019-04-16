@@ -32,5 +32,5 @@ return [
     'Cancel appointment' => 'Отменить запись на прием',
     'View appointment list' => 'Просмотр списка записей на прием',
     'Access restricted' => 'Доступ запрещён',
-    'Can\'t save record. Reason:' => 'Не удалось сохранить запись. Причина: ',
+    'Can\'t save record. Reason: ' => 'Не удалось сохранить запись. Причина: ',
 ];
