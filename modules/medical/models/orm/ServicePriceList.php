@@ -39,8 +39,8 @@ class ServicePriceList extends ActiveRecord
     public static function statuses()
     {
         return [
-            self::STATUS_ACTIVE => 'Активный',
-            self::STATUS_INACTIVE => 'Неактивный',
+            self::STATUS_ACTIVE => MedicalModule::t('servicePriceList', 'Active'),
+            self::STATUS_INACTIVE => MedicalModule::t('servicePriceList', 'Inactive'),
         ];
     }
 

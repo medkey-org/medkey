@@ -4,9 +4,9 @@
 use app\modules\medical\MedicalModule;
 use app\modules\medical\widgets\card\ReferralCard;
 
-$this->title = MedicalModule::t('common', 'Medkey');
-$this->params['breadcrumbs'][] = ['url' => '/medical/ui/referral/index', 'label' => 'Список направлений'];
-$this->params['breadcrumbs'][] = 'Карточка направления';
+$this->title = MedicalModule::t('referral', 'Referral card');
+$this->params['breadcrumbs'][] = ['url' => '/medical/ui/referral/index', 'label' => MedicalModule::t('referral', 'Referral registry')];
+$this->params['breadcrumbs'][] = MedicalModule::t('referral', 'Referral card');
 
 ?>
 
