@@ -5,6 +5,7 @@ use app\common\helpers\Html;
 use app\common\widgets\FormWidget;
 use app\common\wrappers\DynamicModal;
 use app\modules\medical\application\ServicePriceServiceInterface;
+use app\modules\medical\MedicalModule;
 use app\modules\medical\models\form\ServicePrice;
 use app\modules\medical\models\orm\Service;
 
@@ -63,12 +64,12 @@ class ServicePriceCreateForm extends FormWidget
             ->moneyInput();
         echo $form->field($model, 'service_id')
             ->select2(Service::listAll()); // todo proxy service
-        echo Html::submitButton('Сохранить', [
+        echo Html::submitButton(\Yii::t('app', 'Save'), [
             'class' => 'btn btn-primary',
             'icon' => 'plus',
         ]);
         echo '&nbsp';
-        echo Html::button('Отмена', [
+        echo Html::button(\Yii::t('app', 'Cancel'), [
             'class' => 'btn btn-default',
             'data-dismiss' => 'modal'
         ]);
@@ -78,7 +79,7 @@ class ServicePriceCreateForm extends FormWidget
     {
         return [
             'wrapperClass' => DynamicModal::class,
-            'header' => 'Добавление прайса',
+            'header' => MedicalModule::t('servicePrice', 'Add price-list position'),
         ];
     }
 }

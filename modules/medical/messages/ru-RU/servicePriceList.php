@@ -9,7 +9,7 @@ return [
     'Price-list registry' => 'Реестр прайс-листов',
     'Price-list card' => 'Карточка прайс-листа',
     'Price-list' => 'Прайс-лист',
-    'Price-list costs' => 'Цены прайс-листа',
+    'Price-list positions' => 'Позиции прайс-листа',
     'Price-list details' => 'Данные прайс-листа',
 
     'Active' => 'Активный',

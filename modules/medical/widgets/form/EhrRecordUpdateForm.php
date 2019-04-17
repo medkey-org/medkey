@@ -38,7 +38,7 @@ class EhrRecordUpdateForm extends EhrRecordCreateForm
     public function wrapperOptions()
     {
         return [
-            'header' => 'Редактирование записи',
+            'header' =>  MedicalModule::t('ehr', 'Edit EHR record'),
             'wrapperClass' => DynamicModal::class,
             'size' => 'modal-lg',
         ];

@@ -6,6 +6,7 @@ use app\common\helpers\ArrayHelper;
 use app\common\helpers\Html;
 use app\common\widgets\FormWidget;
 use app\common\wrappers\DynamicModal;
+use app\modules\medical\MedicalModule;
 use app\modules\medical\models\orm\Ehr;
 use app\modules\medical\models\orm\EhrRecord;
 use app\modules\organization\models\orm\Employee;
@@ -61,12 +62,12 @@ class EhrRecordCreateForm extends FormWidget
             ->select2(ArrayHelper::map(Employee::find()->notDeleted()->all(), 'id', function ($row) {
                 return $row->last_name . ' ' . $row->first_name . ' ' . $row->middle_name;
             }));
-        echo Html::submitButton('Сохранить', [
+        echo Html::submitButton(\Yii::t('app', 'Save'), [
             'class' => 'btn btn-primary',
             'icon' => 'save'
         ]);
         echo '&nbsp';
-        echo Html::button('Отмена', [
+        echo Html::button(\Yii::t('app', 'Cancel'), [
             'class' => 'btn btn-default',
             'data-dismiss' => 'modal'
         ]);
@@ -78,7 +79,7 @@ class EhrRecordCreateForm extends FormWidget
     public function wrapperOptions()
     {
         return [
-            'header' => 'Создание записи',
+            'header' => MedicalModule::t('ehr', 'Create EHR record'),
             'wrapperClass' => DynamicModal::class,
             'size' => 'modal-lg',
         ];
