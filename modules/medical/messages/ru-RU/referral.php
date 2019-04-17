@@ -8,4 +8,27 @@ return [
 
     'Referral registry' => 'Реестр направлений',
     'Referral card' => 'Карточка направления',
+
+    'Create attendance' => 'Запись на приём',
+    'Referral details' => 'Данные направления',
+    'Referral positions' => 'Позиции направления',
+    'Referral attendances' => 'Записи на приём',
+
+    'Number' => 'Номер',
+    'Description' => 'Описание',
+    'Status' => 'Статус',
+    'Start date' => 'Дата начала',
+    'End date' => 'Дата завершения',
+    'EHR' => 'ЭМК',
+    'Order' => 'Заказ',
+
+    'New' => 'Новое',
+    'Active' => 'Active',
+    'In work' => 'В работе',
+    'Completed' => 'Выполнено',
+    'Closed' => 'Закрыто',
+
+    'Incorrect referral data or referral already exists' => 'Переданы некорректные данные направления, или направление уже существует',
+    'Cannot save referral' => 'Не удалось сохранить направление',
+    'Cannot save referral services' => 'Не удалось сохранить услуги направления',
 ];
