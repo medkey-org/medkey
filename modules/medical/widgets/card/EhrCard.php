@@ -306,7 +306,7 @@ class EhrCard extends CardView
     {
         return [
             'wrapperClass' => Block::className(),
-            'header' => \Yii::t('app', 'Ehr')
+            'header' => MedicalModule::t('ehr', 'EHR'),
         ];
     }
 }
