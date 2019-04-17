@@ -7,6 +7,7 @@ use app\common\dto\Dto;
 use app\common\helpers\CommonHelper;
 use app\common\helpers\Json;
 use app\common\validators\ForeignKeyValidator;
+use app\modules\medical\MedicalModule;
 use yii\base\InvalidValueException;
 
 /**
@@ -138,11 +139,11 @@ class Referral extends ActiveRecord
     public static function statuses()
     {
         return [
-            static::STATUS_NEW => 'Новый',
-            static::STATUS_ACTIVE => 'Активный',
-            static::STATUS_WORKING => 'В работе',
-            static::STATUS_WORKED => 'Отработано',
-            static::STATUS_CLOSED => 'Закрыто',
+            static::STATUS_NEW => MedicalModule::t('referral','New'),
+            static::STATUS_ACTIVE => MedicalModule::t('referral','Active'),
+            static::STATUS_WORKING => MedicalModule::t('referral','In work'),
+            static::STATUS_WORKED => MedicalModule::t('referral','Completed'),
+            static::STATUS_CLOSED => MedicalModule::t('referral','Closed'),
         ];
     }
 
@@ -157,16 +158,16 @@ class Referral extends ActiveRecord
     public function generateReferral(string $ehrId, string $orderId, array $services)
     {
         if (!$this->isNewRecord) {
-            throw new \DomainException('Ошибка при создании направления.');
+            throw new \DomainException(MedicalModule::t('referral', 'Incorrect referral data or referral already exists'));
         }
         if (!is_array($services) || empty($services)) {
-            throw new InvalidValueException('Ошибка при создании направления.');
+            throw new InvalidValueException(MedicalModule::t('referral', 'Incorrect referral data or referral already exists'));
         }
         $this->ehr_id = $ehrId;
         $this->order_id = $orderId;
         $this->status = self::STATUS_ACTIVE; // На основе заказа уже готовое направление к работе с ним. Редактировать его нельзя
         if (!$this->save()) {
-            throw new \DomainException('Errors on save referral: ' . Json::encode($this->getErrors()));
+            throw new \DomainException(MedicalModule::t('referral', 'Cannot save referral') . ': ' . Json::encode($this->getErrors()));
         }
         foreach ($services as $serviceId) {
             $rItem = new ReferralItem([
@@ -175,7 +176,7 @@ class Referral extends ActiveRecord
             $rItem->referral_id = $this->id;
             $rItem->service_id = $serviceId;
             if (!$rItem->save()) {
-                throw new \DomainException('Errors on save referral: ' . Json::encode($rItem->getErrors()));
+                throw new \DomainException(MedicalModule::t('referral', 'Cannot save referral services') . ': ' . Json::encode($rItem->getErrors()));
             }
         }
         return $this;
@@ -197,13 +198,13 @@ class Referral extends ActiveRecord
     public function attributeLabelsOverride()
     {
         return [
-            'number' => 'Номер',
-            'description' => 'Описание',
-            'status' => 'Статус',
-            'start_date' => 'Дата начала',
-            'end_date' => 'Дата окончания',
-            'ehr_id' => 'Мед. карта',
-            'order_id' => 'Заказ',
+            'number' => MedicalModule::t('referral', 'Number'),
+            'description' => MedicalModule::t('referral','Description'),
+            'status' => MedicalModule::t('referral', 'Status'),
+            'start_date' => MedicalModule::t('referral', 'Start date'),
+            'end_date' => MedicalModule::t('referral', 'End date'),
+            'ehr_id' => MedicalModule::t('referral', 'EHR'),
+            'order_id' => MedicalModule::t('referral', 'Order'),
         ];
     }
 }
