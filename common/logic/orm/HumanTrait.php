@@ -53,8 +53,8 @@ trait HumanTrait
     public static function sexListData()
     {
         return [
-            static::SEX_MALE => 'Male',
-            static::SEX_FEMALE => 'Female',
+            static::SEX_MALE => \Yii::t('app', 'Male'),
+            static::SEX_FEMALE => \Yii::t('app','Female'),
         ];
     }
 

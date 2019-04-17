@@ -97,4 +97,9 @@ return [
     'INN can be only numeric' => 'ИНН может содержать только цифры',
     'Incorrect INN checksum' => 'Некорректная контрольная сумма ИНН',
 
+    /**
+     * Sex
+     */
+    'Male' => 'Мужской',
+    'Female' => 'Женский',
 ];

@@ -236,7 +236,7 @@ class PatientCard extends CardView
                                         'value' => function ($model) {
                                             $phones = $model->phones;
                                             if (empty($phones) || !is_array($phones)) {
-                                                return MedicalModule::t('common', 'Phone numbers not found');
+                                                return MedicalModule::t('patient', 'Phone numbers not set');
                                             }
                                             $content = '';
                                             $count = count($phones);
@@ -317,7 +317,7 @@ class PatientCard extends CardView
                                         'value' => function ($model) {
                                             $emails = $model->emails;
                                             if (empty($emails) || !is_array($emails)) {
-                                                return  MedicalModule::t('common', 'Addresses not found');
+                                                return  MedicalModule::t('patient', 'E-mails not set');
                                             }
                                             $content = '';
                                             $count = count($emails);
@@ -388,7 +388,7 @@ class PatientCard extends CardView
                                         'value' => function ($model) {
                                             $addresses = $model->addresses;
                                             if (empty($addresses) || !is_array($addresses)) {
-                                                return MedicalModule::t('common','Addresses not found');
+                                                return MedicalModule::t('patient','Addresses not set');
                                             }
                                             $content = '';
                                             $count = count($addresses);
