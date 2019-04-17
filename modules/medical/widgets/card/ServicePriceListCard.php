@@ -238,7 +238,7 @@ class ServicePriceListCard extends CardView
 //                        'visibleActionButtons' => false,
                     ]);
                 },
-                'header' => MedicalModule::t('servicePriceList', 'Price-list costs'),
+                'header' => MedicalModule::t('servicePriceList', 'Price-list positions'),
             ],
         ];
     }

@@ -5,6 +5,7 @@ use app\common\db\ActiveRecord;
 use app\common\helpers\Html;
 use app\common\widgets\FormWidget;
 use app\common\wrappers\DynamicModal;
+use app\modules\medical\MedicalModule;
 use app\modules\medical\models\orm\Referral;
 use app\modules\medical\models\orm\ReferralItem;
 use app\modules\medical\models\orm\Service;
@@ -54,12 +55,12 @@ class ReferralItemCreateForm extends FormWidget
             ->hiddenInput();
         echo $form->field($model, 'service_id')
             ->select2(Service::listAll());
-        echo Html::submitButton('Сохранить', [
+        echo Html::submitButton(\Yii::t('app','Save'), [
             'class' => 'btn btn-primary',
             'icon' => 'save'
         ]);
         echo '&nbsp';
-        echo Html::button('Отмена', [
+        echo Html::button(\Yii::t('app','Cancel'), [
             'class' => 'btn btn-default',
             'data-dismiss' => 'modal'
         ]);
@@ -71,7 +72,7 @@ class ReferralItemCreateForm extends FormWidget
     public function wrapperOptions()
     {
         return [
-            'header' => 'Создание позиции направления',
+            'header' => MedicalModule::t('referral', 'Create referral item'),
             'wrapperClass' => DynamicModal::className(),
         ];
     }

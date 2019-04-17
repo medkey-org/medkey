@@ -8,6 +8,7 @@ use app\common\widgets\DatePicker;
 use app\common\widgets\Widget;
 use app\common\wrappers\DynamicModal;
 use app\modules\medical\assets\ScheduleMedworkerAsset;
+use app\modules\medical\MedicalModule;
 use app\modules\medical\models\orm\Referral;
 use app\modules\medical\application\ReferralServiceInterface;
 use app\modules\organization\application\EmployeeServiceInterface;
@@ -67,7 +68,7 @@ class ListMedworkerSchedule extends Widget
     public function run()
     {
         if (empty($this->employeeIds)) {
-            return '<h5>Специалисты не найдены.</h5>';
+            return MedicalModule::t('schedule', 'Specialists or schedule items not found');
         }
         foreach ($this->employeeIds as $employeeId) {
             $this->renderRow($employeeId);
@@ -116,7 +117,7 @@ class ListMedworkerSchedule extends Widget
     {
         return [
             'wrapperClass' => DynamicModal::class,
-            'header' => 'Расписание специалистов',
+            'header' => MedicalModule::t('schedule', 'Specialist\'s schedule'),
             'size' => 'modal-lg'
         ];
     }

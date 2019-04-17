@@ -8,6 +8,7 @@ use app\common\helpers\Url;
 use app\common\widgets\ActiveForm;
 use app\common\wrappers\Block;
 use app\modules\crm\widgets\grid\OrderGrid;
+use app\modules\medical\MedicalModule;
 use app\modules\medical\models\orm\Ehr;
 use app\modules\medical\models\orm\Patient;
 use app\modules\medical\application\EhrServiceInterface;
@@ -84,7 +85,7 @@ class EhrCard extends CardView
     {
         return [
             'ehr' => [
-                'title' => 'Данные мед. карты',
+                'title' => MedicalModule::t('ehr', 'EHR details'),
                 'items' => [
                     [
                         'items' => [
@@ -277,7 +278,7 @@ class EhrCard extends CardView
                         'ehrId' => $model->id
                     ]);
                 },
-                'header' => 'Записи в мед. карте',
+                'header' => MedicalModule::t('ehr', 'EHR records'),
             ],
             'order' => [
                 'value' => function ($model) {
@@ -285,7 +286,7 @@ class EhrCard extends CardView
                         'ehr' => $model
                     ]);
                 },
-                'header' => 'Заказы',
+                'header' => MedicalModule::t('ehr', 'Orders'),
             ],
             'referrals' => [
                 'value' => function ($model) {
@@ -293,7 +294,7 @@ class EhrCard extends CardView
                         'ehr' => $model
                     ]);
                 },
-                'header' => 'Направления',
+                'header' => MedicalModule::t('ehr', 'Referrals'),
             ],
         ];
     }

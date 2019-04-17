@@ -31,4 +31,6 @@ return [
     'Incorrect referral data or referral already exists' => 'Переданы некорректные данные направления, или направление уже существует',
     'Cannot save referral' => 'Не удалось сохранить направление',
     'Cannot save referral services' => 'Не удалось сохранить услуги направления',
+
+    'Create referral item' => 'Создание позиции направления',
 ];

@@ -18,7 +18,12 @@ return [
     'Visit date' => 'Дата приёма',
     'Visit type' => 'Тип приёма',
 
-    // EHR Service
     'EHR list' => 'Просмотр списка ЭМК',
     'Access restricted' => 'Доступ запрещён',
+    'Create EHR record' => 'Создание записи в ЭМК',
+    'Edit EHR record' => 'Изменение записи в ЭМК',
+    'Referrals' => 'Направления',
+    'Orders' => 'Заказы',
+    'EHR records' => 'Записи в ЭМК',
+    'EHR details' => 'Данные ЭМК',
 ];
