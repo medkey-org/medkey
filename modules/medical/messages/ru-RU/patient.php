@@ -1,7 +1,6 @@
 <?php
 
 return [
-    // Model
     'Last name' => 'Фамилия',
     'Firs name' => 'Имя',
     'Middle name' => 'Отчество',
@@ -20,8 +19,6 @@ return [
     'Emails' => 'Emails',
     'Address list' => 'Адреса',
     'Passport data' => 'Паспортные данные',
-
-    // UI
     'Patient registry' => 'Список пациентов',
-    'Patient card' => 'Карточка пациента',
+    'Patient' => 'Карточка пациента',
 ];
