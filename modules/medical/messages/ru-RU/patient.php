@@ -2,7 +2,7 @@
 
 return [
     'Last name' => 'Фамилия',
-    'Firs name' => 'Имя',
+    'First name' => 'Имя',
     'Middle name' => 'Отчество',
     'Date of birth' => 'Дата рождения',
     'SSN' => 'СНИЛС',
@@ -16,9 +16,14 @@ return [
     'Status' => 'Статус',
     'Full name' => 'ФИО',
     'Phone numbers' => 'Телефонные номера',
-    'Emails' => 'Emails',
+    'Emails' => 'Email-адреса',
     'Address list' => 'Адреса',
     'Passport data' => 'Паспортные данные',
     'Patient registry' => 'Список пациентов',
     'Patient' => 'Карточка пациента',
+    'Phone numbers not set' => 'Номера телефонов не указаны',
+    'E-mails not set' => 'E-mail-адреса не указаны',
+    'Addresses not set' => 'Адреса не указаны',
+    'Passport series' => 'Серия паспорта',
+    'Passport number' => 'Номер паспорта',
 ];
