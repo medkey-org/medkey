@@ -38,7 +38,7 @@ class PatientService extends ApplicationService implements PatientServiceInterfa
     {
         return [
             'getPatientList' => MedicalModule::t('patient', 'Patient registry'),
-            'getPatientById' => MedicalModule::t('patient', 'Patient card'),
+            'getPatientById' => MedicalModule::t('patient', 'Patient'),
         ];
     }
 
