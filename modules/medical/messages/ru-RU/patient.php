@@ -14,7 +14,7 @@ return [
     'Citizenship' => 'Гражданство',
     'Sex' => 'Пол',
     'Status' => 'Статус',
-    'Full name' => 'Полное имя',
+    'Full name' => 'ФИО',
     'Phone numbers' => 'Телефонные номера',
     'Emails' => 'Emails',
     'Address list' => 'Адреса',
