@@ -16,5 +16,10 @@ class Package extends Seed
         $this->call('user');
         $this->call('employee_seed');
         $this->call('dashboard_item');
+        $this->call('default_organization');
+        $this->call('default_department');
+        $this->call('default_insurance');
+        $this->call('default_position');
+        $this->call('default_speciality');
     }
 }
