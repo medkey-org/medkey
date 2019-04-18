@@ -5,7 +5,7 @@
 
 use app\modules\security\widgets\card\UserCard;
 use app\modules\security\assets\SecurityAsset;
-use app\modules\security\SecurityModule;
+use app\modules\organization\OrganizationModule;
 use app\common\wrappers\Block;
 
 $this->title = \Yii::t('app', 'User');
@@ -20,6 +20,6 @@ SecurityAsset::register($this);
     'wrapper' => true,
     'wrapperOptions' => [
         'wrapperClass' => Block::class,
-        'header' => 'Пользователь',
+        'header' => OrganizationModule::t('employee', 'User'),
     ]
 ]); ?>

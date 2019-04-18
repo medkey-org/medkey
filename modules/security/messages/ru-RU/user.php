@@ -8,4 +8,7 @@ return [
     'Role' => 'Роль',
     'Status' => 'Статус',
     'User already exists' => 'Указанный пользователь уже существует',
+    'User details' => 'Данные пользователя',
+    'Linked employees' => 'Связанные сотрудники',
+    'Change password' => 'Сменить пароль',
 ];

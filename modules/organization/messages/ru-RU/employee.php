@@ -1,6 +1,11 @@
 <?php
 
 return [
+    'Employee' => 'Сотрудник',
+    'Contact data' => 'Контактные данные',
+    'Addresses' => 'Адреса',
+    'E-mails' => 'E-mail-адреса',
+    'Phones' => 'Телефонные номера',
     'Add employee record' => 'Добавление записи сотрудника',
     'Update employee record' => 'Обновление записи сотрудника',
     'Get employee record' => 'Получение записи сотрудника',
