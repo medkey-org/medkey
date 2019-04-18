@@ -19,6 +19,14 @@ use app\modules\organization\OrganizationModule;
  */
 class Position extends ActiveRecord
 {
+    public static function modelIdentity()
+    {
+        return [
+            'department_id',
+            'title',
+        ];
+    }
+
     /**
      * @inheritdoc
      */

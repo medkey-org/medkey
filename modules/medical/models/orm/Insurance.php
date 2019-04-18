@@ -11,6 +11,14 @@ use app\common\db\ActiveRecord;
  */
 class Insurance extends ActiveRecord
 {
+    public static function modelIdentity()
+    {
+        return [
+            'title',
+            'code',
+        ];
+    }
+
     /**
      * @inheritdoc
      */

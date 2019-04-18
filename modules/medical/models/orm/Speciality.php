@@ -12,6 +12,13 @@ use app\modules\organization\models\orm\Employee;
  */
 class Speciality extends ActiveRecord
 {
+    public static function modelIdentity()
+    {
+        return [
+            'title',
+        ];
+    }
+
     /**
      * @inheritdoc
      */
