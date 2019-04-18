@@ -91,6 +91,7 @@ class Employee extends ActiveRecord
     public function attributeLabelsOverride()
     {
         return [
+            'fullName' => OrganizationModule::t('common', 'Full name'),
             'user_id' => OrganizationModule::t('common', 'User'),
             'last_name' => OrganizationModule::t('common', 'Last name'),
             'first_name' => OrganizationModule::t('common', 'First name'),
