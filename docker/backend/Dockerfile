@@ -43,6 +43,9 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 RUN curl -LsS http://codeception.com/codecept.phar -o /usr/local/bin/codecept
 RUN chmod a+x /usr/local/bin/codecept
 
+# For Symfony Workflow
+RUN apt-get install graphviz -y
+
 ## github-token user
 RUN composer config -g github-oauth.github.com b3d3fc73aa36d5b4ce65b6d5948c4cce0d8b47f5
 
