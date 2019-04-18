@@ -10,4 +10,15 @@ use \app\common\base\Module;
  */
 class SecurityModule extends Module
 {
+    /**
+     * @inheritdoc
+     */
+    public static function translationList()
+    {
+        return [
+            'role',
+            'user',
+            'acl',
+        ];
+    }
 }
