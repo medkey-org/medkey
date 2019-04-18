@@ -18,9 +18,7 @@ class DefaultDepartment extends Seed
         $this->model = Department::class;
         $this->data = [
             [
-                'organization_id' => ArrayHelper::findBy($organizations, ['title' => 'Default Organization'])->id
-            ],
-            [
+                'organization_id' => ArrayHelper::findBy($organizations, ['title' => 'Default Organization'])->id,
                 'title' => 'Default Department',
                 'short_title' => 'Default Department',
             ]
