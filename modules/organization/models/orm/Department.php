@@ -19,6 +19,17 @@ use app\modules\organization\OrganizationModule;
 class Department extends ActiveRecord
 {
     /**
+     * @inheritDoc
+     */
+    public static function modelIdentity()
+    {
+        return [
+            'title',
+            'organization_id',
+        ];
+    }
+
+    /**
      * @inheritdoc
      */
     public function rules()
