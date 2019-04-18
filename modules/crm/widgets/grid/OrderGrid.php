@@ -141,7 +141,7 @@ class OrderGrid extends GridView
                 ],
             ],
             [
-                'header' => 'Код локации',
+                'attribute' => 'location',
                 'value' => function (Order $model) {
                     $location = $model->location;
                     if (isset($location) && ($location instanceof Location)) {

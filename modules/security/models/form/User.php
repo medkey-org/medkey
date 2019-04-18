@@ -101,6 +101,7 @@ class User extends Model
             'acl_role_id' => SecurityModule::t('user','Role'),
             'aclRole' => SecurityModule::t('user','Role'),
             'status' => SecurityModule::t('user','Status'),
+            'language' => SecurityModule::t('user', 'Language')
         ];
     }
 }
