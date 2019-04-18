@@ -20,7 +20,7 @@ services:
         source: .
         target: /var/www/medkey
       - type: bind
-        source: .env.prod # TODO remove
+        source: .env.dev # TODO remove
         target: /var/www/medkey/.env
     ports:
       - 8090:80
