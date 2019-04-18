@@ -3,6 +3,7 @@ namespace app\modules\security\models\orm;
 
 use app\common\acl\role\RoleInterface;
 use app\common\db\ActiveRecord;
+use app\modules\security\SecurityModule;
 use yii\db\ActiveQueryInterface;
 
 /**
@@ -56,9 +57,9 @@ class AclRole extends ActiveRecord implements RoleInterface
     public function attributeLabelsOverride()
     {
         return [
-            'name' => 'Наименование роли',
-            'short_name' => 'Короткое наименование',
-            'description' => 'Описание',
+            'name' => SecurityModule::t('role','Name'),
+            'short_name' => SecurityModule::t('role','Short name'),
+            'description' => SecurityModule::t('role','Description'),
         ];
     }
 }
