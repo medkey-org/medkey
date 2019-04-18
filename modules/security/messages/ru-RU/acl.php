@@ -1,6 +1,18 @@
 <?php
 
 return [
+    'Module' => 'Модуль',
+    'Resource' => 'Ресурс',
+    'Privilege' => 'Привилегия',
+    'Type' => 'Тип',
+    'Role' => 'Роль',
+    'Business-rule' => 'Бизнес-правило',
+    'Author' => 'Автор',
+    'Responsible' => 'Ответственный',
+    'Position' => 'Должность',
+    'Department' => 'Подразделение',
+    'Service' => 'Служба',
+
     'Create ACL record' => 'Создание ACL',
     'Update ACL record' => 'Обновление ACL',
     'Delete ACL record' => 'Удаление ACL',

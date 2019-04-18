@@ -5,6 +5,7 @@ use app\common\db\ActiveQuery;
 use app\common\db\ActiveRecord;
 use app\common\acl\Acl as AclCore;
 use app\common\validators\ForeignKeyValidator;
+use app\modules\security\SecurityModule;
 
 /**
  * Class AccessAcl
@@ -33,10 +34,10 @@ class Acl extends ActiveRecord
     public static function aclRules()
     {
         return [
-            self::RULE_AUTHOR => 'Автор',
-            self::RULE_RESPONSIBILITY => 'Ответственный',
-            self::RULE_POSITION => 'Должность',
-            self::RULE_DEPARTMENT => 'Подразделение',
+            self::RULE_AUTHOR => SecurityModule::t('acl', 'Author'),
+            self::RULE_RESPONSIBILITY => SecurityModule::t('acl', 'Responsible'),
+            self::RULE_POSITION => SecurityModule::t('acl', 'Position'),
+            self::RULE_DEPARTMENT => SecurityModule::t('acl', 'Department'),
         ];
     }
 
@@ -105,7 +106,7 @@ class Acl extends ActiveRecord
     public static function types()
     {
         return [
-            static::TYPE_SERVICE => 'Служба',
+            static::TYPE_SERVICE => 'Service',
 //            static::TYPE_WORKFLOW => 'Конечный автомат', // @todo DEPRECATED! УДАЛИТЬ этот тип
         ];
     }
@@ -191,12 +192,12 @@ class Acl extends ActiveRecord
     public function attributeLabelsOverride()
     {
         return [
-            'module' => 'Модуль',
-            'entity_type' => 'Ресурс (Веб-сервис)',
-            'action' => 'Привилегия (Use-case)',
-            'type' => 'Тип',
-            'acl_role_id' => 'Роль',
-            'rule' => 'Бизнес-правило',
+            'module' => SecurityModule::t('acl', 'Module'),
+            'entity_type' => SecurityModule::t('acl', 'Resource'),
+            'action' => SecurityModule::t('acl', 'Privilege'),
+            'type' => SecurityModule::t('acl', 'Type'),
+            'acl_role_id' => SecurityModule::t('acl', 'Role'),
+            'rule' => SecurityModule::t('acl', 'Business-rule'),
         ];
     }
 }

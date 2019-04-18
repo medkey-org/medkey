@@ -12,6 +12,7 @@ use app\modules\security\application\UserServiceInterface;
 use app\modules\security\models\orm\AclRole;
 use app\modules\security\models\form\User as UserForm;
 use app\modules\security\models\orm\User;
+use app\modules\security\SecurityModule;
 use app\modules\security\widgets\form\UserPasswordChangeForm;
 
 /**
@@ -59,7 +60,7 @@ class UserCard extends CardView
                 ],
                 'afterUpdateBlock' => $this,
                 'disabled' => false,
-                'value' => 'Сменить пароль',
+                'value' => SecurityModule::t('user', 'Change password'),
                 'options' => [
                     'class' => 'btn btn-default',
                     'icon' => 'user',
@@ -96,7 +97,7 @@ class UserCard extends CardView
     {
         return [
             'main' => [
-                'title' => 'Данные пользователя',
+                'title' => SecurityModule::t('user', 'User details'),
                 'items' => [
                     [
                         'items' => [
@@ -273,7 +274,7 @@ class UserCard extends CardView
                 'value' => EmployeeGrid::widget([
                     'userId' => $this->model->id,
                 ]),
-                'header' => 'Сотрудник',
+                'header' => SecurityModule::t('acl', 'Linked employees'),
             ],
         ];
     }
