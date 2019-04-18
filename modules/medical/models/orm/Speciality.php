@@ -25,7 +25,7 @@ class Speciality extends ActiveRecord
     public function rules()
     {
         return [
-            [ ['title', 'short_title', 'description'], 'required', ],
+            [ ['title', 'short_title'], 'required', ],
             [ ['title', 'short_title', 'description'], 'string', ]
         ];
     }
