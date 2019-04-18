@@ -100,7 +100,6 @@ class EmployeeGrid extends GridView
         $this->columns = [
             [
                 'attribute' => 'fullName',
-                'label' => 'ФИО',
                 'value' => function(Employee $model) {
                     return Html::a(Html::encode($model->getFullName()), Url::to(['/organization/ui/employee/view', 'id' => $model->id]));
                 },

@@ -3,6 +3,8 @@ namespace app\modules\security\models\form;
 
 use app\common\base\Model;
 use app\common\validators\ForeignKeyValidator;
+use app\modules\security\SecurityModule;
+use yii\base\Security;
 
 /**
  * Class UserPassword
@@ -24,15 +26,15 @@ class UserPassword extends Model
             [ ['userId'], ForeignKeyValidator::class, ],
             [ ['password', 'passwordRepeat'], 'string', 'min' => 5, 'max' => 150, ],
             [ ['password', 'passwordRepeat'], 'required' ],
-            [ ['passwordRepeat'], 'compare', 'compareAttribute' => 'password', 'message' =>  'Пароли не совпадают.' ],
+            [ ['passwordRepeat'], 'compare', 'compareAttribute' => 'password', 'message' =>  SecurityModule::t('user', 'Passwords do not match') ],
         ];
     }
 
     public function attributeLabels()
     {
         return [
-            'password' => 'Введите пароль',
-            'passwordRepeat' => 'Повторите пароль',
+            'password' => SecurityModule::t('user', 'Password'),
+            'passwordRepeat' => SecurityModule::t('user', 'Re-enter password'),
         ];
     }
 }

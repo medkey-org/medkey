@@ -28,4 +28,5 @@ return [
     'Not found specified user\'s role' => 'У пользователя не найдена указанная роль',
     'Current object is not an ACL resource' => 'Текущий объект не является ресурсом ACL',
     'Not found ACL by specified criteria' => 'Не найден ACL по указанному критерию',
+    'Given incorrect interface' => 'Передан некорректный интерфейс',
 ];
