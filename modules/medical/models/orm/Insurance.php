@@ -25,8 +25,9 @@ class Insurance extends ActiveRecord
     public function rules()
     {
         return [
-            [ ['code', 'title', 'short_title'], 'required', ],
-            [ [ 'code', 'title', 'short_title' ], 'string' ]
+            [ ['code', 'title'], 'required', ],
+            [ ['title', 'short_title'], 'string'],
+            [ ['code'], 'integer', ]
         ];
     }
 
