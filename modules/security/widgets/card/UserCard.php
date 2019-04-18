@@ -274,7 +274,7 @@ class UserCard extends CardView
                 'value' => EmployeeGrid::widget([
                     'userId' => $this->model->id,
                 ]),
-                'header' => SecurityModule::t('acl', 'Linked employees'),
+                'header' => SecurityModule::t('user', 'Linked employees'),
             ],
         ];
     }

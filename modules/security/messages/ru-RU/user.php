@@ -13,6 +13,7 @@ return [
     'User details' => 'Данные пользователя',
     'Linked employees' => 'Связанные сотрудники',
     'Change password' => 'Сменить пароль',
+    'Language' => 'Язык',
 
     'Get users list' => 'Список пользователей',
     'Create user' => 'Создание пользователя',
