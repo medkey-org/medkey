@@ -24,6 +24,10 @@ class Workplan extends ActiveRecord
     const STATUS_ACTIVE = 1;
     const STATUS_INACTIVE = 2;
 
+    public static function modelIdentity()
+    {
+        return ['since_date', 'expire_date', 'since_time', 'expire_time', 'employee_id', 'cabinet_id', 'department_id', 'status'];
+    }
 
     /**
      * @inheritdoc

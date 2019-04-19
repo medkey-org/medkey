@@ -108,7 +108,7 @@ class WorkplanUpdateForm extends FormWidget
         echo Html::beginTag('div', [
             'class' => 'col-xs-6 col-sm-6 col-md-6 col-lg-6'
         ]);
-        echo $form->field($model, 'cabinet_id')->dropDownList(Cabinet::listAll(null, 'number', 'number'), [
+        echo $form->field($model, 'cabinet_id')->dropDownList(Cabinet::listAll(null, 'number', 'id'), [
             'empty' => false,
         ]);
         // @todo выбирать кабинеты ТОЛЬКО из выбранного подразделения

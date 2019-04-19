@@ -10,6 +10,7 @@ use app\common\logic\orm\Phone;
 use app\common\widgets\ActiveForm;
 use app\common\widgets\MultipleInput;
 use app\common\wrappers\Block;
+use app\modules\medical\models\orm\Speciality;
 use app\modules\organization\application\EmployeeServiceInterface;
 use app\modules\organization\models\orm\Employee;
 use app\modules\organization\OrganizationModule;
@@ -184,6 +185,40 @@ class EmployeeCard extends CardView
                                     ]
                                 ],
                             ],
+                        ]
+                    ],
+                    [
+                        'items' => [
+                            [
+                                'attribute' => 'speciality_id',
+                                'colSize' => 6,
+                                'scenarios' => [
+                                    'default' => [
+                                        'value' => function (EmployeeForm $model) {
+                                            if (!empty($model['speciality']) && !empty($model['speciality']['title'])) {
+                                                return $model['speciality']['title'];
+                                            }
+                                            return '';
+                                        }
+                                    ],
+                                    'create' => [
+                                        'value' => function (EmployeeForm $model, ActiveForm $form) {
+                                            return $form
+                                                ->field($model, 'speciality_id')
+                                                ->select2(Speciality::listAll())
+                                                ->label(false);
+                                        },
+                                    ],
+                                    'update' => [
+                                        'value' => function (EmployeeForm $model, ActiveForm $form) {
+                                            return $form
+                                                ->field($model, 'speciality_id')
+                                                ->select2(Speciality::listAll())
+                                                ->label(false);
+                                        },
+                                    ]
+                                ],
+                            ]
                         ]
                     ],
                 ],

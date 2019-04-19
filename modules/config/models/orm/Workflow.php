@@ -23,6 +23,11 @@ class Workflow extends ActiveRecord
 
     const TYPE_COMMON = 1;
 
+    public static function modelIdentity()
+    {
+        return ['orm_module', 'orm_class', 'status'];
+    }
+
     /**
      * @inheritdoc
      */

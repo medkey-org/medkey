@@ -24,6 +24,11 @@ class WorkflowStatus extends ActiveRecord
     const STATUS_INACTIVE = 2;
     const STATE_ATTRIBUTE_DEFAULT = 'status';
 
+    public static function modelIdentity()
+    {
+        return ['orm_module', 'orm_class', 'state_attribute', 'state_value', 'status'];
+    }
+
     public function init()
     {
         if ($this->isNewRecord) {

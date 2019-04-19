@@ -21,5 +21,16 @@ class Package extends Seed
         $this->call('default_insurance');
         $this->call('default_position');
         $this->call('default_speciality');
+        $this->call('default_service');
+        $this->call('default_cabinet');
+        $this->call('workflow_order');
+        $this->call('workflow_status_order');
+        $this->call('workflow_transition_order');
+        $this->call('default_patients');
+        $this->call('default_ehr');
+        $this->call('default_referral');
+        $this->call('default_referral_item');
+        $this->call('default_workplan');
+        $this->call('default_workplan_weeks');
     }
 }
