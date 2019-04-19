@@ -15,9 +15,10 @@ class Cabinet extends ActiveRecord
     {
         // todo возможно required organization_id и department_id
         return [
-            [ ['number'], 'integer' ], // todo возможно не только int
+            [ ['number'], 'unique', 'targetAttribute' => ['number', 'department_id'] ],
+            [ ['number'], 'string' ], // todo возможно не только int
             [ ['number'], 'required' ],
-            [ ['description',], 'string' ],
+            [ ['description'], 'string' ],
             [ ['organization_id', 'department_id'], ForeignKeyValidator::class, ],
         ];
     }

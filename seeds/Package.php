@@ -21,5 +21,7 @@ class Package extends Seed
         $this->call('default_insurance');
         $this->call('default_position');
         $this->call('default_speciality');
+        $this->call('default_service');
+        $this->call('default_cabinet');
     }
 }

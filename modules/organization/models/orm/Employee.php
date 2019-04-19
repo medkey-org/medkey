@@ -9,6 +9,7 @@ use app\common\logic\orm\HumanTrait;
 use app\common\logic\orm\PhoneTrait;
 use app\common\logic\orm\Phone;
 use app\common\validators\ForeignKeyValidator;
+use app\modules\medical\models\orm\Speciality;
 use app\modules\organization\OrganizationModule;
 use app\modules\security\models\orm\User;
 
@@ -43,9 +44,6 @@ class Employee extends ActiveRecord
     use EmailTrait;
     use AddressTrait;
 
-    /**
-     * @inheritdoc
-     */
     public static function modelIdentity()
     {
         return ['first_name', 'middle_name', 'last_name', 'birthday'];
@@ -54,6 +52,11 @@ class Employee extends ActiveRecord
     public function getUser()
     {
         return $this->hasOne(User::class, ['id' => 'user_id']);
+    }
+
+    public function getSpeciality()
+    {
+        return $this->hasOne(Speciality::class, ['id' => 'speciality_id']);
     }
 
     /**
@@ -75,6 +78,7 @@ class Employee extends ActiveRecord
             [ ['status', 'sex', 'education'],
                 'integer',
             ],
+            [ 'speciality_id', ForeignKeyValidator::class ],
             [ ['birthday'],
                 'filter',
                 'filter' => function () {

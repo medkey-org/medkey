@@ -19,7 +19,9 @@ class DefaultPosition extends Seed
         $this->data = [
             [
                 'department_id' => ArrayHelper::findBy($departments, ['title' => 'Default Department'])->id,
-                'title' => 'Default Position',
+                'title' => 'Default Title Position',
+                'short_title' => 'Default Short Title',
+                'description' => 'Desc',
             ]
         ];
     }
