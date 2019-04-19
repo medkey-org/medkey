@@ -3,11 +3,6 @@ namespace app\seeds;
 
 use app\common\seeds\Seed;
 
-/**
- * Seed with default dashboard
- * @package Seed
- * @copyright 2012-2019 Medkey
- */
 class Dashboard extends Seed
 {
     public function run()

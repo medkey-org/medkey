@@ -30,5 +30,7 @@ class Package extends Seed
         $this->call('default_ehr');
         $this->call('default_referral');
         $this->call('default_referral_item');
+        $this->call('default_workplan');
+        $this->call('default_workplan_weeks');
     }
 }

@@ -4,11 +4,6 @@ namespace app\seeds;
 use app\common\seeds\Seed;
 use app\modules\config\models\orm\WorkflowStatus;
 
-/**
- * Class AclRoleSeed
- * @package Seed
- * @copyright 2012-2019 Medkey
- */
 class WorkflowStatusOrder extends Seed
 {
     public function run()

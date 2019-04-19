@@ -4,11 +4,6 @@ namespace app\seeds;
 use app\common\seeds\Seed;
 use app\modules\medical\models\orm\Service;
 
-/**
- * Class AclRoleSeed
- * @package Seed
- * @copyright 2012-2019 Medkey
- */
 class DefaultService extends Seed
 {
     public function run()
