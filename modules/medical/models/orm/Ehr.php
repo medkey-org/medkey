@@ -29,6 +29,10 @@ class Ehr extends ActiveRecord
     const STATUS_INACTIVE = 2;
     const STATUS_INACTIVE_NAME = 'inactive';
 
+    public static function modelIdentity()
+    {
+        return ['number'];
+    }
 
     public function init()
     {

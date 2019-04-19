@@ -5,11 +5,6 @@ use app\common\helpers\ArrayHelper;
 use app\common\seeds\Seed;
 use app\modules\organization\models\orm\Position;
 
-/**
- * Class AclRoleSeed
- * @package Seed
- * @copyright 2012-2019 Medkey
- */
 class DefaultPosition extends Seed
 {
     public function run()
@@ -19,7 +14,9 @@ class DefaultPosition extends Seed
         $this->data = [
             [
                 'department_id' => ArrayHelper::findBy($departments, ['title' => 'Default Department'])->id,
-                'title' => 'Default Position',
+                'title' => 'Default Title Position',
+                'short_title' => 'Default Short Title',
+                'description' => 'Desc',
             ]
         ];
     }
