@@ -46,7 +46,7 @@ class Employee extends ActiveRecord
 
     public static function modelIdentity()
     {
-        return ['first_name', 'middle_name', 'last_name', 'birthday'];
+        return ['first_name', 'last_name', 'birthday', 'sex'];
     }
 
     public function getUser()

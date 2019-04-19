@@ -16,8 +16,8 @@ class DefaultSpeciality extends Seed
         $this->model = Speciality::class;
         $this->data = [
             [
-                'title' => 'Default Medical Speciality',
-                'short_title' => 'Default Medical Speciality',
+                'title' => 'Default Doctor',
+                'short_title' => 'Default Doctor',
             ]
         ];
     }
