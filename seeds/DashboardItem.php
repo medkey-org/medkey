@@ -4,11 +4,6 @@ namespace app\seeds;
 use app\common\seeds\Seed;
 use app\common\helpers\ArrayHelper;
 
-/**
- * Seed with default dashlets configuration for default dashboard
- * @package Seed
- * @copyright 2012-2019 Medkey
- */
 class DashboardItem extends Seed
 {
     public function run()

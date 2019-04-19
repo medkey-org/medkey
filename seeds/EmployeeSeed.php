@@ -5,11 +5,6 @@ use app\common\helpers\ArrayHelper;
 use app\common\seeds\Seed;
 use app\modules\organization\models\orm\Employee;
 
-/**
- * Class EmployeeSeed
- * @package Seed
- * @copyright 2012-2019 Medkey
- */
 class EmployeeSeed extends Seed
 {
     /**
