@@ -26,5 +26,9 @@ class Package extends Seed
         $this->call('workflow_order');
         $this->call('workflow_status_order');
         $this->call('workflow_transition_order');
+        $this->call('default_patients');
+        $this->call('default_ehr');
+        $this->call('default_referral');
+        $this->call('default_referral_item');
     }
 }

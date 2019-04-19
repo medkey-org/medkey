@@ -36,6 +36,10 @@ class Referral extends ActiveRecord
     const TYPE_OPERATION = 3;
     const TYPE_HOSPITALIZATION = 4;
 
+    public static function modelIdentity()
+    {
+        return ['number'];
+    }
 
     public function init()
     {
