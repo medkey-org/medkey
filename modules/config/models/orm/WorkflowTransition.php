@@ -12,6 +12,13 @@ use yii\db\ActiveQueryInterface;
  */
 class WorkflowTransition extends ActiveRecord
 {
+    public static function modelIdentity()
+    {
+        return [
+            'workflow_id', 'from_id', 'to_id'
+        ];
+    }
+
     /**
      * @inheritdoc
      */
