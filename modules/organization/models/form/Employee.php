@@ -31,6 +31,7 @@ class Employee extends Model
     public $education;
     public $birthday;
     public $department_id;
+    public $speciality_id;
     public $position_id;
     public $addresses;
     public $emails;
@@ -67,6 +68,7 @@ class Employee extends Model
             [ ['status', 'sex', 'education'],
                 'integer',
             ],
+            [ 'speciality_id', ForeignKeyValidator::class ],
             [ ['birthday'],
                 'filter',
                 'filter' => function () {
