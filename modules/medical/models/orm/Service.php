@@ -1,6 +1,7 @@
 <?php
 namespace app\modules\medical\models\orm;
 
+use app\common\db\ActiveQuery;
 use app\common\db\ActiveRecord;
 use app\common\validators\ForeignKeyValidator;
 use app\modules\medical\MedicalModule;
@@ -22,6 +23,12 @@ class Service extends ActiveRecord
     const STATUS_ACTIVE = 1;
     const STATUS_INACTIVE = 2;
 
+    public static function modelIdentity()
+    {
+        return [
+            'code',
+        ];
+    }
 
     public function getSpeciality()
     {
@@ -34,6 +41,10 @@ class Service extends ActiveRecord
     public function rules()
     {
         return [
+            [ 'code', 'unique', 'filter' => function (ActiveQuery $query) {
+                return $query
+                    ->notDeleted();
+            }, ],
             [ ['speciality_id'], ForeignKeyValidator::class, ],
             [ ['code', 'title', 'short_title', 'speciality_id'], 'required', ],
             [ ['code', 'title', 'short_title', 'description'], 'string' ],

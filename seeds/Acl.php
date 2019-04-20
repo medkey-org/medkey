@@ -4,11 +4,6 @@ namespace app\seeds;
 use app\common\helpers\ArrayHelper;
 use app\common\seeds\Seed;
 
-/**
- * Class Acl
- * @package Seed
- * @copyright 2012-2019 Medkey
- */
 class Acl extends Seed
 {
     public function run()

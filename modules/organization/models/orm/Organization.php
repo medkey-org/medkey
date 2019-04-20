@@ -16,6 +16,13 @@ use app\modules\organization\OrganizationModule;
  */
 class Organization extends ActiveRecord
 {
+    public static function modelIdentity()
+    {
+        return [
+            'title',
+        ];
+    }
+
     /**
      * @inheritdoc
      */

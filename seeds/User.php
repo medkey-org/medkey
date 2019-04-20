@@ -5,11 +5,6 @@ use app\common\helpers\ArrayHelper;
 use app\common\seeds\Seed;
 use app\modules\security\models\orm\User as UserOrm;
 
-/**
- * Class User
- * @package Seed
- * @copyright 2012-2019 Medkey
- */
 class User extends Seed
 {
 	public function run()

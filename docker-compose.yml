@@ -1,6 +1,6 @@
 version: '3.7'
 services:
-  app:
+  mk:
 #    environment:
 #    - XDEBUG_CONFIG
     build:
@@ -20,15 +20,17 @@ services:
         source: .
         target: /var/www/medkey
       - type: bind
-        source: .env.prod
+        source: .env.dev # TODO remove
         target: /var/www/medkey/.env
     ports:
-      - 8084:80
+      - 8090:80
     depends_on:
-      - db
-  db:
+      - mk_db
+  mk_db:
     image: postgres:11.2
     restart: always
+    ports:
+      - 6582:5432
     volumes:
       - /var/lib/postgresql/data
     environment:
@@ -36,19 +38,6 @@ services:
       POSTGRES_PASSWORD: postgres
       POSTGRES_DB: medkey
       PGDATA: /var/lib/postgresql/data
-#  nodejs:
-#    build:
-#      dockerfile: docker/nodejs/Dockerfile
-#      context: .
-#    volumes:
-#      - type: volume
-#        source: frontend
-#        target: /var/www/medkey/frontend/node_modules
-#      - type: volume
-#        source: vendor
-#        target: /var/www/medkey/vendor
-#    depends_on:
-#      - app
 volumes:
   vendor:
   node_modules:

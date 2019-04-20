@@ -40,7 +40,7 @@ class WorkflowTransitionWidget extends Widget
         $command = 'php ' .
             $basePath .
             DIRECTORY_SEPARATOR .
-            'bin cli/print-workflow/print ' .
+            'bin print-workflow/print ' .
             $id;
         $image = shell_exec($command);
         if (empty($image)) {

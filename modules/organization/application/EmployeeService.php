@@ -192,7 +192,7 @@ class EmployeeService extends ApplicationService implements EmployeeServiceInter
                     if (empty($email['type']) || empty($email['address'])) {
                         continue;
                     }
-                    $this->sendSkypeCodeByEmail($email['address'], $model->skype_code);
+//                    $this->sendSkypeCodeByEmail($email['address'], $model->skype_code);
                 }
             }
             $transaction->commit();
@@ -310,6 +310,7 @@ class EmployeeService extends ApplicationService implements EmployeeServiceInter
         $employeeForm->emails = ArrayHelper::toArray($model->emails);
         $employeeForm->addresses = ArrayHelper::toArray($model->addresses);
         $employeeForm->user = ArrayHelper::toArray(!$model->user ? [] : $model->user);
+        $employeeForm->speciality = ArrayHelper::toArray(!$model->speciality ? [] : $model->speciality);
         return $employeeForm;
     }
 
