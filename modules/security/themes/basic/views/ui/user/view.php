@@ -5,8 +5,8 @@
 
 use app\modules\security\widgets\card\UserCard;
 use app\modules\security\assets\SecurityAsset;
-use app\modules\organization\OrganizationModule;
 use app\common\wrappers\Block;
+use app\modules\security\SecurityModule;
 
 $this->title = \Yii::t('app', 'User');
 $this->params['breadcrumbs'][] = ['url' => '/security/ui/user/index', 'label' => \Yii::t('app', 'Users')];
@@ -20,6 +20,6 @@ SecurityAsset::register($this);
     'wrapper' => true,
     'wrapperOptions' => [
         'wrapperClass' => Block::class,
-        'header' => OrganizationModule::t('employee', 'User'),
+        'header' => SecurityModule::t('user', 'User'),
     ]
 ]); ?>

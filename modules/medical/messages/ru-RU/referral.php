@@ -21,6 +21,7 @@ return [
     'End date' => 'Дата завершения',
     'EHR' => 'ЭМК',
     'Order' => 'Заказ',
+    'Patient' => 'Пациент',
 
     'New' => 'Новое',
     'Active' => 'Active',

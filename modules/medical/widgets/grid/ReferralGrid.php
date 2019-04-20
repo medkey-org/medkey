@@ -189,7 +189,7 @@ class ReferralGrid extends GridView
                 'format' => 'html',
             ],
             [
-                'header' => 'Пациент',
+                'attribute' => 'patient_id',
                 'value' => function (Referral $model) {
                     if (!$model->ehr instanceof Ehr || !$model->ehr->patient instanceof Patient) {
                         return '';

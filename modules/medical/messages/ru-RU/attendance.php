@@ -9,6 +9,7 @@ return [
     'Number' => 'Номер',
     'Doctor' => 'Врач',
     'Record already exists' => 'Такая запись уже существует',
+    'Patient' => 'Пациент',
 
     'Attendance registry' => 'Реестр посещений',
     'Attendance record' => 'Карточка посещения',

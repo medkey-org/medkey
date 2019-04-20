@@ -10,4 +10,10 @@ use app\common\base\Module;
  */
 class ConfigModule extends Module
 {
+    public static function translationList()
+    {
+        return [
+            'workflow'
+        ];
+    }
 }

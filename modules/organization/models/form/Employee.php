@@ -181,6 +181,7 @@ class Employee extends Model
             'emails' => OrganizationModule::t('common', 'E-mails'),
             'addresses' => OrganizationModule::t('common', 'Addresses'),
             'phones' => OrganizationModule::t('employee', 'Phones'),
+            'speciality_id' => OrganizationModule::t('employee', 'Speciality'),
         ];
     }
 }

@@ -179,6 +179,7 @@ class Attendance extends ActiveRecord implements ResponsibilityEntityInterface
             'type' => MedicalModule::t('attendance','Type'),
             'number' => MedicalModule::t('attendance','Number'),
             'employee_id' => MedicalModule::t('attendance','Doctor'),
+            'patient_id' => MedicalModule::t('referral', 'Patient'),
         ];
     }
 }

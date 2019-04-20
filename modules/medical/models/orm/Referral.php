@@ -209,6 +209,7 @@ class Referral extends ActiveRecord
             'end_date' => MedicalModule::t('referral', 'End date'),
             'ehr_id' => MedicalModule::t('referral', 'EHR'),
             'order_id' => MedicalModule::t('referral', 'Order'),
+            'patient_id' => MedicalModule::t('referral', 'Patient'),
         ];
     }
 }

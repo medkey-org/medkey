@@ -105,6 +105,7 @@ class Employee extends ActiveRecord
             'phones' => OrganizationModule::t('common', 'Phones'),
             'phone.phone' => OrganizationModule::t('common', 'Phone(s)'),
             'emails' => OrganizationModule::t('common', 'E-mail'),
+            'speciality_id' => OrganizationModule::t('employee', 'Speciality'),
         ];
     }
 }
