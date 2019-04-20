@@ -11,5 +11,8 @@ use app\common\db\ActiveRecord;
  */
 class WorkplanToWeek extends ActiveRecord
 {
-
+    public static function modelIdentity()
+    {
+        return ['workplan_id', 'week'];
+    }
 }

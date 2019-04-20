@@ -47,6 +47,11 @@ class Patient extends ActiveRecord
     use AddressTrait;
     use PassportTrait;
 
+    public static function modelIdentity()
+    {
+        return ['first_name', 'last_name', 'sex', 'birthday'];
+    }
+
     /**
      * @inheritdoc
      */

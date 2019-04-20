@@ -15,6 +15,11 @@ use app\common\validators\ForeignKeyValidator;
  */
 class ReferralItem extends ActiveRecord
 {
+    public static function modelIdentity()
+    {
+        return ['referral_id', 'service_id'];
+    }
+
     /**
      * @inheritdoc
      */

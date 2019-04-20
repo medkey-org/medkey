@@ -13,14 +13,22 @@ use app\modules\organization\models\orm\Employee;
  */
 class Speciality extends ActiveRecord
 {
+    public static function modelIdentity()
+    {
+        return [
+            'title',
+        ];
+    }
+
     /**
      * @inheritdoc
      */
     public function rules()
     {
         return [
-            [ ['title', 'short_title', 'description'], 'required', ],
-            [ ['title', 'short_title', 'description'], 'string', ]
+            [ 'title', 'required' ],
+            [ ['title', 'short_title'], 'required' ],
+            [ ['title', 'short_title', 'description'], 'string' ]
         ];
     }
 

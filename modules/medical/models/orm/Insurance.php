@@ -16,14 +16,23 @@ use app\modules\medical\MedicalModule;
  */
 class Insurance extends ActiveRecord
 {
+    public static function modelIdentity()
+    {
+        return [
+            'title',
+            'code',
+        ];
+    }
+
     /**
      * @inheritdoc
      */
     public function rules()
     {
         return [
-            [ ['code', 'title', 'short_title'], 'required', ],
-            [ [ 'code', 'title', 'short_title' ], 'string' ]
+            [ ['code', 'title'], 'required', ],
+            [ ['title', 'short_title'], 'string'],
+            [ ['code'], 'integer', ]
         ];
     }
 
