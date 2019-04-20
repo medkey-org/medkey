@@ -11,6 +11,11 @@ return [
     'Type' => 'Тип',
     'Patient' => 'Пациент',
 
+    'Obligatory health insurance' => 'ОМС',
+    'Voluntary health insurance' => 'ДМС',
+
     'Add policy' => 'Добавление полиса',
     'Edit policy' => 'Редактирование полиса',
+
+    'Patient' => 'Пациент',
 ];

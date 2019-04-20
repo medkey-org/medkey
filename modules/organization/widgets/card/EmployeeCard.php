@@ -260,7 +260,7 @@ class EmployeeCard extends CardView
                                                     [
                                                         'name' => 'type',
                                                         'type' => 'dropDownList',
-                                                        'title' => \Yii::t('app', 'Type'),
+                                                        'title' => \Yii::t('app', 'Number type'),
                                                         'items' => Phone::typeListData(),
                                                         'enableError' => true,
 
@@ -288,7 +288,7 @@ class EmployeeCard extends CardView
                                                     [
                                                         'name' => 'type',
                                                         'type' => 'dropDownList',
-                                                        'title' => \Yii::t('app', 'Type'),
+                                                        'title' => \Yii::t('app', 'Number type'),
                                                         'items' => Phone::typeListData(),
                                                         'enableError' => true,
 
@@ -344,7 +344,7 @@ class EmployeeCard extends CardView
                                                     [
                                                         'name' => 'type',
                                                         'type' => 'dropDownList', // @todo проработать, возможно можно удалить нафиг
-                                                        'title' => \Yii::t('app', 'Type'),
+                                                        'title' => \Yii::t('app', 'Address type'),
                                                         'items' => Email::typeListData(),
                                                         'enableError' => true,
                                                     ],
@@ -364,7 +364,7 @@ class EmployeeCard extends CardView
                                                     [
                                                         'name' => 'type',
                                                         'type' => 'dropDownList', // @todo проработать, возможно можно удалить нафиг
-                                                        'title' => \Yii::t('app', 'Type'),
+                                                        'title' => \Yii::t('app', 'Address type'),
                                                         'items' => Email::typeListData(),
                                                         'enableError' => true,
                                                     ],

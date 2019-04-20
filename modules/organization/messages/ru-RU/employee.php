@@ -17,4 +17,6 @@ return [
     'Can\'t save employee\'s phone(s)' => 'Не удалось сохранить телефон(ы) сотрудника',
     'Can\'t save employee\'s address(es)' => 'Не удалось сохранить адрес(а) сотрудника',
 
+    'Speciality' => 'Специальность',
+
 ];

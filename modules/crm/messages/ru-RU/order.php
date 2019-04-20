@@ -2,7 +2,7 @@
 
 return [
     'Number' => 'Номер',
-    'Status' => 'Status',
+    'Status' => 'Статус',
     'EHR' => 'ЭМК',
     'Currency' => 'Валюта',
     'Amount' => 'Сумма в валюте',
@@ -10,4 +10,6 @@ return [
     'Type' => 'Тип',
     'Location' => 'Локация',
     'Description' => 'Описание',
+
+    'Order list' => 'Список заказов',
 ];
