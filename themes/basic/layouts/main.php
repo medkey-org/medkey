@@ -40,7 +40,7 @@ AppAsset::register($this);
     <?php
     if(!Yii::$app->user->getIsGuest()) {
         NavBar::begin([
-            'brandLabel' => 'МИС Медкей',
+            'brandLabel' => \Yii::t('app', 'Medkey'),
             'brandUrl' => Yii::$app->homeUrl,
             'innerContainerOptions' => [
                 'class' => 'container-fluid',
@@ -50,7 +50,6 @@ AppAsset::register($this);
             ],
         ]);
         echo Nav::widget([
-            // todo normalize все наименования обернуть в переводы
             'options' => ['class' => 'navbar-nav navbar-right'],
             'items' => [
                 [
@@ -59,7 +58,7 @@ AppAsset::register($this);
                     'visible' => \Yii::$container->get(\app\modules\medical\application\PatientServiceInterface::class)->isAllowed('getPatientList'),
                 ],
                 [
-                    'label' => \Yii::t('app', 'Ehrs'),
+                    'label' => \Yii::t('app', 'EHR'),
                     'url' => ['/medical/ui/ehr/index'],
                     'visible' => \Yii::$container->get(\app\modules\medical\application\EhrServiceInterface::class)->isAllowed('getEhrList'),
                 ],
@@ -73,10 +72,6 @@ AppAsset::register($this);
                     'url' => ['/medical/ui/referral/index'],
                     'visible' => \Yii::$container->get(\app\modules\medical\application\ReferralServiceInterface::class)->isAllowed('getReferralList'),
                 ],
-//                [
-//                    'label' => \Yii::t('app', 'Medworker Workplace'),
-//                    'url' => ['/medical/ui/medworker-workplace/index'],
-//                ],
                 [
                     'label' => \Yii::t('app', 'Attendances'),
                     'url' => ['/medical/ui/attendance/index'],
@@ -95,7 +90,7 @@ AppAsset::register($this);
                             'visible' => \Yii::$container->get(\app\modules\security\application\UserServiceInterface::class)->isAllowed('getUserList'),
                         ],
                         [
-                            'label' => 'Роли',
+                            'label' => \Yii::t('app', 'Roles'),
                             'url' => ['/security/ui/acl-role/index'],
                             'visible' => \Yii::$container->get(\app\modules\security\application\AclServiceInterface::class)->isAllowed('getAclRoleList'),
                         ],
@@ -120,12 +115,12 @@ AppAsset::register($this);
                             'visible' => \Yii::$container->get(\app\modules\config\application\DirectoryServiceInterface::class)->isAllowed('getDirectoryList'),
                         ],
                         [
-                            'label' => 'Жизненные циклы сущностей',
+                            'label' => \Yii::t('app', 'Workflow builder'),
                             'url' => ['/config/ui/workflow/index'],
                             'visible' => \Yii::$container->get(\app\modules\config\application\WorkflowServiceInterface::class)->isAllowed('getWorkflowList'),
                         ],
                         [
-                            'label' => 'Статусы жизненных циклов',
+                            'label' => \Yii::t('app', 'Workflow statuses'),
                             'url' => ['/config/ui/workflow-status/index'],
                             'visible' => \Yii::$container->get(\app\modules\config\application\WorkflowStatusServiceInterface::class)->isAllowed('getWorkflowStatusList'),
                         ],
@@ -155,7 +150,9 @@ AppAsset::register($this);
                         ],
                         (
                             '<li>'
-                            . '<a id = "layout-exit" href=' . \app\common\helpers\Url::to(['/security/ui/user/logout']) . ' onclick="' . \app\common\widgets\RegisterModal::createMethod('confirm', 'Вы уверены, что хотите выйти из системы?') . '">Выйти (' . \Yii::$app->user->identity->login . ')</a>'
+                            . '<a id = "layout-exit" href=' . \app\common\helpers\Url::to(['/security/ui/user/logout']) . ' onclick="' . \app\common\widgets\RegisterModal::createMethod('confirm', 'Вы уверены, что хотите выйти из системы?') . '">'
+                            . \Yii::t('app', 'Logout')
+                            . ' (' . \Yii::$app->user->identity->login . ')</a>'
                             . '</li>'
                         ),
                     ],
@@ -182,7 +179,7 @@ AppAsset::register($this);
 ?>
 <footer class="footer">
     <div class="container-fluid">
-        <p class="pull-left">&copy; <a href="https://application.org?refsrc=appfoot&appver=<?=\Yii::$app->version;?>">Medkey</a> <?= date('Y') ?>, версия <?= \Yii::$app->version; ?></p>
+        <p class="pull-left">&copy; <a href="https://application.org?refsrc=appfoot&appver=<?=\Yii::$app->version;?>"><?= \Yii::t('app', 'Medkey'); ?></a> <?= date('Y') ?>, <?= \Yii::t('app', 'version'); ?> <?= \Yii::$app->version; ?></p>
 
         <p class="pull-right"></p>
     </div>

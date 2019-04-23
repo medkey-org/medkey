@@ -2,6 +2,7 @@
 namespace app\modules\medical\models\orm;
 
 use app\common\db\ActiveRecord;
+use app\modules\medical\MedicalModule;
 use app\modules\organization\models\orm\Employee;
 
 /**
@@ -47,9 +48,9 @@ class Speciality extends ActiveRecord
     public function attributeLabelsOverride()
     {
         return [
-            'title' => 'Название',
-            'short_title' => 'Короткое название',
-            'description' => 'Описание',
+            'title' => MedicalModule::t('speciality', 'Title'),
+            'short_title' => MedicalModule::t('speciality', 'Short title'),
+            'description' => MedicalModule::t('speciality', 'Description'),
         ];
     }
 }

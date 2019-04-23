@@ -5,6 +5,7 @@ use app\common\data\ActiveDataProvider;
 use app\common\helpers\CommonHelper;
 use app\common\service\ApplicationService;
 use app\common\service\exception\ApplicationServiceException;
+use app\modules\medical\MedicalModule;
 use app\modules\medical\models\finders\ServicePriceFinder;
 use app\modules\medical\models\orm\ServicePrice;
 use app\modules\medical\models\orm\ServicePriceList;
@@ -27,7 +28,7 @@ class ServicePriceService extends ApplicationService implements ServicePriceServ
     public function createServicePriceList($form)
     {
         if (!$form instanceof ServicePriceListForm) {
-            throw new ApplicationServiceException('Error create price list');
+            throw new ApplicationServiceException(MedicalModule::t('servicePrice', 'Can\'t create price list'));
         }
         $model = new ServicePriceList(['scenario' => 'create']);
         $model->loadForm($form);
@@ -66,7 +67,7 @@ class ServicePriceService extends ApplicationService implements ServicePriceServ
     public function updateServicePriceList($id, $form)
     {
         if (!$form instanceof ServicePriceListForm) {
-            throw new ApplicationServiceException('Error create price list');
+            throw new ApplicationServiceException(MedicalModule::t('servicePrice', 'Can\'t create price list'));
         }
         $model = ServicePriceList::findOneEx($id);
         $model->setScenario('update');
@@ -83,7 +84,7 @@ class ServicePriceService extends ApplicationService implements ServicePriceServ
     public function createServicePrice($form)
     {
         if (!$form instanceof ServicePriceForm) {
-            throw new ApplicationServiceException('Error create price list');
+            throw new ApplicationServiceException(MedicalModule::t('servicePrice', 'Can\'t create price list'));
         }
         $model = new ServicePrice(['scenario' => 'create']);
         $model->loadForm($form);
@@ -100,7 +101,7 @@ class ServicePriceService extends ApplicationService implements ServicePriceServ
     public function updateServicePrice($id, $form)
     {
         if (!$form instanceof ServicePriceForm) {
-            throw new ApplicationServiceException('Error create price list');
+            throw new ApplicationServiceException(MedicalModule::t('servicePrice', 'Can\'t create price list'));
         }
         $model = ServicePrice::findOneEx($id);
         $model->setScenario('update');

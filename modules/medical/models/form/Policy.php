@@ -4,6 +4,7 @@ namespace app\modules\medical\models\form;
 use app\common\base\Model;
 use app\common\helpers\CommonHelper;
 use app\common\validators\ForeignKeyValidator;
+use app\modules\medical\MedicalModule;
 
 /**
  * Class Policy
@@ -81,13 +82,13 @@ class Policy extends Model
     public function attributeLabels()
     {
         return [
-            'expiration_date' => 'Дата окончания',
-            'issue_date' => 'Дата оформления',
-            'insurance_id' => 'Страховая компания',
-            'number' => 'Номер',
-            'series' => 'Серия',
-            'type' => 'Тип',
-            'patient_id' => 'Пациент',
+            'expiration_date' => MedicalModule::t('policy', 'Expiration date'),
+            'issue_date' => MedicalModule::t('policy', 'Issue date'),
+            'insurance_id' => MedicalModule::t('policy', 'Insurance organization'),
+            'number' => MedicalModule::t('policy', 'Number'),
+            'series' => MedicalModule::t('policy', 'Series'),
+            'type' => MedicalModule::t('policy', 'Type'),
+            'patient_id' => MedicalModule::t('policy', 'Patient'),
         ];
     }
 }

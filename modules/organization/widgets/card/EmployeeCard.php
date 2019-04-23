@@ -224,7 +224,7 @@ class EmployeeCard extends CardView
                 ],
             ],
             'contacts' => [
-                'title' => 'Контактные данные сотрудника',
+                'title' => OrganizationModule::t('employee', 'Contact data'),
                 'items' => [
                     [
                         'items' => [
@@ -260,7 +260,7 @@ class EmployeeCard extends CardView
                                                     [
                                                         'name' => 'type',
                                                         'type' => 'dropDownList',
-                                                        'title' => 'Тип',
+                                                        'title' => \Yii::t('app', 'Number type'),
                                                         'items' => Phone::typeListData(),
                                                         'enableError' => true,
 
@@ -268,7 +268,7 @@ class EmployeeCard extends CardView
                                                     [
                                                         'type' => MaskedInput::class,
                                                         'name'  => 'phone',
-                                                        'title' => 'Телефон',
+                                                        'title' => \Yii::t('app', 'Phone number'),
                                                         'options' => [
                                                             'options' => [
                                                                 'class' => 'form-control',
@@ -288,7 +288,7 @@ class EmployeeCard extends CardView
                                                     [
                                                         'name' => 'type',
                                                         'type' => 'dropDownList',
-                                                        'title' => 'Тип',
+                                                        'title' => \Yii::t('app', 'Number type'),
                                                         'items' => Phone::typeListData(),
                                                         'enableError' => true,
 
@@ -296,7 +296,7 @@ class EmployeeCard extends CardView
                                                     [
                                                         'type' => MaskedInput::class,
                                                         'name'  => 'phone',
-                                                        'title' => 'Телефон',
+                                                        'title' => \Yii::t('app', 'Phone number'),
                                                         'options' => [
                                                             'options' => [
                                                                 'class' => 'form-control',
@@ -344,13 +344,13 @@ class EmployeeCard extends CardView
                                                     [
                                                         'name' => 'type',
                                                         'type' => 'dropDownList', // @todo проработать, возможно можно удалить нафиг
-                                                        'title' => 'Тип',
+                                                        'title' => \Yii::t('app', 'Address type'),
                                                         'items' => Email::typeListData(),
                                                         'enableError' => true,
                                                     ],
                                                     [
                                                         'name'  => 'address',
-                                                        'title' => 'Адрес',
+                                                        'title' => \Yii::t('app', 'Address'),
                                                         'enableError' => true,
                                                     ],
                                                 ],
@@ -364,13 +364,13 @@ class EmployeeCard extends CardView
                                                     [
                                                         'name' => 'type',
                                                         'type' => 'dropDownList', // @todo проработать, возможно можно удалить нафиг
-                                                        'title' => 'Тип',
+                                                        'title' => \Yii::t('app', 'Address type'),
                                                         'items' => Email::typeListData(),
                                                         'enableError' => true,
                                                     ],
                                                     [
                                                         'name'  => 'address',
-                                                        'title' => 'Адрес',
+                                                        'title' => \Yii::t('app', 'Address'),
                                                         'enableError' => true,
                                                     ],
                                                 ],
@@ -564,11 +564,11 @@ class EmployeeCard extends CardView
                                     ],
                                     'create' => [
                                         'label' => false,
-                                        'value' => Html::submitButton(\Yii::t('app', 'save'), [
+                                        'value' => Html::submitButton(\Yii::t('app', 'Save'), [
                                                 'class' => 'btn btn-primary',
                                                 'icon'  => 'saved'
                                             ])
-                                            . '&nbsp' . Html::button(\Yii::t('app', 'cancel'), [
+                                            . '&nbsp' . Html::button(\Yii::t('app', 'Cancel'), [
                                                 'class' => 'btn btn-default',
                                                 'data-card-switch' => 'default'
                                             ])
@@ -598,7 +598,7 @@ class EmployeeCard extends CardView
     {
         return [
             'wrapperClass' => Block::class,
-            'header' => 'Сотрудник', // todo от сценария менять хедер
+            'header' => OrganizationModule::t('employee', 'Employee'), // todo от сценария менять хедер
         ];
     }
 }

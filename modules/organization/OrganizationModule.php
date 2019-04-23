@@ -10,4 +10,11 @@ use app\common\base\Module;
  */
 class OrganizationModule extends Module
 {
+    /**
+     * @inheritdoc
+     */
+    public static function translationList()
+    {
+        return ['employee'];
+    }
 }

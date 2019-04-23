@@ -61,10 +61,16 @@ return [
     'Service price list' => 'Прайс-лист услуг',
     'paid' => 'Оплата',
     'Updated At' => 'Дата обновления',
+    'version' => 'версия',
+    'Select value...' => 'Выберите значение...',
+    'Nothing found' => 'Ничего не найдено',
+    'Workflow builder' => 'Конструктор бизнес-процессов',
+    'Workflow statuses' => 'Статусы бизнес-процессов',
+
     /**
      * Addresses
      */
-    'Type address' => 'Тип адреса',
+    'Address type' => 'Тип адреса',
     'Region' => 'Регион',
     'Area' => 'Область',
     'City' => 'Город',
@@ -77,7 +83,7 @@ return [
     /**
      * Phones
      */
-    'Type number' => 'Тип номера',
+    'Number type' => 'Тип номера',
     'Phone number' => 'Номер телефона',
 
     /**
@@ -93,4 +99,9 @@ return [
     'INN can be only numeric' => 'ИНН может содержать только цифры',
     'Incorrect INN checksum' => 'Некорректная контрольная сумма ИНН',
 
+    /**
+     * Sex
+     */
+    'Male' => 'Мужской',
+    'Female' => 'Женский',
 ];

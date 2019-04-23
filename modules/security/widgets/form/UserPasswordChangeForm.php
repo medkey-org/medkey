@@ -5,6 +5,7 @@ use app\common\helpers\Html;
 use app\common\widgets\FormWidget;
 use app\common\wrappers\DynamicModal;
 use app\modules\security\models\form\UserPassword;
+use app\modules\security\SecurityModule;
 
 /**
  * Class UserPasswordChangeForm
@@ -14,7 +15,7 @@ use app\modules\security\models\form\UserPassword;
 class UserPasswordChangeForm extends FormWidget
 {
     /**
-     * @var int|string в зависимости от типа синтетического ключа в СУБД
+     * @var int|string
      */
     public $userId;
     /**
@@ -44,12 +45,12 @@ class UserPasswordChangeForm extends FormWidget
         echo $form->field($model, 'userId')->hiddenInput();
         echo $form->field($model, 'password')->passwordInput();
         echo $form->field($model, 'passwordRepeat')->passwordInput();
-        echo Html::submitButton(\Yii::t('app', 'save'), [
+        echo Html::submitButton(\Yii::t('app', 'Save'), [
             'class' => 'btn btn-primary',
             'icon'  => 'saved'
         ]);
         echo '&nbsp';
-        echo Html::button('Отмена', [
+        echo Html::button(\Yii::t('app', 'Cancel'), [
             'class' => 'btn btn-default',
             'data-dismiss' => 'modal'
         ]);
@@ -61,7 +62,7 @@ class UserPasswordChangeForm extends FormWidget
     public function wrapperOptions()
     {
         return [
-            'header' => 'Смена пароля пользователя',
+            'header' => SecurityModule::t('user', 'Change password'),
             'wrapperClass' => DynamicModal::class,
         ];
     }

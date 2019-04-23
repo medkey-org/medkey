@@ -5,15 +5,15 @@ use app\modules\medical\widgets\grid\ReferralGrid;
 use app\modules\medical\MedicalModule;
 use app\common\wrappers\Block;
 
-$this->title = 'Medkey';
-$this->params['breadcrumbs'][] = 'Список направлений';
+$this->title = MedicalModule::t('referral', 'Referral registry');
+$this->params['breadcrumbs'][] = $this->title;
 
 ?>
 
 <?= ReferralGrid::widget([
     'wrapper' => true,
     'wrapperOptions' => [
-        'header' => 'Список направлений',
+        'header' => $this->title,
         'wrapperClass' => Block::class,
     ],
 ]);

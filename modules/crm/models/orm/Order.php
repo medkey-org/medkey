@@ -210,15 +210,15 @@ class Order extends ActiveRecord implements WorkflowEntityInterface
     public function attributeLabelsOverride()
     {
         return [
-            'number' => CrmModule::t('common', 'Number'),
-            'status' => CrmModule::t('common', 'Status'),
-            'ehr_id' => 'Мед. карта',
-            'currency' => 'Валюта',
-            'currency_sum' => 'Сумма в валюте',
-            'final_currency_sum' => 'Окончательная сумма в валюте',
-            'type' => 'Тип',
-            'location_id' => 'Локация',
-            'description' => 'Описание',
+            'number' => CrmModule::t('order', 'Number'),
+            'status' => CrmModule::t('order', 'Status'),
+            'ehr_id' => CrmModule::t('order', 'EHR'),
+            'currency' => CrmModule::t('order', 'Currency'),
+            'currency_sum' => CrmModule::t('order', 'Amount'),
+            'final_currency_sum' => CrmModule::t('order', 'Final amount'),
+            'type' => CrmModule::t('order', 'Type'),
+            'location_id' => CrmModule::t('order', 'Location'),
+            'description' => CrmModule::t('order', 'Description'),
         ];
     }
 

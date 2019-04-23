@@ -8,6 +8,7 @@ use app\common\wrappers\DynamicModal;
 use app\modules\security\models\orm\Acl;
 use app\modules\security\models\orm\AclRole;
 use app\modules\security\application\AclService;
+use app\modules\security\SecurityModule;
 
 /**
  * Class AclRecordCreateForm
@@ -65,12 +66,12 @@ class AclCreateForm extends FormWidget
             ->select2(Acl::aclRules(), [
                 'multiple' => true
             ]);
-        echo Html::submitButton('Сохранить', [
+        echo Html::submitButton(\Yii::t('app', 'Save'), [
             'class' => 'btn btn-primary',
             'icon' => 'save'
         ]);
         echo '&nbsp';
-        echo Html::button('Отмена', [
+        echo Html::button(\Yii::t('app', 'Cancel'), [
             'class' => 'btn btn-default',
             'data-dismiss' => 'modal'
         ]);
@@ -83,7 +84,7 @@ class AclCreateForm extends FormWidget
     {
         return [
             'wrapperClass' => DynamicModal::class,
-            'header' => 'Создание ACL'
+            'header' => SecurityModule::t('acl', 'Create ACL record'),
         ];
     }
 }

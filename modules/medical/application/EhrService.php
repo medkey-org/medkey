@@ -5,6 +5,7 @@ use app\common\data\ActiveDataProvider;
 use app\common\helpers\CommonHelper;
 use app\common\service\ApplicationService;
 use app\common\service\exception\AccessApplicationServiceException;
+use app\modules\medical\MedicalModule;
 use app\modules\medical\models\finders\EhrFilter;
 use app\modules\medical\models\orm\Ehr;
 use yii\base\Model;
@@ -19,7 +20,7 @@ class EhrService extends ApplicationService implements EhrServiceInterface
     /**
      * @inheritdoc
      */
-    public function getEhrById($id)
+    public function getEhrById($id): Ehr
     {
         return Ehr::find()
             ->notDeleted()
@@ -33,11 +34,11 @@ class EhrService extends ApplicationService implements EhrServiceInterface
     /**
      * @inheritdoc
      */
-    public function getEhrList(Model $form)
+    public function getEhrList(Model $form): ActiveDataProvider
     {
         /** @var $form EhrFilter */
         if (!$this->isAllowed('getEhrList')) {
-            throw new AccessApplicationServiceException('Доступ запрещен.');
+            throw new AccessApplicationServiceException(MedicalModule::t('ehr', 'Access restricted'));
         }
         $query = Ehr::find()
             ->andFilterWhere([
@@ -65,7 +66,7 @@ class EhrService extends ApplicationService implements EhrServiceInterface
     public function getPrivileges()
     {
         return [
-            'getEhrList' => 'Список записей',
+            'getEhrList' => MedicalModule::t('ehr', 'EHR list'),
         ];
     }
 
@@ -74,6 +75,6 @@ class EhrService extends ApplicationService implements EhrServiceInterface
      */
     public function aclAlias()
     {
-        return 'Медицинская карта';
+        return MedicalModule::t('ehr', 'EHR');
     }
 }

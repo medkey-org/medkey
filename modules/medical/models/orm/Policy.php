@@ -4,6 +4,7 @@ namespace app\modules\medical\models\orm;
 use app\common\db\ActiveRecord;
 use app\common\helpers\CommonHelper;
 use app\common\validators\ForeignKeyValidator;
+use app\modules\medical\MedicalModule;
 
 /**
  * Class Policy
@@ -21,8 +22,8 @@ class Policy extends ActiveRecord
     public static function types()
     {
         return [
-            1 => 'ОМС',
-            2 => 'ДМС',
+            1 => MedicalModule::t('policy', 'Obligatory health insurance'),
+            2 => MedicalModule::t('policy', 'Voluntary health insurance'),
         ];
     }
 
@@ -75,13 +76,13 @@ class Policy extends ActiveRecord
     public function attributeLabelsOverride()
     {
         return [
-            'expiration_date' => 'Дата окончания',
-            'issue_date' => 'Дата оформления',
-            'insurance_id' => 'Страховая компания',
-            'number' => 'Номер',
-            'series' => 'Серия',
-            'type' => 'Тип',
-            'patient_id' => 'Пациент',
+            'expiration_date' => MedicalModule::t('policy', 'Expiration date'),
+            'issue_date' => MedicalModule::t('policy', 'Issue date'),
+            'insurance_id' => MedicalModule::t('policy', 'Insurance organization'),
+            'number' => MedicalModule::t('policy', 'Number'),
+            'series' => MedicalModule::t('policy', 'Series'),
+            'type' => MedicalModule::t('policy', 'Type'),
+            'patient_id' => MedicalModule::t('policy', 'Patient'),
         ];
     }
 }
