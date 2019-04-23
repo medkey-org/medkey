@@ -6,9 +6,11 @@ use app\common\db\ActiveRecord;
 use app\common\helpers\Json;
 use app\common\service\ApplicationService;
 use app\common\service\exception\ApplicationServiceException;
+use app\modules\medical\MedicalModule;
 use app\modules\medical\models\finders\PolicyFilter;
 use app\modules\medical\models\orm\Policy;
 use app\modules\medical\models\form\Policy as PolicyForm;
+use yii\data\DataProviderInterface;
 
 /**
  * Class PolicyService
@@ -27,7 +29,7 @@ class PolicyService extends ApplicationService implements PolicyServiceInterface
         ]);
         $policy->loadForm($form);
         if (!$policy->save()) {
-            throw new ApplicationServiceException('Не удалось сохранить полис, причина: ' . Json::encode($policy->getErrors()));
+            throw new ApplicationServiceException(MedicalModule::t('policy', 'Can\'t save record. Reason: ') . Json::encode($policy->getErrors()));
         }
         return $policy;
     }
@@ -40,7 +42,7 @@ class PolicyService extends ApplicationService implements PolicyServiceInterface
         $policy = Policy::findOneEx($id);
         $policy->loadForm($form);
         if (!$policy->save()) {
-            throw new ApplicationServiceException('Не удалось сохранить полис, причина: ' . Json::encode($policy->getErrors()));
+            throw new ApplicationServiceException(MedicalModule::t('policy', 'Can\'t save record. Reason: ') . Json::encode($policy->getErrors()));
         }
         return $policy;
     }
@@ -63,10 +65,10 @@ class PolicyService extends ApplicationService implements PolicyServiceInterface
     /**
      * @inheritdoc
      */
-    public function getPolicyList(PolicyFilter $form)
+    public function getPolicyList(PolicyFilter $form): DataProviderInterface
     {
 //        if (!$this->isAllowed('getPolicyList')) {
-//            throw new AccessApplicationServiceException('Доступ запрещен.');
+//            throw new AccessApplicationServiceException('Access restricted.');
 //        }
         $query = Policy::find()
             ->where([

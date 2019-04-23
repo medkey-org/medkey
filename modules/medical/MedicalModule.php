@@ -10,4 +10,22 @@ use app\common\base\Module;
  */
 class MedicalModule extends Module
 {
+    public static function translationList()
+    {
+        return [
+            'attendance',
+            'common',
+            'ehr',
+            'insurance',
+            'patient',
+            'policy',
+            'referral',
+            'schedule',
+            'service',
+            'servicePrice',
+            'servicePriceList',
+            'speciality',
+            'workplace',
+        ];
+    }
 }

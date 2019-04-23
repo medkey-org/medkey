@@ -12,6 +12,7 @@ use app\modules\security\models\orm\Acl;
 use app\modules\security\models\orm\AclRole;
 use app\modules\security\application\AclService;
 use app\modules\security\application\AclServiceInterface;
+use app\modules\security\SecurityModule;
 use app\modules\security\widgets\form\AclCreateForm;
 use app\modules\security\widgets\form\AclUpdateForm;
 use yii\base\InvalidValueException;
@@ -83,20 +84,20 @@ class AclGrid extends GridView
                 'icon' => 'edit'
             ]
         ];
-//        $this->actionButtons['delete'] = [
-//            'class' => LinkActionButton::class,
-//            'url' => ['/security/ui/acl/delete'],
-//            'isDynamicModel' => true,
-//            'isAjax' => true,
-//            'disabled' => true,
-//            'isConfirm' => true,
-//            'afterUpdateBlock' => $this,
-//            'value' => '',
-//            'options' => [
-//                'class' => 'btn btn-danger btn-xs',
-//                'icon' => 'remove',
-//            ],
-//        ];
+        $this->actionButtons['delete'] = [
+            'class' => LinkActionButton::class,
+            'url' => ['/security/ui/acl/delete'],
+            'isDynamicModel' => true,
+            'isAjax' => true,
+            'disabled' => true,
+            'isConfirm' => true,
+            'afterUpdateBlock' => $this,
+            'value' => '',
+            'options' => [
+                'class' => 'btn btn-danger btn-xs',
+                'icon' => 'remove',
+            ],
+        ];
         $this->columns = [
             [
                 'attribute' => 'type',
@@ -118,7 +119,7 @@ class AclGrid extends GridView
                 'attribute' => 'module',
                 'value' => function (Acl $model) {
                     $m = \Yii::$app->getModule($model->module);
-                    if ($m instanceof Module) {
+                    if ($m instanceof Module && !empty($m->aliasId)) {
                         return $m->aliasId;
                     }
                     return $model->module;
@@ -130,7 +131,7 @@ class AclGrid extends GridView
                     /** @var ApplicationResourceInterface $service */
                     $service = \Yii::$app->acl->getResourceClass($model->module, $model->entity_type, $model->type);
                     if (!ClassHelper::implementsInterface($service, ApplicationResourceInterface::class)) {
-                        throw new InvalidValueException('Некорректный интерфейс.');
+                        throw new InvalidValueException(SecurityModule::t('acl', 'Given incorrect interface'));
                     }
                     return (new $service)->aclAlias();
                 }
@@ -141,7 +142,7 @@ class AclGrid extends GridView
                     /** @var ApplicationResourceInterface $service */
                     $service = \Yii::$app->acl->getResourceClass($model->module, $model->entity_type, $model->type);
                     if (!ClassHelper::implementsInterface($service, ApplicationResourceInterface::class)) {
-                        throw new InvalidValueException('Некорректный интерфейс.');
+                        throw new InvalidValueException(SecurityModule::t('acl', 'Given incorrect interface'));
                     }
                     $priv = (new $service)->getPrivileges();
                     return !empty($priv[$model->action]) ? $priv[$model->action] : '';

@@ -1,16 +1,17 @@
 <?php
 use app\modules\medical\widgets\grid\ServicePriceListGrid;
 use app\common\wrappers\Block;
+use app\modules\medical\MedicalModule;
 
-$this->title = 'Medkey';
-$this->params['breadcrumbs'][] = 'Список прайс-листов';
+$this->title = MedicalModule::t('servicePriceList', 'Price-list registry');
+$this->params['breadcrumbs'][] = $this->title;
 
 ?>
 
 <?= ServicePriceListGrid::widget([
     'wrapper' => true,
     'wrapperOptions' => [
-        'header' => 'Список прайс-листов',
+        'header' => $this->title,
         'wrapperClass' => Block::class
     ],
 ]);

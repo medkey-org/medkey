@@ -12,6 +12,7 @@ use app\modules\security\models\orm\AclRole;
 use app\modules\security\models\orm\User;
 use app\modules\security\models\form\User as UserForm;
 use app\common\service\ApplicationService;
+use app\modules\security\SecurityModule;
 use yii\web\IdentityInterface;
 
 /**
@@ -26,7 +27,7 @@ class UserService extends ApplicationService implements UserServiceInterface
      */
     public function aclAlias()
     {
-        return 'Пользователь';
+        return SecurityModule::t('user', 'User');
     }
 
     /**
@@ -35,17 +36,17 @@ class UserService extends ApplicationService implements UserServiceInterface
     public function getPrivileges()
     {
         return [
-            'getUserList' => 'Список пользователей',
-            'createUser' => 'Создание пользователя',
-            'getUserById' => 'Просмотр пользователя',
-            'updateUser' => 'Обновление пользователя',
+            'getUserList' => SecurityModule::t('user','Get users list'),
+            'createUser' => SecurityModule::t('user','Create user'),
+            'getUserById' => SecurityModule::t('user','Get user card'),
+            'updateUser' => SecurityModule::t('user','Update user'),
         ];
     }
 
     public function getUserById($id)
     {
         if (!$this->isAllowed('getUserById')) {
-            throw new AccessApplicationServiceException('Доступ к списку пользователей запрещён.');
+            throw new AccessApplicationServiceException(SecurityModule::t('user','Access to the users list restricted'));
         }
         return User::findOne($id);
     }
@@ -68,12 +69,12 @@ class UserService extends ApplicationService implements UserServiceInterface
     public function createUser($form)
     {
         if (!$this->isAllowed('createUser')) {
-            throw new AccessApplicationServiceException('Доступ к списку пользователей запрещён.');
+            throw new AccessApplicationServiceException(SecurityModule::t('user','Access to the users list restricted'));
         }
         $user = new User(['scenario' => 'create']);
         $user->loadForm($form);
         if (!$user->save()) {
-            throw new ApplicationServiceException('Не удалось сохранить пользователя.');
+            throw new ApplicationServiceException(SecurityModule::t('user','Cannot save user'));
         }
         return $user;
     }
@@ -84,13 +85,13 @@ class UserService extends ApplicationService implements UserServiceInterface
     public function updateUser($form)
     {
         if (!$this->isAllowed('updateUser')) {
-            throw new AccessApplicationServiceException('Доступ к редактированию пользователей запрещён.');
+            throw new AccessApplicationServiceException(SecurityModule::t('user','Access to user update is restricted'));
         }
         $user = User::findOneEx($form->id);
         $user->setScenario('update');
         $user->loadForm($form);
         if (!$user->save()) {
-            throw new ApplicationServiceException('Не удалось отредактировать пользователя.');
+            throw new ApplicationServiceException(SecurityModule::t('user','Cannot update user'));
         }
         return $user;
     }
@@ -101,7 +102,7 @@ class UserService extends ApplicationService implements UserServiceInterface
         $user->password_hash = $form->password;
         $user->setScenario(User::SCENARIO_CHANGE_PASSWORD);
         if (!$user->save()) {
-            throw new ApplicationServiceException('Не удалось сменить пароль пользователю. Причина: ' . Json::encode($user->getErrors()));
+            throw new ApplicationServiceException(SecurityModule::t('user','Cannot change user\'s password') . Json::encode($user->getErrors()));
         }
         return $user;
     }
@@ -128,7 +129,7 @@ class UserService extends ApplicationService implements UserServiceInterface
     public function getUserList(UserFinder $form)
     {
         if (!$this->isAllowed('getUserList')) {
-            throw new AccessApplicationServiceException('Доступ к списку пользователей запрещён.');
+            throw new AccessApplicationServiceException(SecurityModule::t('user','Access to the users list is restricted'));
         }
         $query = User::find();
         $query

@@ -5,6 +5,7 @@ use app\common\db\ActiveRecord;
 use app\common\widgets\FormWidget;
 use app\common\wrappers\DynamicModal;
 use app\modules\security\models\orm\Acl;
+use app\modules\security\SecurityModule;
 
 /**
  * Class AclRecordUpdateForm
@@ -31,7 +32,7 @@ class AclUpdateForm extends AclCreateForm
     {
         return [
             'wrapperClass' => DynamicModal::class,
-            'header' => 'Редактирование ACL'
+            'header' => SecurityModule::t('acl', 'Update ACL record'),
         ];
     }
 }

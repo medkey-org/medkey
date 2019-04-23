@@ -46,12 +46,12 @@ class AccessRoleCreateForm extends FormWidget
         echo $form->field($model, 'name');
         echo $form->field($model, 'short_name');
         echo $form->field($model, 'description');
-        echo Html::submitButton('Сохранить', [
+        echo Html::submitButton(\Yii::t('app', 'Save'), [
             'class' => 'btn btn-primary',
             'icon' => 'save'
         ]);
         echo '&nbsp';
-        echo Html::button('Отмена', [
+        echo Html::button(\Yii::t('app', 'Cancel'), [
             'class' => 'btn btn-default',
             'data-dismiss' => 'modal'
         ]);
@@ -64,7 +64,7 @@ class AccessRoleCreateForm extends FormWidget
     {
         return [
             'wrapperClass' => DynamicModal::class,
-            'header' => SecurityModule::t('common', 'Creating role'),
+            'header' => SecurityModule::t('role', 'Create role'),
         ];
     }
 }

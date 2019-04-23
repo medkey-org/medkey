@@ -4,6 +4,7 @@ namespace app\modules\security\models\orm;
 use app\common\db\ActiveRecord;
 use app\common\validators\ForeignKeyValidator;
 use app\modules\organization\models\orm\Employee;
+use app\modules\security\SecurityModule;
 use yii\db\ActiveQueryInterface;
 use yii\web\IdentityInterface;
 
@@ -44,8 +45,8 @@ class User extends ActiveRecord implements IdentityInterface
     public static function statuses()
     {
         return [
-            self::STATUS_ACTIVE => 'Активный',
-            self::STATUS_INACTIVE => 'Неактивный',
+            self::STATUS_ACTIVE => SecurityModule::t('user','Active'),
+            self::STATUS_INACTIVE => SecurityModule::t('user','Inactive'),
         ];
     }
 
@@ -159,11 +160,11 @@ class User extends ActiveRecord implements IdentityInterface
     public function attributeLabelsOverride()
     {
         return [
-            'login' => 'Логин',
-            'password_hash' => 'Пароль',
-            'acl_role_id' => 'Роль',
-            'status' => 'Статус',
-            'statusName' => 'Статус',
+            'login' => SecurityModule::t('user','Login'),
+            'password_hash' => SecurityModule::t('user','Password'),
+            'acl_role_id' => SecurityModule::t('user','Role'),
+            'status' => SecurityModule::t('user','Status'),
+            'statusName' => SecurityModule::t('user','Status'),
         ];
     }
 }

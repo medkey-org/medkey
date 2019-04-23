@@ -3,9 +3,9 @@
 use app\modules\medical\MedicalModule;
 use app\modules\medical\widgets\card\PatientCard;
 
-$this->title = MedicalModule::t('common', 'Medkey');
-$this->params['breadcrumbs'][] = ['url' => '/medical/ui/patient/index', 'label' => 'Список пациентов'];
-$this->params['breadcrumbs'][] = 'Карточка пациента';
+$this->title = MedicalModule::t('patient','Patient');
+$this->params['breadcrumbs'][] = ['url' => '/medical/ui/patient/index', 'label' => MedicalModule::t('patient','Patient registry')];
+$this->params['breadcrumbs'][] = $this->title;
 
 ?>
 

@@ -217,15 +217,33 @@ trait ModuleTrait
         array_push(static::$i18n, mb_strtolower($shortName)); // todo PATH, т.к. имена подмодулей могут совпадать
         $name = str_replace('module', '', $shortName);
         $path = self::getModulePath($name);
+
+        // Getting module translations list
+        $translationList = array_merge(static::translationList(), [
+            'common', 'error',
+        ]);
+
+        $fileMap = [];
+        foreach ($translationList as $value) {
+            $fileMap[$path . '/' . $name . '/' . $value] = $value . '.php';
+        }
+
         \Yii::$app->i18n->translations[$path . '/' . $name . '/*'] = [
             'class' => PhpMessageSource::className(),
             'basePath' => '@app/' . $path . '/' . $name . '/messages',
             'sourceLanguage' => 'en-US',
-            'fileMap' => [
-                $path . '/' . $name . '/common' => 'common.php',
-                $path . '/' . $name . '/error' => 'error.php',
-            ],
+            'fileMap' => $fileMap,
         ];
+    }
+
+    /**
+     * Method can contain custom module translation fileNames, for ex.:
+     * return ['patient', 'ehr', 'attendance'];
+     * @return array
+     */
+    public static function translationList()
+    {
+        return [];
     }
 
     /**

@@ -4,6 +4,7 @@ namespace app\modules\config\widgets\misc;
 use app\common\helpers\Html;
 use app\common\widgets\Widget;
 use app\common\wrappers\Block;
+use app\modules\config\ConfigModule;
 use app\modules\config\widgets\grid\WorkflowTransitionGrid;
 
 /**
@@ -57,7 +58,7 @@ class WorkflowTransitionWidget extends Widget
     {
         return [
             'wrapperClass' => Block::class,
-            'header' => 'Переходы ЖЦ',
+            'header' => ConfigModule::t('workflow', 'Workflow transition'),
         ];
     }
 }

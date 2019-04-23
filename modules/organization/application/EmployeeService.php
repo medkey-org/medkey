@@ -16,6 +16,7 @@ use app\common\service\exception\AccessApplicationServiceException;
 use app\common\service\exception\ApplicationServiceException;
 use app\modules\organization\models\finders\EmployeeFinder;
 use app\modules\organization\models\orm\Employee;
+use app\modules\organization\OrganizationModule;
 use yii\base\InvalidValueException;
 use app\modules\organization\models\form\Employee as EmployeeForm;
 
@@ -49,10 +50,10 @@ class EmployeeService extends ApplicationService implements EmployeeServiceInter
     public function getPrivileges()
     {
         return [
-            'addEmployee' => 'Добавить сотрудника',
-            'updateEmployee' => 'Обновить сотрудника',
-            'getEmployeeById' => 'Просмотр сотрудника',
-            'getEmployeeList' => 'Список сотрудников',
+            'addEmployee' => OrganizationModule::t('employee', 'Add employee record'),
+            'updateEmployee' => OrganizationModule::t('employee','Update employee record'),
+            'getEmployeeById' => OrganizationModule::t('employee','Get employee record'),
+            'getEmployeeList' => OrganizationModule::t('employee','Get employees list'),
         ];
     }
 
@@ -63,7 +64,7 @@ class EmployeeService extends ApplicationService implements EmployeeServiceInter
     {
         /** @var $form EmployeeFinder */
         if (!$this->isAllowed('getEmployeeList')) {
-            throw new AccessApplicationServiceException('Доступ к списку сотрудников запрещён.');
+            throw new AccessApplicationServiceException(OrganizationModule::t('employee', 'Access to the employees list restricted'));
         }
         $query = Employee::find();
         $query
@@ -144,7 +145,7 @@ class EmployeeService extends ApplicationService implements EmployeeServiceInter
             $model->loadForm($employeeForm);
 //            $model->skype_code = $this->createSkypeCode();
             if (!$model->save()) {
-                throw new ApplicationServiceException('Не удалось сохранить сотрудника.');
+                throw new ApplicationServiceException(OrganizationModule::t('employee', 'Can\'t save employee record'));
             }
             $employeeForm->id = $model->id;
             $this->savePhones($model->id, $employeeForm->phones);
@@ -179,7 +180,7 @@ class EmployeeService extends ApplicationService implements EmployeeServiceInter
             $model->setScenario(ActiveRecord::SCENARIO_UPDATE);
             $model->loadForm($employeeForm);
             if (!$model->save()) {
-                throw new ApplicationServiceException('Не удалось сохранить сотрудника.');
+                throw new ApplicationServiceException(OrganizationModule::t('employee', 'Can\'t save employee record'));
             }
             $employeeForm->id = $model->id;
             $this->savePhones($model->id, $employeeForm->phones);
@@ -227,7 +228,7 @@ class EmployeeService extends ApplicationService implements EmployeeServiceInter
             $model->entity = Employee::getTableSchema()->name;
             $model->entity_id = $employee->id;
             if (!$model->save()) {
-                throw new ApplicationServiceException('Не удалось сохранить email. Причина: ' . Json::encode($model->getErrors()));
+                throw new ApplicationServiceException(OrganizationModule::t('employee', 'Can\'t save employee\'s E-mail(s)') . ': ' . Json::encode($model->getErrors()));
             }
         }
     }
@@ -257,7 +258,7 @@ class EmployeeService extends ApplicationService implements EmployeeServiceInter
             $model->entity = Employee::getTableSchema()->name;
             $model->entity_id = $employee->id;
             if (!$model->save()) {
-                throw new ApplicationServiceException('Не удалось сохранить телефон. Причина: ' . Json::encode($model->getErrors()));
+                throw new ApplicationServiceException(OrganizationModule::t('employee', 'Can\'t save employee\'s phone(s)') . ': ' . Json::encode($model->getErrors()));
             }
         }
     }
@@ -286,7 +287,9 @@ class EmployeeService extends ApplicationService implements EmployeeServiceInter
             $model->setAttributes($address);
             $model->entity = Employee::getTableSchema()->name;
             $model->entity_id = $employee->id;
-            $model->save();
+            if (!$model->save()) {
+                throw new ApplicationServiceException(OrganizationModule::t('employee', 'Can\'t save employee\'s address(es)') . ': ' . Json::encode($model->getErrors()));
+            }
         }
     }
 

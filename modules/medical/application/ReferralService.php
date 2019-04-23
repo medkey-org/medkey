@@ -9,6 +9,7 @@ use app\common\service\ApplicationService;
 use app\common\service\exception\AccessApplicationServiceException;
 use app\common\service\exception\ApplicationServiceException;
 use app\common\service\StateMachineInterface;
+use app\modules\medical\MedicalModule;
 use app\modules\medical\models\finders\ReferralFilter;
 use app\modules\medical\models\finders\ReferralItemFilter;
 use app\modules\medical\models\orm\Patient;
@@ -52,7 +53,7 @@ class ReferralService extends ApplicationService implements ReferralServiceInter
     public function getReferralById($id)
     {
         if (!$this->isAllowed('getReferralById')) {
-            throw new AccessApplicationServiceException('Доступ запрещен.');
+            throw new AccessApplicationServiceException(MedicalModule::t('referral', 'Access restricted'));
         }
         return Referral::findOne($id);
     }
@@ -88,7 +89,7 @@ class ReferralService extends ApplicationService implements ReferralServiceInter
         /** @var $form ReferralFilter */
 
         if (!$this->isAllowed('getReferralList')) {
-            throw new AccessApplicationServiceException('Доступ запрещен.');
+            throw new AccessApplicationServiceException(MedicalModule::t('referral', 'Access restricted'));
         }
         $query = Referral::find();
         if (!empty($form->patientId)) {
@@ -127,7 +128,7 @@ class ReferralService extends ApplicationService implements ReferralServiceInter
     {
         $result = [];
         if (!$orderDto instanceof Dto || empty($orderDto->orderItems)) {
-            throw new ApplicationServiceException('Переданные параметры не соответствуют критериям: пустой заказ или у заказа отсутствуют позиции.');
+            throw new ApplicationServiceException(MedicalModule::t('referral', 'Given order is empty'));
         }
         $specialities = [];
         foreach ($orderDto->orderItems as $item) {
@@ -157,11 +158,11 @@ class ReferralService extends ApplicationService implements ReferralServiceInter
         foreach ($referral->referralItems as $item) {
             $service = $item->service;
             if (!$service instanceof Service) {
-                throw new ApplicationServiceException('Не найдена услуга у позиции направления.');
+                throw new ApplicationServiceException(MedicalModule::t('referral', 'Can\'t find service for one or more of order\'s positions'));
             }
             $speciality = $service->speciality;
             if (!$speciality instanceof Speciality) {
-                throw new ApplicationServiceException('Не найдена специальность у услуги "' . $service->title . '".');
+                throw new ApplicationServiceException(MedicalModule::t('referral', 'Can\'t find speciality for service') . ' ' . $service->title);
             }
             $employees = $item->service->speciality->employees;
             foreach ($employees as $employee) {
