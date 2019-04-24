@@ -66,7 +66,7 @@ class LoginForm extends Model
             $user === null
             || !\Yii::$app->getSecurity()->validatePassword($this->password, $user->password_hash)
         ) {
-            $this->addError($attribute, 'Логин или пароль введены неверно.');
+            $this->addError($attribute, 'Incorrect password');
         }
     }
 

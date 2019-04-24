@@ -5,6 +5,7 @@ use app\common\db\ActiveRecord;
 use app\common\widgets\FormWidget;
 use app\common\wrappers\DynamicModal;
 use app\modules\security\models\orm\AclRole;
+use app\modules\security\SecurityModule;
 
 /**
  * Class AccessRoleUpdateForm
@@ -31,7 +32,7 @@ class AccessRoleUpdateForm extends AccessRoleCreateForm
     {
         return [
             'wrapperClass' => DynamicModal::class,
-            'header' => 'Редактирование роли'
+            'header' => SecurityModule::t('role', 'Edit role'),
         ];
     }
 }

@@ -8,4 +8,5 @@ return [
     'List of roles' => 'Список ролей',
     'List of ACL' => 'Список ACL',
     'Access control list' => 'Список управления доступом',
+    'Incorrect login or password' => 'Логин или пароль введены неверно',
 ];

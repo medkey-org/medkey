@@ -5,6 +5,7 @@ use app\common\db\ActiveRecord;
 use yii\base\Model;
 use yii\data\DataProviderInterface;
 use app\modules\medical\models\form\Patient as PatientForm;
+use yii\db\ActiveRecordInterface;
 
 /**
  * Interface PatientServiceInterface
@@ -15,24 +16,24 @@ interface PatientServiceInterface
 {
     /**
      * @param string $id
-     * @return ActiveRecord
+     * @return ActiveRecordInterface
      */
-    public function getPatientById($id);
+    public function getPatientById($id): ActiveRecordInterface;
     /**
      * @param Model $form
      * @return DataProviderInterface
      */
-    public function getPatientList(Model $form);
+    public function getPatientList(Model $form): DataProviderInterface;
     /**
      * @param PatientForm $form
-     * @return ActiveRecord
+     * @return ActiveRecordInterface
      */
-    public function addPatient(PatientForm $form);
+    public function addPatient(PatientForm $form): ActiveRecordInterface;
     /**
      * @param $id
      * @param PatientForm $patientForm
-     * @return ActiveRecord
+     * @return ActiveRecordInterface
      */
-    public function updatePatient(string $id, PatientForm $patientForm);
+    public function updatePatient(string $id, PatientForm $patientForm): ActiveRecordInterface;
     public function getPatientForm($raw);
 }

@@ -3,6 +3,7 @@ namespace app\modules\medical\widgets\form;
 use app\common\db\ActiveRecord;
 use app\common\widgets\FormWidget;
 use app\common\wrappers\DynamicModal;
+use app\modules\medical\MedicalModule;
 use app\modules\medical\models\orm\ReferralItem;
 
 /**
@@ -29,7 +30,7 @@ class ReferralItemUpdateForm extends ReferralItemCreateForm
     public function wrapperOptions()
     {
         return [
-            'header' => 'Редактирование позиции направления',
+            'header' => MedicalModule::t('referral', 'Edit referral item'),
             'wrapperClass' => DynamicModal::class
         ];
     }

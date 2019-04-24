@@ -286,22 +286,22 @@ class OrderCard extends CardView
                                     'update' => [
                                         'label' => false,
                                         'value' =>
-                                            Html::submitButton(\Yii::t('app', 'save'), [
+                                            Html::submitButton(\Yii::t('app', 'Save'), [
                                                 'class' => 'btn btn-primary',
                                                 'icon'  => 'saved'
                                             ])
-                                            . '&nbsp' . Html::button(\Yii::t('app', 'cancel'), [
+                                            . '&nbsp' . Html::button(\Yii::t('app', 'Cancel'), [
                                                 'class' => 'btn btn-default',
                                                 'data-card-switch' => 'default'
                                             ])
                                     ],
                                     'create' => [
                                         'label' => false,
-                                        'value' => Html::submitButton(\Yii::t('app', 'save'), [
+                                        'value' => Html::submitButton(\Yii::t('app', 'Save'), [
                                                 'class' => 'btn btn-primary',
                                                 'icon'  => 'saved'
                                             ])
-                                            . '&nbsp' . Html::button(\Yii::t('app', 'cancel'), [
+                                            . '&nbsp' . Html::button(\Yii::t('app', 'Cancel'), [
                                                 'class' => 'btn btn-default',
                                                 'data-card-switch' => 'default'
                                             ])

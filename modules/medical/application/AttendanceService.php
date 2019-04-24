@@ -10,12 +10,14 @@ use app\common\helpers\Json;
 use app\common\service\ApplicationService;
 use app\common\service\exception\AccessApplicationServiceException;
 use app\common\service\exception\ApplicationServiceException;
+use app\modules\medical\MedicalModule;
 use app\modules\medical\models\finders\AttendanceFilter;
 use app\modules\medical\models\orm\Attendance;
 use app\modules\medical\models\form\Attendance as AttendanceForm;
 use app\modules\medical\models\orm\Patient;
 use app\modules\medical\models\orm\Referral;
 use yii\base\Model;
+use yii\data\DataProviderInterface;
 
 /**
  * Class AttendanceService
@@ -27,40 +29,40 @@ class AttendanceService extends ApplicationService implements AttendanceServiceI
     /**
      * @inheritdoc
      */
-    public function getAttendanceById($id)
+    public function getAttendanceById($id): Attendance
     {
         $model = Attendance::findOne($id);
         if (!$this->isAllowed('getAttendanceById')) {
-            throw new AccessApplicationServiceException('Доступ запрещен.');
+            throw new AccessApplicationServiceException(MedicalModule::t('attendance', 'Access restricted'));
         }
         return $model;
     }
 
     /**
-     * @todo переименовать в bySchedule
+     * @todo rename into bySchedule
      * @inheritdoc
      */
-    public function cancelAttendance(string $attendanceId, string $referralId)
+    public function cancelAttendance(string $attendanceId, string $referralId): Attendance
     {
         $referral = Referral::findOneEx($referralId);
         $attendance = Attendance::findOneEx($attendanceId);
         $attendance->setScenario(ActiveRecord::SCENARIO_UPDATE);
         $attendance->status = Attendance::STATUS_CANCEL;
         if (!$attendance->save()) {
-            throw new ApplicationServiceException('Не удалось сохранить запись. Причина: ' . Json::encode($attendance->getErrors()));
+            throw new ApplicationServiceException(MedicalModule::t('attendance', 'Can\'t save record. Reason: ') . Json::encode($attendance->getErrors()));
         }
         $attendance->unlink('referrals', $referral, true);
         return $attendance;
     }
 
     /**
-     * @todo переименовать в bySchedule
+     * @todo rename to bySchedule
      * @inheritdoc
      */
-    public function createAttendanceBySchedule(Dto $dto)
+    public function createAttendanceBySchedule(Dto $dto): Attendance
     {
         if (!$this->isAllowed('createAttendanceBySchedule')) {
-            throw new AccessApplicationServiceException('Доступ запрещен.');
+            throw new AccessApplicationServiceException(MedicalModule::t('attendance', 'Access restricted'));
         }
         if (!$dto instanceof Dto) {
             throw new ApplicationServiceException('param in not Dto.');
@@ -73,7 +75,7 @@ class AttendanceService extends ApplicationService implements AttendanceServiceI
         $attendance->employee_id = $dto->employeeId;
         $attendance->datetime = $dto->datetime;
         if (!$attendance->save()) {
-            throw new ApplicationServiceException('Не удалось сохранить запись. Причина: ' . Json::encode($attendance->getErrors()));
+            throw new ApplicationServiceException(MedicalModule::t('attendance', 'Can\'t save record. Reason: ') . Json::encode($attendance->getErrors()));
         }
         $attendance->link('referrals', $referral);
         return $attendance;
@@ -85,12 +87,7 @@ class AttendanceService extends ApplicationService implements AttendanceServiceI
     public function getAttendanceForm($raw)
     {
         $model = Attendance::ensureWeak($raw);
-//        if (!$model->isNewRecord) { // хук пока такой из-за ensure
-//            $this->setProprietary($model);
-//        if ($this->isAllowed('getAttendanceById')) {
-//            throw new AccessApplicationServiceException('Доступ к просмотру записи запрещен.');
-//        }
-//        }
+
         $ehr = ArrayHelper::toArray($model->ehr);
         $employee = ArrayHelper::toArray($model->employee);
         $attendanceForm = new AttendanceForm();
@@ -104,11 +101,11 @@ class AttendanceService extends ApplicationService implements AttendanceServiceI
     /**
      * @inheritdoc
      */
-    public function getAttendanceList(Model $form)
+    public function getAttendanceList(Model $form): DataProviderInterface
     {
         /** @var $form AttendanceFilter */
         if (!$this->isAllowed('getAttendanceList')) {
-            throw new AccessApplicationServiceException('Доступ к списку записей на прием запрещен.');
+            throw new AccessApplicationServiceException(MedicalModule::t('attendance', 'Access restricted'));
         }
         $query = Attendance::find();
         if (!empty($form->patientId)) {
@@ -152,11 +149,10 @@ class AttendanceService extends ApplicationService implements AttendanceServiceI
     public function getPrivileges()
     {
         return [
-            'getAttendanceById' => 'Просмотр записи на приём',
-            'createAttendanceBySchedule' => 'Создать запись на прием',
-            'cancelAttendance' => 'Отменить запись на прием',
-            'getAttendanceList' => 'Список всех записей на прием',
-//            'getMyAttendanceList' => 'Список моих записей на прием',
+            'getAttendanceById' => MedicalModule::t('attendance', 'View appointment'),
+            'createAttendanceBySchedule' => MedicalModule::t('attendance', 'Create appointment'),
+            'cancelAttendance' => MedicalModule::t('attendance', 'Cancel appointment'),
+            'getAttendanceList' => MedicalModule::t('attendance', 'View appointment list'),
         ];
     }
 
@@ -165,13 +161,13 @@ class AttendanceService extends ApplicationService implements AttendanceServiceI
      */
     public function aclAlias()
     {
-        return 'Запись на приём';
+        return MedicalModule::t('attendance', 'Appointments');
     }
 
     /**
      * @inheritdoc
      */
-    public function checkRecordByDatetime(string $ehrId, string $employeeId, $datetime)
+    public function checkRecordByDatetime(string $ehrId, string $employeeId, $datetime): string
     {
         $attendance = Attendance::find()
             ->notDeleted()

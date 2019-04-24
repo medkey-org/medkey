@@ -16,6 +16,7 @@ use app\common\service\exception\ApplicationServiceException;
 use app\modules\security\models\orm\Acl;
 use app\modules\security\models\orm\AclRole;
 use app\modules\security\models\orm\User;
+use app\modules\security\SecurityModule;
 use yii\base\InvalidValueException;
 
 /**
@@ -50,11 +51,11 @@ class AclService extends ApplicationService implements AclServiceInterface, Appl
     public function getPrivileges()
     {
         return [
-            'add' => 'Создание ACL',
-            'update' => 'Обновление ACL',
-            'deleteAcl' => 'Удаление ACL',
-            'getAclList' => 'Список ACL',
-            'getAclRoleList' => 'Список ролей',
+            'add' => SecurityModule::t('acl', 'Create ACL record'),
+            'update' => SecurityModule::t('acl', 'Update ACL record'),
+            'deleteAcl' => SecurityModule::t('acl', 'Delete ACL record'),
+            'getAclList' => SecurityModule::t('acl', 'Get ACL records list'),
+            'getAclRoleList' => SecurityModule::t('acl', 'Get roles list'),
         ];
     }
 
@@ -64,7 +65,7 @@ class AclService extends ApplicationService implements AclServiceInterface, Appl
     public function getAclList(Model $form)
     {
         if (!$this->isAllowed('getAclList')) {
-            throw new AccessApplicationServiceException('Доступ к списку ACL запрещён.');
+            throw new AccessApplicationServiceException(SecurityModule::t('acl', 'Access to the ACL list restricted'));
         }
         $query = Acl::find();
         $query
@@ -105,7 +106,7 @@ class AclService extends ApplicationService implements AclServiceInterface, Appl
     public function getAclRoleList(Model $form)
     {
         if (!$this->isAllowed('getAclRoleList')) {
-            throw new AccessApplicationServiceException('Доступ к списку ролей запрещён.');
+            throw new AccessApplicationServiceException(SecurityModule::t('acl', 'Access to the roles list is restricted'));
         }
         $query = AclRole::find();
         $query
@@ -130,7 +131,7 @@ class AclService extends ApplicationService implements AclServiceInterface, Appl
     public function add($aclDto, $scenario = ActiveRecord::SCENARIO_CREATE)
     {
         if (!$this->isAllowed('add')) {
-            throw new AccessApplicationServiceException('Доступ к созданию ACL запрещён.');
+            throw new AccessApplicationServiceException(SecurityModule::t('acl', 'Access to the create ACL record feature is restricted'));
         }
         $modelClass = $this->modelClass;
         if (!($aclDto instanceof Dto)) {
@@ -145,7 +146,7 @@ class AclService extends ApplicationService implements AclServiceInterface, Appl
             $model->loadDto($aclDto);
             if (!$model->save()) {
                 $errors = Json::encode($model->getErrors());
-                throw new ApplicationServiceException('Не удалось сохранить ACL. Причина: ' . $errors);
+                throw new ApplicationServiceException(SecurityModule::t('acl', 'Cannot save ACL record') . ': '. $errors);
             }
             $transaction->commit();
         } catch (\Exception $e) {
@@ -165,7 +166,7 @@ class AclService extends ApplicationService implements AclServiceInterface, Appl
     public function update($id, $aclDto, $scenario = ActiveRecord::SCENARIO_UPDATE)
     {
         if (!$this->isAllowed('update')) {
-            throw new AccessApplicationServiceException('Доступ к обновлению ACL запрещён.');
+            throw new AccessApplicationServiceException(SecurityModule::t('acl', 'Access to the create ACL record feature is restricted'));
         }
         $modelClass = $this->modelClass;
         if (!($aclDto instanceof Dto)) {
@@ -179,7 +180,7 @@ class AclService extends ApplicationService implements AclServiceInterface, Appl
             $model->loadDto($aclDto);
             if (!$model->save()) {
                 $errors = Json::encode($model->getErrors());
-                throw new ApplicationServiceException('Не удалось сохранить ACL. Причина: ' . $errors);
+                throw new ApplicationServiceException(SecurityModule::t('acl', 'Cannot save ACL record') . ': ' . $errors);
             }
             $transaction->commit();
         } catch (\Exception $e) {
@@ -192,7 +193,7 @@ class AclService extends ApplicationService implements AclServiceInterface, Appl
     public function deleteAcl($id)
     {
         if (!$this->isAllowed('deleteAcl')) {
-            throw new AccessApplicationServiceException('Доступ к обновлению ACL запрещён.');
+            throw new AccessApplicationServiceException(SecurityModule::t('acl', 'Access to the delete ACL record feature is restricted'));
         }
         $acl = Acl::findOneEx($id);
         return $acl->deleteHistory();
@@ -204,15 +205,15 @@ class AclService extends ApplicationService implements AclServiceInterface, Appl
     public function getAclRuleByResource($resource, $action, $entityId = null, $type = Acl::TYPE_SERVICE)
     {
         if (\Yii::$app->user->isGuest) {
-            throw new AccessApplicationServiceException('Требуется аутентификация.');
+            throw new AccessApplicationServiceException(SecurityModule::t('acl', 'Authentication required'));
         }
         $user = User::findOneEx(\Yii::$app->user->id);
         $role = $user->aclRole;
         if (null === $role) {
-            throw new AccessApplicationServiceException('У пользователя не найдена роль.');
+            throw new AccessApplicationServiceException(SecurityModule::t('acl', 'Not found specified user\'s role'));
         }
         if (!$resource instanceof ResourceInterface) {
-            throw new AccessApplicationServiceException('Текущий объект не является ресурсом ACL.');
+            throw new AccessApplicationServiceException(SecurityModule::t('acl', 'Current object is not an ACL resource'));
         }
         $acl = Acl::find()
             ->where([
@@ -227,7 +228,7 @@ class AclService extends ApplicationService implements AclServiceInterface, Appl
             ])
             ->one();
         if (!isset($acl)) {
-            throw new AccessApplicationServiceException('Не найден ACL по заданному критерию.');
+            throw new AccessApplicationServiceException(SecurityModule::t('acl', 'Not found ACL by specified criteria'));
         }
         return $acl->rule;
     }

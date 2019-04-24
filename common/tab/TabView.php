@@ -83,7 +83,7 @@ class TabView extends ListView
         $this->actionButtons = array_merge([
             'refresh' => [
                 'value' => function ($disabled) {
-                    return Html::button('Обновить', [
+                    return Html::button(\Yii::t('app','Refresh'), [
                         'class' => 'btn btn-default tab-update',
                         'icon' => 'refresh',
                         'disabled' => $disabled,

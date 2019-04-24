@@ -178,9 +178,10 @@ class Employee extends Model
             'middle_name' => OrganizationModule::t('common', 'Middle name'),
             'birthday' => OrganizationModule::t('common', 'Birthday'),
             'sex' => OrganizationModule::t('common', 'Sex'),
-            'emails' => 'Emails',
-            'addresses' => 'Адреса',
-            'phones' => 'Телефоны',
+            'emails' => OrganizationModule::t('common', 'E-mails'),
+            'addresses' => OrganizationModule::t('common', 'Addresses'),
+            'phones' => OrganizationModule::t('employee', 'Phones'),
+            'speciality_id' => OrganizationModule::t('employee', 'Speciality'),
         ];
     }
 }

@@ -6,6 +6,7 @@ use app\common\helpers\Json;
 use app\common\service\ApplicationService;
 use app\common\service\exception\AccessApplicationServiceException;
 use app\common\service\exception\ApplicationServiceException;
+use app\modules\config\ConfigModule;
 use app\modules\config\models\finders\WorkflowTransitionFinder;
 use app\modules\config\models\orm\WorkflowTransition;
 use app\modules\config\models\form\WorkflowTransition as WorkflowTransitionForm;
@@ -84,7 +85,7 @@ class WorkflowTransitionService extends ApplicationService implements WorkflowTr
     public function getPrivileges()
     {
         return [
-            'getWorkflowTransitionList' => 'Список переходов workflow',
+            'getWorkflowTransitionList' => ConfigModule::t('workflow', 'Workflow transitions list'),
         ];
     }
 
@@ -93,6 +94,6 @@ class WorkflowTransitionService extends ApplicationService implements WorkflowTr
      */
     public function aclAlias()
     {
-        return 'Переходы workflow';
+        return ConfigModule::t('workflow', 'Workflow transitions');
     }
 }

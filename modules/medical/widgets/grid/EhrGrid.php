@@ -8,6 +8,7 @@ use app\common\grid\GridView;
 use app\common\helpers\ArrayHelper;
 use app\common\helpers\Html;
 use app\common\helpers\Url;
+use app\modules\medical\MedicalModule;
 use app\modules\medical\models\finders\EhrFilter;
 use app\modules\medical\models\orm\Ehr;
 use app\modules\medical\models\orm\Patient;
@@ -18,7 +19,7 @@ use yii\web\JsExpression;
 use app\modules\medical\models\form\Patient as PatientForm;
 
 /**
- * Class EhrGrid
+ * EHR registry grid
  * @package Module\Medical
  * @copyright 2012-2019 Medkey
  */
@@ -65,10 +66,9 @@ class EhrGrid extends GridView
     public function init()
     {
         $this->filterModel = EhrFilter::ensure($this->filterModel, 'search', $this->formData);
-//        $this->patientId = PatientForm::ensure($this->patientId->id); // todo proxy SERVICE
-//        if (!empty($this->patientId->id)) {
-            $this->filterModel->patientId = $this->patientId;
-//        }
+
+        $this->filterModel->patientId = $this->patientId;
+
         $this->dataProvider = $this->ehrService->getEhrList($this->filterModel);
         $this->actionButtons['create'] = [
             'class' => LinkActionButton::class,
@@ -118,12 +118,12 @@ class EhrGrid extends GridView
                         [
                             'class' => 'form-control',
                             'empty' => true,
-                            'placeholder' => 'Выберите значение ...'
+                            'placeholder' => \Yii::t('app', 'Select value...'),
                         ],
                         [
                             'allowClear' => true,
                             'language' => [
-                                'errorLoading' => new JsExpression("function () { return 'Ничего не найдено.'; }"),
+                                'errorLoading' => new JsExpression("function () { return '" . \Yii::t('app', 'Nothing found') . "'; }"),
                             ],
                         ]
                     );
@@ -153,13 +153,13 @@ class EhrGrid extends GridView
                         'data' => $data,
                         'options' => [
                             'id' => UniqueKey::generate('patientId'),
-                            'placeholder' => 'Выберите значение ...'
+                            'placeholder' => \Yii::t('app', 'Select value...'),
                         ],
                         'pluginOptions' => [
                             'allowClear' => true,
                             'minimumInputLength' => 1,
                             'language' => [
-                                'errorLoading' => new JsExpression("function () { return 'Ничего не найдено.'; }"),
+                                'errorLoading' => new JsExpression("function () { return '" . \Yii::t('app', 'Nothing found') . "'; }"),
                             ],
                             'ajax' => [
                                 'url' => Url::to(['/medical/rest/patient/index']),

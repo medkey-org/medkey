@@ -8,6 +8,7 @@ use app\common\helpers\Url;
 use app\common\widgets\ActiveForm;
 use app\common\wrappers\Block;
 use app\modules\crm\widgets\grid\OrderGrid;
+use app\modules\medical\MedicalModule;
 use app\modules\medical\models\orm\Ehr;
 use app\modules\medical\models\orm\Patient;
 use app\modules\medical\application\EhrServiceInterface;
@@ -84,7 +85,7 @@ class EhrCard extends CardView
     {
         return [
             'ehr' => [
-                'title' => 'Данные мед. карты',
+                'title' => MedicalModule::t('ehr', 'EHR details'),
                 'items' => [
                     [
                         'items' => [
@@ -235,11 +236,11 @@ class EhrCard extends CardView
                                     'update' => [
                                         'label' => false,
                                         'value' =>
-                                            Html::submitButton(\Yii::t('app', 'save'), [
+                                            Html::submitButton(\Yii::t('app', 'Save'), [
                                                 'class' => 'btn btn-primary',
                                                 'icon'  => 'saved'
                                             ])
-                                            . '&nbsp' . Html::button(\Yii::t('app', 'cancel'), [
+                                            . '&nbsp' . Html::button(\Yii::t('app', 'Cancel'), [
                                                 'class' => 'btn btn-default',
                                                 'data-card-switch' => 'default'
                                             ])
@@ -247,11 +248,11 @@ class EhrCard extends CardView
                                     'create' => [
                                         'label' => false,
                                         'value' =>
-                                            Html::submitButton(\Yii::t('app', 'save'), [
+                                            Html::submitButton(\Yii::t('app', 'Save'), [
                                                 'class' => 'btn btn-primary',
                                                 'icon'  => 'saved'
                                             ])
-                                            . '&nbsp' . Html::button(\Yii::t('app', 'cancel'), [
+                                            . '&nbsp' . Html::button(\Yii::t('app', 'Cancel'), [
                                                 'class' => 'btn btn-default',
                                                 'data-card-switch' => 'default'
                                             ])
@@ -277,7 +278,7 @@ class EhrCard extends CardView
                         'ehrId' => $model->id
                     ]);
                 },
-                'header' => 'Записи в мед. карте',
+                'header' => MedicalModule::t('ehr', 'EHR records'),
             ],
             'order' => [
                 'value' => function ($model) {
@@ -285,7 +286,7 @@ class EhrCard extends CardView
                         'ehr' => $model
                     ]);
                 },
-                'header' => 'Заказы',
+                'header' => MedicalModule::t('ehr', 'Orders'),
             ],
             'referrals' => [
                 'value' => function ($model) {
@@ -293,7 +294,7 @@ class EhrCard extends CardView
                         'ehr' => $model
                     ]);
                 },
-                'header' => 'Направления',
+                'header' => MedicalModule::t('ehr', 'Referrals'),
             ],
         ];
     }
@@ -305,7 +306,7 @@ class EhrCard extends CardView
     {
         return [
             'wrapperClass' => Block::className(),
-            'header' => \Yii::t('app', 'Ehr')
+            'header' => MedicalModule::t('ehr', 'EHR'),
         ];
     }
 }

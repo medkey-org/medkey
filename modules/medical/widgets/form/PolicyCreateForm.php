@@ -5,6 +5,7 @@ use app\common\helpers\Html;
 use app\common\widgets\FormWidget;
 use app\common\wrappers\DynamicModal;
 use app\modules\medical\application\PolicyServiceInterface;
+use app\modules\medical\MedicalModule;
 use app\modules\medical\models\form\Policy;
 use app\modules\medical\models\orm\Insurance;
 
@@ -69,12 +70,12 @@ class PolicyCreateForm extends FormWidget
         echo $form->field($model, 'expiration_date')->dateInput();
         echo $form->field($model, 'insurance_id')->select2(Insurance::listAll()); // todo через сервис
         echo $form->field($model, 'type')->select2(Policy::types());
-        echo Html::submitButton('Сохранить', [
+        echo Html::submitButton(\Yii::t('app', 'Save'), [
             'class' => 'btn btn-primary',
             'icon' => 'plus',
         ]);
         echo '&nbsp';
-        echo Html::button('Отмена', [
+        echo Html::button(\Yii::t('app', 'Cancel'), [
             'class' => 'btn btn-default',
             'data-dismiss' => 'modal'
         ]);
@@ -86,7 +87,7 @@ class PolicyCreateForm extends FormWidget
     public function wrapperOptions()
     {
         return [
-            'header' => 'Добавление полиса',
+            'header' => MedicalModule::t('policy', 'Add policy'),
             'wrapperClass' => DynamicModal::class,
         ];
     }
