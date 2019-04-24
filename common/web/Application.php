@@ -2,12 +2,10 @@
 namespace app\common\web;
 
 use app\common\base\ModuleTrait;
-use app\common\config\ConfigManager;
 
 /**
  * Class Application
  *
- * @property-read ConfigManager $configManager
  *
  * @package Common\Web
  * @copyright 2012-2019 Medkey

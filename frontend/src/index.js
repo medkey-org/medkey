@@ -1,29 +1,3 @@
-import React from 'react';
-import { render } from 'react-dom';
-import { Provider } from 'react-redux';
-import thunk from 'redux-thunk';
-import { createStore, applyMiddleware } from 'redux';
-import '../modules/medical/components/index.css';
-import { reducerApp, initWorkplaceState } from '../modules/medical/reducers/reducers';
-import { changeDate } from '../modules/medical/actions/actions';
-import ScheduleContainer from '../modules/medical/containers/ScheduleContainer';
-import PatientContainer from '../modules/medical/containers/PatientContainer';
-
-if (document.getElementById('app-workplace')) {
-    // todo придумать помодульную декомпозицию
-    let store = createStore(reducerApp, initWorkplaceState, applyMiddleware(thunk));
-    store.dispatch(changeDate());
-    render(
-        <Provider store={store}>
-            <div className="b-workplace">
-                <PatientContainer/>
-                <ScheduleContainer/>
-            </div>
-        </Provider>,
-        document.getElementById('app-workplace')
-    );
-}
-
 // bower/npm
 require('../../vendor/bower-asset/jquery-ui/themes/smoothness/jquery-ui.css');
 require('../../vendor/bower-asset/bootstrap/dist/css/bootstrap.css');

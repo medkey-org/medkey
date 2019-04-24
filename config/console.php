@@ -21,9 +21,9 @@ $config = [
         'cache' => [
             'class' => 'yii\caching\FileCache',
         ],
-        'configManager' => [
-            'class' => \app\common\config\ConfigManager::class,
-        ],
+//        'configManager' => [
+//            'class' => \app\common\config\ConfigManager::class,
+//        ],
         'acl' => [
             'class' => \app\common\acl\Acl::class,
         ],

@@ -14,7 +14,7 @@ const webRoot = path.join(__dirname, "../web/bundles/");
 const uglifyJS = require("uglify-js");
 
 let entryPaths = {};
-var buffer = fs.readdirSync(__dirname + '/../modules');
+let buffer = fs.readdirSync(__dirname + '/../modules');
 for (let i = 0; i < buffer.length; i++) {
     let p = 'modules/' + buffer[i] + '/frontend/index.js';
     if (fs.existsSync(path.resolve('../', p))) {

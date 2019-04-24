@@ -81,9 +81,9 @@ $config = [
         'acl' => [
             'class' => \app\common\acl\Acl::class,
         ],
-        'configManager' => [
-            'class' => \app\common\config\ConfigManager::class,
-        ],
+//        'configManager' => [
+//            'class' => \app\common\config\ConfigManager::class,
+//        ],
         'log' => [
             'traceLevel' => YII_DEBUG ? 3 : 0,
             'targets' => [
