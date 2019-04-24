@@ -95,7 +95,7 @@ class AclService extends ApplicationService implements AclServiceInterface, Appl
                 ],
             ],
             'pagination' => [
-                'pageSize' => 10
+                'pageSize' => 20
             ],
         ]);
     }
@@ -117,7 +117,7 @@ class AclService extends ApplicationService implements AclServiceInterface, Appl
         return new ActiveDataProvider([
             'query' => $query,
             'pagination' => [
-                'pageSize' => 10
+                'pageSize' => 20
             ],
         ]);
     }

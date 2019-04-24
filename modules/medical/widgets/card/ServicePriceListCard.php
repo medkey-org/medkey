@@ -66,7 +66,7 @@ class ServicePriceListCard extends CardView
     {
         return [
             'personal' => [
-                'title' => MedicalModule::t('servicePriceList', 'Price-list details'),
+                'title' => MedicalModule::t('servicePriceList', 'Pricelist details'),
                 'items' => [
                     [
                         'items' => [
@@ -238,7 +238,7 @@ class ServicePriceListCard extends CardView
 //                        'visibleActionButtons' => false,
                     ]);
                 },
-                'header' => MedicalModule::t('servicePriceList', 'Price-list positions'),
+                'header' => MedicalModule::t('servicePriceList', 'Pricelist positions'),
             ],
         ];
     }
@@ -250,7 +250,7 @@ class ServicePriceListCard extends CardView
     {
         return [
             'wrapperClass' => Block::class,
-            'header' => MedicalModule::t('servicePriceList', 'Price-list'),
+            'header' => MedicalModule::t('servicePriceList', 'Pricelist'),
         ];
     }
 }
