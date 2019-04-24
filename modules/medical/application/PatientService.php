@@ -3,6 +3,7 @@ namespace app\modules\medical\application;
 
 use app\common\data\ActiveDataProvider;
 use app\common\db\ActiveRecord;
+use app\common\db\Exception;
 use app\common\helpers\ArrayHelper;
 use app\common\helpers\CommonHelper;
 use app\common\helpers\Json;
@@ -13,11 +14,15 @@ use app\common\logic\orm\Phone;
 use app\common\service\ApplicationService;
 use app\common\service\exception\AccessApplicationServiceException;
 use app\common\service\exception\ApplicationServiceException;
+use app\modules\medical\MedicalModule;
 use app\modules\medical\models\finders\PatientFilter;
 use app\modules\medical\models\orm\Patient;
+use yii\base\InvalidConfigException;
 use yii\base\InvalidValueException;
 use yii\base\Model;
 use app\modules\medical\models\form\Patient as PatientForm;
+use yii\data\DataProviderInterface;
+use yii\db\ActiveRecordInterface;
 
 /**
  * Class PatientService
@@ -32,8 +37,8 @@ class PatientService extends ApplicationService implements PatientServiceInterfa
     public function getPrivileges()
     {
         return [
-            'getPatientList' => 'Список записей',
-            'getPatientById' => 'Просмотр пациента',
+            'getPatientList' => MedicalModule::t('patient', 'Patient registry'),
+            'getPatientById' => MedicalModule::t('patient', 'Patient'),
         ];
     }
 
@@ -42,14 +47,16 @@ class PatientService extends ApplicationService implements PatientServiceInterfa
      */
     public function aclAlias()
     {
-        return 'Пациент';
+        return MedicalModule::t('patient', 'Patient');
     }
 
     /**
-     * @param string $patientId
-     * @param array $emails
-     * @return void
+     * @param string|integer $patientId
+     * @param string[] $emails
+     * @return void|null
      * @throws ApplicationServiceException
+     * @throws Exception
+     * @throws InvalidConfigException
      */
     protected function saveEmails($patientId, $emails)
     {
@@ -76,16 +83,18 @@ class PatientService extends ApplicationService implements PatientServiceInterfa
             $model->entity = Patient::getTableSchema()->name;
             $model->entity_id = $patient->id;
             if (!$model->save()) {
-                throw new ApplicationServiceException('Не удалось сохранить email. Причина: ' . Json::encode($model->getErrors()));
+                throw new ApplicationServiceException(MedicalModule::t('patient', 'Can\'t save email. Reason:') . Json::encode($model->getErrors()));
             }
         }
     }
 
     /**
-     * @param string $patientId
-     * @param array $phones
-     * @return void
+     * @param string|integer $patientId
+     * @param string[] $phones
+     * @return void|null
      * @throws ApplicationServiceException
+     * @throws Exception
+     * @throws InvalidConfigException
      */
     protected function savePhones($patientId, $phones)
     {
@@ -112,15 +121,17 @@ class PatientService extends ApplicationService implements PatientServiceInterfa
             $model->entity = Patient::getTableSchema()->name;
             $model->entity_id = $patient->id;
             if (!$model->save()) {
-                throw new ApplicationServiceException('Не удалось сохранить телефон. Причина: ' . Json::encode($model->getErrors()));
+                throw new ApplicationServiceException(MedicalModule::t('patient', 'Can\'t save phone. Reason:'). Json::encode($model->getErrors()));
             }
         }
     }
 
     /**
-     * @param string $patientId
-     * @param array $addresses
+     * @param string|integer $patientId
+     * @param string[] $addresses
      * @return void|null
+     * @throws Exception
+     * @throws InvalidConfigException
      */
     protected function saveAddresses($patientId, $addresses)
     {
@@ -139,7 +150,11 @@ class PatientService extends ApplicationService implements PatientServiceInterfa
             return null;
         }
         foreach ($addresses as $address) {
-            if (empty($address['type']) || empty($address['city'])) {
+            if (!isset($address['type'])
+                || !isset($address['city'])
+                || empty($address['type'])
+                || empty($address['city'])
+            ) {
                 continue;
             }
             $model = new Address();
@@ -153,10 +168,10 @@ class PatientService extends ApplicationService implements PatientServiceInterfa
     /**
      * @inheritdoc
      */
-    public function addPatient(PatientForm $patientForm)
+    public function addPatient(PatientForm $patientForm): ActiveRecordInterface
     {
         if (!($patientForm instanceof PatientForm)) {
-            throw new InvalidValueException('Form is not instance ' . PatientForm::class . ' class');
+            throw new InvalidValueException(MedicalModule::t('patient', 'Form is not an instance of class ') . PatientForm::class);
         }
         $transaction = \Yii::$app->db->beginTransaction();
         try {
@@ -165,7 +180,7 @@ class PatientService extends ApplicationService implements PatientServiceInterfa
             ]);
             $model->loadForm($patientForm);
             if (!$model->save()) {
-                throw new ApplicationServiceException('Не удалось сохранить пациента.');
+                throw new ApplicationServiceException(MedicalModule::t('patient', 'Can\'t save patient record'));
             }
             $patientForm->id = $model->id;
             $this->savePhones($model->id, $patientForm->phones);
@@ -180,10 +195,17 @@ class PatientService extends ApplicationService implements PatientServiceInterfa
         return $model;
     }
 
+    /**
+     * @param string|integer $patientId
+     * @param string $series
+     * @param string $number
+     * @throws Exception
+     * @throws InvalidConfigException
+     */
     public function savePassport($patientId, $series, $number)
     {
         $patient = Patient::findOneEx($patientId);
-        $patient->unlinkAll('passport', true); // todo история теряется
+        $patient->unlinkAll('passport', true);
         $passport = new Passport();
         $passport->series = $series;
         $passport->number = $number;
@@ -195,10 +217,10 @@ class PatientService extends ApplicationService implements PatientServiceInterfa
     /**
      * @inheritdoc
      */
-    public function updatePatient(string $id, PatientForm $patientForm)
+    public function updatePatient(string $id, PatientForm $patientForm): ActiveRecordInterface
     {
         if (!($patientForm instanceof PatientForm)) {
-            throw new InvalidValueException('Form is not instance ' . PatientForm::class . ' class');
+            throw new InvalidValueException(MedicalModule::t('patient', 'Form is not an instance of class ') . PatientForm::class);
         }
         $transaction = \Yii::$app->db->beginTransaction();
         try {
@@ -207,7 +229,7 @@ class PatientService extends ApplicationService implements PatientServiceInterfa
             $model->setScenario(ActiveRecord::SCENARIO_UPDATE);
             $model->loadForm($patientForm);
             if (!$model->save()) {
-                throw new ApplicationServiceException('Не удалось сохранить пациента.');
+                throw new ApplicationServiceException(MedicalModule::t('patient', 'Can\'t save patient record'));
             }
             $patientForm->id = $model->id;
             $this->savePhones($model->id, $patientForm->phones);
@@ -225,11 +247,11 @@ class PatientService extends ApplicationService implements PatientServiceInterfa
     /**
      * @inheritdoc
      */
-    public function getPatientList(Model $form)
+    public function getPatientList(Model $form): DataProviderInterface
     {
         /** @var $form PatientFilter */
         if (!$this->isAllowed('getPatientList')) {
-            throw new AccessApplicationServiceException('Доступ запрещен.');
+            throw new AccessApplicationServiceException(MedicalModule::t('patient', 'Access restricted'));
         }
         $query = Patient::find();
         $query
@@ -261,10 +283,10 @@ class PatientService extends ApplicationService implements PatientServiceInterfa
         ]);
     }
 
-    public function getPatientById($id)
+    public function getPatientById($id): ActiveRecordInterface
     {
         if (!$this->isAllowed('getPatientById')) {
-            throw new AccessApplicationServiceException('Доступ запрещен.');
+            throw new AccessApplicationServiceException(MedicalModule::t('patient', 'Access restricted'));
         }
         return Patient::find()
             ->notDeleted()

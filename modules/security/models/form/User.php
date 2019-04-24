@@ -4,6 +4,7 @@ namespace app\modules\security\models\form;
 use app\common\base\Model;
 use app\common\validators\ForeignKeyValidator;
 use app\modules\security\models\orm\User as UserOrm;
+use app\modules\security\SecurityModule;
 
 /**
  * Class User
@@ -85,7 +86,7 @@ class User extends Model
             ->notDeleted()
             ->one();
         if (isset($user)) {
-            $this->addError($attribute, 'Указанный пользователь уже существует в БД.');
+            $this->addError($attribute, SecurityModule::t('user','User already exists'));
         }
     }
 
@@ -95,11 +96,12 @@ class User extends Model
     public function attributeLabels()
     {
         return [
-            'login' => 'Логин',
-            'password_hash' => 'Пароль',
-            'acl_role_id' => 'Роль',
-            'aclRole' => 'Роль',
-            'status' => 'Статус',
+            'login' => SecurityModule::t('user','Login'),
+            'password_hash' => SecurityModule::t('user','Password'),
+            'acl_role_id' => SecurityModule::t('user','Role'),
+            'aclRole' => SecurityModule::t('user','Role'),
+            'status' => SecurityModule::t('user','Status'),
+            'language' => SecurityModule::t('user', 'Language')
         ];
     }
 }

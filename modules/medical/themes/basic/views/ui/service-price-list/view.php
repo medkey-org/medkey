@@ -3,9 +3,9 @@
 use app\modules\medical\MedicalModule;
 use app\modules\medical\widgets\card\ServicePriceListCard;
 
-$this->title = MedicalModule::t('common', 'Medkey');
-$this->params['breadcrumbs'][] = ['url' => '/medical/ui/service-price-list/index', 'label' => 'Список прайс-листов'];
-$this->params['breadcrumbs'][] = 'Прайс-лист';
+$this->title = MedicalModule::t('servicePriceList', 'Price-list card');
+$this->params['breadcrumbs'][] = ['url' => '/medical/ui/service-price-list/index', 'label' => MedicalModule::t('servicePriceList', 'Price-list registry')];
+$this->params['breadcrumbs'][] = $this->title;
 
 ?>
 

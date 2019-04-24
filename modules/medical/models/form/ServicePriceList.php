@@ -3,6 +3,7 @@ namespace app\modules\medical\models\form;
 
 use app\common\base\Model;
 use app\common\helpers\CommonHelper;
+use app\modules\medical\MedicalModule;
 use app\modules\medical\models\orm\ServicePriceList as ServicePriceListORM;
 
 /**
@@ -59,10 +60,10 @@ class ServicePriceList extends Model
     public function attributeLabels()
     {
         return [
-            'name' => 'Имя',
-            'status' => 'Статус',
-            'start_date' => 'Дата начала',
-            'end_date' => 'Дата конца',
+            'name' => MedicalModule::t('servicePriceList', 'Name'),
+            'status' => MedicalModule::t('servicePriceList','Status'),
+            'start_date' => MedicalModule::t('servicePriceList','Start date'),
+            'end_date' => MedicalModule::t('servicePriceList','End date'),
         ];
     }
 }

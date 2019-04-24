@@ -81,7 +81,7 @@ class ReferralCard extends CardView
                     'model' => $this->model,
                 ],
                 'disabled' => false,
-                'value' => 'Запись на приём',
+                'value' => MedicalModule::t('referral', 'Create attendance'),
                 'options' => [
                     'class' => 'btn btn-primary',
                     'icon' => 'time'
@@ -97,7 +97,7 @@ class ReferralCard extends CardView
     {
         return [
             'main' => [
-                'title' => 'Данные направления',
+                'title' => MedicalModule::t('referral', 'Referral details'),
                 'items' => [
                     [
                         'items' => [
@@ -260,11 +260,11 @@ class ReferralCard extends CardView
                                     'update' => [
                                         'label' => false,
                                         'value' =>
-                                            Html::submitButton(\Yii::t('app', 'save'), [
+                                            Html::submitButton(\Yii::t('app', 'Save'), [
                                                 'class' => 'btn btn-primary',
                                                 'icon'  => 'saved'
                                             ])
-                                            . '&nbsp' . Html::button(\Yii::t('app', 'cancel'), [
+                                            . '&nbsp' . Html::button(\Yii::t('app', 'Cancel'), [
                                                 'class' => 'btn btn-default',
                                                 'data-card-switch' => 'default'
                                             ])
@@ -272,11 +272,11 @@ class ReferralCard extends CardView
                                     'create' => [
                                         'label' => false,
                                         'value' =>
-                                            Html::submitButton(\Yii::t('app', 'save'), [
+                                            Html::submitButton(\Yii::t('app', 'Save'), [
                                                 'class' => 'btn btn-primary',
                                                 'icon'  => 'saved'
                                             ])
-                                            . '&nbsp' . Html::button(\Yii::t('app', 'cancel'), [
+                                            . '&nbsp' . Html::button(\Yii::t('app', 'Cancel'), [
                                                 'class' => 'btn btn-default',
                                                 'data-card-switch' => 'default'
                                             ])
@@ -302,7 +302,7 @@ class ReferralCard extends CardView
                         'referralId' => $model->id
                     ]);
                 },
-                'header' => 'Позиции направления',
+                'header' => MedicalModule::t('referral', 'Referral positions'),
             ],
             'attendances' => [
                 'value' => function ($model) {
@@ -310,7 +310,7 @@ class ReferralCard extends CardView
                         'referralId' => $model->id,
                     ]);
                 },
-                'header' => 'Записи на приём',
+                'header' => MedicalModule::t('referral', 'Referral attendances'),
             ],
         ];
     }
@@ -330,7 +330,7 @@ class ReferralCard extends CardView
     {
         return [
             'wrapperClass' => Block::className(),
-            'header' => \Yii::t('app', 'Referral')
+            'header' => MedicalModule::t('referral', 'Referral card')
         ];
     }
 }

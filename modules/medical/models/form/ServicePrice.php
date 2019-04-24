@@ -3,6 +3,7 @@ namespace app\modules\medical\models\form;
 
 use app\common\base\Model;
 use app\common\validators\ForeignKeyValidator;
+use app\modules\medical\MedicalModule;
 use app\modules\medical\models\orm\ServicePrice as ServicePriceORM;
 
 /**
@@ -47,7 +48,7 @@ class ServicePrice extends Model
             ->notDeleted()
             ->one();
         if (isset($servicePrice)) {
-            $this->addError($attribute, 'Указанная услуга в текущем прайсе уже существует!');
+            $this->addError($attribute, MedicalModule::t('servicePrice', 'Given service already exists in price list'));
         }
     }
 
@@ -57,10 +58,10 @@ class ServicePrice extends Model
     public function attributeLabels()
     {
         return [
-            'cost' => 'Стоимость',
-            'service_id' => 'Услуга',
-            'service_price_list_id' => 'Прайс-лист',
-            'status' => 'Статус',
+            'cost' => MedicalModule::t('servicePrice', 'Cost'),
+            'service_id' => MedicalModule::t('servicePrice', 'Service'),
+            'service_price_list_id' => MedicalModule::t('servicePrice', 'Price list'),
+            'status' => MedicalModule::t('servicePrice', 'Status'),
         ];
     }
 }

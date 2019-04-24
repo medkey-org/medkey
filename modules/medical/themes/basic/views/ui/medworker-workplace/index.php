@@ -1,7 +1,7 @@
 <?php
 use app\modules\medical\assets\ScheduleMedworkerAsset;
-$this->title = 'Medkey';
-$this->params['breadcrumbs'][] = 'АРМ Врача';
+$this->title = \app\modules\medical\MedicalModule::t('workplace', 'Specialist\'s workplace');
+$this->params['breadcrumbs'][] = $thss->title;
 ScheduleMedworkerAsset::register($this);
 ?>
 <div class="b-block b-block__backdrop">

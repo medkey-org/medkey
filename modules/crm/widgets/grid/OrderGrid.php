@@ -109,7 +109,7 @@ class OrderGrid extends GridView
                         [
                             'class' => 'form-control',
                             'empty' => true,
-                            'placeholder' => 'Выберите значение ...'
+                            'placeholder' => \Yii::t('app', 'Select value...'),
                         ],
                         [
                             'allowClear' => true,
@@ -141,7 +141,7 @@ class OrderGrid extends GridView
                 ],
             ],
             [
-                'header' => 'Код локации',
+                'attribute' => 'location_id',
                 'value' => function (Order $model) {
                     $location = $model->location;
                     if (isset($location) && ($location instanceof Location)) {

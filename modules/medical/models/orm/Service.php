@@ -4,6 +4,7 @@ namespace app\modules\medical\models\orm;
 use app\common\db\ActiveQuery;
 use app\common\db\ActiveRecord;
 use app\common\validators\ForeignKeyValidator;
+use app\modules\medical\MedicalModule;
 
 /**
  * Class Service
@@ -59,13 +60,13 @@ class Service extends ActiveRecord
     public function attributeLabelsOverride()
     {
         return [
-            'code' => 'Код',
-            'title' => 'Название',
-            'program' => 'Программа',
-            'short_title' => 'Короткое название',
-            'description' => 'Описание',
-            'speciality_id' => 'Специальность',
-            'status' => 'Статус',
+            'code' => MedicalModule::t('service', 'Code'),
+            'title' => MedicalModule::t('service', 'Title'),
+            'program' => MedicalModule::t('service', 'Program'),
+            'short_title' => MedicalModule::t('service', 'Short title'),
+            'description' => MedicalModule::t('service', 'Description'),
+            'speciality_id' => MedicalModule::t('service', 'Speciality'),
+            'status' => MedicalModule::t('service', 'Status'),
         ];
     }
 }

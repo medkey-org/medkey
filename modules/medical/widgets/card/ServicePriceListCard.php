@@ -9,6 +9,7 @@ use app\common\widgets\ActiveForm;
 use app\common\wrappers\Block;
 use app\modules\config\entities\CurrencyEntity;
 use app\modules\medical\application\ServicePriceServiceInterface;
+use app\modules\medical\MedicalModule;
 use app\modules\medical\models\form\ServicePriceList;
 use app\modules\medical\models\orm\ServicePriceList as ServicePriceListORM;
 use app\modules\medical\widgets\grid\ServicePriceGrid;
@@ -65,7 +66,7 @@ class ServicePriceListCard extends CardView
     {
         return [
             'personal' => [
-                'title' => 'Данные прайс-услуг',
+                'title' => MedicalModule::t('servicePriceList', 'Price-list details'),
                 'items' => [
                     [
                         'items' => [
@@ -206,11 +207,11 @@ class ServicePriceListCard extends CardView
                                     ],
                                     'create' => [
                                         'label' => false,
-                                        'value' => Html::submitButton(\Yii::t('app', 'save'), [
+                                        'value' => Html::submitButton(\Yii::t('app', 'Save'), [
                                                 'class' => 'btn btn-primary',
                                                 'icon'  => 'saved'
                                             ])
-                                            . '&nbsp' . Html::button(\Yii::t('app', 'cancel'), [
+                                            . '&nbsp' . Html::button(\Yii::t('app', 'Cancel'), [
                                                 'class' => 'btn btn-default',
                                                 'data-card-switch' => 'default'
                                             ])
@@ -237,7 +238,7 @@ class ServicePriceListCard extends CardView
 //                        'visibleActionButtons' => false,
                     ]);
                 },
-                'header' => 'Прайс'
+                'header' => MedicalModule::t('servicePriceList', 'Price-list positions'),
             ],
         ];
     }
@@ -249,7 +250,7 @@ class ServicePriceListCard extends CardView
     {
         return [
             'wrapperClass' => Block::class,
-            'header' => 'Прайс-лист',
+            'header' => MedicalModule::t('servicePriceList', 'Price-list'),
         ];
     }
 }

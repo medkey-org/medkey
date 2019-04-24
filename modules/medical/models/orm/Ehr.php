@@ -4,14 +4,15 @@ namespace app\modules\medical\models\orm;
 use app\common\db\ActiveQuery;
 use app\common\db\ActiveRecord;
 use app\common\validators\ForeignKeyValidator;
+use app\modules\medical\MedicalModule;
 
 /**
- * Class Ehr
+ * EHR ORM
  *
  * @property string $number
  * @property int $type
  * @property int $status
- * @property string $patient_id
+ * @property int|string $patient_id
  * @property-read Patient $patient
  *
  * @package Module\Medical
@@ -98,10 +99,10 @@ class Ehr extends ActiveRecord
     public function attributeLabelsOverride()
     {
         return [
-            'number' => 'Номер',
-            'status' => 'Статус',
-            'type' => 'Тип',
-            'patient_id' => 'Пациент',
+            'number' => MedicalModule::t('ehr', 'Number'),
+            'status' => MedicalModule::t('ehr','Status'),
+            'type' => MedicalModule::t('ehr','EHR type'),
+            'patient_id' => MedicalModule::t('ehr','Patient'),
         ];
     }
 
@@ -119,8 +120,8 @@ class Ehr extends ActiveRecord
     public static function types()
     {
         return [
-            self::TYPE_AMBULATORY => 'Амбулаторный',
-            self::TYPE_HOSPITAL => 'Стационар',
+            self::TYPE_AMBULATORY => MedicalModule::t('ehr','Ambulatory'),
+            self::TYPE_HOSPITAL => MedicalModule::t('ehr','Hospital'),
         ];
     }
 
@@ -142,8 +143,8 @@ class Ehr extends ActiveRecord
     public static function statusListData()
     {
         return [
-            self::STATUS_ACTIVE => 'Активная',
-            self::STATUS_INACTIVE => 'Неактивная',
+            self::STATUS_ACTIVE => MedicalModule::t('ehr','Active'),
+            self::STATUS_INACTIVE => MedicalModule::t('ehr','Inactive'),
         ];
     }
 

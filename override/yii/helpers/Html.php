@@ -52,7 +52,7 @@ class Html extends BaseHtml
 		$empty = ArrayHelper::remove($options, 'empty', true);
 
 		if ($empty === true) {
-			$empty = 'Не выбрано';
+			$empty = \Yii::t('app', 'Select value...');
 		}
 		if ($empty) {
 			$item = ['' => $empty];

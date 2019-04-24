@@ -3,6 +3,7 @@ namespace app\modules\medical\widgets\form;
 use app\common\widgets\FormWidget;
 use app\common\wrappers\DynamicModal;
 use app\modules\medical\models\form\Policy;
+use app\modules\medical\MedicalModule;
 
 /**
  * Class PolicyUpdateForm
@@ -35,7 +36,7 @@ class PolicyUpdateForm extends PolicyCreateForm
     {
         return [
             'wrapperClass' => DynamicModal::class,
-            'header' => 'Редактирование полиса'
+            'header' => MedicalModule::t('policy', 'Edit policy'),
         ];
     }
 }

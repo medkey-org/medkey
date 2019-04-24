@@ -1,7 +1,8 @@
 <?php
 namespace app\modules\medical\application;
 
-use app\common\db\ActiveRecord;
+use app\common\data\ActiveDataProvider;
+use app\modules\medical\models\orm\Ehr;
 use yii\base\Model;
 
 /**
@@ -12,14 +13,14 @@ use yii\base\Model;
 interface EhrServiceInterface
 {
     /**
-     * @param string $id
-     * @return ActiveRecord
+     * @param string|integer $id
+     * @return Ehr
      */
-    public function getEhrById($id);
+    public function getEhrById($id): Ehr;
 
     /**
      * @param Model $form
-     * @return mixed
+     * @return ActiveDataProvider
      */
-    public function getEhrList(Model $form);
+    public function getEhrList(Model $form): ActiveDataProvider;
 }
