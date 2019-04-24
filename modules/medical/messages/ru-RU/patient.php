@@ -19,7 +19,7 @@ return [
     'Emails' => 'Email-адреса',
     'Address list' => 'Адреса',
     'Passport data' => 'Паспортные данные',
-    'Patient registry' => 'Список пациентов',
+    'Patient registry' => 'Картотека пациентов',
     'Patient' => 'Карточка пациента',
     'Phone numbers not set' => 'Номера телефонов не указаны',
     'E-mails not set' => 'E-mail-адреса не указаны',

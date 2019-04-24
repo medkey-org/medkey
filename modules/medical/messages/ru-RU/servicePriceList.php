@@ -6,11 +6,11 @@ return [
     'Start date' => 'Дата начала',
     'End date' => 'Дата окончания',
 
-    'Price-list registry' => 'Реестр прайс-листов',
-    'Price-list card' => 'Карточка прайс-листа',
-    'Price-list' => 'Прайс-лист',
-    'Price-list positions' => 'Позиции прайс-листа',
-    'Price-list details' => 'Данные прайс-листа',
+    'Pricelist registry' => 'Реестр прайс-листов',
+    'Pricelist card' => 'Карточка прайс-листа',
+    'Pricelist' => 'Прайс-лист',
+    'Pricelist positions' => 'Позиции прайс-листа',
+    'Pricelist details' => 'Данные прайс-листа',
 
     'Active' => 'Активный',
     'Inactive' => 'Неактивный',

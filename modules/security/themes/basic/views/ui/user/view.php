@@ -10,7 +10,7 @@ use app\modules\security\SecurityModule;
 
 $this->title = \Yii::t('app', 'User');
 $this->params['breadcrumbs'][] = ['url' => '/security/ui/user/index', 'label' => \Yii::t('app', 'Users')];
-$this->params['breadcrumbs'][] = \Yii::t('app', 'User');
+$this->params['breadcrumbs'][] = \Yii::t('app', 'User') . ' #' . $model;
 
 SecurityAsset::register($this);
 ?>

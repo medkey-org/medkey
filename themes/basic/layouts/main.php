@@ -150,7 +150,8 @@ AppAsset::register($this);
                         ],
                         (
                             '<li>'
-                            . '<a id = "layout-exit" href=' . \app\common\helpers\Url::to(['/security/ui/user/logout']) . ' onclick="' . \app\common\widgets\RegisterModal::createMethod('confirm', 'Вы уверены, что хотите выйти из системы?') . '">'
+                            . '<a id = "layout-exit" href=' . \app\common\helpers\Url::to(['/security/ui/user/logout'])
+                            . ' onclick="' . \app\common\widgets\RegisterModal::createMethod('confirm', \app\modules\security\SecurityModule::t('user', 'Logout from system?')) . '">'
                             . \Yii::t('app', 'Logout')
                             . ' (' . \Yii::$app->user->identity->login . ')</a>'
                             . '</li>'

@@ -31,7 +31,7 @@ class OrderItemUpdateForm extends OrderItemCreateForm
     {
         return [
             'wrapperClass' => DynamicModal::class,
-            'header' => 'Редактирование позиции заказа',
+            'header' => CrmModule::t('order', 'Update order position'),
         ];
     }
 }

@@ -144,7 +144,12 @@ class PatientCard extends CardView
                                              * @var Patient $model
                                              */
                                             return $form->field($model, 'birthday')
-                                                ->dateInput()
+                                                ->dateInput([
+                                                    'startAfterNow' => false,
+                                                    'pluginOptions' => [
+                                                        'todayHighlight' => false,
+                                                    ],
+                                                ])
                                                 ->label(false);
                                         }
                                     ],

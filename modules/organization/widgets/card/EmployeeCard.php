@@ -238,7 +238,7 @@ class EmployeeCard extends CardView
                                         'value' => function ($model) {
                                             $phones = $model->phones;
                                             if (empty($phones) || !is_array($phones)) {
-                                                return 'Телефоны не найдены'; // todo normalize text
+                                                return OrganizationModule::t('employee', 'Numbers empty'); // todo normalize text
                                             }
                                             $content = '';
                                             $count = count($phones);
@@ -322,7 +322,7 @@ class EmployeeCard extends CardView
                                         'value' => function ($model) {
                                             $emails = $model->emails;
                                             if (empty($emails) || !is_array($emails)) {
-                                                return 'Email не найден(ы)'; // todo normalize text
+                                                return OrganizationModule::t('employee', 'E-mails empty'); // todo normalize text
                                             }
                                             $content = '';
                                             $count = count($emails);

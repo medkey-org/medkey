@@ -10,5 +10,5 @@ return [
 
     'Given service already exists in price list' => 'Указанная услуга уже существует в указанном прайс-листе',
 
-    'Add price-list position' => 'Добавление позиции прайс-листа',
+    'Add price list position' => 'Добавление позиции прайс-листа',
 ];
