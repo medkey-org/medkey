@@ -58,11 +58,11 @@ class Workflow extends Model
     public function attributeLabels()
     {
         return [
-            'orm_module' => 'Модуль',
-            'orm_class' => 'ORM',
-            'name' => 'Имя',
-            'type' => 'Тип',
-            'status' => 'Статус',
+            'orm_module' => ConfigModule::t('workflow', 'Module'),
+            'orm_class' => ConfigModule::t('workflow', 'Entity'),
+            'name' => ConfigModule::t('workflow', 'Name'),
+            'type' => ConfigModule::t('workflow', 'Type'),
+            'status' => ConfigModule::t('workflow', 'Status'),
         ];
     }
 }
