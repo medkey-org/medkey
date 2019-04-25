@@ -79,7 +79,7 @@ class ServicePriceCreateForm extends FormWidget
     {
         return [
             'wrapperClass' => DynamicModal::class,
-            'header' => MedicalModule::t('servicePrice', 'Add price-list position'),
+            'header' => MedicalModule::t('servicePrice', 'Add pricelist position'),
         ];
     }
 }

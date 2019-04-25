@@ -95,6 +95,12 @@ class PatientGrid extends GridView
                     return Html::activeDateInput($this->filterModel, 'birthday');
                 }
             ],
+            [
+                'attribute' => 'snils',
+                'filter' => function () {
+                    return Html::activeTextInput($this->filterModel, 'snils', ['class' => 'form-control']);
+                }
+            ],
         ];
         parent::init();
     }

@@ -6,7 +6,7 @@ use app\common\seeds\Seed;
 use app\modules\medical\models\orm\Ehr;
 use app\modules\medical\models\orm\Patient;
 
-class DefaultEHR extends Seed
+class DefaultEhr extends Seed
 {
     public function run()
     {

@@ -13,6 +13,7 @@ class PatientFilter extends Model
     public $fullName;
     public $birthday;
     public $updatedAt;
+    public $snils;
 
 
     /**
@@ -21,7 +22,7 @@ class PatientFilter extends Model
     public function rules()
     {
         return [
-            [ ['fullName', 'birthday', 'updatedAt',], 'string', 'on' => 'search' ]
+            [ ['fullName', 'birthday', 'updatedAt', 'snils',], 'string', 'on' => 'search' ]
         ];
     }
 }

@@ -28,4 +28,6 @@ return [
 
     'Passwords do not match' => 'Пароли не совпадают',
 
+    'Logout from system?' => 'Выйти из системы?',
+    'Login' => 'Войти',
 ];

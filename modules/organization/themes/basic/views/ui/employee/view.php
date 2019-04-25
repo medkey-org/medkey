@@ -7,7 +7,7 @@ use app\modules\organization\OrganizationModule;
 
 $this->title = 'Сотрудник';
 $this->params['breadcrumbs'][] = ['url' => '/security/ui/user/index', 'label' => \Yii::t('app', 'Users')];
-$this->params['breadcrumbs'][] = ['url' => ['/security/ui/user/view', 'id' => $userId], 'label' => 'Пользователь'];
+$this->params['breadcrumbs'][] = ['url' => ['/security/ui/user/view', 'id' => $userId], 'label' => \Yii::t('app', 'User') . ' #' . $userId];
 $this->params['breadcrumbs'][] = OrganizationModule::t('common', 'Employee');
 
 ?>

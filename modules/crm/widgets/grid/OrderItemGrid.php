@@ -6,6 +6,7 @@ use app\common\grid\GridView;
 use app\common\wrappers\DynamicModal;
 use app\modules\config\entities\CurrencyEntity;
 use app\modules\crm\application\OrderServiceInterface;
+use app\modules\crm\CrmModule;
 use app\modules\crm\models\finders\OrderItemFinder;
 use app\modules\crm\models\orm\OrderItem;
 use app\modules\crm\widgets\form\OrderItemCreateForm;
@@ -95,7 +96,7 @@ class OrderItemGrid extends GridView
                     'afterUpdateBlockId' => $this->cardId,
                     'wrapperOptions' => [
                         'wrapperClass' => DynamicModal::class,
-                        'header' => 'Создать позицию заказа'
+                        'header' => CrmModule::t('order', 'Create order position'),
                     ],
                 ],
                 'disabled' => false,
@@ -113,7 +114,7 @@ class OrderItemGrid extends GridView
                     'afterUpdateBlockId' => $this->cardId,
                     'wrapperOptions' => [
                         'wrapperClass' => DynamicModal::class,
-                        'header' => 'Обновление позиции заказа',
+                        'header' => CrmModule::t('order', 'Update order position'),
                     ],
                 ],
                 'disabled' => true,

@@ -6,9 +6,9 @@ use app\modules\crm\CrmModule;
 use app\modules\crm\widgets\card\OrderCard;
 use app\modules\crm\assets\OrderAsset;
 
-$this->title = CrmModule::t('common', 'Medkey');
-$this->params['breadcrumbs'][] = ['url' => '/crm/ui/order/index', 'label' => 'Список заказов'];
-$this->params['breadcrumbs'][] = 'Карточка заказа';
+$this->title = CrmModule::t('order', 'Order list');
+$this->params['breadcrumbs'][] = ['url' => '/crm/ui/order/index', 'label' => $this->title];
+$this->params['breadcrumbs'][] = CrmModule::t('order', 'Order card');
 OrderAsset::register($this);
 ?>
 

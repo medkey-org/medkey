@@ -3,6 +3,7 @@ namespace app\modules\config\models\orm;
 
 use app\common\db\ActiveRecord;
 use app\common\validators\ForeignKeyValidator;
+use app\modules\config\ConfigModule;
 use yii\db\ActiveQueryInterface;
 
 /**
@@ -70,13 +71,13 @@ class WorkflowTransition extends ActiveRecord
     public function attributeLabels()
     {
         return [
-            'workflow_id' => 'ЖЦ',
-            'name' => 'Наименование перехода',
-            'from_id' => 'Начальный статус',
-            'to_id' => 'Конечный статус',
-            'handler_type' => 'Тип',
-            'handler_method' => 'Функция',
-            'middleware' => 'Middleware',
+            'workflow_id' => ConfigModule::t('workflow', 'Workflow'),
+            'name' => ConfigModule::t('workflow', 'Name'),
+            'from_id' => ConfigModule::t('workflow', 'From'),
+            'to_id' => ConfigModule::t('workflow', 'To'),
+            'handler_type' => ConfigModule::t('workflow', 'Handler type'),
+            'handler_method' => ConfigModule::t('workflow', 'Handler'),
+            'middleware' => ConfigModule::t('workflow', 'Middleware'),
         ];
     }
 }
