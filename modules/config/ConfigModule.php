@@ -15,6 +15,7 @@ class ConfigModule extends Module
         return [
             'workflow',
             'directory',
+            'order',
         ];
     }
 }

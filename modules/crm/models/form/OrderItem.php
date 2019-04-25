@@ -3,6 +3,7 @@ namespace app\modules\crm\models\form;
 
 use app\common\base\Model;
 use app\common\validators\ForeignKeyValidator;
+use app\modules\crm\CrmModule;
 use app\modules\crm\models\orm\OrderItem as OrderItemORM;
 
 /**
@@ -83,7 +84,7 @@ class OrderItem extends Model
             ->notDeleted()
             ->one();
         if (!isset($orderItem)) {
-            $this->addError($attribute, 'Указанный номер позиции уже существует!');
+            $this->addError($attribute, CrmModule::t('order','Position number already exists'));
         }
     }
 
@@ -93,16 +94,16 @@ class OrderItem extends Model
     public function attributeLabels()
     {
         return [
-            'item_number' => 'Номер позиции',
-            'currency_sum' => 'Сумма в валюте',
-            'currency' => 'Валюта',
-            'order_id' => 'Заказ',
+            'item_number' => CrmModule::t('order', 'Number'),
+            'currency_sum' => CrmModule::t('order', 'Amount'),
+            'currency' => CrmModule::t('order', 'Currency'),
+            'order_id' => CrmModule::t('order', 'Order'),
 //            'currency_sum_per_unit' => 'Сумма в валюте за единицу',
-            'qty' => 'Количество',
-            'final_currency_sum' => 'Финальная сумма в валюте',
-            'discount_point' => 'Скидка по баллам',
-            'discount_currency_sum' => 'Скидка по валюте',
-            'service_id' => 'Услуга',
+            'qty' => CrmModule::t('order', 'Quantity'),
+            'final_currency_sum' => CrmModule::t('order', 'Final amount'),
+            'discount_point' => CrmModule::t('order', 'Discount points'),
+            'discount_currency_sum' => CrmModule::t('order', 'Discount amount'),
+            'service_id' => CrmModule::t('order', 'Service'),
         ];
     }
 }
