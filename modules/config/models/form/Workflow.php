@@ -2,6 +2,7 @@
 namespace app\modules\config\models\form;
 
 use app\common\base\Model;
+use app\modules\config\ConfigModule;
 use app\modules\config\models\orm\Workflow as WorkflowORM;
 use yii\db\ActiveQueryInterface;
 
