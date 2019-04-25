@@ -103,6 +103,9 @@ class EhrGrid extends GridView
                 'value' => function (Ehr $model) {
                     return Html::a($model->number, ['/medical/ui/ehr/view', 'id' => $model->id]);
                 },
+                'options' => [
+                    'class' => 'col-md-2',
+                ],
             ],
             [
                 'attribute' => 'type',
