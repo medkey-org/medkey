@@ -11,6 +11,7 @@ use app\modules\organization\models\orm\Cabinet;
 use app\modules\organization\models\orm\Department;
 use app\modules\workplan\application\WorkplanServiceInterface;
 use app\modules\workplan\models\form\Workplan as WorkplanForm;
+use app\modules\workplan\WorkplanModule;
 use yii\web\JsExpression;
 
 /**
@@ -148,12 +149,12 @@ class WorkplanUpdateForm extends FormWidget
             ]);
         echo Html::endTag('div'); // col-xs-12 col-sm-12 col-md-12 col-lg-12
         echo Html::endTag('div'); // row
-        echo Html::submitButton('Сохранить', [
+        echo Html::submitButton(\Yii::t('app', 'Save'), [
             'class' => 'btn btn-primary',
             'icon' => 'edit',
         ]);
         echo '&nbsp';
-        echo Html::button('Отмена', [
+        echo Html::button(\Yii::t('app', 'Cancel'), [
             'class' => 'btn btn-default',
             'data-dismiss' => 'modal'
         ]);
@@ -165,7 +166,7 @@ class WorkplanUpdateForm extends FormWidget
     public function wrapperOptions()
     {
         return [
-            'header' => 'Редактирование рабочего плана',
+            'header' => WorkplanModule::t('workplan', 'Edit workplan'),
             'wrapperClass' => DynamicModal::class,
         ];
     }
