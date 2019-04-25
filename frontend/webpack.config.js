@@ -14,14 +14,14 @@ const webRoot = path.join(__dirname, "../web/bundles/");
 const uglifyJS = require("uglify-js");
 
 let entryPaths = {};
-let buffer = fs.readdirSync(__dirname + '/../modules');
+let buffer = fs.readdirSync(__dirname + '/modules');
 for (let i = 0; i < buffer.length; i++) {
-    let p = 'modules/' + buffer[i] + '/frontend/index.js';
-    if (fs.existsSync(path.resolve('../', p))) {
-        entryPaths['bundle_' + buffer[i]] = path.resolve('../', p);
+    let p = '/modules/' + buffer[i] + '/entry.js';
+    if (fs.existsSync(__dirname + p)) {
+        entryPaths['bundle_' + buffer[i]] = path.resolve(__dirname, './modules/' + buffer[i] + '/entry.js');
     }
 }
-entryPaths['bundle'] = path.resolve(__dirname, './src/index.js');
+entryPaths['bundle'] = path.resolve(__dirname, './entry.js');
 module.exports = {
     mode: process.argv.mode,
     // devtool: "source-map",
@@ -50,6 +50,7 @@ module.exports = {
             {
                 test: /\.css$/,
                 use: [
+                    "style-loader",
                     MiniCssExtractPlugin.loader,
                     "css-loader"
                 ]
@@ -69,10 +70,7 @@ module.exports = {
     },
     plugins: [
         new MiniCssExtractPlugin({
-            // Options similar to the same options in webpackOptions.output
-            // both options are optional
-            filename: "bundle.css",
-            chunkFilename: "[id].css"
+            filename: "style.[name].css",
         }),
         // for legacy JS
         new MergeIntoSingleFilePlugin({

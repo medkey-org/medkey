@@ -352,4 +352,22 @@ class EmployeeService extends ApplicationService implements EmployeeServiceInter
             ->one();
         return $employee;
     }
+
+    /**
+     * @param string $date
+     * @return array
+     */
+    public function getEmployeesWithAttendanceByDate(string $date)
+    {
+        $employees = Employee::find()
+            ->joinWith([
+                'attendances.ehr.patient',
+                'speciality'
+            ])
+//            ->where([
+//                'cast(datetime as DATE)' => $date, // todo CAST субд
+//            ])
+            ->all();
+        return $employees;
+    }
 }
