@@ -45,7 +45,7 @@ class WorkflowTransitionWidget extends Widget
             $id;
         $image = shell_exec($command);
         if (empty($image)) {
-            return '<div style="font-size: 15px;">Не найдено ни одного перехода.</div>';
+            return '<div style="font-size: 15px;">' . ConfigModule::t('workflow', 'No any transitions') . '</div>';
         }
         $content = base64_encode(file_get_contents($image));
         echo Html::img("data:image/gif;base64," . $content);
