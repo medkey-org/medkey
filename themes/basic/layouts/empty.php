@@ -22,7 +22,7 @@ AppAsset::register($this);
         'use strict';
         window.serverVars = <?= ClientHelper::getJsonParameters(); ?>
     </script>
-    <link href="/bundles/bundle.css" rel="stylesheet">
+    <link href="/bundles/style.bundle.css" rel="stylesheet">
     <?php $this->head() ?>
 </head>
 <body>
