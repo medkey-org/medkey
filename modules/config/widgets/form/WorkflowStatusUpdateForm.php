@@ -6,6 +6,7 @@ use app\common\widgets\FormWidget;
 use app\common\wrappers\DynamicModal;
 use app\modules\config\application\WorkflowStatusServiceInterface;
 use app\modules\config\models\orm\WorkflowStatus as WorkflowStatusORM;
+use app\modules\config\ConfigModule;
 
 /**
  * Class WorkflowStatusUpdateForm
@@ -64,12 +65,12 @@ class WorkflowStatusUpdateForm extends FormWidget
             0 => 'Нет',
             1 => 'Да',
         ]);
-        echo Html::submitButton('Сохранить', [
+        echo Html::submitButton(\Yii::t('app', 'Save'), [
             'class' => 'btn btn-primary',
             'icon' => 'save'
         ]);
         echo '&nbsp';
-        echo Html::button('Отмена', [
+        echo Html::button(\Yii::t('app', 'Cancel'), [
             'class' => 'btn btn-default',
             'data-dismiss' => 'modal'
         ]);
@@ -82,7 +83,7 @@ class WorkflowStatusUpdateForm extends FormWidget
     {
         return [
             'wrapperClass' => DynamicModal::class,
-            'header' => 'Редактирование статуса workflow'
+            'header' => ConfigModule::t('workflow', 'Update workflow status'),
         ];
     }
 }

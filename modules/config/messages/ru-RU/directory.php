@@ -10,4 +10,6 @@ return [
     'Services' => 'Услуги',
     'Specialities' => 'Специальности',
     'Insurance providers' => 'Страховые компании',
+    'Create record' => 'Создать запись',
+    'Update record' => 'Обновить запись',
 ];

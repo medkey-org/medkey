@@ -1,6 +1,7 @@
 <?php
 namespace app\modules\config\widgets\form;
 
+use app\modules\config\ConfigModule;
 use yii\helpers\Url;
 use app\common\db\ActiveRecord;
 use app\common\widgets\FormWidget;
@@ -77,7 +78,7 @@ class DirectoryCreateForm extends FormWidget
     {
         return [
             'wrapperClass' => DynamicModal::className(),
-            'header' => 'Создание'
+            'header' => ConfigModule::t('directory', 'Create record'),
         ];
     }
 }
