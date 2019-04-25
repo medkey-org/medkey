@@ -2,6 +2,7 @@
 namespace app\modules\config\models\orm;
 
 use app\common\db\ActiveRecord;
+use app\modules\config\ConfigModule;
 use yii\db\ActiveQueryInterface;
 
 /**
@@ -106,13 +107,13 @@ class WorkflowStatus extends ActiveRecord
     public function attributeLabelsOverride()
     {
         return [
-            'orm_module' => 'Модуль сущности',
-            'orm_class' => 'Сущность',
-            'state_attribute' => 'Атрибут статуса',
-            'state_value' => 'Значение статуса',
-            'state_alias' => 'Отображаемое значение статуса',
-            'is_start' => 'isStart?',
-            'status' => 'Статус',
+            'orm_module' => ConfigModule::t('workflow', 'Module'),
+            'orm_class' => ConfigModule::t('workflow', 'Entity'),
+            'state_attribute' => ConfigModule::t('workflow', 'State attribute'),
+            'state_value' => ConfigModule::t('workflow', 'State value'),
+            'state_alias' => ConfigModule::t('workflow', 'State label'),
+            'is_start' => ConfigModule::t('workflow', 'Is start?'),
+            'status' => ConfigModule::t('workflow', 'Status'),
         ];
     }
 }

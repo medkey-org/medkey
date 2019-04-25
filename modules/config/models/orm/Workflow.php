@@ -2,6 +2,7 @@
 namespace app\modules\config\models\orm;
 
 use app\common\db\ActiveRecord;
+use app\modules\config\ConfigModule;
 use yii\db\ActiveQueryInterface;
 
 /**
@@ -113,11 +114,11 @@ class Workflow extends ActiveRecord
     public function attributeLabelsOverride()
     {
         return [
-            'orm_module' => 'Модуль',
-            'orm_class' => 'ORM',
-            'name' => 'Имя',
-            'type' => 'Тип',
-            'status' => 'Статус',
+            'orm_module' => ConfigModule::t('workflow', 'Module'),
+            'orm_class' => ConfigModule::t('workflow', 'Entity'),
+            'name' => ConfigModule::t('workflow', 'Name'),
+            'type' => ConfigModule::t('workflow', 'Type'),
+            'status' => ConfigModule::t('workflow', 'Status'),
         ];
     }
 }
