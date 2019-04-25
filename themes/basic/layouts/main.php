@@ -67,10 +67,10 @@ AppAsset::register($this);
                     'url' => ['/crm/ui/order/index'],
                     'visible' => \Yii::$container->get(\app\modules\crm\application\OrderServiceInterface::class)->isAllowed('getOrderList'),
                 ],
-                [
-                    'label' => \Yii::t('app', 'Medworker Workplace'),
-                    'url' => ['/medical/ui/medworker-workplace/index'],
-                ],
+//                [
+//                    'label' => \Yii::t('app', 'Medworker Workplace'),
+//                    'url' => ['/medical/ui/medworker-workplace/index'],
+//                ],
                 [
                     'label' => \Yii::t('app', 'Referrals'),
                     'url' => ['/medical/ui/referral/index'],
