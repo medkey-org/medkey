@@ -52,9 +52,9 @@ class Workflow extends ActiveRecord
     public static function statuses()
     {
         return [
-            self::STATUS_ACTIVE => 'Активный',
-            self::STATUS_UPDATING => 'На редактировании',
-            self::STATUS_ARCHIVE => 'Архив',
+            self::STATUS_ACTIVE => ConfigModule::t('workflow', 'Active'),
+            self::STATUS_UPDATING => ConfigModule::t('workflow', 'Editing'),
+            self::STATUS_ARCHIVE => ConfigModule::t('workflow', 'Archive'),
         ];
     }
 
