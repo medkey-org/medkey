@@ -29,4 +29,8 @@ return [
     'Handler type' => 'Тип',
     'Handler' => 'Функция',
     'Middleware' => 'Middleware',
+
+    'Active' => 'Активный',
+    'Editing' => 'На редактировании',
+    'Archive' => 'Архивный',
 ];
