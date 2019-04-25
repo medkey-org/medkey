@@ -115,7 +115,10 @@ class ReferralGrid extends GridView
                 'format' => 'html',
                 'value' => function (Referral $model) {
                     return Html::a($model->number, ['/medical/ui/referral/view/', 'id' => $model->id]);
-                }
+                },
+                'options' => [
+                    'class' => 'col-md-2',
+                ]
             ],
             [
                 'attribute' => 'status',

@@ -8,6 +8,7 @@ use app\common\wrappers\DynamicModal;
 use app\modules\config\application\WorkflowServiceInterface;
 use app\modules\config\application\WorkflowTransitionServiceInterface;
 use app\modules\config\models\orm\WorkflowStatus;
+use app\modules\config\ConfigModule;
 
 /**
  * Class WorkflowTransitionUpdateForm
@@ -59,12 +60,12 @@ class WorkflowTransitionUpdateForm extends FormWidget
             ]);
         echo $form->field($model, 'middleware')
             ->checkbox();
-        echo Html::submitButton('Сохранить', [
+        echo Html::submitButton(\Yii::t('app', 'Save'), [
             'class' => 'btn btn-primary',
             'icon' => 'save'
         ]);
         echo '&nbsp';
-        echo Html::button('Отмена', [
+        echo Html::button(\Yii::t('app', 'Cancel'), [
             'class' => 'btn btn-default',
             'data-dismiss' => 'modal'
         ]);
@@ -77,7 +78,7 @@ class WorkflowTransitionUpdateForm extends FormWidget
     {
         return [
             'wrapperClass' => DynamicModal::class,
-            'header' => 'Редактирование переход ЖЦ',
+            'header' => ConfigModule::t('workflow', 'Update workflow transition'),
         ];
     }
 }

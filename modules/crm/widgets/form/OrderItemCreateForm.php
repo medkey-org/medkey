@@ -7,6 +7,7 @@ use app\common\widgets\FormWidget;
 use app\common\wrappers\DynamicModal;
 use app\modules\config\entities\CurrencyEntity;
 use app\modules\crm\application\OrderServiceInterface;
+use app\modules\crm\CrmModule;
 use app\modules\crm\models\orm\Order;
 use app\modules\crm\models\form\OrderItem;
 use app\modules\medical\models\orm\Service;
@@ -85,12 +86,12 @@ class OrderItemCreateForm extends FormWidget
 //        echo $form->field($model, 'discount_currency_sum')
 //            ->moneyInput();
 //        echo $form->field($model, 'qty');
-        echo Html::submitButton('Сохранить', [
+        echo Html::submitButton(\Yii::t('app', 'Save'), [
             'class' => 'btn btn-primary',
             'icon' => 'save'
         ]);
         echo '&nbsp';
-        echo Html::button('Отмена', [
+        echo Html::button(\Yii::t('app', 'Cancel'), [
             'class' => 'btn btn-default',
             'data-dismiss' => 'modal'
         ]);
@@ -104,7 +105,7 @@ class OrderItemCreateForm extends FormWidget
     {
         return [
             'wrapperClass' => DynamicModal::class,
-            'header' => 'Создать позицию заказа',
+            'header' => CrmModule::t('order', 'Create order position'),
         ];
     }
 }

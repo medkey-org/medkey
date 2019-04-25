@@ -2,6 +2,7 @@
 namespace app\modules\config\models\form;
 
 use app\common\base\Model;
+use app\modules\config\ConfigModule;
 use app\modules\config\models\orm\WorkflowStatus as WorkflowStatusORM;
 use yii\db\ActiveQueryInterface;
 
@@ -82,13 +83,13 @@ class WorkflowStatus extends Model
     public function attributeLabels()
     {
         return [
-            'orm_module' => 'Entity module',
-            'orm_class' => 'Entity',
-            'state_attribute' => 'Status attribute',
-            'state_value' => 'Status value',
-            'state_alias' => 'Displaying status value',
-            'is_start' => 'Is started',
-            'status' => 'Status',
+            'orm_module' => ConfigModule::t('workflow', 'Module'),
+            'orm_class' => ConfigModule::t('workflow', 'Entity'),
+            'state_attribute' => ConfigModule::t('workflow', 'State attribute'),
+            'state_value' => ConfigModule::t('workflow', 'State value'),
+            'state_alias' => ConfigModule::t('workflow', 'State label'),
+            'is_start' => ConfigModule::t('workflow', 'Is start?'),
+            'status' => ConfigModule::t('workflow', 'Status'),
         ];
     }
 }

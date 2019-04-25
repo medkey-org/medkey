@@ -5,6 +5,7 @@ use app\common\helpers\Html;
 use app\common\widgets\FormWidget;
 use app\modules\security\models\form\LoginForm;
 use app\modules\security\models\orm\User;
+use app\modules\security\SecurityModule;
 
 /**
  * Class UserLoginForm
@@ -54,7 +55,7 @@ class UserLoginForm extends FormWidget
         ])->passwordInput([
             'autocomplete' => 'off',
         ]);
-        echo Html::submitButton('Войти', [
+        echo Html::submitButton(SecurityModule::t('user', 'Login'), [
             'class' => 'btn btn-default btn-block',
         ]);
 //        echo Html::a('Создать пользователя', Url::to(['/security/ui/user/view', 'scenario' => 'create']), [

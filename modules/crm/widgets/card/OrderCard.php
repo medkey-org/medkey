@@ -9,6 +9,7 @@ use app\common\widgets\ActiveForm;
 use app\common\wrappers\Block;
 use app\modules\config\entities\CurrencyEntity;
 use app\modules\crm\application\OrderServiceInterface;
+use app\modules\crm\CrmModule;
 use app\modules\crm\widgets\grid\OrderItemGrid;
 use app\modules\medical\application\EhrServiceInterface;
 use app\modules\medical\widgets\grid\ReferralGrid;
@@ -73,7 +74,7 @@ class OrderCard extends CardView
     {
         return [
             'main' => [
-                'title' => 'Данные заказа',
+                'title' => CrmModule::t('order', 'Order details'),
                 'items' => [
                     [
                         'items' => [
@@ -328,7 +329,7 @@ class OrderCard extends CardView
                         'cardId' => $this->getId(),
                     ]);
                 },
-                'header' => 'Позиции заказа'
+                'header' => CrmModule::t('order', 'Positions')
             ],
             'referrals' => [
                 'value' => function ($model) {
@@ -337,7 +338,7 @@ class OrderCard extends CardView
                         'actionButtonTemplate' => '{refresh}{record}',
                     ]);
                 },
-                'header' => 'Направления'
+                'header' => CrmModule::t('order', 'Attendances')
             ],
         ];
     }

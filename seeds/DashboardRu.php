@@ -3,7 +3,7 @@ namespace app\seeds;
 
 use app\common\seeds\Seed;
 
-class Dashboard extends Seed
+class DashboardRu extends Seed
 {
     public function run()
     {

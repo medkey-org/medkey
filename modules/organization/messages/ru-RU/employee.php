@@ -11,6 +11,9 @@ return [
     'Get employee record' => 'Получение записи сотрудника',
     'Get employees list' => 'Получение списка записей сотрудников',
 
+    'Numbers empty' => 'Список телефонов пуст',
+    'E-mails empty' => 'Список E-mail пуст',
+
     'Access to the employees list restricted' => 'Доступ к получению списка сотрудников запрещён',
     'Can\'t save employee record' => 'Не удалось сохранить запись сотрудника',
     'Can\'t save employee\'s E-mail(s)' => 'Не удалось сохранить E-mail(ы) сотрудника',

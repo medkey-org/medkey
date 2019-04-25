@@ -3,6 +3,7 @@ namespace app\modules\config\models\form;
 
 use app\common\base\Model;
 use app\common\validators\ForeignKeyValidator;
+use app\modules\config\ConfigModule;
 use app\modules\config\models\orm\WorkflowTransition as WorkflowTransitionORM;
 use yii\db\ActiveQueryInterface;
 
@@ -57,13 +58,13 @@ class WorkflowTransition extends Model
     public function attributeLabels()
     {
         return [
-            'workflow_id' => 'ЖЦ',
-            'name' => 'Наименование перехода',
-            'from_id' => 'Начальный статус',
-            'to_id' => 'Конечный статус',
-            'handler_type' => 'Тип-обработчик перехода',
-            'handler_method' => 'Функция-обработчик перехода',
-            'middleware' => 'Middleware UI Modal',
+            'workflow_id' => ConfigModule::t('workflow', 'Workflow'),
+            'name' => ConfigModule::t('workflow', 'Name'),
+            'from_id' => ConfigModule::t('workflow', 'From'),
+            'to_id' => ConfigModule::t('workflow', 'To'),
+            'handler_type' => ConfigModule::t('workflow', 'Handler type'),
+            'handler_method' => ConfigModule::t('workflow', 'Handler'),
+            'middleware' => ConfigModule::t('workflow', 'Middleware'),
         ];
     }
 }

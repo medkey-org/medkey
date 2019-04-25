@@ -13,6 +13,8 @@ body {
     /*font-size: 12px;*/
     /*margin-bottom: 2px;*/
     /*min-width: 50px;*/
+    padding: 4px 8px;
+    font-size: 12px;
 }
 
 label.required::after {
@@ -104,6 +106,7 @@ select.disabled {
 .grid-view td {
     /*text-align: center;*/
     vertical-align: center;
+    line-height: 10px;
 }
 
 .grid-view th {
@@ -111,9 +114,37 @@ select.disabled {
     vertical-align: center;
 }
 
+.table > thead > tr > th, .table > tbody > tr > th, .table > tfoot > tr > th, .table > thead > tr > td, .table > tbody > tr > td, .table > tfoot > tr > td {
+    padding: 5px;
+}
+
 .form-control {
     border-radius: 0;
+    padding: 4px 6px;
+    height: 26px;
 }
+.input-group-addon {
+    height: 26px;
+    padding: 0 6px;
+}
+.select2 {
+    font-size: 12px;
+}
+.select2 .select2-selection {
+    height: 26px;
+    font-size: 12px;
+    padding: 5px 6px;
+}
+.select2-container--krajee .select2-selection {
+    border-radius: 0;
+}
+.select2-container--krajee .select2-selection--single .select2-selection__arrow {
+    height: 25px;
+}
+.select2-container--krajee .select2-selection__clear {
+    top: -1px;
+}
+
 
 .b-block__title {
     /*text-align: center;*/
