@@ -1,9 +1,8 @@
 <?php
 namespace app\modules\dashboard\dashlets\OrderChartDashlet;
 
-use app\common\service\exception\AccessApplicationServiceException;
-use app\modules\crm\models\finders\OrderFinder;
 use app\modules\crm\application\OrderServiceInterface;
+use app\modules\dashboard\DashboardModule;
 use app\modules\dashboard\widgets\Dashlet;
 use machour\flot\Chart as Chart;
 
@@ -50,7 +49,7 @@ class OrderChartDashlet extends Dashlet
         return Chart::widget([
             'data' => [
                 [
-                    'label' => 'Количество заказов',
+                    'label' => DashboardModule::t('dashboard', 'Order count'),
                     'data'  => $ordersCollection,
                     'lines'  => ['show' => true],
                     'points' => ['show' => true],
