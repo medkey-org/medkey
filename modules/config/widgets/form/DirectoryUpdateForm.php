@@ -76,7 +76,7 @@ class DirectoryUpdateForm extends FormWidget
     {
         return [
             'wrapperClass' => DynamicModal::className(),
-            'header' => 'Обновление',
+            'header' => ConfigModule::t('common', 'Update record'),
         ];
     }
 }
