@@ -10,6 +10,7 @@ use app\modules\workplan\models\finders\WorkplanFilter;
 use app\modules\workplan\application\WorkplanServiceInterface;
 use app\modules\workplan\widgets\form\WorkplanCreateForm;
 use app\modules\workplan\widgets\form\WorkplanUpdateForm;
+use app\modules\workplan\WorkplanModule;
 
 /**
  * Class WorkplanGrid
@@ -125,7 +126,7 @@ class WorkplanGrid extends GridView
     {
         return [
             'wrapperClass' => DynamicModal::class,
-            'header' => 'Рабочие планы сотрудника',
+            'header' => WorkplanModule::t('workplan', 'Workplan list'),
         ];
     }
 }
