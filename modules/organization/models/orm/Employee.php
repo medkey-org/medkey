@@ -9,6 +9,7 @@ use app\common\logic\orm\HumanTrait;
 use app\common\logic\orm\PhoneTrait;
 use app\common\logic\orm\Phone;
 use app\common\validators\ForeignKeyValidator;
+use app\modules\medical\models\orm\Attendance;
 use app\modules\medical\models\orm\Speciality;
 use app\modules\organization\OrganizationModule;
 use app\modules\security\models\orm\User;
@@ -57,6 +58,11 @@ class Employee extends ActiveRecord
     public function getSpeciality()
     {
         return $this->hasOne(Speciality::class, ['id' => 'speciality_id']);
+    }
+
+    public function getAttendances()
+    {
+        return $this->hasMany(Attendance::class, ['employee_id' => 'id']);
     }
 
     /**

@@ -18,4 +18,5 @@ interface EmployeeServiceInterface
     public function updateEmployee($id, EmployeeForm $employeeForm);
     public function getEmployeeBySkypeCode($text);
     public function getEmployeeBySkypeId($id);
+    public function getEmployeesWithAttendanceByDate(string $date);
 }

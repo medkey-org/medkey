@@ -21,7 +21,7 @@ AppAsset::register($this);
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <?= Html::csrfMetaTags() ?>
     <title><?= Html::encode($this->title) ?></title>
-    <link href="/bundles/bundle.css" rel="stylesheet">
+    <link href="/bundles/style.bundle.css" rel="stylesheet">
     <script type="text/javascript">
         'use strict';
         window.serverVars = <?= ClientHelper::getJsonParameters(); ?>
@@ -66,6 +66,10 @@ AppAsset::register($this);
                     'label' => \Yii::t('app', 'Orders'),
                     'url' => ['/crm/ui/order/index'],
                     'visible' => \Yii::$container->get(\app\modules\crm\application\OrderServiceInterface::class)->isAllowed('getOrderList'),
+                ],
+                [
+                    'label' => \Yii::t('app', 'Medworker Workplace'),
+                    'url' => ['/medical/ui/medworker-workplace/index'],
                 ],
                 [
                     'label' => \Yii::t('app', 'Referrals'),

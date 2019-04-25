@@ -153,4 +153,15 @@ class EmployeeController extends Controller
         $form->load(\Yii::$app->getRequest()->getBodyParams());
         return $this->asJson(ActiveForm::validate($form));
     }
+
+    public function actionEmployeesWithAttendanceByDate($date)
+    {
+        $employees = $this->employeeService->getEmployeesWithAttendanceByDate($date);
+        $result = [];
+        foreach ($employees as $employee) {
+            /** @var Employee $employee */
+            $result[] = $employee->toArray([], ['speciality', 'attendances.ehr.patient']);
+        }
+        return $this->asJson($result);
+    }
 }

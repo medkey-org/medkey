@@ -1,12 +1,13 @@
+import React from 'react';
 import { render } from 'react-dom';
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
 import { createStore, applyMiddleware } from 'redux';
-import '../modules/medical/components/index.css';
-import { reducerApp, initWorkplaceState } from 'reducers/reducers';
-import { changeDate } from 'actions/actions';
-import ScheduleContainer from 'containers/ScheduleContainer';
-import PatientContainer from 'containers/PatientContainer';
+import './components/index.css';
+import { reducerApp, initWorkplaceState } from './reducers/reducers';
+import { changeDate } from './actions/actions';
+import ScheduleContainer from './containers/ScheduleContainer';
+import PatientContainer from './containers/PatientContainer';
 
 if (document.getElementById('app-workplace')) {
     // todo придумать помодульную декомпозицию
@@ -20,5 +21,5 @@ if (document.getElementById('app-workplace')) {
             </div>
         </Provider>,
         document.getElementById('app-workplace')
-    )
+    );
 }
