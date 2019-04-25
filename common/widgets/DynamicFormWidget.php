@@ -87,12 +87,12 @@ class DynamicFormWidget extends Widget
             }
         }
 
-        echo Html::submitButton('Сохранить', [
+        echo Html::submitButton(\Yii::t('app', 'Save'), [
             'class' => 'btn btn-primary',
             'icon' => 'glyphicon glyphicon-saved',
         ]);
 
-        echo ' ' . Html::button('Отмена', [
+        echo ' ' . Html::button(\Yii::t('app', 'Cancel'), [
                 'class' => 'btn btn-default',
                 'data' => ['dismiss' => 'modal'],
             ]);
