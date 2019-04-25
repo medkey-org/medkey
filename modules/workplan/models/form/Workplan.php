@@ -4,6 +4,7 @@ namespace app\modules\workplan\models\form;
 use app\common\base\Model;
 use app\common\helpers\CommonHelper;
 use app\common\validators\ForeignKeyValidator;
+use app\modules\workplan\WorkplanModule;
 
 /**
  * Class Workplan
