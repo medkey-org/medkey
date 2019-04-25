@@ -53,6 +53,9 @@ class PrintWorkflowController extends Controller
         $process = new Process('dot -Tpng -o ' . $pathImage);
         $process->setInput($dotRaw);
         $process->run();
+        if (!$process->isSuccessful()) {
+            \Yii::error('Can\'t draw graph, check for graphviz on your system: ' . $process->getErrorOutput());
+        }
         echo $pathImage;
     }
 }
