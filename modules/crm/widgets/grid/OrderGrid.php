@@ -93,7 +93,7 @@ class OrderGrid extends GridView
                 },
                 'format' => 'html',
                 'options' => [
-                    'class' => 'col-xs-3'
+                    'class' => 'col-xs-2 col-md-2',
                 ],
             ],
             [
