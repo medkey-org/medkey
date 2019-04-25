@@ -5,8 +5,8 @@ use app\modules\config\widgets\grid\WorkflowStatusGrid;
 use app\modules\config\assets\ConfigAsset;
 use app\common\wrappers\Block;
 
-$this->title = 'Статусы ЖЦ';
-$this->params['breadcrumbs'][] = 'Список статусов ЖЦ';
+$this->title = ConfigModule::t('workflow', 'Workflow status list');
+$this->params['breadcrumbs'][] = $this->title;
 
 ConfigAsset::register($this);
 ?>
@@ -15,6 +15,6 @@ ConfigAsset::register($this);
     'wrapper' => true,
     'wrapperOptions' => [
         'wrapperClass' => Block::class,
-        'header' => 'Список статусов ЖЦ',
+        'header' => $this->title,
     ],
 ]); ?>
