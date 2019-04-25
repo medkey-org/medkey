@@ -61,7 +61,7 @@ class WorkflowTransitionWidget extends Widget
     {
         return [
             'wrapperClass' => Block::class,
-            'header' => ConfigModule::t('workflow', 'Workflow transition'),
+            'header' => ConfigModule::t('workflow', 'Workflow transitions'),
         ];
     }
 }
