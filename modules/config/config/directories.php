@@ -5,7 +5,7 @@ use app\common\helpers\Url;
 return [
     [
         'key' => 'position',
-        'label' => 'Должности',
+        'label' => \app\modules\config\ConfigModule::t('directory', 'Positions'),
         'ormClass' => \app\modules\organization\models\orm\Position::className(),
         'config' => [
             'createForm' => [
@@ -58,7 +58,7 @@ return [
     ],
     [
         'key' => 'organization',
-        'label' => 'Организации',
+        'label' => \app\modules\config\ConfigModule::t('directory', 'Organizations structure'),
         'ormClass' => \app\modules\organization\models\orm\Organization::className(),
         'config' => [
             'createForm' => [
@@ -93,7 +93,7 @@ return [
     ],
     [
         'key' => 'department',
-        'label' => 'Подразделения',
+        'label' => \app\modules\config\ConfigModule::t('directory', 'Departments'),
         'ormClass' => \app\modules\organization\models\orm\Department::className(),
         'config' => [
             'createForm' => [
@@ -146,7 +146,7 @@ return [
     ],
     [
         'key' => 'cabinet',
-        'label' => 'Кабинеты',
+        'label' => \app\modules\config\ConfigModule::t('directory', 'Cabinets'),
         'ormClass' => \app\modules\organization\models\orm\Cabinet::className(),
         'config' => [
             'createForm' => [
@@ -207,11 +207,11 @@ return [
                     'number',
                     'description',
                     [
-                        'header' => 'Организация',
+                        'header' => \app\modules\config\ConfigModule::t('directory', 'Organization'),
                         'attribute' => 'department.organization.title',
                     ],
                     [
-                        'header' => 'Подразделение',
+                        'header' => \app\modules\config\ConfigModule::t('directory', 'Department'),
                         'attribute' => 'department.title',
                     ],
                 ]
@@ -220,7 +220,7 @@ return [
     ],
     [
         'key' => 'medical-service',
-        'label' => 'Медицинские услуги',
+        'label' => \app\modules\config\ConfigModule::t('directory', 'Services'),
         'ormClass' => \app\modules\medical\models\orm\Service::class,
         'config' => [
             'createForm' => [
@@ -267,7 +267,7 @@ return [
                     'short_title',
                     'description',
                     [
-                        'header' => 'Медицинские услуги',
+                        'header' => \app\modules\config\ConfigModule::t('directory', 'Services'),
                         'attribute' => 'speciality.title'
                     ],
                 ]
@@ -276,7 +276,7 @@ return [
     ],
     [
         'key' => 'medical-speciality',
-        'label' => 'Медицинские специальности',
+        'label' => \app\modules\config\ConfigModule::t('directory', 'Specialities'),
         'ormClass' => \app\modules\medical\models\orm\Speciality::class,
         'config' => [
             'createForm' => [
@@ -311,7 +311,7 @@ return [
     ],
     [
         'key' => 'medical-insurance',
-        'label' => 'Страховые компании',
+        'label' => \app\modules\config\ConfigModule::t('directory', 'Insurance providers'),
         'ormClass' => \app\modules\medical\models\orm\Insurance::class,
         'config' => [
             'createForm' => [

@@ -13,7 +13,8 @@ class ConfigModule extends Module
     public static function translationList()
     {
         return [
-            'workflow'
+            'workflow',
+            'directory',
         ];
     }
 }
