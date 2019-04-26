@@ -94,6 +94,6 @@ class WorkflowTransitionService extends ApplicationService implements WorkflowTr
      */
     public function aclAlias()
     {
-        return ConfigModule::t('workflow', 'Workflow transitions');
+        return ConfigModule::t('workflow', 'Workflow transition');
     }
 }

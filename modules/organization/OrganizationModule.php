@@ -15,6 +15,10 @@ class OrganizationModule extends Module
      */
     public static function translationList()
     {
-        return ['employee'];
+        return [
+            'employee',
+            'department',
+            'cabinet',
+        ];
     }
 }

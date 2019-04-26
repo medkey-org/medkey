@@ -10,5 +10,13 @@ use app\common\base\Module;
  */
 class LocationModule extends Module
 {
-
+    /**
+     * @inheritdoc
+     */
+    public static function translationList()
+    {
+        return [
+            'location',
+        ];
+    }
 }

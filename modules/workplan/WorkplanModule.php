@@ -10,4 +10,13 @@ use app\common\base\Module;
  */
 class WorkplanModule extends Module
 {
+    /**
+     * @inheritdoc
+     */
+    public static function translationList()
+    {
+        return [
+            'workplan',
+        ];
+    }
 }
