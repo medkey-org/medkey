@@ -3,6 +3,7 @@ namespace app\modules\config\application;
 
 use app\common\service\ApplicationService;
 use app\common\service\exception\AccessApplicationServiceException;
+use app\modules\config\ConfigModule;
 use app\modules\config\entities\DirectoryEntity;
 use yii\data\ArrayDataProvider;
 use yii\base\Model;
@@ -19,7 +20,7 @@ class DirectoryService extends ApplicationService implements DirectoryServiceInt
      */
     public function aclAlias()
     {
-        return 'Directory';
+        return ConfigModule::t('directory', 'Directory');
     }
 
     /**
@@ -28,7 +29,7 @@ class DirectoryService extends ApplicationService implements DirectoryServiceInt
     public function getPrivileges()
     {
         return [
-            'getDirectoryList' => 'Directory list',
+            'getDirectoryList' => ConfigModule::t('directory', 'Directory list'),
         ];
     }
 
