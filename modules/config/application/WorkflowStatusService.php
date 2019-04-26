@@ -133,6 +133,6 @@ class WorkflowStatusService extends ApplicationService implements WorkflowStatus
      */
     public function aclAlias()
     {
-        return ConfigModule::t('workflow', 'Workflow statuses');
+        return ConfigModule::t('workflow', 'Workflow status');
     }
 }

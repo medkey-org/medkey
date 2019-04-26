@@ -5,6 +5,7 @@ return [
     'Workflow transition' => 'Переход бизнес-процесса',
     'Workflow list' => 'Список бизнес-процессв',
     'Workflow status list' => 'Список состояний бизнес-процессов',
+    'Workflow status' => 'Состояние бизнес-процесса',
     'Workflow transitions list' => 'Список переходов бизнес-процессов',
     'Create workflow' => 'Создать бизнес-процесс',
     'Update workflow' => 'Обновить бизнес-процесс',
@@ -37,5 +38,6 @@ return [
     'No any transitions' => 'Нет ни одного перехода',
     'Can\'t draw workflow image, check logs' => 'Не удалось отрисовать граф переходов, обратитесь к администратору',
 
+    'Get workflows' => 'Получить список бизнес-процессов',
     'Get workflow statuses' => 'Получить список статусов бизнес-процесса',
 ];

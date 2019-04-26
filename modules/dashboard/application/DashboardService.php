@@ -50,7 +50,7 @@ class DashboardService extends ApplicationService implements DashboardServiceInt
      */
     public function aclAlias()
     {
-        return DashboardModule::t('dashboard', 'Dashboards');
+        return DashboardModule::t('dashboard', 'Dashboard');
     }
 
     /**
