@@ -43,4 +43,14 @@ class DashboardModule extends Module
             }
         }
     }
+
+    /**
+     * @inheritdoc
+     */
+    public static function translationList()
+    {
+        return [
+            'dashboard',
+        ];
+    }
 }
