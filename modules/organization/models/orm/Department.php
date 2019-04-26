@@ -55,11 +55,11 @@ class Department extends ActiveRecord
     public function attributeLabelsOverride()
     {
         return [
-            'organization_id' => 'Организация',
-            'department_id' => 'Подразделение',
-            'title' => 'Название',
-            'short_title' => 'Короткое название',
-            'description' => 'Описание',
+            'organization_id' => OrganizationModule::t('department', 'Organization'),
+            'department_id' => OrganizationModule::t('department', 'Department'),
+            'title' => OrganizationModule::t('department', 'Title'),
+            'short_title' => OrganizationModule::t('department', 'Short title'),
+            'description' => OrganizationModule::t('department', 'Description'),
         ];
     }
 }

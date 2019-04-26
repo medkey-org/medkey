@@ -3,6 +3,7 @@ namespace app\modules\organization\models\orm;
 
 use app\common\db\ActiveRecord;
 use app\common\validators\ForeignKeyValidator;
+use app\modules\organization\OrganizationModule;
 
 /**
  * Class Cabinet
@@ -36,10 +37,10 @@ class Cabinet extends ActiveRecord
     public function attributeLabelsOverride()
     {
         return [
-            'number' => 'Номер',
-            'description' => 'Описание',
-            'organization_id' => 'Организация',
-            'department_id' => 'Подразделение',
+            'number' => OrganizationModule::t('cabinet', 'Number'),
+            'description' =>  OrganizationModule::t('cabinet', 'Description'),
+            'organization_id' =>  OrganizationModule::t('cabinet', 'Organization'),
+            'department_id' =>  OrganizationModule::t('cabinet', 'Department'),
         ];
     }
 }
