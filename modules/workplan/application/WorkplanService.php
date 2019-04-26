@@ -30,7 +30,7 @@ class WorkplanService extends ApplicationService implements WorkplanServiceInter
      */
     public function aclAlias()
     {
-        return WorkplanModule::t('workplan', 'Workplans');
+        return WorkplanModule::t('workplan', 'Workplan');
     }
 
     /**
