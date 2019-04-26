@@ -1,6 +1,6 @@
 <?php
 
 return [
-    'Locations' => 'Локации',
+    'Location' => 'Локация',
     'Get locations list' => 'Просмотр списка локаций',
 ];
