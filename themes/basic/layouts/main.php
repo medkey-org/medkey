@@ -185,8 +185,7 @@ AppAsset::register($this);
 <footer class="footer">
     <div class="container-fluid">
         <p class="pull-left">&copy; <a href="https://application.org?refsrc=appfoot&appver=<?=\Yii::$app->version;?>"><?= \Yii::t('app', 'Medkey'); ?></a> <?= date('Y') ?>, <?= \Yii::t('app', 'version'); ?> <?= \Yii::$app->version; ?></p>
-
-        <p class="pull-right"></p>
+        <p class="pull-right">Licensed under <a href="https://github.com/medkey-org/medkey/blob/master/LICENSE">GPL v3.0</a></p>
     </div>
 </footer>
 <?php $this->registerJsFile(\Yii::getRootAlias('web') . DIRECTORY_SEPARATOR . 'bundles/app-bundle.js'); ?>

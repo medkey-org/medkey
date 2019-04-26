@@ -42,7 +42,7 @@ class AclService extends ApplicationService implements AclServiceInterface, Appl
      */
     public function aclAlias()
     {
-        return 'ACL';
+        return SecurityModule::t('acl', 'ACL');
     }
 
     /**

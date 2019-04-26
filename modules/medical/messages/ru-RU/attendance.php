@@ -11,8 +11,8 @@ return [
     'Record already exists' => 'Такая запись уже существует',
     'Patient' => 'Пациент',
 
-    'Attendance registry' => 'Реестр посещений',
-    'Attendance record' => 'Карточка посещения',
+    'Attendance registry' => 'Реестр записей на приём',
+    'Attendance record' => 'Карточка записи на приём',
 
     'New' => 'Новое',
     'In progress' => 'В процессе',
@@ -27,11 +27,12 @@ return [
     'By hospitalization' => 'Госпитализация',
 
     // Attendance Service
-    'Appointments' => 'Запись на приём',
+    'Appointment' => 'Запись на приём',
+    'Appointments' => 'Записи на приём',
     'View appointment' => 'Просмотр карточки записи на приём',
-    'Create appointment' => 'Создать запись на прием',
-    'Cancel appointment' => 'Отменить запись на прием',
-    'View appointment list' => 'Просмотр списка записей на прием',
+    'Create appointment' => 'Создать запись на приём',
+    'Cancel appointment' => 'Отменить запись на приём',
+    'View appointment list' => 'Просмотр списка записей на приём',
     'Access restricted' => 'Доступ запрещён',
     'Can\'t save record. Reason: ' => 'Не удалось сохранить запись. Причина: ',
 ];

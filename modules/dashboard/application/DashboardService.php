@@ -4,6 +4,7 @@ namespace app\modules\dashboard\application;
 use app\common\acl\resource\ResourceInterface;
 use app\common\dto\Dto;
 use app\common\service\ApplicationService;
+use app\modules\dashboard\DashboardModule;
 use app\modules\dashboard\models\finders\DashboardFinder;
 use app\modules\dashboard\models\orm\Dashboard;
 use yii\data\ArrayDataProvider;
@@ -49,7 +50,7 @@ class DashboardService extends ApplicationService implements DashboardServiceInt
      */
     public function aclAlias()
     {
-        return 'Рабочий стол';
+        return DashboardModule::t('dashboard', 'Dashboard');
     }
 
     /**
@@ -58,8 +59,8 @@ class DashboardService extends ApplicationService implements DashboardServiceInt
     public function getPrivileges()
     {
         return [
-            'getAllCollectionByFilterModel' => 'Все рабочие столы (административная функция)',
-            'getCollectionForUserByFilterModel' => 'Рабочие столы пользователя',
+            'getAllCollectionByFilterModel' => DashboardModule::t('dashboard', 'View all dashboards (administrative feature)'),
+            'getCollectionForUserByFilterModel' => DashboardModule::t('dashboard', 'View user\'s dashboards'),
         ];
     }
 

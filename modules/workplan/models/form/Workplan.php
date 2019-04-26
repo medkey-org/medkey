@@ -4,6 +4,7 @@ namespace app\modules\workplan\models\form;
 use app\common\base\Model;
 use app\common\helpers\CommonHelper;
 use app\common\validators\ForeignKeyValidator;
+use app\modules\workplan\WorkplanModule;
 
 /**
  * Class Workplan
@@ -99,14 +100,14 @@ class Workplan extends Model
     public function attributeLabels()
     {
         return [
-            'since_date' => 'Дата начала',
-            'expire_date' => 'Дата конца',
-            'since_time' => 'Время начала',
-            'expire_time' => 'Время конца',
-            'department_id' => 'Подразделение',
-            'cabinet_id' => 'Кабинет',
-            'weekIds' => 'Дни недели',
-            'employee_id' => 'Сотрудник',
+            'since_date' => WorkplanModule::t('workplan', 'Start date'),
+            'expire_date' => WorkplanModule::t('workplan', 'End date'),
+            'since_time' => WorkplanModule::t('workplan', 'Start time'),
+            'expire_time' => WorkplanModule::t('workplan', 'End time'),
+            'department_id' => WorkplanModule::t('workplan', 'Department'),
+            'cabinet_id' => WorkplanModule::t('workplan', 'Cabinet'),
+            'weekIds' => WorkplanModule::t('workplan', 'Week days'),
+            'employee_id' => WorkplanModule::t('workplan', 'Employee'),
         ];
     }
 }

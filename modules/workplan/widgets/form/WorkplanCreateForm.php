@@ -144,12 +144,12 @@ class WorkplanCreateForm extends FormWidget
         echo $form->field($model, 'status')->hiddenInput();
         echo Html::endTag('div'); // col-xs-12 col-sm-12 col-md-12 col-lg-12
         echo Html::endTag('div'); // row
-        echo Html::submitButton('Сохранить', [
+        echo Html::submitButton(\Yii::t('app', 'Save'), [
             'class' => 'btn btn-primary',
             'icon' => 'plus',
         ]);
         echo '&nbsp';
-        echo Html::button('Отмена', [
+        echo Html::button(\Yii::t('app', 'Cancel'), [
             'class' => 'btn btn-default',
             'data-dismiss' => 'modal'
         ]);
@@ -161,7 +161,7 @@ class WorkplanCreateForm extends FormWidget
     public function wrapperOptions()
     {
         return [
-            'header' => 'Добавление рабочего плана',
+            'header' => \Yii::t('app', 'Create workplan'),
             'wrapperClass' => DynamicModal::class,
         ];
     }
