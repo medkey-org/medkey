@@ -28,6 +28,6 @@ return [
     'Service' => 'Услуга',
     'Given position number already exists' => 'Указанный номер позиции уже существует',
 
-    'getOrderList' => 'Get order list',
-    'getOrderCountForWeek' => 'Order count for week',
+    'Get order list' => 'Список заказов',
+    'Order count for week' => 'Статистика по количеству заказов за неделю',
 ];
