@@ -21,7 +21,7 @@ class LocationService extends ApplicationService implements LocationServiceInter
      */
     public function aclAlias()
     {
-        return LocationModule::t('location', 'Locations');
+        return LocationModule::t('location', 'Location');
     }
 
     /**
