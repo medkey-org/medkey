@@ -41,7 +41,7 @@ class EmployeeService extends ApplicationService implements EmployeeServiceInter
      */
     public function aclAlias()
     {
-        return OrganizationModule::t('employee', 'Employees');
+        return OrganizationModule::t('employee', 'Employee');
     }
 
     /**
