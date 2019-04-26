@@ -8,6 +8,7 @@ use app\common\db\Exception;
 use app\common\db\Query;
 use app\common\helpers\ArrayHelper;
 use app\common\service\exception\ApplicationServiceException;
+use app\modules\crm\CrmModule;
 use app\modules\crm\models\form\OrderItem as OrderItemForm;
 use app\common\dto\Dto;
 use app\common\service\ApplicationService;
@@ -32,8 +33,8 @@ class OrderService extends ApplicationService implements OrderServiceInterface
     public function getPrivileges()
     {
         return [
-            'getOrderList' => 'Список записей',
-            'getOrderCountForWeek' => 'Статистика по количеству заказов за неделю',
+            'getOrderList' => CrmModule::t('order', 'Get order list'),
+            'getOrderCountForWeek' => CrmModule::t('order', 'Order count for week'),
         ];
     }
 
@@ -42,7 +43,7 @@ class OrderService extends ApplicationService implements OrderServiceInterface
      */
     public function aclAlias()
     {
-        return 'Заказ';
+        return CrmModule::t('order', 'Order');
     }
 
     /**
