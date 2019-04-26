@@ -27,4 +27,7 @@ return [
     'Discount amount' => 'Скидка по валюте',
     'Service' => 'Услуга',
     'Given position number already exists' => 'Указанный номер позиции уже существует',
+
+    'getOrderList' => 'Get order list',
+    'getOrderCountForWeek' => 'Order count for week',
 ];
