@@ -11,8 +11,8 @@ return [
     'Record already exists' => 'Такая запись уже существует',
     'Patient' => 'Пациент',
 
-    'Attendance registry' => 'Реестр посещений',
-    'Attendance record' => 'Карточка посещения',
+    'Attendance registry' => 'Реестр записей на приём',
+    'Attendance record' => 'Карточка записи на приём',
 
     'New' => 'Новое',
     'In progress' => 'В процессе',
