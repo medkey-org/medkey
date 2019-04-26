@@ -1,6 +1,7 @@
 <?php
 
 return [
+    'Workplan' => 'Рабочий план',
     'Start date' => 'Дата начала',
     'End date' => 'Дата конца',
     'Start time' => 'Время начала',
