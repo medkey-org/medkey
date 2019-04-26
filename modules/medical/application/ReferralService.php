@@ -33,9 +33,9 @@ class ReferralService extends ApplicationService implements ReferralServiceInter
     public function getPrivileges()
     {
         return [
-            'getReferralList' => 'Список записей',
-            'getReferralById' => 'Просмотр направления',
-            'getReferralItemList' => 'Просмотр позиций направления',
+            'getReferralList' => MedicalModule::t('referral', 'Get referral list'),
+            'getReferralById' => MedicalModule::t('referral', 'Get referral card'),
+            'getReferralItemList' => MedicalModule::t('referral', 'Get referral items list'),
         ];
     }
 
@@ -44,7 +44,7 @@ class ReferralService extends ApplicationService implements ReferralServiceInter
      */
     public function aclAlias()
     {
-        return 'Направление';
+        return MedicalModule::t('referral', 'Referral');
     }
 
     /**
