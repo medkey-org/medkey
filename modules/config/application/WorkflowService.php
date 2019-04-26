@@ -5,6 +5,7 @@ use app\common\data\ActiveDataProvider;
 use app\common\service\ApplicationService;
 use app\common\service\exception\AccessApplicationServiceException;
 use app\common\service\exception\ApplicationServiceException;
+use app\modules\config\ConfigModule;
 use app\modules\config\models\finders\WorkflowFinder;
 use app\modules\config\models\orm\Workflow;
 use app\modules\config\models\form\Workflow as WorkflowForm;
@@ -189,7 +190,15 @@ class WorkflowService extends ApplicationService implements WorkflowServiceInter
     public function getPrivileges()
     {
         return [
-            'getWorkflowList' => 'Список workflow',
+            'getWorkflowList' => ConfigModule::t('workflow', 'Get workflows'),
         ];
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function aclAlias()
+    {
+        return ConfigModule::t('workflow', 'Workflow');
     }
 }

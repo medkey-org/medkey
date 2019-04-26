@@ -1,6 +1,7 @@
 <?php
 
 return [
+    'Dashboard' => 'Рабочий стол',
     'Dashboards' => 'Рабочие столы',
     'My dashboards' => 'Мои рабочие столы',
     'Order count' => 'Количество заказов',

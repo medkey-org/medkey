@@ -161,7 +161,7 @@ class AttendanceService extends ApplicationService implements AttendanceServiceI
      */
     public function aclAlias()
     {
-        return MedicalModule::t('attendance', 'Appointments');
+        return MedicalModule::t('attendance', 'Appointment');
     }
 
     /**
