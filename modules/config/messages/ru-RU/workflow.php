@@ -36,4 +36,6 @@ return [
     'Archive' => 'Архивный',
     'No any transitions' => 'Нет ни одного перехода',
     'Can\'t draw workflow image, check logs' => 'Не удалось отрисовать граф переходов, обратитесь к администратору',
+
+    'Get workflow statuses' => 'Получить список статусов бизнес-процесса',
 ];

@@ -7,6 +7,7 @@ use app\common\helpers\Json;
 use app\common\service\ApplicationService;
 use app\common\service\exception\AccessApplicationServiceException;
 use app\common\service\exception\ApplicationServiceException;
+use app\modules\config\ConfigModule;
 use app\modules\config\models\orm\WorkflowStatus;
 use app\modules\config\models\finders\WorkflowStatusFinder;
 use app\modules\config\models\form\WorkflowStatus as WorkflowStatusForm;
@@ -123,7 +124,7 @@ class WorkflowStatusService extends ApplicationService implements WorkflowStatus
     public function getPrivileges()
     {
         return [
-            'getWorkflowStatusList' => 'Список статусов workflow',
+            'getWorkflowStatusList' => ConfigModule::t('workflow', 'Get workflow statuses'),
         ];
     }
 
@@ -132,6 +133,6 @@ class WorkflowStatusService extends ApplicationService implements WorkflowStatus
      */
     public function aclAlias()
     {
-        return 'Статусы workflow';
+        return ConfigModule::t('workflow', 'Workflow statuses');
     }
 }

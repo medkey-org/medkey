@@ -12,4 +12,8 @@ return [
     'Edit workplan' => 'Редактирование рабочего плана',
     'Create workplan' => 'Создаие рабочего плана',
     'Workplan list' => 'Рабочие планы сотрудника',
+
+    'Add workplan' => 'Добавление рабочего плана',
+    'Update workplan' => 'Обновление рабочего плана',
+    'Get workplans list' => 'Список рабочих планов',
 ];

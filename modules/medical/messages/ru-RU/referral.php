@@ -6,6 +6,7 @@ return [
     'Can\'t find service for one or more of order\'s positions' => 'Не найдена услуга у позиции направления',
     'Can\'t find speciality for service' => 'Не найдена специальность у услуги',
 
+    'Referral' => 'Направление',
     'Referral registry' => 'Реестр направлений',
     'Referral card' => 'Карточка направления',
 
@@ -34,4 +35,8 @@ return [
     'Cannot save referral services' => 'Не удалось сохранить услуги направления',
 
     'Create referral item' => 'Создание позиции направления',
+
+    'Get referral list' => 'Список записей',
+    'Get referral card' => 'Просмотр направления',
+    'Get referral items list' => 'Просмотр позиций направления',
 ];

@@ -5,6 +5,7 @@ use app\common\data\ActiveDataProvider;
 use app\common\helpers\CommonHelper;
 use app\common\service\ApplicationService;
 use app\common\service\exception\AccessApplicationServiceException;
+use app\modules\location\LocationModule;
 use app\modules\location\models\finders\LocationFinder;
 use app\modules\location\models\orm\Location;
 
@@ -20,7 +21,7 @@ class LocationService extends ApplicationService implements LocationServiceInter
      */
     public function aclAlias()
     {
-        return 'Локация';
+        return LocationModule::t('location', 'Locations');
     }
 
     /**
@@ -29,7 +30,7 @@ class LocationService extends ApplicationService implements LocationServiceInter
     public function getPrivileges()
     {
         return [
-            'getLocationList' => 'Список локаций',
+            'getLocationList' => LocationModule::t('location', 'Get locations list'),
         ];
     }
 

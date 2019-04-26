@@ -16,6 +16,7 @@ use app\modules\workplan\models\finders\WorkplanFilter;
 use app\modules\workplan\models\orm\Workplan;
 use app\modules\workplan\models\orm\WorkplanToWeek;
 use app\modules\workplan\models\form\Workplan as WorkplanForm;
+use app\modules\workplan\WorkplanModule;
 
 /**
  * Class WorkplanService
@@ -29,7 +30,7 @@ class WorkplanService extends ApplicationService implements WorkplanServiceInter
      */
     public function aclAlias()
     {
-        return 'Рабочий план';
+        return WorkplanModule::t('workplan', 'Workplans');
     }
 
     /**
@@ -38,9 +39,9 @@ class WorkplanService extends ApplicationService implements WorkplanServiceInter
     public function getPrivileges()
     {
         return [
-            'addWorkplan' => 'Добавление рабочего плана',
-            'updateWorkplan' => 'Обновление рабочего плана',
-            'getWorkplanList' => 'Список рабочих планов',
+            'addWorkplan' => WorkplanModule::t('workplan', 'Add workplan'),
+            'updateWorkplan' => WorkplanModule::t('workplan', 'Update workplan'),
+            'getWorkplanList' => WorkplanModule::t('workplan', 'Get workplans list'),
         ];
     }
 
