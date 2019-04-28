@@ -67,7 +67,9 @@ class EhrGrid extends GridView
     {
         $this->filterModel = EhrFilter::ensure($this->filterModel, 'search', $this->formData);
 
-        $this->filterModel->patientId = $this->patientId;
+        if (!empty($this->patientId)) {
+            $this->filterModel->patientId = $this->patientId;
+        }
 
         $this->dataProvider = $this->ehrService->getEhrList($this->filterModel);
         $this->actionButtons['create'] = [
