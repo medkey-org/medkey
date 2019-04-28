@@ -53,7 +53,6 @@ class AttendanceGrid extends GridView
      */
     public $visibleActionButtons = false;
 
-    
     /**
      * AttendanceGrid constructor.
      * @param ReferralServiceInterface $referralService

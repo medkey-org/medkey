@@ -25,7 +25,7 @@ use app\modules\workplan\models\orm\Workplan;
  * @package Module\Medical
  * @copyright 2012-2019 Medkey
  */
-class Attendance extends ActiveRecord implements ResponsibilityEntityInterface
+class Attendance extends ActiveRecord
 {
     /**
      * Attendance statuses
