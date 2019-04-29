@@ -92,7 +92,12 @@ class PatientGrid extends GridView
                     return \Yii::$app->formatter->asDate($model->birthday, CommonHelper::FORMAT_DATE_UI);
                 },
                 'filter' => function () {
-                    return Html::activeDateInput($this->filterModel, 'birthday');
+                    return Html::activeDateInput($this->filterModel, 'birthday', [
+                        'startAfterNow' => false,
+                        'pluginOptions' => [
+                            'todayHighlight' => false,
+                        ],
+                    ]);
                 }
             ],
             [
