@@ -7,21 +7,21 @@ services:
       dockerfile: docker/backend/Dockerfile
       context: .
     volumes:
-      - type: volume
-        source: vendor
-        target: /var/www/medkey/vendor
-      - type: volume
-        source: node_modules
-        target: /var/www/medkey/frontend/node_modules
+#      - type: volume
+#        source: vendor
+#        target: /var/www/medkey/vendor
+#      - type: volume
+#        source: node_modules
+#        target: /var/www/medkey/frontend/node_modules
       - type: volume
         source: static
         target: /var/www/medkey/web/bundles
       - type: bind
         source: .
         target: /var/www/medkey
-      - type: bind
-        source: .env.prod # TODO remove
-        target: /var/www/medkey/.env
+#      - type: bind
+#        source: .env.prod # TODO remove
+#        target: /var/www/medkey/.env
     ports:
       - 8090:80
     depends_on:
@@ -39,6 +39,6 @@ services:
       POSTGRES_DB: medkey
       PGDATA: /var/lib/postgresql/data
 volumes:
-  vendor:
-  node_modules:
+#  vendor:
+#  node_modules:
   static:
