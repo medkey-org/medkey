@@ -8,6 +8,8 @@ use app\common\service\exception\AccessApplicationServiceException;
 use app\modules\medical\MedicalModule;
 use app\modules\medical\models\finders\EhrFilter;
 use app\modules\medical\models\orm\Ehr;
+use app\modules\medical\models\orm\EhrRecord;
+use app\modules\medical\models\form\EhrRecord as EhrRecordForm;
 use yii\base\Model;
 
 /**
@@ -29,6 +31,25 @@ class EhrService extends ApplicationService implements EhrServiceInterface
                 Ehr::tableColumns('id') => $id,
             ])
             ->one();
+    }
+
+    public function createEhrRecord($form)
+    {
+
+    }
+
+    public function updateEhrRecord($id, $form)
+    {
+
+    }
+
+    public function getEhrRecordFormByRaw($raw)
+    {
+        $model = EhrRecord::ensureWeak($raw);
+        $form = new EhrRecordForm();
+        $form->loadAr($model);
+        $form->id = $model->id;
+        return $model;
     }
 
     /**
