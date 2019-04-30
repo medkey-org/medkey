@@ -7,6 +7,7 @@ use app\common\grid\GridView;
 use app\modules\medical\models\finders\EhrRecordFinder;
 use app\modules\medical\models\orm\Ehr;
 use app\modules\medical\models\orm\EhrRecord;
+use app\modules\medical\widgets\card\EhrRecordCard;
 use app\modules\medical\widgets\form\EhrRecordCreateForm;
 use app\modules\medical\widgets\form\EhrRecordUpdateForm;
 use app\modules\organization\models\orm\Employee;
@@ -27,7 +28,6 @@ class EhrRecordGrid extends GridView
      */
     public $ehrId;
 
-
     /**
      * @inheritdoc
      */
@@ -37,7 +37,7 @@ class EhrRecordGrid extends GridView
         $this->filterModel->ehrId = $this->ehrId;
         $this->actionButtons['create'] = [
             'class' => WidgetLoaderButton::class,
-            'widgetClass' => EhrRecordCreateForm::class,
+            'widgetClass' => EhrRecordCard::class,
             'disabled' => false,
             'isDynamicModel' => false,
             'value' => '',

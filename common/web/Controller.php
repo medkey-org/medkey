@@ -66,9 +66,9 @@ class Controller extends \yii\web\Controller
      * @param int $type
      * @return string
      */
-    public static function success($message, $type = self::TYPE_SUCCESS)
+    public function success($message, $type = self::TYPE_SUCCESS)
     {
-        return static::asJson(ClientHelper::messageFactory($message, $type));
+        return $this->asJson(ClientHelper::messageFactory($message, $type));
     }
 
     /**
@@ -76,9 +76,9 @@ class Controller extends \yii\web\Controller
      * @param int $type
      * @return string
      */
-    public static function warning($message, $type = self::TYPE_WARNING)
+    public function warning($message, $type = self::TYPE_WARNING)
     {
-        return static::asJson(ClientHelper::messageFactory($message, $type));
+        return $this->asJson(ClientHelper::messageFactory($message, $type));
     }
 
     /**
@@ -86,8 +86,8 @@ class Controller extends \yii\web\Controller
      * @param int $type
      * @return string
      */
-    public static function error($message, $type = self::TYPE_ERROR)
+    public function error($message, $type = self::TYPE_ERROR)
     {
-        return static::asJson(ClientHelper::messageFactory($message, $type));
+        return $this->asJson(ClientHelper::messageFactory($message, $type));
     }
 }

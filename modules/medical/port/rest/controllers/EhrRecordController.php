@@ -2,7 +2,7 @@
 namespace app\modules\medical\port\rest\controllers;
 
 use app\common\db\ActiveRecord;
-use app\common\rest\ActiveController;
+use app\common\web\Controller;
 use app\common\widgets\ActiveForm;
 use app\modules\medical\models\orm\EhrRecord;
 
@@ -11,10 +11,9 @@ use app\modules\medical\models\orm\EhrRecord;
  * @package Module\Medical
  * @copyright 2012-2019 Medkey
  */
-class EhrRecordController extends ActiveController
+class EhrRecordController extends Controller
 {
     public $modelClass = EhrRecord::class;
-
 
     /**
      * @inheritdoc
@@ -36,7 +35,7 @@ class EhrRecordController extends ActiveController
     {
         $modelClass = $this->modelClass;
         /** @var $modelClass ActiveRecord */
-        $model = $modelClass::ensureWeak(null, $this->createScenario, \Yii::$app->getRequest()->getBodyParams());
+        $model = $modelClass::ensureWeak(null, 'create', \Yii::$app->getRequest()->getBodyParams());
         return $this->asJson(ActiveForm::validate($model));
     }
 
@@ -44,7 +43,7 @@ class EhrRecordController extends ActiveController
     {
         $modelClass = $this->modelClass;
         /** @var $modelClass ActiveRecord */
-        $model = $modelClass::ensure($id, $this->updateScenario, \Yii::$app->getRequest()->getBodyParams());
+        $model = $modelClass::ensure($id, 'update', \Yii::$app->getRequest()->getBodyParams());
         return $this->asJson(ActiveForm::validate($model));
     }
 
@@ -52,7 +51,7 @@ class EhrRecordController extends ActiveController
     {
         $modelClass = $this->modelClass;
         /** @var $modelClass ActiveRecord */
-        $model = $modelClass::ensureWeak(null, $this->createScenario, \Yii::$app->request->getBodyParams());
+        $model = $modelClass::ensureWeak(null, 'create', \Yii::$app->request->getBodyParams());
         $model->save();
 
         return $this->asJson($model);
@@ -62,7 +61,7 @@ class EhrRecordController extends ActiveController
     {
         $modelClass = $this->modelClass;
         /** @var $modelClass ActiveRecord */
-        $model = $modelClass::ensure($id, $this->updateScenario, \Yii::$app->getRequest()->getBodyParams());
+        $model = $modelClass::ensure($id, 'update', \Yii::$app->getRequest()->getBodyParams());
         $model->save();
 
         return $this->asJson($model);
