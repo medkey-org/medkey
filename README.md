@@ -23,11 +23,11 @@ Medkey is a modern web application, mainly based at backend (frontend is thin).
 
 Current stack consists of:
 
-* PHP7.2;
-* Yii2 Framework (2.0.15.1) at the infrastructure core of the system;
+* PHP7.3+;
+* Yii2 Framework and Symfony4 at the infrastructure core of the system;
 * PostgreSQL/MySQL complete support, hypothetical support of other popular DBMSes (MS SQL, Oracle, MongoDb);
 * RabbitMQ at the core of integration, background and realtime functions;
-* ReactJS and Backbone on frontend.
+* Webpack, ReactJS and Backbone on frontend.
 
 ## Modularity and extensibility
 
