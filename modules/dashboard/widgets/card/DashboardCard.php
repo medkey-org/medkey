@@ -123,7 +123,7 @@ class DashboardCard extends CardView
                             'scenarios' => [
                                 'default' => [
                                     'value' => function (Dashboard $model) {
-                                        return $model->getOwnerFullName();
+                                        return Html::encode($model->getOwnerFullName());
                                     }
                                 ],
                                 'update' => [

@@ -42,6 +42,11 @@ class EhrRecordCard extends CardView
         ]);
     }
 
+    /**
+     * EhrRecordCard constructor.
+     * @param EhrServiceInterface $ehrService
+     * @param array $config
+     */
     public function __construct(EhrServiceInterface $ehrService, array $config = [])
     {
         $this->ehrService = $ehrService;
@@ -64,7 +69,7 @@ class EhrRecordCard extends CardView
                                 'scenarios' => [
                                     'default' => [
                                         'value' => function (EhrRecord $model) {
-                                            return $model->typeName();
+                                            return Html::encode($model->typeName());
                                         }
                                     ],
                                     'create' => [
@@ -90,7 +95,7 @@ class EhrRecordCard extends CardView
                                 'scenarios' => [
                                     'default' => [
                                         'value' => function (Attendance $model) {
-                                            return $model->getStatusName();
+                                            return Html::encode($model->getStatusName());
                                         }
                                     ],
                                     'create' => [

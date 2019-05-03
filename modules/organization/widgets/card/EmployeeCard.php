@@ -14,6 +14,7 @@ use app\modules\medical\models\orm\Speciality;
 use app\modules\organization\application\EmployeeServiceInterface;
 use app\modules\organization\models\orm\Employee;
 use app\modules\organization\OrganizationModule;
+use yii\helpers\HtmlPurifier;
 use yii\widgets\MaskedInput;
 use app\modules\organization\models\form\Employee as EmployeeForm;
 
@@ -72,7 +73,7 @@ class EmployeeCard extends CardView
     public function renderTitle()
     {
         // todo in AR add field title
-        echo $this->model->fullName;
+        echo Html::encode($this->model->fullName);
     }
 
     /**
@@ -94,7 +95,7 @@ class EmployeeCard extends CardView
                                 'scenarios' => [
                                     'default' => [
                                         'value' => function (EmployeeForm $model) {
-                                            return $model->getSexName();
+                                            return Html::encode($model->getSexName());
                                         }
                                     ],
                                     'create' => [
@@ -128,7 +129,7 @@ class EmployeeCard extends CardView
                                 'scenarios' => [
                                     'default' => [
                                         'value' => function ($model) {
-                                            return \Yii::$app->formatter->asDate($model->birthday, CommonHelper::FORMAT_DATE_UI);
+                                            return Html::encode(\Yii::$app->formatter->asDate($model->birthday, CommonHelper::FORMAT_DATE_UI));
                                         }
                                     ],
                                     'create' => [
@@ -196,7 +197,7 @@ class EmployeeCard extends CardView
                                     'default' => [
                                         'value' => function (EmployeeForm $model) {
                                             if (!empty($model['speciality']) && !empty($model['speciality']['title'])) {
-                                                return $model['speciality']['title'];
+                                                return Html::encode($model['speciality']['title']);
                                             }
                                             return '';
                                         }
@@ -250,7 +251,7 @@ class EmployeeCard extends CardView
                                                 }
                                                 $i++;
                                             }
-                                            return $content;
+                                            return HTMLPurifier::process($content);
                                         }
                                     ],
                                     'update' => [
@@ -334,7 +335,7 @@ class EmployeeCard extends CardView
                                                 }
                                                 $i++;
                                             }
-                                            return $content;
+                                            return HTMLPurifier::process($content);
                                         }
                                     ],
                                     'update' => [

@@ -16,6 +16,7 @@ use app\modules\medical\MedicalModule;
 use app\modules\medical\models\form\Patient;
 use app\modules\medical\widgets\grid\EhrGrid;
 use app\modules\medical\widgets\grid\PolicyGrid;
+use yii\helpers\HtmlPurifier;
 use yii\widgets\MaskedInput;
 
 /**
@@ -69,7 +70,7 @@ class PatientCard extends CardView
      */
     public function title()
     {
-        return $this->model->fullName;
+        return Html::ecode($this->model->fullName);
     }
 
     /**
@@ -99,7 +100,7 @@ class PatientCard extends CardView
                                             /**
                                              * @var Patient $model
                                              */
-                                            return $model->getSexName();
+                                            return Html::encode($model->getSexName());
                                         }
                                     ],
                                     'create' => [
@@ -135,7 +136,7 @@ class PatientCard extends CardView
                                             /**
                                              * @var Patient $model
                                              */
-                                            return \Yii::$app->formatter->asDate($model->birthday, CommonHelper::FORMAT_DATE_UI);
+                                            return Html::encode(\Yii::$app->formatter->asDate($model->birthday, CommonHelper::FORMAT_DATE_UI));
                                         }
                                     ],
                                     'create' => [
@@ -253,7 +254,7 @@ class PatientCard extends CardView
                                                 }
                                                 $i++;
                                             }
-                                            return $content;
+                                            return HtmlPurifier::process($content);
                                         }
                                     ],
                                     'update' => [
@@ -334,7 +335,7 @@ class PatientCard extends CardView
                                                 }
                                                 $i++;
                                             }
-                                            return $content;
+                                            return HTMLPurifier::process($content);
                                         }
                                     ],
                                     'update' => [
@@ -419,7 +420,7 @@ class PatientCard extends CardView
                                                 }
                                                 $i++;
                                             }
-                                            return $content;
+                                            return Html::encode($content);
                                         }
                                     ],
                                     'create' => [

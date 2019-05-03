@@ -93,7 +93,7 @@ class ServicePriceListCard extends CardView
                                     ],
                                     'default' => [
                                         'value' => function (ServicePriceList $model) {
-                                            return $model->getStatusName();
+                                            return Html::encode($model->getStatusName());
                                         }
                                     ]
                                 ],
@@ -107,7 +107,7 @@ class ServicePriceListCard extends CardView
                                 'scenarios' => [
                                     'default' => [
                                         'value' => function (ServicePriceList $model) {
-                                            return \Yii::$app->formatter->asDate($model->start_date, CommonHelper::FORMAT_DATE_UI);
+                                            return Html::encode(\Yii::$app->formatter->asDate($model->start_date, CommonHelper::FORMAT_DATE_UI));
                                         },
                                     ],
                                     'update' => [
@@ -127,7 +127,7 @@ class ServicePriceListCard extends CardView
                                 'scenarios' => [
                                     'default' => [
                                         'value' => function (ServicePriceList $model) {
-                                            return \Yii::$app->formatter->asDate($model->end_date, CommonHelper::FORMAT_DATE_UI);
+                                            return Html::encode(\Yii::$app->formatter->asDate($model->end_date, CommonHelper::FORMAT_DATE_UI));
                                         },
                                     ],
                                     'update' => [
@@ -172,7 +172,7 @@ class ServicePriceListCard extends CardView
                                     'default' => [
                                         'value' => function (ServicePriceList $model) {
                                             $currency = CurrencyEntity::findCurrency($model->currency);
-                                            return $currency;
+                                            return Html::encode($currency);
                                         }
                                     ],
                                 ]
