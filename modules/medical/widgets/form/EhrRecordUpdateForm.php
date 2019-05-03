@@ -6,6 +6,7 @@ use app\common\widgets\FormWidget;
 use app\common\wrappers\DynamicModal;
 use app\modules\medical\models\orm\Ehr;
 use app\modules\medical\models\orm\EhrRecord;
+use app\modules\medical\MedicalModule;
 
 /**
  * Class EhrRecordUpdateForm
