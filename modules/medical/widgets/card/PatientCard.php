@@ -70,7 +70,7 @@ class PatientCard extends CardView
      */
     public function title()
     {
-        return Html::ecode($this->model->fullName);
+        return Html::encode($this->model->fullName);
     }
 
     /**
