@@ -154,7 +154,7 @@ class EhrCard extends CardView
                                     'default' => [
                                         'value' => function (Ehr $model) {
                                             if ($model->patient instanceof Patient) {
-                                                return Html::a($model->patient->fullName, Url::to(['/medical/ui/patient/view/', 'id' => $model->patient->id]));
+                                                return Html::a(Html::encode($model->patient->fullName), Url::to(['/medical/ui/patient/view/', 'id' => $model->patient->id]));
                                             }
                                             return '';
                                         }
@@ -167,7 +167,7 @@ class EhrCard extends CardView
                                             return $form
                                                 ->field($model, 'patient_id')
                                                 ->select2(!isset($patient) ? [] : ArrayHelper::map([$patient], 'id', function ($row) {
-                                                    return empty($row) ?: $row->last_name . ' ' . $row->first_name . ' ' . $row->middle_name;
+                                                    return empty($row) ?: Html::encode($row->last_name . ' ' . $row->first_name . ' ' . $row->middle_name);
                                                 }), [], [
                                                     'allowClear' => true,
                                                     'minimumInputLength' => 1,
@@ -194,7 +194,7 @@ class EhrCard extends CardView
                                             return $form
                                                 ->field($model, 'patient_id')
                                                 ->select2(ArrayHelper::map([$model->patient], 'id', function ($row) {
-                                                    return empty($row) ?: $row->last_name . ' ' . $row->first_name . ' ' . $row->middle_name;
+                                                    return empty($row) ?: Html::encode($row->last_name . ' ' . $row->first_name . ' ' . $row->middle_name);
                                                 }), [], [
                                                     'allowClear' => true,
                                                     'minimumInputLength' => 1,
