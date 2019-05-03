@@ -124,7 +124,7 @@ class ReferralCard extends CardView
                                     ],
                                     'default' => [
                                         'value' => function (Referral $model) {
-                                            return $model->getStatusName();
+                                            return Html::encode($model->getStatusName());
                                         }
                                     ]
                                 ],
@@ -138,7 +138,7 @@ class ReferralCard extends CardView
                                 'scenarios' => [
                                     'default' => [
                                         'value' => function (Referral $model) {
-                                            return \Yii::$app->formatter->asDate($model->start_date, CommonHelper::FORMAT_DATE_UI);
+                                            return Html::encode(\Yii::$app->formatter->asDate($model->start_date, CommonHelper::FORMAT_DATE_UI));
                                         },
                                     ],
                                     'update' => [
@@ -158,7 +158,7 @@ class ReferralCard extends CardView
                                 'scenarios' => [
                                     'default' => [
                                         'value' => function (Referral $model) {
-                                            return \Yii::$app->formatter->asDate($model->end_date, CommonHelper::FORMAT_DATE_UI);
+                                            return Html::encode(\Yii::$app->formatter->asDate($model->end_date, CommonHelper::FORMAT_DATE_UI));
                                         },
                                     ],
                                     'update' => [
@@ -185,7 +185,7 @@ class ReferralCard extends CardView
                                             if (!$model->ehr instanceof Ehr) {
                                                 return '';
                                             }
-                                            return $model->ehr->number;
+                                            return Html::encode($model->ehr->number);
                                         }
                                     ],
                                     'create' => [
@@ -320,7 +320,7 @@ class ReferralCard extends CardView
      */
     public function renderTitle()
     {
-        return $this->model->number;
+        return Html::encode($this->model->number);
     }
 
     /**

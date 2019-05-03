@@ -87,7 +87,7 @@ class UserCard extends CardView
      */
     public function renderTitle()
     {
-        echo $this->model->login;
+        echo Html::encode($this->model->login);
     }
 
     /**
@@ -154,7 +154,7 @@ class UserCard extends CardView
                                                 !empty($model['aclRole'])
                                                 && !empty($model['aclRole']['description'])
                                             ) {
-                                                return $model['aclRole']['description'];
+                                                return Html::encode($model['aclRole']['description']);
                                             }
                                             return '';
                                         }
@@ -182,7 +182,7 @@ class UserCard extends CardView
                                     ],
                                     'default' => [
                                         'value' => function (UserForm $form) {
-                                            return $form->language;
+                                            return Html::encode($form->language);
                                         }
                                     ],
                                 ],
@@ -211,7 +211,7 @@ class UserCard extends CardView
                                     ],
                                     'default' => [
                                         'value' => function (UserForm $model) {
-                                            return $model->statusName;
+                                            return Html::encode($model->statusName);
                                         }
                                     ]
                                 ]

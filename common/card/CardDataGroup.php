@@ -26,7 +26,7 @@ class CardDataGroup extends BaseObject
      */
     public $items;
     /**
-     * @var array Заголовок группы
+     * @var string Заголовок группы
      */
     public $title;
 	/**
@@ -37,7 +37,6 @@ class CardDataGroup extends BaseObject
      * @var bool
      */
 	public $showFrame = true;
-
 
     /**
      * Отрисовать группу
@@ -69,7 +68,7 @@ class CardDataGroup extends BaseObject
      */
     public function renderTitle()
     {
-        return $this->title;
+        return Html::encode($this->title);
     }
 
 	/**

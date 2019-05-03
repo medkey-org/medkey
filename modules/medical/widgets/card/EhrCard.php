@@ -75,7 +75,7 @@ class EhrCard extends CardView
      */
     public function title()
     {
-        return $this->model->number;
+        return Html::encode($this->model->number);
     }
 
     /**
@@ -94,7 +94,7 @@ class EhrCard extends CardView
                                 'scenarios' => [
                                     'default' => [
                                         'value' => function (Ehr $model) {
-                                            return $model->getTypeName();
+                                            return Html::encode($model->getTypeName());
                                         }
                                     ],
                                     'create' => [
@@ -121,7 +121,7 @@ class EhrCard extends CardView
                                 'scenarios' => [
                                     'default' => [
                                         'value' => function (Ehr $model) {
-                                            return $model->getStatusName();
+                                            return Html::encode($model->getStatusName());
                                         }
                                     ],
                                     'create' => [

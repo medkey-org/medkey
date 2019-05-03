@@ -186,7 +186,7 @@ class LocationCard extends CardView
      */
     public function renderTitle()
     {
-        return $this->model->code;
+        return Html::encode($this->model->code);
     }
 
     /**
