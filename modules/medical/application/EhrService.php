@@ -22,7 +22,7 @@ use yii\base\Model;
 class EhrService extends ApplicationService implements EhrServiceInterface
 {
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function getEhrById($id): Ehr
     {
@@ -35,28 +35,47 @@ class EhrService extends ApplicationService implements EhrServiceInterface
             ->one();
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function createEhrRecord($form)
     {
         $model = new EhrRecord();
         $model->loadForm($form);
-        $model->revist = \Yii::$app->formatter->asDatetime($model->revist, CommonHelper::FORMAT_DATETIME_DB);
-        $model->datetime = \Yii::$app->formatter->asDatetime($model->datetime, CommonHelper::FORMAT_DATETIME_DB);
+        if (!empty($model->revist)) {
+            $model->revist = \Yii::$app->formatter->asDatetime($model->revist, CommonHelper::FORMAT_DATETIME_DB);
+        }
+        if (!empty($model->datetime)) {
+            $model->datetime = \Yii::$app->formatter->asDatetime($model->datetime, CommonHelper::FORMAT_DATETIME_DB);
+        }
         if (!$model->save()) {
             throw new ApplicationServiceException(MedicalModule::t('ehr', 'Can\'t create ehr record' + Json::encode($model->getErrors())));
         }
+        return $model;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function updateEhrRecord($id, $form)
     {
         $model = EhrRecord::findOneEx($id);
         $model->loadForm($form);
-        $model->revist = \Yii::$app->formatter->asDatetime($model->revist, CommonHelper::FORMAT_DATETIME_DB);
-        $model->datetime = \Yii::$app->formatter->asDatetime($model->datetime, CommonHelper::FORMAT_DATETIME_DB);
+        if (!empty($model->revist)) {
+            $model->revist = \Yii::$app->formatter->asDatetime($model->revist, CommonHelper::FORMAT_DATETIME_DB);
+        }
+        if (!empty($model->datetime)) {
+            $model->datetime = \Yii::$app->formatter->asDatetime($model->datetime, CommonHelper::FORMAT_DATETIME_DB);
+        }
         if (!$model->save()) {
             throw new ApplicationServiceException(MedicalModule::t('ehr', 'Can\'t update ehr record' + Json::encode($model->getErrors())));
         }
+        return $model;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function getEhrRecordFormByRaw($raw, $ehrId)
     {
         $model = EhrRecord::ensureWeak($raw);
@@ -69,8 +88,12 @@ class EhrService extends ApplicationService implements EhrServiceInterface
         $form->loadAr($model);
         $form->id = $model->id;
         $form->ehr_id = $ehrId;
-        $form->revist = \Yii::$app->formatter->asDatetime($model->revist, CommonHelper::FORMAT_DATETIME_UI);
-        $form->datetime = \Yii::$app->formatter->asDatetime($model->datetime, CommonHelper::FORMAT_DATETIME_UI);
+        if (!empty($form->revist)) {
+            $form->revist = \Yii::$app->formatter->asDatetime($form->revist, CommonHelper::FORMAT_DATETIME_UI);
+        }
+        if (!empty($model->datetime)) {
+            $form->datetime = \Yii::$app->formatter->asDatetime($form->datetime, CommonHelper::FORMAT_DATETIME_UI);
+        }
         if (!\Yii::$app->user->getIdentity()->employee) {
             throw new ApplicationServiceException(\Yii::t('app','Employee not found.'));
         }
@@ -79,7 +102,7 @@ class EhrService extends ApplicationService implements EhrServiceInterface
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function getEhrList(Model $form): ActiveDataProvider
     {
