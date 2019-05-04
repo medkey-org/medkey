@@ -2,77 +2,70 @@
 namespace app\modules\medical\port\rest\controllers;
 
 use app\common\db\ActiveRecord;
-use app\common\rest\ActiveController;
+use app\common\web\Controller;
 use app\common\widgets\ActiveForm;
+use app\modules\medical\application\EhrServiceInterface;
 use app\modules\medical\models\orm\EhrRecord;
+use app\modules\medical\models\form\EhrRecord as EhrRecordForm;
 
 /**
  * Class EhrRecordController
  * @package Module\Medical
  * @copyright 2012-2019 Medkey
  */
-class EhrRecordController extends ActiveController
+class EhrRecordController extends Controller
 {
-    public $modelClass = EhrRecord::class;
-
+    /**
+     * @var EhrServiceInterface
+     */
+    public $ehrService;
 
     /**
-     * @inheritdoc
+     * EhrRecordController constructor.
+     * @param $id
+     * @param $module
+     * @param EhrServiceInterface $ehrService
+     * @param array $config
      */
-    public function actions()
+    public function __construct($id, $module, EhrServiceInterface $ehrService, array $config = [])
     {
-        return [];
-    }
-
-    /**
-     * @inheritdoc
-     */
-    public function verbs()
-    {
-        return [];
+        $this->ehrService = $ehrService;
+        parent::__construct($id, $module, $config);
     }
 
     public function actionValidateCreate()
     {
-        $modelClass = $this->modelClass;
-        /** @var $modelClass ActiveRecord */
-        $model = $modelClass::ensureWeak(null, $this->createScenario, \Yii::$app->getRequest()->getBodyParams());
-        return $this->asJson(ActiveForm::validate($model));
+        $form = new EhrRecordForm();
+        $form->load(\Yii::$app->getRequest()->getBodyParams());
+        return $this->asJson(ActiveForm::validate($form));
     }
 
     public function actionValidateUpdate($id)
     {
-        $modelClass = $this->modelClass;
-        /** @var $modelClass ActiveRecord */
-        $model = $modelClass::ensure($id, $this->updateScenario, \Yii::$app->getRequest()->getBodyParams());
-        return $this->asJson(ActiveForm::validate($model));
+        $form = new EhrRecordForm();
+        $form->id = $id;
+        $form->load(\Yii::$app->getRequest()->getBodyParams());
+        return $this->asJson(ActiveForm::validate($form));
     }
 
     public function actionCreate()
     {
-        $modelClass = $this->modelClass;
-        /** @var $modelClass ActiveRecord */
-        $model = $modelClass::ensureWeak(null, $this->createScenario, \Yii::$app->request->getBodyParams());
-        $model->save();
-
-        return $this->asJson($model);
+        $form = new EhrRecordForm();
+        $form->load(\Yii::$app->getRequest()->getBodyParams());
+        return $this->asJson($this->ehrService->createEhrRecord($form));
     }
 
     public function actionUpdate($id)
     {
-        $modelClass = $this->modelClass;
-        /** @var $modelClass ActiveRecord */
-        $model = $modelClass::ensure($id, $this->updateScenario, \Yii::$app->getRequest()->getBodyParams());
-        $model->save();
-
-        return $this->asJson($model);
+        $form = new EhrRecordForm();
+        $form->load(\Yii::$app->getRequest()->getBodyParams());
+        return $this->asJson($this->ehrService->updateEhrRecord($id, $form));
     }
 
     public function actionDelete($id)
     {
-        $modelClass = $this->modelClass;
-        /** @var $modelClass ActiveRecord */
-        $model = $modelClass::ensure($id);
+        // TODO in service
+        $model = EhrRecord::ensure($id);
         $model->setScenario(ActiveRecord::SCENARIO_DELETE);
         $model->delete();
         return $this->asJson($model);

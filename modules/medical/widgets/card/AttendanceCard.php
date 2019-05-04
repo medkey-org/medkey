@@ -35,7 +35,6 @@ class AttendanceCard extends CardView
      */
     public $attendanceService;
 
-
     /**
      * AttendanceCard constructor.
      * @param AttendanceServiceInterface $attendanceService
@@ -65,7 +64,7 @@ class AttendanceCard extends CardView
      */
     public function title()
     {
-        return $this->model->number;
+        return Html::encode($this->model->number);
     }
 
     /**
@@ -84,7 +83,7 @@ class AttendanceCard extends CardView
                                 'scenarios' => [
                                     'default' => [
                                         'value' => function (Attendance $model) {
-                                            return $model->typeName();
+                                            return Html::encode($model->typeName());
                                         }
                                     ],
                                     'create' => [
@@ -110,7 +109,7 @@ class AttendanceCard extends CardView
                                 'scenarios' => [
                                     'default' => [
                                         'value' => function (Attendance $model) {
-                                            return $model->getStatusName();
+                                            return Html::encode($model->getStatusName());
                                         }
                                     ],
                                     'create' => [
@@ -140,7 +139,7 @@ class AttendanceCard extends CardView
                                 'scenarios' => [
                                     'default' => [
                                         'value' => function (Attendance $model) {
-                                            return \Yii::$app->formatter->asDatetime($model->datetime . date_default_timezone_get(), CommonHelper::FORMAT_DATETIME_UI);
+                                            return Html::encode(\Yii::$app->formatter->asDatetime($model->datetime . date_default_timezone_get(), CommonHelper::FORMAT_DATETIME_UI));
                                         }
                                     ],
                                     'create' => [
@@ -167,7 +166,7 @@ class AttendanceCard extends CardView
                                             if (!$model['ehr']) {
                                                 return '';
                                             }
-                                            return $model->ehr['number'];
+                                            return Html::encode($model->ehr['number']);
                                         }
                                     ],
                                     'create' => [
@@ -250,7 +249,7 @@ class AttendanceCard extends CardView
                                             if (!$model['employee']) {
                                                 return '';
                                             }
-                                            return $model['employee']['last_name'] . ' ' . $model['employee']['first_name'] . ' ' . $model['employee']['middle_name'];
+                                            return Html::encode($model['employee']['last_name'] . ' ' . $model['employee']['first_name'] . ' ' . $model['employee']['middle_name']);
                                         }
                                     ]
                                 ]

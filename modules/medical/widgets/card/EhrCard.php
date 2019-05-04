@@ -44,7 +44,6 @@ class EhrCard extends CardView
      */
     public $wrapper = true;
 
-
     /**
      * EhrCard constructor.
      * @param PatientServiceInterface $patientService
@@ -75,7 +74,7 @@ class EhrCard extends CardView
      */
     public function title()
     {
-        return $this->model->number;
+        return Html::encode($this->model->number);
     }
 
     /**
@@ -94,7 +93,7 @@ class EhrCard extends CardView
                                 'scenarios' => [
                                     'default' => [
                                         'value' => function (Ehr $model) {
-                                            return $model->getTypeName();
+                                            return Html::encode($model->getTypeName());
                                         }
                                     ],
                                     'create' => [
@@ -121,7 +120,7 @@ class EhrCard extends CardView
                                 'scenarios' => [
                                     'default' => [
                                         'value' => function (Ehr $model) {
-                                            return $model->getStatusName();
+                                            return Html::encode($model->getStatusName());
                                         }
                                     ],
                                     'create' => [
@@ -154,7 +153,7 @@ class EhrCard extends CardView
                                     'default' => [
                                         'value' => function (Ehr $model) {
                                             if ($model->patient instanceof Patient) {
-                                                return Html::a($model->patient->fullName, Url::to(['/medical/ui/patient/view/', 'id' => $model->patient->id]));
+                                                return Html::a(Html::encode($model->patient->fullName), Url::to(['/medical/ui/patient/view/', 'id' => $model->patient->id]));
                                             }
                                             return '';
                                         }
@@ -167,7 +166,7 @@ class EhrCard extends CardView
                                             return $form
                                                 ->field($model, 'patient_id')
                                                 ->select2(!isset($patient) ? [] : ArrayHelper::map([$patient], 'id', function ($row) {
-                                                    return empty($row) ?: $row->last_name . ' ' . $row->first_name . ' ' . $row->middle_name;
+                                                    return empty($row) ?: Html::encode($row->last_name . ' ' . $row->first_name . ' ' . $row->middle_name);
                                                 }), [], [
                                                     'allowClear' => true,
                                                     'minimumInputLength' => 1,
@@ -194,7 +193,7 @@ class EhrCard extends CardView
                                             return $form
                                                 ->field($model, 'patient_id')
                                                 ->select2(ArrayHelper::map([$model->patient], 'id', function ($row) {
-                                                    return empty($row) ?: $row->last_name . ' ' . $row->first_name . ' ' . $row->middle_name;
+                                                    return empty($row) ?: Html::encode($row->last_name . ' ' . $row->first_name . ' ' . $row->middle_name);
                                                 }), [], [
                                                     'allowClear' => true,
                                                     'minimumInputLength' => 1,
@@ -305,7 +304,7 @@ class EhrCard extends CardView
     public function wrapperOptions()
     {
         return [
-            'wrapperClass' => Block::className(),
+            'wrapperClass' => Block::class,
             'header' => MedicalModule::t('ehr', 'EHR'),
         ];
     }

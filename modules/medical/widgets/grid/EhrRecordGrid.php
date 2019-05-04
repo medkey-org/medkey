@@ -4,9 +4,11 @@ namespace app\modules\medical\widgets\grid;
 use app\common\button\LinkActionButton;
 use app\common\button\WidgetLoaderButton;
 use app\common\grid\GridView;
+use app\common\helpers\CommonHelper;
 use app\modules\medical\models\finders\EhrRecordFinder;
 use app\modules\medical\models\orm\Ehr;
 use app\modules\medical\models\orm\EhrRecord;
+use app\modules\medical\widgets\card\EhrRecordCard;
 use app\modules\medical\widgets\form\EhrRecordCreateForm;
 use app\modules\medical\widgets\form\EhrRecordUpdateForm;
 use app\modules\organization\models\orm\Employee;
@@ -27,9 +29,8 @@ class EhrRecordGrid extends GridView
      */
     public $ehrId;
 
-
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function init()
     {
@@ -37,13 +38,13 @@ class EhrRecordGrid extends GridView
         $this->filterModel->ehrId = $this->ehrId;
         $this->actionButtons['create'] = [
             'class' => WidgetLoaderButton::class,
-            'widgetClass' => EhrRecordCreateForm::class,
+            'widgetClass' => EhrRecordCard::class,
             'disabled' => false,
             'isDynamicModel' => false,
             'value' => '',
             'widgetConfig' => [
                 'ehrId' => $this->ehrId,
-                'afterUpdateBlockId' => $this->getId()
+                'afterUpdateBlockId' => $this->getId(),
             ],
             'options' => [
                 'class' => 'btn btn-primary btn-xs',
@@ -52,7 +53,7 @@ class EhrRecordGrid extends GridView
         ];
         $this->actionButtons['update'] = [
             'class' => WidgetLoaderButton::class,
-            'widgetClass' => EhrRecordUpdateForm::class,
+            'widgetClass' => EhrRecordCard::class,
             'disabled' => true,
             'isDynamicModel' => true,
             'value' => '',
@@ -86,13 +87,28 @@ class EhrRecordGrid extends GridView
                         return $model->employee->fullName;
                     }
                     return '';
-                }
+                },
+                'options' => [
+                    'class' => 'col-xs-3',
+                ],
             ],
             [
-                'attribute' => 'conclusion',
+                'attribute' => 'datetime',
                 'value' => function (EhrRecord $model) {
-                    return $model->conclusion;
-                }
+                    return \Yii::$app->formatter->asDatetime($model->datetime, CommonHelper::FORMAT_DATETIME_UI);
+                },
+                'options' => [
+                    'class' => 'col-xs-1',
+                ],
+            ],
+            [
+                'attribute' => 'revist',
+                'value' => function (EhrRecord $model) {
+                    return \Yii::$app->formatter->asDatetime($model->revist, CommonHelper::FORMAT_DATETIME_UI);
+                },
+                'options' => [
+                    'class' => 'col-xs-1',
+                ],
             ],
         ];
         parent::init();

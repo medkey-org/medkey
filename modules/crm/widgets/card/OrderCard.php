@@ -348,7 +348,7 @@ class OrderCard extends CardView
      */
     public function renderTitle()
     {
-        return $this->model->number;
+        return Html::encode($this->model->number);
     }
 
     /**
