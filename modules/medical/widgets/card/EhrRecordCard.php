@@ -2,6 +2,7 @@
 namespace app\modules\medical\widgets\card;
 
 use app\common\card\CardView;
+use app\common\helpers\ArrayHelper;
 use app\common\helpers\CommonHelper;
 use app\common\helpers\Html;
 use app\common\helpers\Url;
@@ -10,6 +11,7 @@ use app\common\wrappers\DynamicModal;
 use app\modules\medical\application\EhrServiceInterface;
 use app\modules\medical\MedicalModule;
 use app\modules\medical\models\form\EhrRecord;
+use app\modules\organization\models\orm\Employee;
 
 class EhrRecordCard extends CardView
 {
@@ -35,7 +37,7 @@ class EhrRecordCard extends CardView
      */
     public function init()
     {
-        $this->model = $this->ehrService->getEhrRecordFormByRaw($this->model);
+        $this->model = $this->ehrService->getEhrRecordFormByRaw($this->model, $this->ehrId);
         parent::init();
         $this->formOptions = array_merge($this->formOptions, [
             'action' => Url::to(['/medical/rest/ehr-record/' . $this->model->scenario, 'id' => $this->model->id]),
@@ -133,7 +135,72 @@ class EhrRecordCard extends CardView
                                 'attribute' => 'preliminary',
                                 'colSize' => 6,
                             ],
+                            [
+                                'colSize' => '6',
+                                'attribute' => 'employee_id',
+                                'scenarios' => [
+                                    'create' => [
+                                        'value' => function (EhrRecord $model, ActiveForm $form) {
+                                            return $form->field($model, 'employee_id')
+                                                ->select2(ArrayHelper::map(Employee::find()->notDeleted()->all(), 'id', function ($row) {
+                                                    return empty($row) ?: $row->last_name . ' ' . $row->first_name . ' ' . $row->middle_name;
+                                                }), [])
+                                                ->label(false);
+                                        }
+                                    ],
+                                    'update' => [
+                                        'value' => function (EhrRecord $model, ActiveForm $form) {
+                                            return $form->field($model, 'employee_id')
+                                                ->select2(ArrayHelper::map(Employee::find()->notDeleted()->all(), 'id', function ($row) {
+                                                    return empty($row) ?: $row->last_name . ' ' . $row->first_name . ' ' . $row->middle_name;
+                                                }), [])
+                                                ->label(false);
+                                        }
+                                    ],
+                                    'default' => [
+                                        'value' => function (EhrRecord $model) {
+                                            if (!$model['employee']) {
+                                                return '';
+                                            }
+                                            return Html::encode($model['employee']['last_name'] . ' ' . $model['employee']['first_name'] . ' ' . $model['employee']['middle_name']);
+                                        }
+                                    ]
+                                ]
+                            ]
+                        ],
+                    ],
+                    [
+                        'items' => [
+                            [
+//                                'colSize' => '6',
+                                'attribute' => 'ehr_id',
+                                'scenarios' => [
+                                    'create' => [
+                                        'value' => function (EhrRecord $model, ActiveForm $form) {
+                                            return $form->field($model, 'ehr_id')
+                                                ->hiddenInput();
 
+                                        },
+                                        'label' => false,
+                                    ],
+                                    'update' => [
+                                        'value' => function (EhrRecord $model, ActiveForm $form) {
+                                            return $form->field($model, 'ehr_id')
+                                                ->hiddenInput();
+                                        },
+                                        'label' => false,
+                                    ],
+                                    'default' => [
+                                        'value' => function (EhrRecord $model) {
+                                            if (!$model['ehr']) {
+                                                return '';
+                                            }
+                                            return Html::encode($model->ehr['number']);
+                                        },
+                                        'label' => false,
+                                    ],
+                                ]
+                            ]
                         ],
                     ],
                 ],

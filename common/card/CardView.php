@@ -40,11 +40,12 @@ class CardView extends Widget
     public $redirectSubmit = false;
     public $headerTag = 'div';
     public $middlewareWidget;
+    public $afterUpdateBlockId;
     protected $subpanelGroupClass = SubpanelGroup::class;
     protected $actionButtonGroupClass = ButtonGroup::class;
     protected $stateButtonGroupClass = ButtonGroup::class;
-    private $workflowService;
     protected $stateMachine;
+    private $workflowService;
 
     /**
      * @inheritdoc
@@ -74,6 +75,7 @@ class CardView extends Widget
         $this->clientViewOptions['formOptions'] = $this->formOptions;
         $this->clientViewOptions['mode'] = $this->mode;
         $this->clientViewOptions['redirectSubmit'] = $this->redirectSubmit;
+        $this->clientViewOptions['afterUpdateBlockId'] = $this->afterUpdateBlockId;
         if (!$this->stateMachine instanceof StateMachine) {
             $this->stateMachine = \Yii::$container->get(WorkflowManagerInterface::class)
                 ->stateMachineFactory(

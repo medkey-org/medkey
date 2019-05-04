@@ -1,14 +1,14 @@
 /**
  * CardView
- * @author Dmitry Grudinin * @copyright 2012-2019 Medkey
+ * @copyright 2012-2019 Medkey
  */
 var CardView = View.extend({
     initialize: function (options) {
-        var _this = this;
+        let _this = this;
         if (_this.events === undefined) {
             _this.events = {};
         }
-        var events = _.extend(_this.events, {
+        let events = _.extend(_this.events, {
             'click [data-card-switch]': 'clickSwitch',
             'click .state-transition': 'applyTransition',
             'afterSubmit': 'afterSubmit'
@@ -17,15 +17,15 @@ var CardView = View.extend({
         View.prototype.initialize.call(_this, options);
     },
     applyTransition: function (e) {
-        var _this = this;
-        var target = $(e.currentTarget);
-        var workflowModule = target.data('workflow_module');
-        var ormModule = target.data('orm_module');
-        var workflowClass = target.data('workflow_class');
-        var transitionName = target.data('transition_name');
-        var ormClass = target.data('orm_class');
-        var ormId = target.data('orm_id');
-        var url = application.getComponent('request').createUrl('/rest/state-transition/apply');
+        let _this = this;
+        let target = $(e.currentTarget);
+        let workflowModule = target.data('workflow_module');
+        let ormModule = target.data('orm_module');
+        let workflowClass = target.data('workflow_class');
+        let transitionName = target.data('transition_name');
+        let ormClass = target.data('orm_class');
+        let ormId = target.data('orm_id');
+        let url = application.getComponent('request').createUrl('/rest/state-transition/apply');
         target.loading('loadingIcon');
         application.getComponent('request').ajax(url, {
             method: 'post',
@@ -54,20 +54,20 @@ var CardView = View.extend({
      * @returns {*}
      */
     update: function (viewConfig, viewParams, loading, queryParams) {
-        var _this = this;
+        let _this = this;
         if (_this.params['redirectSubmit'] === true) {
             return;
         }
-        var def = View.prototype.update.call(_this, viewConfig, viewParams, loading, queryParams);
+        let def = View.prototype.update.call(_this, viewConfig, viewParams, loading, queryParams);
         if (_this.params['pushState']) {
             def.done(function () {
-                var scenario = '';
+                let scenario = '';
                 if (queryParams && queryParams['scenario']) {
                     scenario = queryParams['scenario'];
                 } else {
                     scenario = _this.params['scenario'];
                 }
-                var url = Request.setQueryParam(window.location.href, 'scenario', scenario);
+                let url = Request.setQueryParam(window.location.href, 'scenario', scenario);
                 if (_this.params['config']
                     && _this.params['config']['model']
                     && _this.params['config']['model']['id']
@@ -83,19 +83,19 @@ var CardView = View.extend({
      */
     clickSwitch: function (e) {
         e.preventDefault();
-        var _this = this;
-        var btn = $(e.currentTarget);
-        var scenario = btn.data('card-switch');
-        var afterCloseModal = _this.params['formOptions']['afterCloseModal'];
+        let _this = this;
+        let btn = $(e.currentTarget);
+        let scenario = btn.data('card-switch');
+        let afterCloseModal = _this.params['formOptions']['afterCloseModal'];
         if (afterCloseModal === true && _this.$el.parents('.modal').length > 0) {
-            var modal = _this.$el.parents('.modal');
+            let modal = _this.$el.parents('.modal');
             modal.modal('hide');
             return;
         }
         if (_this.params['config']['model'] && !_.isEmpty(_this.params['config']['model']['id'])) {
             _this.update({}, {}, true, {'scenario': scenario});
         } else {
-            var referrer = document.referrer;
+            let referrer = document.referrer;
             window.location.replace(referrer);
         }
     },
@@ -105,8 +105,14 @@ var CardView = View.extend({
      * @param {Object} model
      */
     afterSubmit: function (e, model) {
-        var _this = this;
+        let _this = this;
+        let afterUpdateBlockId = _this.params['afterUpdateBlockId'];
+        console.log(afterUpdateBlockId);
+        console.log(42342);
         _this.$el.find('form').loading('start'); // temp hook
         _this.update({model: model}, {}, false, {'scenario': 'default'});
+        if (afterUpdateBlockId) {
+            application.getWidgetById(afterUpdateBlockId).update();
+        }
     }
 });

@@ -3,8 +3,10 @@ namespace app\modules\medical\application;
 
 use app\common\data\ActiveDataProvider;
 use app\common\helpers\CommonHelper;
+use app\common\helpers\Json;
 use app\common\service\ApplicationService;
 use app\common\service\exception\AccessApplicationServiceException;
+use app\common\service\exception\ApplicationServiceException;
 use app\modules\medical\MedicalModule;
 use app\modules\medical\models\finders\EhrFilter;
 use app\modules\medical\models\orm\Ehr;
@@ -35,7 +37,13 @@ class EhrService extends ApplicationService implements EhrServiceInterface
 
     public function createEhrRecord($form)
     {
-
+        $model = new EhrRecord();
+        $model->loadForm($form);
+        $model->revist = \Yii::$app->formatter->asDatetime($model->revist, CommonHelper::FORMAT_DATETIME_DB);
+        $model->datetime = \Yii::$app->formatter->asDatetime($model->datetime, CommonHelper::FORMAT_DATETIME_DB);
+        if (!$model->save()) {
+            throw new ApplicationServiceException(MedicalModule::t('ehr', 'Can\'t save ehr record' + Json::encode($model->getErrors())));
+        }
     }
 
     public function updateEhrRecord($id, $form)
@@ -43,7 +51,7 @@ class EhrService extends ApplicationService implements EhrServiceInterface
 
     }
 
-    public function getEhrRecordFormByRaw($raw)
+    public function getEhrRecordFormByRaw($raw, $ehrId)
     {
         $model = EhrRecord::ensureWeak($raw);
         $form = new EhrRecordForm();
@@ -52,6 +60,7 @@ class EhrService extends ApplicationService implements EhrServiceInterface
         }
         $form->loadAr($model);
         $form->id = $model->id;
+        $form->ehr_id = $ehrId;
         return $form;
     }
 

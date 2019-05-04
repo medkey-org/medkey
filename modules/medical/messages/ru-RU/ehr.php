@@ -27,4 +27,5 @@ return [
     'EHR records' => 'Записи в ЭМК',
     'EHR details' => 'Данные ЭМК',
     'EHR record' => 'Запись в ЭМК',
+    'Can\'t save ehr record' => 'Не удалось сохранить запись в ЭМК',
 ];
