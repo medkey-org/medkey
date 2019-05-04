@@ -40,13 +40,13 @@ class EhrRecordController extends Controller
         return $this->asJson(ActiveForm::validate($form));
     }
 
-//    public function actionValidateUpdate($id)
-//    {
-//        $modelClass = $this->modelClass;
-//        /** @var $modelClass ActiveRecord */
-//        $model = $modelClass::ensure($id, 'update', \Yii::$app->getRequest()->getBodyParams());
-//        return $this->asJson(ActiveForm::validate($model));
-//    }
+    public function actionValidateUpdate($id)
+    {
+        $form = new EhrRecordForm();
+        $form->id = $id;
+        $form->load(\Yii::$app->getRequest()->getBodyParams());
+        return $this->asJson(ActiveForm::validate($form));
+    }
 
     public function actionCreate()
     {
@@ -55,15 +55,12 @@ class EhrRecordController extends Controller
         return $this->asJson($this->ehrService->createEhrRecord($form));
     }
 
-//    public function actionUpdate($id)
-//    {
-//        $modelClass = $this->modelClass;
-//        /** @var $modelClass ActiveRecord */
-//        $model = $modelClass::ensure($id, 'update', \Yii::$app->getRequest()->getBodyParams());
-//        $model->save();
-//
-//        return $this->asJson($model);
-//    }
+    public function actionUpdate($id)
+    {
+        $form = new EhrRecordForm();
+        $form->load(\Yii::$app->getRequest()->getBodyParams());
+        return $this->asJson($this->ehrService->updateEhrRecord($id, $form));
+    }
 
     public function actionDelete($id)
     {

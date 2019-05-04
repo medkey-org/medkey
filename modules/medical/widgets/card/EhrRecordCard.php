@@ -2,7 +2,6 @@
 namespace app\modules\medical\widgets\card;
 
 use app\common\card\CardView;
-use app\common\helpers\ArrayHelper;
 use app\common\helpers\CommonHelper;
 use app\common\helpers\Html;
 use app\common\helpers\Url;
@@ -11,7 +10,6 @@ use app\common\wrappers\DynamicModal;
 use app\modules\medical\application\EhrServiceInterface;
 use app\modules\medical\MedicalModule;
 use app\modules\medical\models\form\EhrRecord;
-use app\modules\organization\models\orm\Employee;
 
 class EhrRecordCard extends CardView
 {
@@ -217,13 +215,13 @@ class EhrRecordCard extends CardView
                                     'update' => [
                                         'label' => false,
                                         'value' =>
-                                            Html::submitButton(\Yii::t('app', 'Save'), [
+                                            Html::submitButton(\Yii::t('app', 'Update'), [
                                                 'class' => 'btn btn-primary',
                                                 'icon' => 'saved'
                                             ])
                                             . '&nbsp' . Html::button(\Yii::t('app', 'Cancel'), [
                                                 'class' => 'btn btn-default',
-                                                'data-card-switch' => 'default'
+                                                'data-dismiss' => 'modal'
                                             ])
                                     ],
                                     'create' => [
