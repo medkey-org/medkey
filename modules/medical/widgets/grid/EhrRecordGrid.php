@@ -52,7 +52,7 @@ class EhrRecordGrid extends GridView
         ];
         $this->actionButtons['update'] = [
             'class' => WidgetLoaderButton::class,
-            'widgetClass' => EhrRecordUpdateForm::class,
+            'widgetClass' => EhrRecordCard::class,
             'disabled' => true,
             'isDynamicModel' => true,
             'value' => '',
