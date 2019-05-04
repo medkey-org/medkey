@@ -44,7 +44,6 @@ class EhrCard extends CardView
      */
     public $wrapper = true;
 
-
     /**
      * EhrCard constructor.
      * @param PatientServiceInterface $patientService
@@ -305,7 +304,7 @@ class EhrCard extends CardView
     public function wrapperOptions()
     {
         return [
-            'wrapperClass' => Block::className(),
+            'wrapperClass' => Block::class,
             'header' => MedicalModule::t('ehr', 'EHR'),
         ];
     }

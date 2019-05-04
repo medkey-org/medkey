@@ -2,6 +2,7 @@
 namespace app\modules\medical\models\form;
 
 use app\common\base\Model;
+use app\common\validators\ForeignKeyValidator;
 
 class EhrRecord extends Model
 {
@@ -20,12 +21,15 @@ class EhrRecord extends Model
     public $revist;
 
     /**
-     * {@inheritdoc}
+     * @inheritdoc
      */
     public function rules()
     {
         return [
-
+            [ ['ehr_id', 'employee_id', 'conclusion'], 'required',],
+            [ ['ehr_id', 'employee_id'], ForeignKeyValidator::class ],
+            [ ['template', 'conclusion'], 'string' ],
+            [ ['type'], 'integer' ]
         ];
     }
 }

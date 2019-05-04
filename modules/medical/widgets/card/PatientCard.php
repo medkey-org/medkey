@@ -40,7 +40,6 @@ class PatientCard extends CardView
      */
     public $patientService;
 
-
     /**
      * PatientCard constructor.
      * @param PatientServiceInterface $patientService
