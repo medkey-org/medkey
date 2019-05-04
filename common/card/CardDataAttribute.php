@@ -171,7 +171,6 @@ abstract class CardDataAttribute extends BaseObject
 	    if ($this->model instanceof ActiveRecord && $this->model->isDate($this->attribute)) {
 		    $value = $this->model->dateFormat($this->attribute);
 	    }
-
-	    return $value;
+	    return Html::encode($value);
     }
 }

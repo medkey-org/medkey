@@ -1,7 +1,6 @@
 /**
  * CardView
- * @author Dmitry Grudinin
- * @author Dzhamal Tayibov
+ * @copyright 2012-2019 Medkey
  */
 var CardView = View.extend({
     initialize: function (options) {
@@ -26,10 +25,6 @@ var CardView = View.extend({
         var transitionName = target.data('transition_name');
         var ormClass = target.data('orm_class');
         var ormId = target.data('orm_id');
-        var middleware = target.data('middleware');
-        if (middleware === '') {
-            return;
-        }
         var url = application.getComponent('request').createUrl('/rest/state-transition/apply');
         target.loading('loadingIcon');
         application.getComponent('request').ajax(url, {
@@ -111,7 +106,11 @@ var CardView = View.extend({
      */
     afterSubmit: function (e, model) {
         var _this = this;
+        var afterUpdateBlockId = _this.params['afterUpdateBlockId'];
         _this.$el.find('form').loading('start'); // temp hook
         _this.update({model: model}, {}, false, {'scenario': 'default'});
+        if (afterUpdateBlockId) {
+            application.getWidgetById(afterUpdateBlockId).update();
+        }
     }
 });

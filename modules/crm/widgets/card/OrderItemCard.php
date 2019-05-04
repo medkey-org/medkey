@@ -35,7 +35,6 @@ class OrderItemCard extends CardView
      */
     public $wrapper = true;
 
-
     /**
      * @inheritdoc
      */
@@ -409,7 +408,7 @@ class OrderItemCard extends CardView
      */
     public function renderTitle()
     {
-        return $this->model->item_number;
+        return Html::encode($this->model->item_number);
     }
 
     /**
@@ -418,7 +417,7 @@ class OrderItemCard extends CardView
     public function wrapperOptions()
     {
         return [
-            'wrapperClass' => Block::className(),
+            'wrapperClass' => Block::class,
             'header' => \Yii::t('app', 'Order')
         ];
     }
