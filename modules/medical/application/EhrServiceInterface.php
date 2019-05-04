@@ -14,5 +14,6 @@ interface EhrServiceInterface
 {
     public function getEhrById($id): Ehr;
     public function getEhrList(Model $form): ActiveDataProvider;
-    public function getEhrRecordFormByRaw($raw);
+    public function getEhrRecordFormByRaw($raw, $ehrId);
+    public function createEhrRecord($form);
 }
