@@ -13,7 +13,7 @@ require('../vendor/kartik-v/yii2-widget-select2/assets/css/select2-krajee.css');
 require('../vendor/kartik-v/yii2-widget-timepicker/assets/css/bootstrap-timepicker.min.css');
 
 // app
-require('../resources/css/core/main.css');
+require('../common/assets/css/core/main.css');
 require('../modules/config/resources/css/directory.css');
 require('../modules/crm/resources/css/order.css');
 require('../modules/medical/resources/css/medical.css');
