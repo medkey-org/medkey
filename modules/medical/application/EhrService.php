@@ -57,10 +57,16 @@ class EhrService extends ApplicationService implements EhrServiceInterface
         $form = new EhrRecordForm();
         if ($model->isNewRecord) {
             $form->setScenario('create');
+        } else {
+            $form->setScenario('update');
         }
         $form->loadAr($model);
         $form->id = $model->id;
         $form->ehr_id = $ehrId;
+        if (!\Yii::$app->user->getIdentity()->getEmployee()) {
+            throw new ApplicationServiceException(\Yii::t('app','Employee not found.'));
+        }
+        $form->employee_id = \Yii::$app->user->getIdentity()->getEmployee()->id;
         return $form;
     }
 

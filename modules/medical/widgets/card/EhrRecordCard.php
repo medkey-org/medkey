@@ -33,7 +33,18 @@ class EhrRecordCard extends CardView
     public $ehrService;
 
     /**
-     * @inheritdoc
+     * EhrRecordCard constructor.
+     * @param EhrServiceInterface $ehrService
+     * @param array $config
+     */
+    public function __construct(EhrServiceInterface $ehrService, array $config = [])
+    {
+        $this->ehrService = $ehrService;
+        parent::__construct($config);
+    }
+
+    /**
+     * {@inheritdoc}
      */
     public function init()
     {
@@ -46,14 +57,11 @@ class EhrRecordCard extends CardView
     }
 
     /**
-     * EhrRecordCard constructor.
-     * @param EhrServiceInterface $ehrService
-     * @param array $config
+     * {@inheritdoc}
      */
-    public function __construct(EhrServiceInterface $ehrService, array $config = [])
+    public function visibleScenarioButtons()
     {
-        $this->ehrService = $ehrService;
-        parent::__construct($config);
+        return [];
     }
 
     /**
@@ -135,50 +143,18 @@ class EhrRecordCard extends CardView
                                 'attribute' => 'preliminary',
                                 'colSize' => 6,
                             ],
-                            [
-                                'colSize' => '6',
-                                'attribute' => 'employee_id',
-                                'scenarios' => [
-                                    'create' => [
-                                        'value' => function (EhrRecord $model, ActiveForm $form) {
-                                            return $form->field($model, 'employee_id')
-                                                ->select2(ArrayHelper::map(Employee::find()->notDeleted()->all(), 'id', function ($row) {
-                                                    return empty($row) ?: $row->last_name . ' ' . $row->first_name . ' ' . $row->middle_name;
-                                                }), [])
-                                                ->label(false);
-                                        }
-                                    ],
-                                    'update' => [
-                                        'value' => function (EhrRecord $model, ActiveForm $form) {
-                                            return $form->field($model, 'employee_id')
-                                                ->select2(ArrayHelper::map(Employee::find()->notDeleted()->all(), 'id', function ($row) {
-                                                    return empty($row) ?: $row->last_name . ' ' . $row->first_name . ' ' . $row->middle_name;
-                                                }), [])
-                                                ->label(false);
-                                        }
-                                    ],
-                                    'default' => [
-                                        'value' => function (EhrRecord $model) {
-                                            if (!$model['employee']) {
-                                                return '';
-                                            }
-                                            return Html::encode($model['employee']['last_name'] . ' ' . $model['employee']['first_name'] . ' ' . $model['employee']['middle_name']);
-                                        }
-                                    ]
-                                ]
-                            ]
                         ],
                     ],
                     [
                         'items' => [
                             [
-//                                'colSize' => '6',
                                 'attribute' => 'ehr_id',
                                 'scenarios' => [
                                     'create' => [
                                         'value' => function (EhrRecord $model, ActiveForm $form) {
                                             return $form->field($model, 'ehr_id')
-                                                ->hiddenInput();
+                                                ->hiddenInput()
+                                                ->label(false);
 
                                         },
                                         'label' => false,
@@ -186,19 +162,40 @@ class EhrRecordCard extends CardView
                                     'update' => [
                                         'value' => function (EhrRecord $model, ActiveForm $form) {
                                             return $form->field($model, 'ehr_id')
-                                                ->hiddenInput();
+                                                ->hiddenInput()
+                                                ->label(false);
                                         },
                                         'label' => false,
                                     ],
                                     'default' => [
-                                        'value' => function (EhrRecord $model) {
-                                            if (!$model['ehr']) {
-                                                return '';
-                                            }
-                                            return Html::encode($model->ehr['number']);
+                                        'value' => false,
+                                        'label' => false,
+                                    ],
+                                ]
+                            ],
+                            [
+                                'attribute' => 'employee_id',
+                                'scenarios' => [
+                                    'create' => [
+                                        'value' => function (EhrRecord $model, ActiveForm $form) {
+                                            return $form->field($model, 'employee_id')
+                                                ->hiddenInput()
+                                                ->label(false);
                                         },
                                         'label' => false,
                                     ],
+                                    'update' => [
+                                        'value' => function (EhrRecord $model, ActiveForm $form) {
+                                            return $form->field($model, 'employee_id')
+                                                ->hiddenInput()
+                                                ->label(false);
+                                        },
+                                        'label' => false,
+                                    ],
+                                    'default' => [
+                                        'value' => false,
+                                        'label' => false,
+                                    ]
                                 ]
                             ]
                         ],
