@@ -29,10 +29,12 @@ class EhrRecord extends Model
         return [
             [ ['ehr_id', 'employee_id'], 'required',],
             [ ['ehr_id', 'employee_id'], ForeignKeyValidator::class ],
-            [ ['template', 'conclusion', 'name', 'complaints', 'diagnosis', 'recommendations', 'preliminary'], 'string' ],
+            [ ['template', 'conclusion', 'name', 'complaints', 'diagnosis', 'recommendations'], 'string' ],
+            [ 'preliminary', 'boolean'],
             [ ['type'], 'integer' ],
             [ ['revist', 'datetime'],
                 'datetime',
+                'skipOnEmpty' => true,
                 'format' => CommonHelper::FORMAT_DATETIME_UI,
             ],
         ];

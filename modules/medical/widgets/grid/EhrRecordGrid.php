@@ -30,7 +30,7 @@ class EhrRecordGrid extends GridView
     public $ehrId;
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function init()
     {

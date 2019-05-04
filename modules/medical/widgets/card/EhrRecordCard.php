@@ -125,14 +125,86 @@ class EhrRecordCard extends CardView
                     ],
                     [
                         'items' => [
-                            'complaints',
-                            'diagnosis',
+                            [
+                                'attribute' => 'complaints',
+                                'scenarios' => [
+                                    'create' => [
+                                        'value' => function (EhrRecord $model, ActiveForm $form) {
+                                            return $form->field($model, 'complaints')
+                                                ->textarea()
+                                                ->label(false);
+                                        }
+                                    ],
+                                    'update' => [
+                                        'value' => function (EhrRecord $model, ActiveForm $form) {
+                                            return $form->field($model, 'complaints')
+                                                ->textarea()
+                                                ->label(false);
+                                        }
+                                    ],
+                                ],
+                            ],
+                            [
+                                'attribute' => 'diagnosis',
+                                'scenarios' => [
+                                    'create' => [
+                                        'value' => function (EhrRecord $model, ActiveForm $form) {
+                                            return $form->field($model, 'diagnosis')
+                                                ->textarea()
+                                                ->label(false);
+                                        }
+                                    ],
+                                    'update' => [
+                                        'value' => function (EhrRecord $model, ActiveForm $form) {
+                                            return $form->field($model, 'diagnosis')
+                                                ->textarea()
+                                                ->label(false);
+                                        }
+                                    ],
+                                ],
+                            ],
                         ],
                     ],
                     [
                         'items' => [
-                            'conclusion',
-                            'recommendations',
+                            [
+                                'attribute' => 'conclusion',
+                                'scenarios' => [
+                                    'create' => [
+                                        'value' => function (EhrRecord $model, ActiveForm $form) {
+                                            return $form->field($model, 'conclusion')
+                                                ->textarea()
+                                                ->label(false);
+                                        }
+                                    ],
+                                    'update' => [
+                                        'value' => function (EhrRecord $model, ActiveForm $form) {
+                                            return $form->field($model, 'conclusion')
+                                                ->textarea()
+                                                ->label(false);
+                                        }
+                                    ],
+                                ],
+                            ],
+                            [
+                                'attribute' => 'recommendations',
+                                'scenarios' => [
+                                    'create' => [
+                                        'value' => function (EhrRecord $model, ActiveForm $form) {
+                                            return $form->field($model, 'recommendations')
+                                                ->textarea()
+                                                ->label(false);
+                                        }
+                                    ],
+                                    'update' => [
+                                        'value' => function (EhrRecord $model, ActiveForm $form) {
+                                            return $form->field($model, 'recommendations')
+                                                ->textarea()
+                                                ->label(false);
+                                        }
+                                    ],
+                                ],
+                            ],
                         ],
                     ],
                     [
@@ -140,6 +212,22 @@ class EhrRecordCard extends CardView
                             [
                                 'attribute' => 'preliminary',
                                 'colSize' => 6,
+                                'scenarios' => [
+                                    'create' => [
+                                        'value' => function (EhrRecord $model, ActiveForm $form) {
+                                            return $form->field($model, 'preliminary')
+                                                ->checkbox([], false)
+                                                ->label(false);
+                                        },
+                                    ],
+                                    'update' => [
+                                        'value' => function (EhrRecord $model, ActiveForm $form) {
+                                            return $form->field($model, 'preliminary')
+                                                ->checkbox([], false)
+                                                ->label(false);
+                                        },
+                                    ],
+                                ],
                             ],
                         ],
                     ],
