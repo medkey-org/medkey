@@ -47,9 +47,12 @@ class EhrService extends ApplicationService implements EhrServiceInterface
     {
         $model = EhrRecord::ensureWeak($raw);
         $form = new EhrRecordForm();
+        if ($model->isNewRecord) {
+            $form->setScenario('create');
+        }
         $form->loadAr($model);
         $form->id = $model->id;
-        return $model;
+        return $form;
     }
 
     /**

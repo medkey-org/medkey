@@ -43,7 +43,7 @@ class EhrRecordGrid extends GridView
             'value' => '',
             'widgetConfig' => [
                 'ehrId' => $this->ehrId,
-                'afterUpdateBlockId' => $this->getId()
+                'afterUpdateBlockId' => $this->getId(),
             ],
             'options' => [
                 'class' => 'btn btn-primary btn-xs',

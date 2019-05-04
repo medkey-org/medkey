@@ -2,6 +2,7 @@
 namespace app\modules\medical\widgets\card;
 
 use app\common\card\CardView;
+use app\common\helpers\CommonHelper;
 use app\common\helpers\Html;
 use app\common\helpers\Url;
 use app\common\widgets\ActiveForm;
@@ -65,57 +66,74 @@ class EhrRecordCard extends CardView
                     [
                         'items' => [
                             [
-                                'attribute' => '',
+                                'attribute' => 'datetime',
                                 'scenarios' => [
                                     'default' => [
                                         'value' => function (EhrRecord $model) {
-                                            return Html::encode($model->typeName());
+                                            return Html::encode(\Yii::$app->formatter->asDatetime($model->datetime . date_default_timezone_get(), CommonHelper::FORMAT_DATETIME_UI));
                                         }
                                     ],
                                     'create' => [
                                         'value' => function (EhrRecord $model, ActiveForm $form) {
-                                            return $form
-                                                ->field($model, 'type')
-                                                ->select2(AttendanceORM::types())
+                                            return $form->field($model, 'datetime')
+                                                ->dateTimeInput()
                                                 ->label(false);
                                         }
                                     ],
                                     'update' => [
                                         'value' => function (EhrRecord $model, ActiveForm $form) {
-                                            return $form
-                                                ->field($model, 'type')
-                                                ->select2(AttendanceORM::types())
+                                            return $form->field($model, 'datetime')
+                                                ->dateTimeInput(['disabled' => true])
                                                 ->label(false);
                                         }
-                                    ]
+                                    ],
                                 ],
                             ],
-                            [
-                                'attribute' => 'status',
+                           [
+                                'attribute' => 'revist',
                                 'scenarios' => [
                                     'default' => [
-                                        'value' => function (Attendance $model) {
-                                            return Html::encode($model->getStatusName());
+                                        'value' => function (EhrRecord $model) {
+                                            return Html::encode(\Yii::$app->formatter->asDatetime($model->datetime . date_default_timezone_get(), CommonHelper::FORMAT_DATETIME_UI));
                                         }
                                     ],
                                     'create' => [
-                                        'value' => function (Attendance $model, ActiveForm $form) {
-                                            return $form
-                                                ->field($model, 'status')
-                                                ->select2(AttendanceORM::statuses())
+                                        'value' => function (EhrRecord $model, ActiveForm $form) {
+                                            return $form->field($model, 'revist')
+                                                ->dateTimeInput()
                                                 ->label(false);
                                         }
                                     ],
                                     'update' => [
-                                        'value' => function (Attendance $model, ActiveForm $form) {
-                                            return $form
-                                                ->field($model, 'status')
-                                                ->select2(AttendanceORM::statuses())
+                                        'value' => function (EhrRecord $model, ActiveForm $form) {
+                                            return $form->field($model, 'revist')
+                                                ->dateTimeInput(['disabled' => true])
                                                 ->label(false);
                                         }
-                                    ]
+                                    ],
                                 ],
                             ],
+                        ],
+                    ],
+                    [
+                        'items' => [
+                            'complaints',
+                            'diagnosis',
+                        ],
+                    ],
+                    [
+                        'items' => [
+                            'conclusion',
+                            'recommendations',
+                        ],
+                    ],
+                    [
+                        'items' => [
+                            [
+                                'attribute' => 'preliminary',
+                                'colSize' => 6,
+                            ],
+
                         ],
                     ],
                 ],
@@ -137,7 +155,7 @@ class EhrRecordCard extends CardView
                                         'value' =>
                                             Html::submitButton(\Yii::t('app', 'Save'), [
                                                 'class' => 'btn btn-primary',
-                                                'icon'  => 'saved'
+                                                'icon' => 'saved'
                                             ])
                                             . '&nbsp' . Html::button(\Yii::t('app', 'Cancel'), [
                                                 'class' => 'btn btn-default',
@@ -149,11 +167,11 @@ class EhrRecordCard extends CardView
                                         'value' =>
                                             Html::submitButton(\Yii::t('app', 'Save'), [
                                                 'class' => 'btn btn-primary',
-                                                'icon'  => 'saved'
+                                                'icon' => 'saved'
                                             ])
                                             . '&nbsp' . Html::button(\Yii::t('app', 'Cancel'), [
                                                 'class' => 'btn btn-default',
-                                                'data-card-switch' => 'default'
+                                                'data-dismiss' => 'modal'
                                             ])
                                     ],
                                 ],
@@ -172,7 +190,8 @@ class EhrRecordCard extends CardView
     {
         return [
             'wrapperClass' => DynamicModal::class,
-            'header' => MedicalModule::t('ehr', 'EHR record')
+            'header' => MedicalModule::t('ehr', 'EHR record'),
+            'size' => 'modal-lg'
         ];
     }
 }
