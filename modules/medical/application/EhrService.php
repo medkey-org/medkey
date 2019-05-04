@@ -42,13 +42,19 @@ class EhrService extends ApplicationService implements EhrServiceInterface
         $model->revist = \Yii::$app->formatter->asDatetime($model->revist, CommonHelper::FORMAT_DATETIME_DB);
         $model->datetime = \Yii::$app->formatter->asDatetime($model->datetime, CommonHelper::FORMAT_DATETIME_DB);
         if (!$model->save()) {
-            throw new ApplicationServiceException(MedicalModule::t('ehr', 'Can\'t save ehr record' + Json::encode($model->getErrors())));
+            throw new ApplicationServiceException(MedicalModule::t('ehr', 'Can\'t create ehr record' + Json::encode($model->getErrors())));
         }
     }
 
     public function updateEhrRecord($id, $form)
     {
-
+        $model = EhrRecord::findOneEx($id);
+        $model->loadForm($form);
+        $model->revist = \Yii::$app->formatter->asDatetime($model->revist, CommonHelper::FORMAT_DATETIME_DB);
+        $model->datetime = \Yii::$app->formatter->asDatetime($model->datetime, CommonHelper::FORMAT_DATETIME_DB);
+        if (!$model->save()) {
+            throw new ApplicationServiceException(MedicalModule::t('ehr', 'Can\'t update ehr record' + Json::encode($model->getErrors())));
+        }
     }
 
     public function getEhrRecordFormByRaw($raw, $ehrId)
@@ -63,10 +69,12 @@ class EhrService extends ApplicationService implements EhrServiceInterface
         $form->loadAr($model);
         $form->id = $model->id;
         $form->ehr_id = $ehrId;
-        if (!\Yii::$app->user->getIdentity()->getEmployee()) {
+        $form->revist = \Yii::$app->formatter->asDatetime($model->revist, CommonHelper::FORMAT_DATETIME_UI);
+        $form->datetime = \Yii::$app->formatter->asDatetime($model->datetime, CommonHelper::FORMAT_DATETIME_UI);
+        if (!\Yii::$app->user->getIdentity()->employee) {
             throw new ApplicationServiceException(\Yii::t('app','Employee not found.'));
         }
-        $form->employee_id = \Yii::$app->user->getIdentity()->getEmployee()->id;
+        $form->employee_id = \Yii::$app->user->getIdentity()->employee->id;
         return $form;
     }
 

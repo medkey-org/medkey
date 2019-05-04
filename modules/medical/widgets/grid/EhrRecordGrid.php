@@ -4,6 +4,7 @@ namespace app\modules\medical\widgets\grid;
 use app\common\button\LinkActionButton;
 use app\common\button\WidgetLoaderButton;
 use app\common\grid\GridView;
+use app\common\helpers\CommonHelper;
 use app\modules\medical\models\finders\EhrRecordFinder;
 use app\modules\medical\models\orm\Ehr;
 use app\modules\medical\models\orm\EhrRecord;
@@ -86,13 +87,28 @@ class EhrRecordGrid extends GridView
                         return $model->employee->fullName;
                     }
                     return '';
-                }
+                },
+                'options' => [
+                    'class' => 'col-xs-3',
+                ],
             ],
             [
-                'attribute' => 'conclusion',
+                'attribute' => 'datetime',
                 'value' => function (EhrRecord $model) {
-                    return $model->conclusion;
-                }
+                    return \Yii::$app->formatter->asDatetime($model->datetime, CommonHelper::FORMAT_DATETIME_UI);
+                },
+                'options' => [
+                    'class' => 'col-xs-1',
+                ],
+            ],
+            [
+                'attribute' => 'revist',
+                'value' => function (EhrRecord $model) {
+                    return \Yii::$app->formatter->asDatetime($model->revist, CommonHelper::FORMAT_DATETIME_UI);
+                },
+                'options' => [
+                    'class' => 'col-xs-1',
+                ],
             ],
         ];
         parent::init();
