@@ -47,17 +47,22 @@ class EhrRecord extends ActiveRecord
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function attributeLabelsOverride()
     {
         return [
-            'ehr_id' => MedicalModule::t('ehr', 'EHR'),
-            'employee_id' => MedicalModule::t('ehr', 'Doctor'),
             'template' => MedicalModule::t('ehr', 'Template'),
             'conclusion' => MedicalModule::t('ehr', 'Conclusion'),
             'datetime' => MedicalModule::t('ehr', 'Visit date'),
             'type' => MedicalModule::t('ehr', 'Visit type'),
+            'revisit' => MedicalModule::t('ehr', 'Repeated visit'),
+            'preliminary' => MedicalModule::t('ehr', 'Preliminary diagnosis'),
+            'recommendations' => MedicalModule::t('ehr', 'Recommendations'),
+            'diagnosis' => MedicalModule::t('ehr', 'Diagnosis'),
+            'complaints' => MedicalModule::t('ehr', 'Complaints'),
+            'employee_id' => MedicalModule::t('ehr', 'Doctor'),
+            'name' => MedicalModule::t('ehr', 'Name'),
         ];
     }
 }

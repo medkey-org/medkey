@@ -12,12 +12,17 @@ return [
     'Active' => 'Активная',
     'Inactive' => 'Неактивная',
 
+    'Name' => 'Название',
     'Doctor' => 'Врач',
     'Template' => 'Шаблон',
     'Conclusion' => 'Заключение',
     'Visit date' => 'Дата приёма',
     'Visit type' => 'Тип приёма',
-
+    'Repeated visit' => 'Повторная явка',
+    'Preliminary diagnosis' => 'Предварительный диагноз',
+    'Recommendations' => 'Рекоммендации',
+    'Complaints' => 'Жалобы и симптомы',
+    'Diagnosis' => 'Диагноз',
     'EHR list' => 'Просмотр списка ЭМК',
     'Access restricted' => 'Доступ запрещён',
     'Create EHR record' => 'Создание записи в ЭМК',

@@ -66,7 +66,7 @@ class EhrRecordCard extends CardView
     {
         return [
             'ehr' => [
-                'title' => MedicalModule::t('common', 'EHR details'),
+                'title' => MedicalModule::t('ehr', 'EHR details'),
                 'items' => [
                     [
                         'items' => [
