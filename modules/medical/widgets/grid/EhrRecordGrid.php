@@ -5,6 +5,7 @@ use app\common\button\LinkActionButton;
 use app\common\button\WidgetLoaderButton;
 use app\common\grid\GridView;
 use app\common\helpers\CommonHelper;
+use app\common\helpers\Html;
 use app\common\helpers\Url;
 use app\modules\medical\models\finders\EhrRecordFinder;
 use app\modules\medical\models\orm\Ehr;
@@ -75,6 +76,16 @@ class EhrRecordGrid extends GridView
 //            ],
 //        ];
         $this->columns = [
+            [
+                'attribute' => 'name',
+                'value' => function (EhrRecord $model) {
+                    return Html::a($model->name, Url::to(['/medical/ui/ehr-record/view', 'id' => $model->id, 'ehrId' => $model->ehr_id]));
+                },
+                'options' => [
+                    'class' => 'col-xs-2',
+                ],
+                'format' => 'raw',
+            ],
             [
                 'attribute' => 'employee_id',
                 'value' => function (EhrRecord $model) {
