@@ -2,6 +2,7 @@
 namespace app\common\web;
 
 use app\common\base\ModuleTrait;
+use app\modules\config\models\orm\Config;
 
 /**
  * Class Application
@@ -29,6 +30,17 @@ class Application extends \yii\web\Application
             $this->setDynamicModules($this->dynamicModuleDI);
         }
         parent::init();
-        $this->language = $this->getUser()->getCurrentLang();
+        $this->language = $this->sourceLanguage;
+        $userLang = $this->getUser()->getCurrentLang();
+        $conf = Config::find() // todo in service
+            ->where(['key' => 'language'])
+            ->one();
+        if (!empty($userLang)) {
+            $this->language = $userLang;
+        } elseif (!empty($conf)) {
+            $this->language = $conf->value;
+        } elseif (locale_accept_from_http($_SERVER['HTTP_ACCEPT_LANGUAGE'])) {
+            $this->language = locale_accept_from_http($_SERVER['HTTP_ACCEPT_LANGUAGE']);
+        }
     }
 }
