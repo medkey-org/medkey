@@ -137,7 +137,7 @@ class WorkplanService extends ApplicationService implements WorkplanServiceInter
     }
 
     /**
-     * @return int[]
+     * {@inheritdoc}
      */
     public function getWorkplansByExistsRules($employeeId, $date)
     {

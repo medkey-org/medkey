@@ -1,10 +1,9 @@
 <?php
 namespace app\modules\crm\widgets\form;
 
-use app\common\db\ActiveRecord;
 use app\common\widgets\FormWidget;
 use app\common\wrappers\DynamicModal;
-use app\modules\crm\models\orm\OrderItem;
+use app\modules\crm\CrmModule;
 
 /**
  * Class OrderItemUpdateForm
@@ -14,7 +13,7 @@ use app\modules\crm\models\orm\OrderItem;
 class OrderItemUpdateForm extends OrderItemCreateForm
 {
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function init()
     {
@@ -25,7 +24,7 @@ class OrderItemUpdateForm extends OrderItemCreateForm
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function wrapperOptions()
     {
