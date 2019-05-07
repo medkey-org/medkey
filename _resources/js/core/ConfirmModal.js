@@ -1,3 +1,0 @@
-var ConfirmModal = DynamicModal.extend({
-    
-});
