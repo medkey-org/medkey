@@ -75,11 +75,9 @@ class OrderItemCreateForm extends FormWidget
 //                'disabled' => true,
 //            ]);
         echo $form->field($model, 'currency_sum')
-            ->textInput([
-            ]);
+            ->moneyInput();
         echo $form->field($model, 'final_currency_sum')
-            ->textInput([
-            ]);
+            ->moneyInput();
 //        echo $form->field($model, 'discount_point')
 //            ->moneyInput();
 //        echo $form->field($model, 'discount_currency_sum')

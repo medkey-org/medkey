@@ -1,7 +1,7 @@
 <?php
 namespace app\modules\crm\port\rest\controllers;
 
-use app\common\rest\Controller;
+use app\common\web\Controller;
 use app\common\widgets\ActiveForm;
 use app\modules\crm\application\OrderServiceInterface;
 use app\modules\crm\models\form\OrderItem as OrderItemForm;
@@ -32,6 +32,24 @@ class OrderItemController extends Controller
     }
 
     public function actionValidateCreate()
+    {
+        $form = new OrderItemForm([
+            'scenario' => 'create'
+        ]);
+        $form->load(\Yii::$app->getRequest()->getBodyParams());
+        return $this->asJson(ActiveForm::validate($form));
+    }
+
+    public function actionUpdate($id)
+    {
+        $form = new OrderItemForm([
+            'scenario' => 'update',
+        ]);
+        $form->load(\Yii::$app->request->getBodyParams());
+        return $this->asJson($this->orderService->updateOrderItem($id, $form));
+    }
+
+    public function actionValidateUpdate()
     {
         $form = new OrderItemForm([
             'scenario' => 'create'
