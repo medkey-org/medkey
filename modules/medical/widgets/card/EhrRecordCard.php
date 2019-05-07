@@ -71,6 +71,7 @@ class EhrRecordCard extends CardView
                     [
                         'items' => [
                             [
+                                'colSize' => 10,
                                 'attribute' => 'datetime',
                                 'scenarios' => [
                                     'default' => [
@@ -88,13 +89,18 @@ class EhrRecordCard extends CardView
                                     'update' => [
                                         'value' => function (EhrRecord $model, ActiveForm $form) {
                                             return $form->field($model, 'datetime')
-                                                ->dateTimeInput(['disabled' => true])
+                                                ->dateTimeInput()
                                                 ->label(false);
                                         }
                                     ],
                                 ],
                             ],
-                           [
+                        ],
+                    ],
+                    [
+                        'items' => [
+                            [
+                                'colSize' => 10,
                                 'attribute' => 'revisit',
                                 'scenarios' => [
                                     'default' => [
@@ -112,7 +118,7 @@ class EhrRecordCard extends CardView
                                     'update' => [
                                         'value' => function (EhrRecord $model, ActiveForm $form) {
                                             return $form->field($model, 'revisit')
-                                                ->dateTimeInput(['disabled' => true])
+                                                ->dateTimeInput()
                                                 ->label(false);
                                         }
                                     ],
@@ -123,38 +129,20 @@ class EhrRecordCard extends CardView
                     [
                         'items' => [
                             [
+                                'colSize' => 10,
                                 'attribute' => 'complaints',
                                 'scenarios' => [
                                     'create' => [
                                         'value' => function (EhrRecord $model, ActiveForm $form) {
                                             return $form->field($model, 'complaints')
-                                                ->textarea()
+                                                ->textarea(['rows' => '7'])
                                                 ->label(false);
                                         }
                                     ],
                                     'update' => [
                                         'value' => function (EhrRecord $model, ActiveForm $form) {
                                             return $form->field($model, 'complaints')
-                                                ->textarea()
-                                                ->label(false);
-                                        }
-                                    ],
-                                ],
-                            ],
-                            [
-                                'attribute' => 'diagnosis',
-                                'scenarios' => [
-                                    'create' => [
-                                        'value' => function (EhrRecord $model, ActiveForm $form) {
-                                            return $form->field($model, 'diagnosis')
-                                                ->textarea()
-                                                ->label(false);
-                                        }
-                                    ],
-                                    'update' => [
-                                        'value' => function (EhrRecord $model, ActiveForm $form) {
-                                            return $form->field($model, 'diagnosis')
-                                                ->textarea()
+                                                ->textarea(['rows' => '7'])
                                                 ->label(false);
                                         }
                                     ],
@@ -165,38 +153,68 @@ class EhrRecordCard extends CardView
                     [
                         'items' => [
                             [
-                                'attribute' => 'conclusion',
+                                'colSize' => 10,
+                                'attribute' => 'diagnosis',
                                 'scenarios' => [
                                     'create' => [
                                         'value' => function (EhrRecord $model, ActiveForm $form) {
-                                            return $form->field($model, 'conclusion')
-                                                ->textarea()
+                                            return $form->field($model, 'diagnosis')
+                                                ->textarea(['rows' => '7'])
                                                 ->label(false);
                                         }
                                     ],
                                     'update' => [
                                         'value' => function (EhrRecord $model, ActiveForm $form) {
-                                            return $form->field($model, 'conclusion')
-                                                ->textarea()
+                                            return $form->field($model, 'diagnosis')
+                                                ->textarea(['rows' => '7'])
                                                 ->label(false);
                                         }
                                     ],
                                 ],
                             ],
+                        ],
+                    ],
+                    [
+                        'items' => [
                             [
+                                'colSize' => 10,
+                                'attribute' => 'conclusion',
+                                'scenarios' => [
+                                    'create' => [
+                                        'value' => function (EhrRecord $model, ActiveForm $form) {
+                                            return $form->field($model, 'conclusion')
+                                                ->textarea(['rows' => '7'])
+                                                ->label(false);
+                                        }
+                                    ],
+                                    'update' => [
+                                        'value' => function (EhrRecord $model, ActiveForm $form) {
+                                            return $form->field($model, 'conclusion')
+                                                ->textarea(['rows' => '7'])
+                                                ->label(false);
+                                        }
+                                    ],
+                                ],
+                            ],
+                        ],
+                    ],
+                    [
+                        'items' => [
+                            [
+                                'colSize' => 10,
                                 'attribute' => 'recommendations',
                                 'scenarios' => [
                                     'create' => [
                                         'value' => function (EhrRecord $model, ActiveForm $form) {
                                             return $form->field($model, 'recommendations')
-                                                ->textarea()
+                                                ->textarea(['rows' => '7'])
                                                 ->label(false);
                                         }
                                     ],
                                     'update' => [
                                         'value' => function (EhrRecord $model, ActiveForm $form) {
                                             return $form->field($model, 'recommendations')
-                                                ->textarea()
+                                                ->textarea(['rows' => '7'])
                                                 ->label(false);
                                         }
                                     ],
@@ -208,7 +226,7 @@ class EhrRecordCard extends CardView
                         'items' => [
                             [
                                 'attribute' => 'preliminary',
-                                'colSize' => 6,
+                                'colSize' => 10,
                                 'scenarios' => [
                                     'create' => [
                                         'value' => function (EhrRecord $model, ActiveForm $form) {
