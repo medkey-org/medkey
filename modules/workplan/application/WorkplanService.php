@@ -122,7 +122,8 @@ class WorkplanService extends ApplicationService implements WorkplanServiceInter
     private function saveWeeks($workplanId, $weekIds)
     {
         $workplan = Workplan::findOneEx($workplanId);
-        $workplan->unlinkAll('workplanToWeeks'); // todo история теряется
+        WorkplanToWeek::deleteAll(['workplan_id' => $workplanId]);
+//        $workplan->unlinkAll('workplanToWeeks'); // todo история теряется
         // TODO удалить полностью, а не анлинкать!!!!
         if (empty($weekIds) || !is_array($weekIds)) {
             return null;
