@@ -18,7 +18,6 @@ class User extends Seed
                 'password_hash' => \Yii::$app->security->generatePasswordHash(getenv('SUPER_PASSWORD')),
                 'status' => UserOrm::STATUS_ACTIVE,
                 'acl_role_id' => ArrayHelper::findBy($aclRoles, ['name' => 'admin'])->id,
-                'language' => \Yii::$app->language,
             ],
         ];
 	}
