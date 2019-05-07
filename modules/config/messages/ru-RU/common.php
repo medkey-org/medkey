@@ -6,5 +6,6 @@ return [
     'Directories' => 'Справочники',
     'Russian' => 'Русский',
     'English' => 'Английский',
+    'Language not set (system default)' => 'Язык не установлен (по умолчанию)',
     'Settings' => 'Настройки',
 ];

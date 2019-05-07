@@ -169,7 +169,7 @@ class UserCard extends CardView
                                         'value' => function (UserForm $model, ActiveForm $form) {
                                             return $form
                                                 ->field($model, 'language')
-                                                ->select2(Config::listLanguage())
+                                                ->select2(Config::listLanguageWithNotSet())
                                                 ->label(false);
                                         }
                                     ],
@@ -177,13 +177,13 @@ class UserCard extends CardView
                                         'value' => function (UserForm $model, ActiveForm $form) {
                                             return $form
                                                 ->field($model, 'language')
-                                                ->select2(Config::listLanguage())
+                                                ->select2(Config::listLanguageWithNotSet())
                                                 ->label(false);
                                         }
                                     ],
                                     'default' => [
                                         'value' => function (UserForm $form) {
-                                            return Html::encode($form->language);
+                                            return Html::encode($form->getLanguageLabel());
                                         }
                                     ],
                                 ],
