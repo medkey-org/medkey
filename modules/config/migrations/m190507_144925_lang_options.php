@@ -14,7 +14,6 @@ class m190507_144925_lang_options extends Migration
     {
         $this->dropBothColumns('{{%user}}', 'language');
         $this->addBothColumns('{{%user}}', 'language', $this->string());
-        $this->execute("INSERT INTO {{%config}} (key, value) VALUES ('language', 'en-US')");
     }
 
     /**

@@ -67,7 +67,8 @@ return [
     'Nothing found' => 'Ничего не найдено',
     'Workflow builder' => 'Конструктор бизнес-процессов',
     'Workflow statuses' => 'Статусы бизнес-процессов',
-
+    'Common settings' => 'Общие настройки',
+    'Logout' => 'Выйти',
     /**
      * Addresses
      */

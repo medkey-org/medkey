@@ -32,5 +32,6 @@ class Package extends Seed
         $this->call('default_referral_item');
         $this->call('default_workplan');
         $this->call('default_workplan_weeks');
+        $this->call('settings_seed');
     }
 }

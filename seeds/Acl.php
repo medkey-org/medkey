@@ -215,6 +215,13 @@ class Acl extends Seed
                 'action' => 'getWorkflowTransitionList',
                 'acl_role_id' => ArrayHelper::findBy($aclRoles, ['name' => 'admin'])->id
             ],
+            [
+                'module' => 'config',
+                'type' => '1',
+                'entity_type' => 'ConfigService',
+                'action' => 'getAllSettings',
+                'acl_role_id' => ArrayHelper::findBy($aclRoles, ['name' => 'admin'])->id
+            ],
         ];
     }
 }
