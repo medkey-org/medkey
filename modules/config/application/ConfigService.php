@@ -21,6 +21,9 @@ class ConfigService extends ApplicationService implements ConfigServiceInterface
             ->all();
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function getApplicationTitle()
     {
         $conf = Config::find()
