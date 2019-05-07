@@ -17,7 +17,7 @@ class m190430_132621_ehr_record_update extends Migration
         $this->addBothColumns('{{%ehr_record}}', 'diagnosis', $this->text());
         $this->addBothColumns('{{%ehr_record}}', 'recommendations', $this->text());
         $this->addBothColumns('{{%ehr_record}}', 'preliminary', $this->boolean());
-        $this->addBothColumns('{{%ehr_record}}', 'revist', $this->timestamp());
+        $this->addBothColumns('{{%ehr_record}}', 'revisit', $this->timestamp());
     }
 
     /**
@@ -30,6 +30,6 @@ class m190430_132621_ehr_record_update extends Migration
         $this->dropBothColumns('{{%ehr_record}}', 'diagnosis');
         $this->dropBothColumns('{{%ehr_record}}', 'recommendations');
         $this->dropBothColumns('{{%ehr_record}}', 'preliminary');
-        $this->dropBothColumns('{{%ehr_record}}', 'revist');
+        $this->dropBothColumns('{{%ehr_record}}', 'revisit');
     }
 }

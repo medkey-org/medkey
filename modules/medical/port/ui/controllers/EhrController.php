@@ -2,7 +2,7 @@
 namespace app\modules\medical\port\ui\controllers;
 
 use app\common\db\ActiveRecord;
-use app\common\web\ScreenController;
+use app\common\web\Controller;
 use app\modules\medical\models\orm\Ehr;
 
 /**
@@ -10,10 +10,17 @@ use app\modules\medical\models\orm\Ehr;
  * @package Module\Medical
  * @copyright 2012-2019 Medkey
  */
-class EhrController extends ScreenController
+class EhrController extends Controller
 {
     public $modelClass = Ehr::class;
 
+    /**
+     * @return string
+     */
+    public function actionIndex()
+    {
+        return $this->render('index');
+    }
 
     /**
      * @inheritdoc

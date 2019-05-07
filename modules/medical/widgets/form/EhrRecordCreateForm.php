@@ -15,6 +15,7 @@ use app\modules\organization\models\orm\Employee;
  * Class EhrRecordCreateForm
  * @package Module\Medical
  * @copyright 2012-2019 Medkey
+ * @deprecated
  */
 class EhrRecordCreateForm extends FormWidget
 {

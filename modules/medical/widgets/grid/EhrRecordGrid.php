@@ -5,6 +5,7 @@ use app\common\button\LinkActionButton;
 use app\common\button\WidgetLoaderButton;
 use app\common\grid\GridView;
 use app\common\helpers\CommonHelper;
+use app\common\helpers\Url;
 use app\modules\medical\models\finders\EhrRecordFinder;
 use app\modules\medical\models\orm\Ehr;
 use app\modules\medical\models\orm\EhrRecord;
@@ -37,30 +38,24 @@ class EhrRecordGrid extends GridView
         $this->filterModel = EhrRecordFinder::ensure($this->filterModel);
         $this->filterModel->ehrId = $this->ehrId;
         $this->actionButtons['create'] = [
-            'class' => WidgetLoaderButton::class,
-            'widgetClass' => EhrRecordCard::class,
+            'class' => LinkActionButton::class,
+            'isAjax' => false,
+            'url' => Url::to(['/medical/ui/ehr-record/view', 'ehrId' => $this->ehrId]),
             'disabled' => false,
             'isDynamicModel' => false,
             'value' => '',
-            'widgetConfig' => [
-                'ehrId' => $this->ehrId,
-                'afterUpdateBlockId' => $this->getId(),
-            ],
             'options' => [
                 'class' => 'btn btn-primary btn-xs',
                 'icon' => 'plus'
             ]
         ];
         $this->actionButtons['update'] = [
-            'class' => WidgetLoaderButton::class,
-            'widgetClass' => EhrRecordCard::class,
+            'class' => LinkActionButton::class,
+            'isAjax' => false,
+            'url' => Url::to(['/medical/ui/ehr-record/view', 'ehrId' => $this->ehrId]),
             'disabled' => true,
             'isDynamicModel' => true,
             'value' => '',
-            'widgetConfig' => [
-                'ehrId' => $this->ehrId,
-                'afterUpdateBlockId' => $this->getId()
-            ],
             'options' => [
                 'class' => 'btn btn-primary btn-xs',
                 'icon' => 'edit'
@@ -102,9 +97,9 @@ class EhrRecordGrid extends GridView
                 ],
             ],
             [
-                'attribute' => 'revist',
+                'attribute' => 'revisit',
                 'value' => function (EhrRecord $model) {
-                    return \Yii::$app->formatter->asDatetime($model->revist, CommonHelper::FORMAT_DATETIME_UI);
+                    return \Yii::$app->formatter->asDatetime($model->revisit, CommonHelper::FORMAT_DATETIME_UI);
                 },
                 'options' => [
                     'class' => 'col-xs-1',

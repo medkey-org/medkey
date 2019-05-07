@@ -12,6 +12,7 @@ use app\modules\medical\MedicalModule;
  * Class EhrRecordUpdateForm
  * @package Module\Medical
  * @copyright 2012-2019 Medkey
+ * @deprecated
  */
 class EhrRecordUpdateForm extends EhrRecordCreateForm
 {

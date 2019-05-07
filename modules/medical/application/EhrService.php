@@ -42,8 +42,8 @@ class EhrService extends ApplicationService implements EhrServiceInterface
     {
         $model = new EhrRecord();
         $model->loadForm($form);
-        if (!empty($model->revist)) {
-            $model->revist = \Yii::$app->formatter->asDatetime($model->revist, CommonHelper::FORMAT_DATETIME_DB);
+        if (!empty($model->revisit)) {
+            $model->revisit = \Yii::$app->formatter->asDatetime($model->revisit, CommonHelper::FORMAT_DATETIME_DB);
         }
         if (!empty($model->datetime)) {
             $model->datetime = \Yii::$app->formatter->asDatetime($model->datetime, CommonHelper::FORMAT_DATETIME_DB);
@@ -61,8 +61,8 @@ class EhrService extends ApplicationService implements EhrServiceInterface
     {
         $model = EhrRecord::findOneEx($id);
         $model->loadForm($form);
-        if (!empty($model->revist)) {
-            $model->revist = \Yii::$app->formatter->asDatetime($model->revist, CommonHelper::FORMAT_DATETIME_DB);
+        if (!empty($model->revisit)) {
+            $model->revisit = \Yii::$app->formatter->asDatetime($model->revisit, CommonHelper::FORMAT_DATETIME_DB);
         }
         if (!empty($model->datetime)) {
             $model->datetime = \Yii::$app->formatter->asDatetime($model->datetime, CommonHelper::FORMAT_DATETIME_DB);
@@ -88,8 +88,8 @@ class EhrService extends ApplicationService implements EhrServiceInterface
         $form->loadAr($model);
         $form->id = $model->id;
         $form->ehr_id = $ehrId;
-        if (!empty($form->revist)) {
-            $form->revist = \Yii::$app->formatter->asDatetime($form->revist, CommonHelper::FORMAT_DATETIME_UI);
+        if (!empty($form->revisit)) {
+            $form->revisit = \Yii::$app->formatter->asDatetime($form->revisit, CommonHelper::FORMAT_DATETIME_UI);
         }
         if (!empty($model->datetime)) {
             $form->datetime = \Yii::$app->formatter->asDatetime($form->datetime, CommonHelper::FORMAT_DATETIME_UI);
