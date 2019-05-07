@@ -1,7 +1,0 @@
-/**
- *
- * @constructor
- */
-var Component = function () {
-
-};
