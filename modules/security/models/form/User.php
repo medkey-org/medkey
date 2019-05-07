@@ -44,12 +44,13 @@ class User extends Model
         ];
     }
 
-    public function getLanguageById(string $id): string
+    public function getLanguageLabel()
     {
-        $languages = Config::listLanguage();
-        if (!empty($languages[$id])) {
-
+        $languages = Config::listLanguageWithNotSet();
+        if (isset($languages[$this->language])) {
+            return $languages[$this->language];
         }
+        return $this->language;
     }
 
     /**

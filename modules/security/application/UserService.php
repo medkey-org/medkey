@@ -51,11 +51,18 @@ class UserService extends ApplicationService implements UserServiceInterface
         return User::findOne($id);
     }
 
+    /**
+     * Can return empty string (necessary for default language handling)
+     * @return string
+     */
     public function getCurrentUserLanguage(): ?string
     {
         /** @var User $user */
         $user = \Yii::$app->user->identity;
-        return $user->language;
+        if ($user instanceof User && (!empty(trim($user->language)))) {
+            return $user->language;
+        }
+        return '';
     }
 
     /**
