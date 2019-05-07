@@ -71,6 +71,14 @@ class EhrRecordCard extends CardView
                     [
                         'items' => [
                             [
+                                'attribute' => 'name',
+                                'colSize' => 10,
+                            ],
+                        ],
+                    ],
+                    [
+                        'items' => [
+                            [
                                 'colSize' => 10,
                                 'attribute' => 'datetime',
                                 'scenarios' => [

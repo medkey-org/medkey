@@ -28,7 +28,7 @@ class EhrRecord extends Model
     public function rules()
     {
         return [
-            [ ['ehr_id', 'employee_id'], 'required',],
+            [ ['ehr_id', 'employee_id', 'name'], 'required',],
             [ ['ehr_id', 'employee_id'], ForeignKeyValidator::class ],
             [ ['template', 'conclusion', 'name', 'complaints', 'diagnosis', 'recommendations'], 'string' ],
             [ 'preliminary', 'boolean'],
