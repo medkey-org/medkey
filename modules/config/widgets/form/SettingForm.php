@@ -2,8 +2,9 @@
 namespace app\modules\config\widgets\form;
 
 use app\common\helpers\Html;
+use app\common\helpers\Url;
 use app\common\widgets\FormWidget;
-use app\common\wrappers\DynamicModal;
+use app\common\wrappers\Block;
 use app\modules\config\application\ConfigServiceInterface;
 use app\modules\config\ConfigModule;
 use app\modules\config\models\orm\Config;
@@ -11,13 +12,24 @@ use yii\base\DynamicModel;
 
 class SettingForm extends FormWidget
 {
+    /**
+     * @var ConfigServiceInterface
+     */
     public $configService;
+    public $afterRedirect = true;
+    public $redirectUrl = '';
+    public $wrapper = true;
 
     /**
      * @var DynamicModel
      */
     protected $model;
 
+    /**
+     * SettingForm constructor.
+     * @param ConfigServiceInterface $configService
+     * @param array $config
+     */
     public function __construct(ConfigServiceInterface $configService, array $config = [])
     {
         $this->configService = $configService;
@@ -35,8 +47,7 @@ class SettingForm extends FormWidget
             $attributes[$config->key] = $config->value;
         }
         $this->model = new DynamicModel($attributes);
-//        $this->action = Url::to(['', 'id' => $this->model->id]);
-//        $this->validationUrl = Url::to(['', 'id' => $this->model->id]);
+        $this->action = Url::to(['/config/rest/setting/save']);
         parent::init();
     }
 
@@ -64,8 +75,8 @@ class SettingForm extends FormWidget
     public function wrapperOptions()
     {
         return [
-            'wrapperClass' => DynamicModal::class,
-            'header' => ConfigModule::t('common', 'Setting'),
+            'wrapperClass' => Block::class,
+            'header' => ConfigModule::t('common', 'Settings'),
         ];
     }
 }

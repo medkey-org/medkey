@@ -2,6 +2,7 @@
 namespace app\modules\config\models\orm;
 
 use app\common\db\ActiveRecord;
+use app\modules\config\ConfigModule;
 
 /**
  * Class Config
@@ -16,8 +17,19 @@ class Config extends ActiveRecord
     public static function listLanguage(): array
     {
         return [
-            self::LANG_EN => 'English',
-            self::LANG_RU => 'Russian',
+            self::LANG_EN => ConfigModule::t('common','English'),
+            self::LANG_RU => ConfigModule::t('common','Russian'),
+        ];
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function rules()
+    {
+        return [
+            [ 'key', 'unique' ],
+            [ ['key', 'value', ], 'string' ],
         ];
     }
 }
