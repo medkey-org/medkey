@@ -20,7 +20,7 @@ return [
     'Visit type' => 'Тип приёма',
     'Repeated visit' => 'Повторная явка',
     'Preliminary diagnosis' => 'Предварительный диагноз',
-    'Recommendations' => 'Рекоммендации',
+    'Recommendations' => 'Рекомендации',
     'Complaints' => 'Жалобы и симптомы',
     'Diagnosis' => 'Диагноз',
     'EHR list' => 'Просмотр списка ЭМК',
