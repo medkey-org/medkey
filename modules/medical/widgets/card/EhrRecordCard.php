@@ -105,7 +105,7 @@ class EhrRecordCard extends CardView
                                 'scenarios' => [
                                     'default' => [
                                         'value' => function (EhrRecord $model) {
-                                            return Html::encode(\Yii::$app->formatter->asDatetime($model->datetime . date_default_timezone_get(), CommonHelper::FORMAT_DATETIME_UI));
+                                            return Html::encode(\Yii::$app->formatter->asDatetime($model->revisit . date_default_timezone_get(), CommonHelper::FORMAT_DATETIME_UI));
                                         }
                                     ],
                                     'create' => [
@@ -130,6 +130,7 @@ class EhrRecordCard extends CardView
                         'items' => [
                             [
                                 'colSize' => 10,
+                                'multiline' => true,
                                 'attribute' => 'complaints',
                                 'scenarios' => [
                                     'create' => [
@@ -154,6 +155,7 @@ class EhrRecordCard extends CardView
                         'items' => [
                             [
                                 'colSize' => 10,
+                                'multiline' => true,
                                 'attribute' => 'diagnosis',
                                 'scenarios' => [
                                     'create' => [
@@ -178,6 +180,7 @@ class EhrRecordCard extends CardView
                         'items' => [
                             [
                                 'colSize' => 10,
+                                'multiline' => true,
                                 'attribute' => 'conclusion',
                                 'scenarios' => [
                                     'create' => [
@@ -202,6 +205,7 @@ class EhrRecordCard extends CardView
                         'items' => [
                             [
                                 'colSize' => 10,
+                                'multiline' => true,
                                 'attribute' => 'recommendations',
                                 'scenarios' => [
                                     'create' => [
