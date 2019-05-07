@@ -6,6 +6,7 @@ use app\common\helpers\CommonHelper;
 use app\common\helpers\Html;
 use app\common\helpers\Url;
 use app\common\widgets\ActiveForm;
+use app\common\wrappers\Block;
 use app\common\wrappers\DynamicModal;
 use app\modules\medical\application\EhrServiceInterface;
 use app\modules\medical\MedicalModule;
@@ -29,7 +30,7 @@ class EhrRecordCard extends CardView
     /**
      * @var bool
      */
-    public $wrapper = false;
+    public $wrapper = true;
     /**
      * @var EhrServiceInterface
      */
@@ -366,9 +367,8 @@ class EhrRecordCard extends CardView
     public function wrapperOptions()
     {
         return [
-            'wrapperClass' => DynamicModal::class,
+            'wrapperClass' => Block::class,
             'header' => MedicalModule::t('ehr', 'EHR record'),
-            'size' => 'modal-lg'
         ];
     }
 }

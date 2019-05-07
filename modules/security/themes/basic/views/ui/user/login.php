@@ -25,7 +25,7 @@ echo Html::beginDiv([
 echo Html::beginDiv([
     'class' => 'panel-heading',
 ]);
-echo '<div style="text-align: center; font-size: 18px;">' . getenv('COMMON_WEB_TITLE') . '</div>';
+echo '<div style="text-align: center; font-size: 18px;">' . \Yii::t('app', \Yii::$container->get(\app\modules\config\application\ConfigServiceInterface::class)->getApplicationTitle()) . '</div>';
 echo Html::endDiv();
 echo Html::beginDiv([
     'class' => 'panel-body',

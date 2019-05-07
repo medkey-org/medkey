@@ -57,11 +57,19 @@ class SettingForm extends FormWidget
     {
         $attributes = $this->model->attributes();
         foreach ($attributes as $attribute) {
-            echo $form
-                ->field($model, $attribute)
-                ->select2(Config::listLanguage(), [], [
-                    'allowClear' => false,
-                ]);
+            if ($attribute === 'language') {
+                echo $form
+                    ->field($model, $attribute)
+                    ->select2(Config::listLanguage(), [], [
+                        'allowClear' => false,
+                    ])
+                    ->label(ConfigModule::t('common', 'Language'));
+            }
+            if ($attribute === 'application_title') {
+                echo $form
+                    ->field($model, $attribute)
+                    ->label(ConfigModule::t('common', 'Application title'));
+            }
         }
         echo Html::submitButton(ConfigModule::t('common', 'Save'), [
             'class' => 'btn btn-primary',

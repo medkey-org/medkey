@@ -40,7 +40,7 @@ AppAsset::register($this);
     <?php
     if(!Yii::$app->user->getIsGuest()) {
         NavBar::begin([
-            'brandLabel' => \Yii::t('app', 'Medkey'),
+            'brandLabel' => \Yii::t('app', \Yii::$container->get(\app\modules\config\application\ConfigServiceInterface::class)->getApplicationTitle()),
             'brandUrl' => Yii::$app->homeUrl,
             'innerContainerOptions' => [
                 'class' => 'container-fluid',
@@ -113,6 +113,11 @@ AppAsset::register($this);
                         || \Yii::$container->get(\app\modules\workplan\application\WorkplanServiceInterface::class)->isAllowed('getWorkplanList')
                         || \Yii::$container->get(\app\modules\location\application\LocationServiceInterface::class)->isAllowed('getLocationList'),
                     'items' => [
+                        [
+                            'label' => \Yii::t('app', 'Common settings'),
+                            'url' => ['/config/ui/setting/index'],
+                            'visible' => \Yii::$container->get(\app\modules\config\application\ConfigServiceInterface::class)->isAllowed('getAllSettings'),
+                        ],
                         [
                             'label' => \Yii::t('app', 'Directories'),
                             'url' => ['/config/ui/directory/index'],

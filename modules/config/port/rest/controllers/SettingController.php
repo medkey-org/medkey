@@ -30,6 +30,7 @@ class SettingController extends Controller
 
         $form = new DynamicModel($attributes);
         $form->addRule('language', 'string'); // todo автоматизировать
+        $form->addRule('application_title', 'string');
         $form->load($data);
 
         $this->configService->saveSettings($form);
