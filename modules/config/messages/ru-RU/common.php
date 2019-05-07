@@ -6,4 +6,5 @@ return [
     'Directories' => 'Справочники',
     'Russian' => 'Русский',
     'English' => 'Английский',
+    'Settings' => 'Настройки',
 ];

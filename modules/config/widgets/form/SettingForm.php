@@ -19,7 +19,6 @@ class SettingForm extends FormWidget
     public $afterRedirect = true;
     public $redirectUrl = '';
     public $wrapper = true;
-
     /**
      * @var DynamicModel
      */

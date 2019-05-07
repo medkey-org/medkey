@@ -33,7 +33,5 @@ class SettingController extends Controller
         $form->load($data);
 
         $this->configService->saveSettings($form);
-
-//        return $this->success('Success saved settings');
     }
 }
