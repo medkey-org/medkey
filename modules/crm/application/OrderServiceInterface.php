@@ -43,4 +43,6 @@ interface OrderServiceInterface
     public function getOrderById($orderId);
     public function getOrderItemList($form);
     public function getOrderItemForm($raw, $scenario = 'create');
+    public function updateOrderItem($id, $form);
+    public function createOrderItem($form);
 }

@@ -19,7 +19,7 @@ class OrderItemUpdateForm extends OrderItemCreateForm
     {
         $this->model = $this->orderService->getOrderItemForm($this->model, 'update');
         $this->action = ['/crm/rest/order-item/update', 'id' => $this->model->id];
-        $this->validationUrl = ['/crm/rest/order-item/update', 'id' => $this->model->id];
+        $this->validationUrl = ['/crm/rest/order-item/validate-update', 'id' => $this->model->id];
         FormWidget::init();
     }
 

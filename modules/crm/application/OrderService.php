@@ -127,8 +127,39 @@ class OrderService extends ApplicationService implements OrderServiceInterface
         $model = new OrderItem(['scenario' => 'create']);
         $model->loadForm($form);
         $model->currency = $order->currency;
-        $model->save();
-        $this->recalculationOrder($order->id);
+        $transaction = \Yii::$app->db->beginTransaction();
+        try {
+            if (!$model->save()) {
+                throw new ApplicationServiceException('Error create order item');
+            }
+            $this->recalculationOrder($order->id);
+            $transaction->commit();
+        } catch (\Throwable $e) {
+            $transaction->rollBack();
+            throw $e;
+        }
+        return $model;
+    }
+
+    public function updateOrderItem($id, $form)
+    {
+        if (!$form instanceof OrderItemForm) {
+            throw new ApplicationServiceException('Error update order item');
+        }
+        $order = Order::findOneEx($form->order_id);
+        $model = OrderItem::findOneEx($id);
+        $model->loadForm($form);
+        $transaction = \Yii::$app->db->beginTransaction();
+        try {
+            if (!$model->save()) {
+                throw new ApplicationServiceException('Error update order item');
+            }
+            $this->recalculationOrder($order->id);
+            $transaction->commit();
+        } catch (\Throwable $e) {
+            $transaction->rollBack();
+            throw $e;
+        }
         return $model;
     }
 
