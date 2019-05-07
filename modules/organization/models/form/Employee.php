@@ -113,9 +113,9 @@ class Employee extends Model
             return null;
         }
         foreach ($this->{$attribute} as $index => $row) {
-//            if ($index === 0) { // not required first row
-//                continue;
-//            }
+            if ($index === 0) { // not required first row
+                continue;
+            }
             $error = null;
             $requireValidator->validate($row['type'], $error);
             if (!empty($error)) {

@@ -350,8 +350,17 @@ class EmployeeCard extends CardView
                                                         'enableError' => true,
                                                     ],
                                                     [
+                                                        'type' => MaskedInput::class,
                                                         'name'  => 'address',
                                                         'title' => \Yii::t('app', 'Address'),
+                                                        'options' => [
+                                                            'options' => [
+                                                                'class' => 'form-control',
+                                                            ],
+                                                            'clientOptions' => [
+                                                                'alias' => 'email'
+                                                            ],
+                                                        ],
                                                         'enableError' => true,
                                                     ],
                                                 ],
@@ -370,8 +379,17 @@ class EmployeeCard extends CardView
                                                         'enableError' => true,
                                                     ],
                                                     [
+                                                        'type' => MaskedInput::class,
                                                         'name'  => 'address',
                                                         'title' => \Yii::t('app', 'Address'),
+                                                        'options' => [
+                                                            'options' => [
+                                                                'class' => 'form-control',
+                                                            ],
+                                                            'clientOptions' => [
+                                                                'alias' => 'email'
+                                                            ],
+                                                        ],
                                                         'enableError' => true,
                                                     ],
                                                 ],
