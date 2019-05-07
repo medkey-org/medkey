@@ -33,7 +33,6 @@ class DirectoryUpdateForm extends FormWidget
      */
     private $directory;
 
-
     /**
      * DirectoryUpdateForm constructor.
      * @param DirectoryEntity $entity
@@ -44,6 +43,7 @@ class DirectoryUpdateForm extends FormWidget
         $this->entity = $entity;
         parent::__construct($config);
     }
+
     /**
      * @inheritdoc
      */
