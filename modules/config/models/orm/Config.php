@@ -10,4 +10,14 @@ use app\common\db\ActiveRecord;
  */
 class Config extends ActiveRecord
 {
+    const LANG_RU = 'ru-RU';
+    const LANG_EN = 'en-US';
+
+    public static function listLanguage(): array
+    {
+        return [
+            self::LANG_EN => 'English',
+            self::LANG_RU => 'Russian',
+        ];
+    }
 }

@@ -3,6 +3,7 @@ namespace app\modules\security\models\form;
 
 use app\common\base\Model;
 use app\common\validators\ForeignKeyValidator;
+use app\modules\config\models\orm\Config;
 use app\modules\security\models\orm\User as UserOrm;
 use app\modules\security\SecurityModule;
 
@@ -45,18 +46,10 @@ class User extends Model
 
     public function getLanguageById(string $id): string
     {
-        $languages = $this::listLanguage();
+        $languages = Config::listLanguage();
         if (!empty($languages[$id])) {
 
         }
-    }
-
-    public static function listLanguage(): array
-    {
-        return [
-            UserOrm::LANG_EN => 'English',
-            UserOrm::LANG_RU => 'Russian',
-        ];
     }
 
     /**

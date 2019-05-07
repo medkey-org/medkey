@@ -24,9 +24,6 @@ use yii\web\IdentityInterface;
  */
 class User extends ActiveRecord implements IdentityInterface
 {
-    const LANG_RU = 'ru-RU';
-    const LANG_EN = 'en-US';
-
     const SCENARIO_CHANGE_PASSWORD = 'change-password';
     const STATUS_ACTIVE = 1;
     const STATUS_INACTIVE = 2;

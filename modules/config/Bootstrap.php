@@ -1,6 +1,8 @@
 <?php
 namespace app\modules\config;
 
+use app\modules\config\application\ConfigService;
+use app\modules\config\application\ConfigServiceInterface;
 use app\modules\config\application\DirectoryService;
 use app\modules\config\application\DirectoryServiceInterface;
 use app\modules\config\application\WorkflowServiceInterface;
@@ -19,7 +21,7 @@ use yii\base\BootstrapInterface;
 class Bootstrap implements BootstrapInterface
 {
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function bootstrap($app)
     {
@@ -28,6 +30,7 @@ class Bootstrap implements BootstrapInterface
             WorkflowServiceInterface::class => WorkflowService::class,
             WorkflowStatusServiceInterface::class => WorkflowStatusService::class,
             WorkflowTransitionServiceInterface::class => WorkflowTransitionService::class,
+            ConfigServiceInterface::class => ConfigService::class,
         ]);
     }
 }

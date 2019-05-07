@@ -7,6 +7,7 @@ use app\common\card\CardView;
 use app\common\helpers\Html;
 use app\common\helpers\Url;
 use app\common\widgets\ActiveForm;
+use app\modules\config\models\orm\Config;
 use app\modules\organization\widgets\grid\EmployeeGrid;
 use app\modules\security\application\UserServiceInterface;
 use app\modules\security\models\orm\AclRole;
@@ -168,7 +169,7 @@ class UserCard extends CardView
                                         'value' => function (UserForm $model, ActiveForm $form) {
                                             return $form
                                                 ->field($model, 'language')
-                                                ->select2(UserForm::listLanguage())
+                                                ->select2(Config::listLanguage())
                                                 ->label(false);
                                         }
                                     ],
@@ -176,7 +177,7 @@ class UserCard extends CardView
                                         'value' => function (UserForm $model, ActiveForm $form) {
                                             return $form
                                                 ->field($model, 'language')
-                                                ->select2(UserForm::listLanguage())
+                                                ->select2(Config::listLanguage())
                                                 ->label(false);
                                         }
                                     ],
