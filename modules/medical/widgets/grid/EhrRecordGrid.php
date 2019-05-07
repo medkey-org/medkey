@@ -79,7 +79,7 @@ class EhrRecordGrid extends GridView
             [
                 'attribute' => 'name',
                 'value' => function (EhrRecord $model) {
-                    return Html::a($model->name, Url::to(['/medical/ui/ehr-record/view', 'id' => $model->id, 'ehrId' => $model->ehr_id]));
+                    return Html::a($model->name, Url::to(['/medical/ui/ehr-record/view', 'scenario'=> 'default', 'id' => $model->id, 'ehrId' => $model->ehr_id]));
                 },
                 'options' => [
                     'class' => 'col-xs-2',
