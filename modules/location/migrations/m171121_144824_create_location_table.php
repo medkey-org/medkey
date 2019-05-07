@@ -10,7 +10,7 @@ use app\common\db\Migration;
 class m171121_144824_create_location_table extends Migration
 {
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function safeUp()
     {
@@ -24,7 +24,7 @@ class m171121_144824_create_location_table extends Migration
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function safeDown()
     {
