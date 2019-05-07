@@ -11,6 +11,11 @@ use app\modules\medical\application\EhrServiceInterface;
 use app\modules\medical\MedicalModule;
 use app\modules\medical\models\form\EhrRecord;
 
+/**
+ * Class EhrController
+ * @package Module\Medical
+ * @copyright 2012-2019 Medkey
+ */
 class EhrRecordCard extends CardView
 {
     /**
@@ -24,7 +29,7 @@ class EhrRecordCard extends CardView
     /**
      * @var bool
      */
-    public $wrapper = true;
+    public $wrapper = false;
     /**
      * @var EhrServiceInterface
      */
@@ -52,14 +57,6 @@ class EhrRecordCard extends CardView
             'action' => Url::to(['/medical/rest/ehr-record/' . $this->model->scenario, 'id' => $this->model->id]),
             'validationUrl' => Url::to(['/medical/rest/ehr-record/validate-' . $this->model->scenario, 'id' => $this->model->id]),
         ]);
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function visibleScenarioButtons()
-    {
-        return [];
     }
 
     /**
@@ -98,7 +95,7 @@ class EhrRecordCard extends CardView
                                 ],
                             ],
                            [
-                                'attribute' => 'revist',
+                                'attribute' => 'revisit',
                                 'scenarios' => [
                                     'default' => [
                                         'value' => function (EhrRecord $model) {
@@ -107,14 +104,14 @@ class EhrRecordCard extends CardView
                                     ],
                                     'create' => [
                                         'value' => function (EhrRecord $model, ActiveForm $form) {
-                                            return $form->field($model, 'revist')
+                                            return $form->field($model, 'revisit')
                                                 ->dateTimeInput()
                                                 ->label(false);
                                         }
                                     ],
                                     'update' => [
                                         'value' => function (EhrRecord $model, ActiveForm $form) {
-                                            return $form->field($model, 'revist')
+                                            return $form->field($model, 'revisit')
                                                 ->dateTimeInput(['disabled' => true])
                                                 ->label(false);
                                         }
@@ -309,7 +306,7 @@ class EhrRecordCard extends CardView
                                             ])
                                             . '&nbsp' . Html::button(\Yii::t('app', 'Cancel'), [
                                                 'class' => 'btn btn-default',
-                                                'data-dismiss' => 'modal'
+                                                'data-card-switch' => 'default'
                                             ])
                                     ],
                                     'create' => [
@@ -321,7 +318,7 @@ class EhrRecordCard extends CardView
                                             ])
                                             . '&nbsp' . Html::button(\Yii::t('app', 'Cancel'), [
                                                 'class' => 'btn btn-default',
-                                                'data-dismiss' => 'modal'
+                                                'data-card-switch' => 'default'
                                             ])
                                     ],
                                 ],

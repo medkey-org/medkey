@@ -19,7 +19,7 @@ class EhrRecord extends Model
     public $diagnosis;
     public $recommendations;
     public $preliminary;
-    public $revist;
+    public $revisit;
 
     /**
      * {@inheritdoc}
@@ -32,7 +32,7 @@ class EhrRecord extends Model
             [ ['template', 'conclusion', 'name', 'complaints', 'diagnosis', 'recommendations'], 'string' ],
             [ 'preliminary', 'boolean'],
             [ ['type'], 'integer' ],
-            [ ['revist', 'datetime'],
+            [ ['revisit', 'datetime'],
                 'datetime',
                 'skipOnEmpty' => true,
                 'format' => CommonHelper::FORMAT_DATETIME_UI,

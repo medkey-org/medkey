@@ -33,7 +33,7 @@ class EhrRecord extends ActiveRecord
             [ ['template', 'conclusion', 'name', 'complaints', 'diagnosis', 'recommendations'], 'string' ],
             [ ['type'], 'integer' ],
             [ 'preliminary', 'boolean'],
-            [ ['revist', 'datetime'],
+            [ ['revisit', 'datetime'],
                 'datetime',
                 'skipOnEmpty' => true,
                 'format' => CommonHelper::FORMAT_DATETIME_DB,
