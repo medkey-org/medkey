@@ -94,12 +94,12 @@ class Ehr extends ActiveRecord
     }
 
     /**
-     * @return array
+     * {@inheritdoc}
      */
     public function attributeLabelsOverride()
     {
         return [
-            'number' => MedicalModule::t('ehr', 'Number'),
+            'number' => MedicalModule::t('ehr', 'EHR number'),
             'status' => MedicalModule::t('ehr','Status'),
             'type' => MedicalModule::t('ehr','EHR type'),
             'patient_id' => MedicalModule::t('ehr','Patient'),

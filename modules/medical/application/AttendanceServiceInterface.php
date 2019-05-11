@@ -17,7 +17,7 @@ interface AttendanceServiceInterface
      * @param string|integer $id
      * @return Attendance
      */
-    public function getAttendanceById($id): Attendance;
+    public function getAttendanceById($id) : ?Attendance;
 
     /**
      * @param string|integer $ehrId
@@ -25,14 +25,14 @@ interface AttendanceServiceInterface
      * @param $datetime
      * @return string Record Id or empty string
      */
-    public function checkRecordByDatetime(string $ehrId, string $employeeId, $datetime): string;
+    public function getAttendanceByEhrIdAndEmployeeIdAndDatetime(string $ehrId, string $employeeId, $datetime) : ?Attendance;
 
     /**
      * @param string|integer $attendanceId
      * @param string|integer $referralId
      * @return Attendance
      */
-    public function cancelAttendance(string $attendanceId, string $referralId): Attendance;
+    public function cancelAttendance(string $attendanceId, string $referralId) : Attendance;
 
     /**
      * @param \yii\base\Model $form

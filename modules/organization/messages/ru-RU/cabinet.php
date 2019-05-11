@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'Number' => 'Номер',
+    'Cabinet number' => 'Номер кабинета',
     'Description' => 'Описание',
     'Organization' => 'Организация',
     'Department' => 'Подразделение',

@@ -85,7 +85,7 @@ class Workplan extends Model
     {
         return [
             [ 'weekIds', 'required', ],
-            [ ['since_date', 'expire_date', 'since_time', 'expire_time'], 'required', ],
+            [ ['since_date', 'expire_date', 'since_time', 'expire_time', 'cabinet_id',], 'required', ],
             [ 'weekIds', 'safe' ], // todo each validator
             [ ['since_date', 'expire_date'], 'date', 'format' => CommonHelper::FORMAT_DATE_UI ],
             [ ['since_time', 'expire_time'], 'date', 'format' => CommonHelper::FORMAT_TIME_UI ],

@@ -39,7 +39,8 @@ var Medical_MedworkerSchedule = View.extend({
                 employeeId: _this.params['config']['employeeId'],
                 ehrId: _this.params['config']['ehrId'],
                 referralId: _this.params['config']['referralId'],
-                datetime: _this.options['datetime']
+                datetime: _this.options['datetime'],
+                cabinetId: _this.options['cabinetId'],
             };
         }
         $this.loading('start');
@@ -65,6 +66,7 @@ var Medical_MedworkerSchedule = View.extend({
         _this.options['datetime'] = target.data('datetime');
         if (!target.hasClass('record')) {
             _this.options['attendance_id'] = null;
+            _this.options['cabinetId'] = target.data('cabinet_id');
             $recordButton.text('Записать на ' + _this.options['datetime']);
         } else {
             _this.options['attendance_id'] = target.data('attendance_id');

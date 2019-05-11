@@ -14,7 +14,9 @@ use app\common\wrappers\Block;
 use app\modules\medical\application\PatientServiceInterface;
 use app\modules\medical\MedicalModule;
 use app\modules\medical\models\form\Patient;
+use app\modules\medical\widgets\grid\AttendanceGrid;
 use app\modules\medical\widgets\grid\EhrGrid;
+use app\modules\medical\widgets\grid\PatientAttendanceGrid;
 use app\modules\medical\widgets\grid\PolicyGrid;
 use yii\helpers\HtmlPurifier;
 use yii\widgets\MaskedInput;
@@ -52,7 +54,7 @@ class PatientCard extends CardView
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function init()
     {
@@ -65,7 +67,7 @@ class PatientCard extends CardView
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function title()
     {
@@ -73,7 +75,7 @@ class PatientCard extends CardView
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function dataGroups()
     {
@@ -635,7 +637,7 @@ class PatientCard extends CardView
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function subpanels()
     {
@@ -656,11 +658,19 @@ class PatientCard extends CardView
                 },
                 'header' => MedicalModule::t('common', 'Policies'),
             ],
+            'attendance' => [
+                'value' => function ($model) {
+                    return PatientAttendanceGrid::widget([
+                        'patientId' => $model->id
+                    ]);
+                },
+                'header' => MedicalModule::t('common', 'Attendances'),
+            ],
         ];
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function wrapperOptions()
     {

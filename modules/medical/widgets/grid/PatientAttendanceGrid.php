@@ -9,27 +9,23 @@ use app\common\helpers\ArrayHelper;
 use app\common\helpers\CommonHelper;
 use app\common\helpers\Html;
 use app\common\helpers\Url;
-use app\modules\medical\models\finders\AttendanceFilter;
-use app\modules\medical\models\orm\Attendance;
-use app\modules\medical\models\orm\Ehr;
 use app\modules\medical\application\AttendanceServiceInterface;
 use app\modules\medical\application\EhrServiceInterface;
 use app\modules\medical\application\PatientServiceInterface;
-use app\modules\medical\application\ReferralServiceInterface;
+use app\modules\medical\MedicalModule;
+use app\modules\medical\models\finders\PatientAttendanceFilter;
+use app\modules\medical\models\orm\Attendance;
+use app\modules\medical\models\orm\Ehr;
 use app\modules\medical\models\orm\Patient;
+use app\modules\organization\models\orm\Cabinet;
 use app\modules\organization\models\orm\Employee;
 use kartik\select2\Select2;
 use yii\web\JsExpression;
 
-/**
- * Class AttendanceGrid
- * @package Module\Medical
- * @copyright 2012-2019 Medkey
- */
-class AttendanceGrid extends GridView
+class PatientAttendanceGrid extends GridView
 {
     /**
-     * @var AttendanceFilter
+     * @var PatientAttendanceFilter
      */
     public $filterModel;
     /**
@@ -37,15 +33,7 @@ class AttendanceGrid extends GridView
      */
     public $attendanceService;
     /**
-     * @var ReferralServiceInterface
-     */
-    public $referralService;
-    /**
-     * @var string|int
-     */
-    public $referralId;
-    /**
-     * @var string|int
+     * @var string
      */
     public $patientId;
     /**
@@ -59,14 +47,12 @@ class AttendanceGrid extends GridView
 
     /**
      * AttendanceGrid constructor.
-     * @param ReferralServiceInterface $referralService
      * @param AttendanceServiceInterface $attendanceService
      * @param array $config
      */
-    public function __construct(ReferralServiceInterface $referralService, AttendanceServiceInterface $attendanceService, array $config = [])
+    public function __construct(AttendanceServiceInterface $attendanceService, array $config = [])
     {
         $this->attendanceService = $attendanceService;
-        $this->referralService = $referralService;
         parent::__construct($config);
     }
 
@@ -75,8 +61,7 @@ class AttendanceGrid extends GridView
      */
     public function init()
     {
-        $this->filterModel = AttendanceFilter::ensure($this->filterModel, 'search', $this->formData);
-        $this->filterModel->referralId = $this->referralId;
+        $this->filterModel = PatientAttendanceFilter::ensure($this->filterModel, 'search', $this->formData);
         $this->filterModel->patientId = $this->patientId;
         $this->dataProvider = $this->attendanceService->getAttendanceList($this->filterModel);
         $this->actionButtons['create'] = [
@@ -123,7 +108,23 @@ class AttendanceGrid extends GridView
                 ],
             ],
             [
-                'attribute' => 'employee_id',
+                'attribute' => 'cabinet.number',
+                'value' => function (Attendance $model) {
+                    if (!$model->cabinet instanceof Cabinet) {
+                        return '';
+                    }
+                    return $model->cabinet->number;
+                },
+                'filter' => function () {
+                    return Html::activeTextInput($this->filterModel, 'cabinetNumber', ['class' => 'form-control']);
+                },
+                'format' => 'html',
+                'options' => [
+                    'class' => 'col-xs-2'
+                ],
+            ],
+            [
+                'attribute' => 'employee.fullName',
                 'value' => function (Attendance $model) {
                     if ($model->employee instanceof Employee) {
                         return $model->employee->fullName;
@@ -146,7 +147,7 @@ class AttendanceGrid extends GridView
                 }
             ],
             [
-                'attribute' => 'ehr_id',
+                'attribute' => 'ehr.number',
                 'value' => function (Attendance $model) {
                     if (!$model->ehr instanceof Ehr) {
                         return '';
@@ -192,51 +193,6 @@ class AttendanceGrid extends GridView
                 'format' => 'html',
             ],
             [
-                'attribute' => 'patient_id',
-                'value' => function (Attendance $model) {
-                    if (!$model->ehr instanceof Ehr || !$model->ehr->patient instanceof Patient) {
-                        return '';
-                    }
-                    return $model->ehr->patient->fullName;
-                },
-                'filter' => function () {
-                    $data = [];
-                    if (!empty($this->filterModel->patientId)) {
-                        $data = ArrayHelper::map(
-                            [\Yii::$container->get(PatientServiceInterface::class)->getPatientById($this->filterModel->patientId)],
-                            'id',
-                            'fullName'
-                        );
-                    }
-                    return Select2::widget([
-                        'model' => $this->filterModel,
-                        'attribute' => 'patientId',
-                        'data' => $data,
-                        'options' => [
-                            'id' => UniqueKey::generate('patientId'),
-                            'placeholder' => \Yii::t('app', 'Select value...'),
-                        ],
-                        'pluginOptions' => [
-                            'allowClear' => true,
-                            'minimumInputLength' => 1,
-                            'language' => [
-                                'errorLoading' => new JsExpression("function () { return 'Ничего не найдено.'; }"),
-                            ],
-                            'ajax' => [
-                                'url' => Url::to(['/medical/rest/patient/index']),
-                                'dataType' => 'json',
-                                'delay' => 1000,
-                                'data' => new JsExpression('function (params) { return {q:params.term, page: params.page || 1}; }'),
-                                'processResults' => new JsExpression('function (data, params) { return { results: data, pagination: {more: (params.page * 10) < data.count_filtered}}; }')
-                            ],
-                            'escapeMarkup' => new JsExpression('function (markup) { return markup; }'),
-                            'templateResult' => new JsExpression('function (patient) { if (patient.loading) { return patient.text; } else {return patient.last_name + " " + patient.first_name + " " + patient.middle_name;} }'),
-                            'templateSelection' => new JsExpression('function (patient) { if (patient.last_name) {return patient.last_name + " " + patient.first_name + " " + patient.middle_name;} else { return patient.text;} }'),
-                        ]
-                    ]);
-                }
-            ],
-            [
                 'attribute' => 'status',
                 'value' => function (Attendance $model) {
                     return $model->getStatusName();
@@ -260,31 +216,6 @@ class AttendanceGrid extends GridView
                     );
                 },
                 'format' => 'html',
-            ],
-            [
-                'attribute' => 'type',
-                'value' => function (Attendance $model) {
-                    return $model->typeName();
-                },
-                'filter' => function () {
-                    return Html::activeSelect2Input(
-                        $this->filterModel,
-                        'type',
-                        Attendance::types(),
-                        [
-                            'class' => 'form-control',
-                            'empty' => true,
-                            'placeholder' => \Yii::t('app', 'Select value...'),
-                        ],
-                        [
-                            'allowClear' => true,
-                            'language' => [
-                                'errorLoading' => new JsExpression("function () { return 'Ничего не найдено.'; }"),
-                            ],
-                        ]
-                    );
-                },
-                'format' => 'html'
             ],
         ];
         parent::init();

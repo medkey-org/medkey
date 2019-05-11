@@ -42,7 +42,6 @@ class MedworkerSchedule extends Widget
      */
     private $attendanceService;
 
-
     /**
      * MedworkerSchedule constructor.
      * @param WorkplanServiceInterface $workplanService
@@ -52,26 +51,26 @@ class MedworkerSchedule extends Widget
     public function __construct(
         WorkplanServiceInterface $workplanService,
         AttendanceServiceInterface $attendanceService,
-
         array $config = []
-    ) {
+    )
+    {
         $this->attendanceService = $attendanceService;
         $this->workplanService = $workplanService;
         parent::__construct($config);
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function init()
     {
-        !empty($this->date) ? \Yii::$app->formatter->asDate($this->date, CommonHelper::FORMAT_DATE_DB)  : $this->date = (new \DateTime())->format('Y-m-d');
+        !empty($this->date) ? \Yii::$app->formatter->asDate($this->date, CommonHelper::FORMAT_DATE_DB) : $this->date = (new \DateTime())->format('Y-m-d');
         $this->options['class'] = 'medworker-schedule';
         parent::init();
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function run()
     {
@@ -81,26 +80,30 @@ class MedworkerSchedule extends Widget
 
     private function renderWorktime()
     {
-        $workTimes = $this->workplanService->getScheduleMedworkerTimes($this->employeeId, $this->date);
-        if (!is_array($workTimes)) {
+        $scheduleTimes = $this->workplanService->getScheduleMedworkerTimes($this->employeeId, $this->date);
+        if (!is_array($scheduleTimes)) {
             throw new InvalidValueException('var is not array.');
         }
-        if (empty($workTimes)) {
+        if (empty($scheduleTimes)) {
             echo '<h5>Нет доступных записей.</h5>';
         }
-        foreach ($workTimes as $workTime) {
-            $sinceTime = $workTime;
-            $expireTime = (int)\Yii::$app->formatter->asTimestamp($workTime . date_default_timezone_get()) + Attendance::ATTENDANCE_DURATION;
-            $expireTime = \Yii::$app->formatter->asTime($expireTime, CommonHelper::FORMAT_TIME_UI);
-            $datetime = $this->date . ' ' . $workTime;
-            $check = $this->attendanceService->checkRecordByDatetime($this->ehrId, $this->employeeId, $datetime);
-            $opt = ['class' => 'employee-schedule-time'];
-            empty($check) ?: $opt['data-attendance_id'] = $check;
-            empty($check) ?: Html::addCssClass($opt, 'record');
-            $opt['data-datetime'] = $datetime;
-            echo Html::beginTag('div', $opt);
-            echo $sinceTime . ' - ' . $expireTime;
-            echo Html::endTag('div');
+        foreach ($scheduleTimes as $cabinetId => $workTimes) {
+            foreach ($workTimes as $workTime) {
+                $sinceTime = $workTime;
+                $expireTime = (int)\Yii::$app->formatter->asTimestamp($workTime . date_default_timezone_get()) + Attendance::ATTENDANCE_DURATION;
+                $expireTime = \Yii::$app->formatter->asTime($expireTime, CommonHelper::FORMAT_TIME_UI);
+                $datetime = $this->date . ' ' . $workTime;
+                /** @var Attendance $attendance */
+                $attendance = $this->attendanceService->getAttendanceByEhrIdAndEmployeeIdAndDatetime($this->ehrId, $this->employeeId, $datetime);
+                $opt = ['class' => 'employee-schedule-time'];
+                empty($attendance) ?: $opt['data-attendance_id'] = $attendance->id;
+                $opt['data-cabinet_id'] = $cabinetId;
+                empty($attendance) ?: Html::addCssClass($opt, 'record');
+                $opt['data-datetime'] = $datetime;
+                echo Html::beginTag('div', $opt);
+                echo $sinceTime . ' - ' . $expireTime;
+                echo Html::endTag('div');
+            }
         }
         echo '<br>';
         echo Html::beginDiv(['class' => 'attendance-record', 'style' => 'display: none;']);

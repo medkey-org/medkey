@@ -45,7 +45,7 @@ class Widget extends \yii\bootstrap\Widget implements WidgetClientInterface, Wra
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function init()
     {
@@ -68,7 +68,7 @@ class Widget extends \yii\bootstrap\Widget implements WidgetClientInterface, Wra
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function wrapperOptions()
     {

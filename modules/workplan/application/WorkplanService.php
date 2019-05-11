@@ -1,7 +1,6 @@
 <?php
 namespace app\modules\workplan\application;
 
-use app\common\acl\resource\ApplicationResourceInterface;
 use app\common\base\Model;
 use app\common\data\ActiveDataProvider;
 use app\common\db\ActiveRecord;
@@ -175,24 +174,25 @@ class WorkplanService extends ApplicationService implements WorkplanServiceInter
     {
         $workplans = $this->getWorkplansByExistsRules($employeeId, $date);
 //        if(empty($workplans)) {
-//            return \Yii::t('app', 'Не рабочий день'); // todo english
+//            return \Yii::t('app', 'Не рабочий день');
 //        }
         $duration = Attendance::ATTENDANCE_DURATION; // seconds
-        $prepareScheduletime = [];
+        $scheduleTimes = []; // cabinet_id to times
         foreach ($workplans as $workplan) {
             $sinceTimeTs = (int)\Yii::$app->formatter->asTimestamp($workplan->since_time . date_default_timezone_get());
             $expireTimeTs = (int)\Yii::$app->formatter->asTimestamp($workplan->expire_time . date_default_timezone_get());
             $delta = $expireTimeTs - $sinceTimeTs;
             $i = 0;
+            $scheduleTimes[$workplan->cabinet_id] = [];
             while ($delta > 0) {
-                $prepareScheduletime[$i] = \Yii::$app->formatter->asTime($sinceTimeTs, CommonHelper::FORMAT_TIME_UI); // todo array_push(), bug statement in php 5.4.4
+                array_push($scheduleTimes[$workplan->cabinet_id], \Yii::$app->formatter->asTime($sinceTimeTs, CommonHelper::FORMAT_TIME_UI));
                 $sinceTimeTs = $sinceTimeTs + $duration;
                 $delta = $delta - $duration;
                 $i++;
             }
+            $scheduleTimes[$workplan->cabinet_id] = array_unique($scheduleTimes[$workplan->cabinet_id]);
         }
-        return array_unique($prepareScheduletime);
-
+        return $scheduleTimes;
     }
 
     private function checkDayInWeeks($weeks, $date)

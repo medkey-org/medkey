@@ -37,7 +37,7 @@ class Cabinet extends ActiveRecord
     public function attributeLabelsOverride()
     {
         return [
-            'number' => OrganizationModule::t('cabinet', 'Number'),
+            'number' => OrganizationModule::t('cabinet', 'Cabinet number'),
             'description' =>  OrganizationModule::t('cabinet', 'Description'),
             'organization_id' =>  OrganizationModule::t('cabinet', 'Organization'),
             'department_id' =>  OrganizationModule::t('cabinet', 'Department'),
