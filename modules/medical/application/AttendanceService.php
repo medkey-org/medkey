@@ -56,7 +56,7 @@ class AttendanceService extends ApplicationService implements AttendanceServiceI
     }
 
     /**
-     * @todo rename to bySchedule
+     * @todo delete dto entity
      * {@inheritdoc}
      */
     public function createAttendanceBySchedule(Dto $dto): Attendance
@@ -74,6 +74,7 @@ class AttendanceService extends ApplicationService implements AttendanceServiceI
         $attendance->ehr_id = $dto->ehrId;
         $attendance->employee_id = $dto->employeeId;
         $attendance->datetime = $dto->datetime;
+        $attendance->cabinet_id = empty($dto->cabinetId) ?: $dto->cabinetId;
         if (!$attendance->save()) {
             throw new ApplicationServiceException(MedicalModule::t('attendance', 'Can\'t save record. Reason: ') . Json::encode($attendance->getErrors()));
         }
@@ -107,63 +108,59 @@ class AttendanceService extends ApplicationService implements AttendanceServiceI
         if (!$this->isAllowed('getAttendanceList')) {
             throw new AccessApplicationServiceException(MedicalModule::t('attendance', 'Access restricted'));
         }
-        $query = Attendance::find();
-        if (!empty($form->patientId)) {
-            $query
-                ->distinct(true)
-                ->joinWith(['ehr.patient'])
-                ->andFilterWhere([
-                    Patient::tableColumns('id') => $form->patientId,
-                ]);
-        }
+        $query = Attendance::find()
+            ->distinct(true)
+            ->joinWith(['ehr.patient', 'cabinet'])
+            ->andFilterWhere([
+                Patient::tableColumns('id') => $form->patientId,
+            ]);
         if (!empty($form->referralId)) {
             $query
-                ->distinct(true)
                 ->joinWith(['referrals'])
                 ->andFilterWhere([
                     Referral::tableColumns('id') => $form->referralId,
                 ]);
         }
         $query
-            ->joinWith(['cabinet'])
             ->andFilterWhere([
-                'ehr_id' => $form->ehrId,
-                'employee_id' => $form->employeeId,
-                'status' => $form->status,
-                'type' => $form->type,
-                'cast(updated_at date)' =>
+                '[[attendance]].[[ehr_id]]' => $form->ehrId,
+                '[[attendance]].[[employee_id]]' => $form->employeeId,
+                '[[cabinet]].[[number]]' => $form->cabinetNumber,
+                '[[attendance]].[[status]]' => $form->status,
+                '[[attendance]].[[type]]' => $form->type,
+                'cast([[attendance]].[[updated_at]] date)' =>
                     empty($form->updatedAt) ? null : \Yii::$app->formatter->asDate($form->updatedAt, CommonHelper::FORMAT_DATE_DB),
-                'datetime' =>
+                '[[attendance]].[[datetime]]' =>
                     empty($form->datetime) ? null : \Yii::$app->formatter->asDatetime($form->datetime . date_default_timezone_get(), CommonHelper::FORMAT_DATETIME_DB)
             ]);
         return new ActiveDataProvider([
             'query' => $query,
+            'sort' => false,
+//                [
+//                'attributes' => [
+//                    'status',
+//                    'datetime',
+//                    'updated_at',
+//                    'ehr.number' => [
+//                        'asc' => [
+//                            'ehr.number' => SORT_ASC,
+//                        ],
+//                        'desc' => [
+//                            'ehr.number' => SORT_DESC,
+//                        ],
+//                    ],
+//                    'cabinet.number' => [
+//                        'asc' => [
+//                            'cabinet.number' => SORT_ASC,
+//                        ],
+//                        'desc' => [
+//                            'cabinet.number' => SORT_DESC,
+//                        ],
+//                    ],
+//                ],
+//            ],
             'pagination' => [
                 'pageSize' => 10
-            ],
-            'sort' => [
-                'attributes' => [
-                    'attendance.status',
-                    'attendance.datetime',
-                    'attendance.type',
-                    'updated_at',
-                    'ehr.number' => [
-                        'asc' => [
-                            'ehr.number' => SORT_ASC,
-                        ],
-                        'desc' => [
-                            'ehr.number' => SORT_DESC,
-                        ],
-                    ],
-                    'cabinet.number' => [
-                        'asc' => [
-                            'cabinet.number' => SORT_ASC,
-                        ],
-                        'desc' => [
-                            'cabinet.number' => SORT_DESC,
-                        ],
-                    ],
-                ],
             ],
         ]);
     }

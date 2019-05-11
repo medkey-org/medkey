@@ -13,10 +13,12 @@ use app\modules\medical\application\AttendanceServiceInterface;
 use app\modules\medical\application\EhrServiceInterface;
 use app\modules\medical\application\PatientServiceInterface;
 use app\modules\medical\MedicalModule;
+use app\modules\medical\models\finders\AttendanceFilter;
 use app\modules\medical\models\finders\PatientAttendanceFilter;
 use app\modules\medical\models\orm\Attendance;
 use app\modules\medical\models\orm\Ehr;
 use app\modules\medical\models\orm\Patient;
+use app\modules\medical\models\orm\Speciality;
 use app\modules\organization\models\orm\Cabinet;
 use app\modules\organization\models\orm\Employee;
 use kartik\select2\Select2;
@@ -57,11 +59,11 @@ class PatientAttendanceGrid extends GridView
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function init()
     {
-        $this->filterModel = PatientAttendanceFilter::ensure($this->filterModel, 'search', $this->formData);
+        $this->filterModel = AttendanceFilter::ensure($this->filterModel, 'search', $this->formData);
         $this->filterModel->patientId = $this->patientId;
         $this->dataProvider = $this->attendanceService->getAttendanceList($this->filterModel);
         $this->actionButtons['create'] = [
@@ -126,10 +128,14 @@ class PatientAttendanceGrid extends GridView
             [
                 'attribute' => 'employee.fullName',
                 'value' => function (Attendance $model) {
+                    $result = '';
                     if ($model->employee instanceof Employee) {
-                        return $model->employee->fullName;
+                        $result = $model->employee->fullName;
+                        if ($model->employee->speciality instanceof Speciality) {
+                            $result .= ' (' . $model->employee->speciality->title . ')';
+                        }
                     }
-                    return '';
+                    return $result;
                 },
                 'filter' => function () {
                     return Select2::widget([

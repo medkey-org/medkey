@@ -19,15 +19,17 @@ class AttendanceFilter extends Model
     public $referralId;
     public $patientId;
     public $employeeId;
+    public $cabinetNumber;
+    public $employeeFullName;
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function rules()
     {
         return [
             [ ['ehrId', 'referralId', 'patientId', 'employeeId', ], ForeignKeyValidator::class ],
-            [ ['datetime', 'updatedAt'], 'string', 'on' => 'search' ],
+            [ ['datetime', 'updatedAt', 'cabinetNumber', 'employeeFullName'], 'string', 'on' => 'search' ],
             [ ['status', 'type'], 'integer', 'on' => 'search' ],
         ];
     }
