@@ -39,7 +39,7 @@ class Workplan extends ActiveRecord
             ['status', 'integer'],
             [ ['employee_id', 'department_id', 'cabinet_id'],
                 ForeignKeyValidator::class ],
-            [ ['since_date', 'expire_date', 'since_time', 'expire_time', 'employee_id'],
+            [ ['since_date', 'expire_date', 'since_time', 'expire_time', 'employee_id', 'cabinet_id' ],
                 'required',
                 'on' => ['create', 'update']
             ],

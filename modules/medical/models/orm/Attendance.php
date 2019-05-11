@@ -7,6 +7,7 @@ use app\common\db\ResponsibilityEntityInterface;
 use app\common\helpers\CommonHelper;
 use app\common\validators\ForeignKeyValidator;
 use app\modules\medical\MedicalModule;
+use app\modules\organization\models\orm\Cabinet;
 use app\modules\organization\models\orm\Employee;
 use app\modules\workplan\models\orm\Workplan;
 
@@ -156,6 +157,11 @@ class Attendance extends ActiveRecord
     public function getWorkplan()
     {
         return $this->hasOne(Workplan::class, ['id' => 'workplan_id']);
+    }
+
+    public function getCabinet()
+    {
+        return $this->hasOne(Cabinet::class, ['id' => 'cabinet_id']);
     }
 
     public function getReferralToAttendance()

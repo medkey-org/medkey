@@ -27,7 +27,7 @@ use yii\data\DataProviderInterface;
 class AttendanceService extends ApplicationService implements AttendanceServiceInterface
 {
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function getAttendanceById($id): Attendance
     {
@@ -40,7 +40,7 @@ class AttendanceService extends ApplicationService implements AttendanceServiceI
 
     /**
      * @todo rename into bySchedule
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function cancelAttendance(string $attendanceId, string $referralId): Attendance
     {
@@ -57,7 +57,7 @@ class AttendanceService extends ApplicationService implements AttendanceServiceI
 
     /**
      * @todo rename to bySchedule
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function createAttendanceBySchedule(Dto $dto): Attendance
     {
@@ -82,7 +82,7 @@ class AttendanceService extends ApplicationService implements AttendanceServiceI
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function getAttendanceForm($raw)
     {
@@ -99,7 +99,7 @@ class AttendanceService extends ApplicationService implements AttendanceServiceI
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function getAttendanceList(Model $form): DataProviderInterface
     {
@@ -125,12 +125,13 @@ class AttendanceService extends ApplicationService implements AttendanceServiceI
                 ]);
         }
         $query
+            ->joinWith(['cabinet'])
             ->andFilterWhere([
                 'ehr_id' => $form->ehrId,
                 'employee_id' => $form->employeeId,
                 'status' => $form->status,
                 'type' => $form->type,
-                'cast(updated_at as date)' =>
+                'cast(updated_at date)' =>
                     empty($form->updatedAt) ? null : \Yii::$app->formatter->asDate($form->updatedAt, CommonHelper::FORMAT_DATE_DB),
                 'datetime' =>
                     empty($form->datetime) ? null : \Yii::$app->formatter->asDatetime($form->datetime . date_default_timezone_get(), CommonHelper::FORMAT_DATETIME_DB)
@@ -140,11 +141,35 @@ class AttendanceService extends ApplicationService implements AttendanceServiceI
             'pagination' => [
                 'pageSize' => 10
             ],
+            'sort' => [
+                'attributes' => [
+                    'attendance.status',
+                    'attendance.datetime',
+                    'attendance.type',
+                    'updated_at',
+                    'ehr.number' => [
+                        'asc' => [
+                            'ehr.number' => SORT_ASC,
+                        ],
+                        'desc' => [
+                            'ehr.number' => SORT_DESC,
+                        ],
+                    ],
+                    'cabinet.number' => [
+                        'asc' => [
+                            'cabinet.number' => SORT_ASC,
+                        ],
+                        'desc' => [
+                            'cabinet.number' => SORT_DESC,
+                        ],
+                    ],
+                ],
+            ],
         ]);
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function getPrivileges()
     {
@@ -157,7 +182,7 @@ class AttendanceService extends ApplicationService implements AttendanceServiceI
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function aclAlias()
     {
@@ -165,9 +190,9 @@ class AttendanceService extends ApplicationService implements AttendanceServiceI
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
-    public function checkRecordByDatetime(string $ehrId, string $employeeId, $datetime): string
+    public function getAttendanceByEhrIdAndEmployeeIdAndDatetime(string $ehrId, string $employeeId, $datetime): ?Attendance
     {
         $attendance = Attendance::find()
             ->notDeleted()
@@ -184,9 +209,6 @@ class AttendanceService extends ApplicationService implements AttendanceServiceI
                 ],
             ])
             ->one();
-        if ($attendance) {
-            return $attendance->id;
-        }
-        return '';
+        return $attendance;
     }
 }

@@ -41,7 +41,6 @@ class WorkplanCreateForm extends FormWidget
      */
     public $workplanService;
 
-
     /**
      * WorkplanCreateForm constructor.
      * @param WorkplanServiceInterface $workplanService

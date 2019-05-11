@@ -37,7 +37,6 @@ class ListMedworkerSchedule extends Widget
      */
     private $employeeService;
 
-
     /**
      * ListMedworkerSchedule constructor.
      * @param EmployeeServiceInterface $employeeService
@@ -52,7 +51,7 @@ class ListMedworkerSchedule extends Widget
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function init()
     {
@@ -63,7 +62,7 @@ class ListMedworkerSchedule extends Widget
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function run()
     {
@@ -75,10 +74,6 @@ class ListMedworkerSchedule extends Widget
         }
     }
 
-    /**
-     * @param string $employeeId
-     * @return void
-     */
     private function renderRow($employeeId)
     {
         $employee = $this->employeeService->getEmployeeById($employeeId);
@@ -111,7 +106,7 @@ class ListMedworkerSchedule extends Widget
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function wrapperOptions()
     {
