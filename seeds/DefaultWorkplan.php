@@ -12,7 +12,7 @@ class DefaultWorkplan extends Seed
     {
         $employee = $this->call('employee_seed')->models;
         $defaultCabinet = $this->call('default_cabinet')->models;
-        $defaultDepartment = $this->call('default_department')->models;
+//        $defaultDepartment = $this->call('default_department')->models;
         $this->model = Workplan::class;
         $this->data = [
             [
@@ -26,10 +26,8 @@ class DefaultWorkplan extends Seed
                     'birthday' => '1970-01-01',
                     'sex' => Employee::SEX_MALE
                 ])->id,
-                'cabinet_id' => ArrayHelper::findBy($defaultCabinet, [
-                    'number' => '9999',
-                ])->id,
-                'department_id' => 1, // TODO ...
+                'cabinet_id' => 1, // TODO key
+                'department_id' => 1, // TODO key
                 'status' => Workplan::STATUS_ACTIVE,
             ],
         ];

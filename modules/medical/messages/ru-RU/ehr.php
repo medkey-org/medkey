@@ -2,6 +2,7 @@
 
 return [
     'EHR registry' => 'Реестр ЭМК',
+    'EHR number' => 'Номер ЭМК',
     'EHR' => 'ЭМК',
     'Number' => 'Номер',
     'Status' => 'Статус',

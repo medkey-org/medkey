@@ -5,6 +5,7 @@ use app\common\data\ActiveDataProvider;
 use app\common\dto\Dto;
 use app\modules\medical\models\orm\Attendance;
 use yii\data\DataProviderInterface;
+use yii\base\Model;
 
 /**
  * Interface AttendanceServiceInterface
@@ -23,7 +24,7 @@ interface AttendanceServiceInterface
      * @param string|integer $ehrId
      * @param string|integer $employeeId
      * @param $datetime
-     * @return string Record Id or empty string
+     * @return Attendance Record Id or empty string
      */
     public function getAttendanceByEhrIdAndEmployeeIdAndDatetime(string $ehrId, string $employeeId, $datetime) : ?Attendance;
 
@@ -35,14 +36,14 @@ interface AttendanceServiceInterface
     public function cancelAttendance(string $attendanceId, string $referralId) : Attendance;
 
     /**
-     * @param \yii\base\Model $form
+     * @param Model $form
      * @return ActiveDataProvider
      */
-    public function getAttendanceList(\yii\base\Model $form): DataProviderInterface;
+    public function getAttendanceList(Model $form) : DataProviderInterface;
 
     /**
      * @param Dto $dto
-     * @return \app\modules\medical\models\orm\Attendance
+     * @return Attendance
      */
-    public function createAttendanceBySchedule(Dto $dto): Attendance;
+    public function createAttendanceBySchedule(Dto $dto) : Attendance;
 }

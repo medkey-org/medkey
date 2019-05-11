@@ -97,8 +97,8 @@ class MedworkerSchedule extends Widget
                 $attendance = $this->attendanceService->getAttendanceByEhrIdAndEmployeeIdAndDatetime($this->ehrId, $this->employeeId, $datetime);
                 $opt = ['class' => 'employee-schedule-time'];
                 empty($attendance) ?: $opt['data-attendance_id'] = $attendance->id;
-                $opt['data-cabinet_id'] = $cabinetId;
                 empty($attendance) ?: Html::addCssClass($opt, 'record');
+                $opt['data-cabinet_id'] = $cabinetId;
                 $opt['data-datetime'] = $datetime;
                 echo Html::beginTag('div', $opt);
                 echo $sinceTime . ' - ' . $expireTime;
