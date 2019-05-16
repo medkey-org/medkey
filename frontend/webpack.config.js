@@ -141,9 +141,9 @@ module.exports = {
 
                 ]
             },
-            transform: {
-                'app-bundle.js': code => uglifyJS.minify(code).code
-            }
+            // transform: {
+            //     'app-bundle.js': code => uglifyJS.minify(code).code
+            // }
         })
     ]
 };

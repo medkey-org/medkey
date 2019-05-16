@@ -8,7 +8,6 @@ const TYPE_FETCHING_EMPLOYEES = 4;
 const TYPE_RECEIVE_PATIENT = 3;
 const TYPE_FETCHING_PATIENT = 2;
 
-
 // employees (schedule) block
 function receiveEmployees(date, data = []) {
     return {
@@ -17,11 +16,13 @@ function receiveEmployees(date, data = []) {
         employees: data
     }
 }
+
 function fetchingEmployees() {
     return {
         type: TYPE_FETCHING_EMPLOYEES
     };
 }
+
 function fetchEmployees(date) {
     return dispatch => {
         dispatch(fetchingEmployees());
@@ -39,6 +40,7 @@ function fetchEmployees(date) {
         });
     };
 }
+
 export function changeDate(e) {
     let d = null;
     if (e === undefined) {
@@ -51,19 +53,20 @@ export function changeDate(e) {
     };
 }
 
-
 // patient mini-card block
 function fetchingPatient() {
     return {
         type: TYPE_FETCHING_PATIENT
     };
 }
+
 function receivePatient(ehr) {
     return {
         type: TYPE_RECEIVE_PATIENT,
         ehr: ehr
     };
 }
+
 export function fetchPatient(e) {
     let element = e.currentTarget;
     return dispatch => {

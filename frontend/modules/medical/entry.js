@@ -3,35 +3,34 @@ import { render } from 'react-dom';
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
 import { createStore,  applyMiddleware } from 'redux';
-import './components/index.css';
-import { reducerApp, initWorkplaceState } from './reducers/reducers';
-import { changeDate } from './actions/actions';
-import ScheduleContainer from './containers/ScheduleContainer';
-import PatientContainer from './containers/PatientContainer';
+import './components/schedule/index.css';
+import { reducerApp, initWorkplaceState } from './reducers/schedule/reducers';
+import { changeDate } from './actions/schedule/actions';
+import ScheduleContainer from './containers/schedule/ScheduleContainer';
+// import PatientContainer from './containers/schedule/PatientContainer';
 
-if (document.getElementById('app-workplace')) {
-    // todo придумать помодульную декомпозицию
-    let store = createStore(reducerApp, initWorkplaceState, applyMiddleware(thunk));
-    store.dispatch(changeDate());
-    render(
-        <Provider store={store}>
-            <div className="b-workplace">
-                <PatientContainer/>
-                <ScheduleContainer/>
-            </div>
-        </Provider>,
-        document.getElementById('app-workplace')
-    );
-}
+// if (document.getElementById('app-workplace')) {
+//     // todo придумать помодульную декомпозицию
+//     let store = createStore(reducerApp, initWorkplaceState, applyMiddleware(thunk));
+//     store.dispatch(changeDate());
+//     render(
+//         <Provider store={store}>
+//             <div className="b-workplace">
+//                 <PatientContainer/>
+//                 <ScheduleContainer/>
+//             </div>
+//         </Provider>,
+//         document.getElementById('app-workplace')
+//     );
+// }
 
 window.registerAttendanceSchedule = function () {
-    // todo придумать помодульную декомпозицию
+    // todo auto inject
     let store = createStore(reducerApp, initWorkplaceState, applyMiddleware(thunk));
     store.dispatch(changeDate());
     render(
         <Provider store={store}>
             <div className="b-workplace">
-                <PatientContainer/>
                 <ScheduleContainer/>
             </div>
         </Provider>,
