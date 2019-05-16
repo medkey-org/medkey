@@ -1,6 +1,7 @@
 <?php
 namespace app\modules\medical\widgets\card;
 
+use app\common\button\WidgetLoaderButton;
 use app\common\card\CardView;
 use app\common\helpers\CommonHelper;
 use app\common\helpers\Html;
@@ -14,10 +15,11 @@ use app\common\wrappers\Block;
 use app\modules\medical\application\PatientServiceInterface;
 use app\modules\medical\MedicalModule;
 use app\modules\medical\models\form\Patient;
-use app\modules\medical\widgets\grid\AttendanceGrid;
 use app\modules\medical\widgets\grid\EhrGrid;
 use app\modules\medical\widgets\grid\PatientAttendanceGrid;
 use app\modules\medical\widgets\grid\PolicyGrid;
+use app\modules\medical\widgets\misc\AttendanceSchedule;
+use app\modules\medical\widgets\misc\ListMedworkerSchedule;
 use yii\helpers\HtmlPurifier;
 use yii\widgets\MaskedInput;
 
@@ -72,6 +74,28 @@ class PatientCard extends CardView
     public function title()
     {
         return Html::encode($this->model->fullName);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function extraButtons()
+    {
+        return [
+            'record' => [
+                'class' => WidgetLoaderButton::class,
+                'widgetClass' => AttendanceSchedule::class,
+                'widgetConfig' => [
+                    'model' => $this->model,
+                ],
+                'disabled' => false,
+                'value' => MedicalModule::t('referral', 'Create attendance'),
+                'options' => [
+                    'class' => 'btn btn-primary',
+                    'icon' => 'time'
+                ]
+            ]
+        ];
     }
 
     /**

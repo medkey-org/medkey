@@ -10,19 +10,19 @@ const TYPE_FETCHING_PATIENT = 2;
 
 
 // employees (schedule) block
-export function receiveEmployees(date, data = []) {
+function receiveEmployees(date, data = []) {
     return {
         type: TYPE_RECEIVE_EMPLOYEES,
         date: date,
         employees: data
     }
 }
-export function fetchingEmployees() {
+function fetchingEmployees() {
     return {
         type: TYPE_FETCHING_EMPLOYEES
     };
 }
-export function fetchEmployees(date) {
+function fetchEmployees(date) {
     return dispatch => {
         dispatch(fetchingEmployees());
         fetch('/organization/rest/employee/employees-with-attendance-by-date?date=' + date, { // todo HOST config
@@ -53,12 +53,12 @@ export function changeDate(e) {
 
 
 // patient mini-card block
-export function fetchingPatient() {
+function fetchingPatient() {
     return {
         type: TYPE_FETCHING_PATIENT
     };
 }
-export function receivePatient(ehr) {
+function receivePatient(ehr) {
     return {
         type: TYPE_RECEIVE_PATIENT,
         ehr: ehr

@@ -52,7 +52,7 @@ class ReferralCard extends CardView
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function init()
     {
@@ -63,6 +63,9 @@ class ReferralCard extends CardView
         ]);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function visibleScenarioButtons()
     {
         return [
@@ -71,6 +74,9 @@ class ReferralCard extends CardView
         ];
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function extraButtons()
     {
         return [
@@ -91,7 +97,7 @@ class ReferralCard extends CardView
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function dataGroups()
     {
