@@ -4,7 +4,7 @@
     /*align-items: flex-start;*/
     flex-direction: column;
     /*flex-basis: 0;*/
-    width: 65%;
+    width: 100%;
     /*flex-wrap: nowrap;*/
     justify-content: flex-end;
 }

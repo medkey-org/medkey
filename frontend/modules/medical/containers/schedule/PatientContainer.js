@@ -1,5 +1,6 @@
+// deprecated
 import { connect } from 'react-redux';
-import Patient from '../components/Patient';
+import Patient from '../../components/schedule/Patient';
 
 const mapStateToProps = (state) => {
     return state.ehr;

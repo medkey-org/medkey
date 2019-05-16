@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
-import Schedule from '../components/Schedule';
-import { changeDate, fetchPatient } from '../actions/actions';
+import Schedule from '../../components/schedule/Schedule';
+import { changeDate, fetchPatient } from '../../actions/schedule/actions';
 
 const mapStateToProps = (state) => {
     return state.employees;

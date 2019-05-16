@@ -1,6 +1,7 @@
 import React from 'react';
 import './Patient.css';
 
+// deprecated
 class Patient extends React.Component {
     componentDidUpdate() { // todo in render func
         if (this.props.isFetching) {
