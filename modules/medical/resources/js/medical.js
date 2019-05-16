@@ -1,3 +1,17 @@
+// var Medical_AttendanceSchedule = View.extend({
+//     events: {
+//         'click .speciality-title': 'clickSpecialityTitle',
+//     },
+//     clickSpecialityTitle: function (e) {
+//         console.log('init click s');
+//     },
+//     initialize: function (options) {
+//         var _this = this;
+//         View.prototype.initialize.call(_this, options);
+//         console.log('init');
+//     }
+// });
+
 var Medical_ListMedworkerSchedule = View.extend({
     events: {
         'click .employee-name': 'clickEmployee',

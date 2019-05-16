@@ -17,9 +17,8 @@ class UserSearch extends SearchWidget
      */
     public $renderResetAfterForm = false;
 
-
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function init()
     {
