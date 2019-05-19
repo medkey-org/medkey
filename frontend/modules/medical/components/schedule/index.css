@@ -4,3 +4,6 @@
     align-items: flex-start;
     flex-basis: 0;
 }
+.react-select {
+    min-width: 70px;
+}

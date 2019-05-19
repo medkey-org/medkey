@@ -5,7 +5,7 @@ import thunk from 'redux-thunk';
 import { createStore,  applyMiddleware } from 'redux';
 import './components/schedule/index.css';
 import { reducerApp, initWorkplaceState } from './reducers/schedule/reducers';
-import { changeDate } from './actions/schedule/actions';
+import { changeDate, fetchSpecialities } from './actions/schedule/actions';
 import ScheduleContainer from './containers/schedule/ScheduleContainer';
 // import PatientContainer from './containers/schedule/PatientContainer';
 
@@ -27,7 +27,6 @@ import ScheduleContainer from './containers/schedule/ScheduleContainer';
 window.registerAttendanceSchedule = function () {
     // todo auto inject
     let store = createStore(reducerApp, initWorkplaceState, applyMiddleware(thunk));
-    store.dispatch(changeDate());
     render(
         <Provider store={store}>
             <div className="b-workplace">
@@ -36,4 +35,6 @@ window.registerAttendanceSchedule = function () {
         </Provider>,
         document.getElementById('service-list')
     );
+    store.dispatch(changeDate());
+    store.dispatch(fetchSpecialities());
 }

@@ -3,7 +3,10 @@ import Schedule from '../../components/schedule/Schedule';
 import { changeDate, fetchPatient } from '../../actions/schedule/actions';
 
 const mapStateToProps = (state) => {
-    return state.employees;
+    return {
+        employees: state.employees,
+        specialities: state.specialities.specialities
+    };
 };
 
 const mapDispatchToProps = (dispatch) => {
@@ -11,9 +14,9 @@ const mapDispatchToProps = (dispatch) => {
         onChangeDate: (e) => {
             dispatch(changeDate(e));
         },
-        onClickPatient: (e) => {
-            dispatch(fetchPatient(e));
-        }
+        // onClickPatient: (e) => {
+        //     dispatch(fetchPatient(e));
+        // }
     }
 };
 

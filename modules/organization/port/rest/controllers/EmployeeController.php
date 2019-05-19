@@ -86,10 +86,6 @@ class EmployeeController extends Controller
         return [];
     }
 
-    /**
-     * @param string $q
-     * @return ActiveDataProvider
-     */
     public function actionIndex($q)
     {
         /* @var $modelClass ActiveRecordInterface */
