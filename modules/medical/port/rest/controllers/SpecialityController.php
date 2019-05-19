@@ -2,19 +2,49 @@
 namespace app\modules\medical\port\rest\controllers;
 
 use app\common\db\ActiveRecord;
-use app\common\rest\ActiveController;
+use app\common\filters\QueryParamAuth;
+use app\common\rest\Controller;
 use app\common\widgets\ActiveForm;
 use app\modules\medical\models\orm\Speciality;
+use yii\filters\AccessControl;
+use yii\web\ForbiddenHttpException;
 
 /**
  * Class SpecialityController
  * @package Module\Medical
  * @copyright 2012-2019 Medkey
  */
-class SpecialityController extends ActiveController
+class SpecialityController extends Controller
 {
     public $modelClass = Speciality::class;
 
+    /**
+     * @inheritdoc
+     */
+    public function behaviors()
+    {
+        return array_merge(parent::behaviors(), [
+            'authenticator' => [
+                'class' => QueryParamAuth::class,
+                'isSession' => false,
+                'optional' => [
+                    '*',
+                ],
+            ],
+            'access' => [
+                'class' => AccessControl::class,
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'roles' => ['@'],
+                    ],
+                ],
+                'denyCallback' => function () {
+                    throw new ForbiddenHttpException(\Yii::t('yii', 'You are not allowed to perform this action.'));
+                }
+            ],
+        ]);
+    }
 
     /**
      * @inheritdoc
@@ -76,5 +106,15 @@ class SpecialityController extends ActiveController
         $model->setScenario(ActiveRecord::SCENARIO_DELETE);
         $model->delete();
         return $this->asJson($model);
+    }
+
+    public function actionSpecialityList()
+    {
+        $specialities = Speciality::find()->notDeleted()->all();
+        $result = [];
+        foreach ($specialities as $speciality) {
+            $result[] = $speciality->toArray();
+        }
+        return $this->asJson($result);
     }
 }

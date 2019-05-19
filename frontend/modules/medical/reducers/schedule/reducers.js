@@ -1,4 +1,5 @@
 import { combineReducers } from 'redux';
+import moment from "moment";
 
 const employees = (state = {}, action) => {
     if (action.type === 1) {
@@ -7,36 +8,52 @@ const employees = (state = {}, action) => {
             date: action.date,
             isFetching: false,
         });
-    } else if (action.type === 4) {
-        return Object.assign({}, state, {
-            isFetching: true,
-        });
-    }
-    return state;
-};
-const ehr = (state = {}, action) => {
-    if (action.type === 3) {
-        return Object.assign({}, state, {
-            ehr: action.ehr,
-            isFetching: false,
-        });
     } else if (action.type === 2) {
         return Object.assign({}, state, {
-            isFetching: true
+            isFetching: action.isFetching,
         });
     }
     return state;
 };
+
+// const ehr = (state = {}, action) => {
+//     if (action.type === 3) {
+//         return Object.assign({}, state, {
+//             ehr: action.ehr,
+//             isFetching: action.isFetching,
+//         });
+//     } else if (action.type === 2) {
+//         return Object.assign({}, state, {
+//             isFetching: action.isFetching,
+//         });
+//     }
+//     return state;
+// };
+
+const specialities = (state = {}, action) => {
+    if (action.type === 5) {
+        return Object.assign({}, state, {
+            specialities: action.specialities || [],
+        });
+    }
+    return state;
+};
+
 const reducerApp = combineReducers({
     employees,
-    ehr
+    // ehr,
+    specialities
 });
+
 const initWorkplaceState = {
-    ehr: {
-        ehr: {}, isFetching: false
-    },
+    // ehr: {
+    //     ehr: {}, isFetching: false
+    // },
     employees: {
-        employees: [], date: null, isFetching: false
-    }
+        employees: [], date: moment(), isFetching: false
+    },
+    specialities: {
+        specialities: []
+    },
 };
 export { reducerApp, initWorkplaceState };
