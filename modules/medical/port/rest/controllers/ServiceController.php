@@ -2,34 +2,63 @@
 namespace app\modules\medical\port\rest\controllers;
 
 use app\common\db\ActiveRecord;
+use app\common\filters\QueryParamAuth;
 use app\common\rest\ActiveController;
+use app\common\rest\Controller;
 use app\common\widgets\ActiveForm;
 use app\modules\medical\models\orm\Service;
+use app\modules\medical\models\orm\Speciality;
+use yii\filters\AccessControl;
+use yii\web\ForbiddenHttpException;
 
 /**
  * Class ServiceController
  * @package Module\Medical
  * @copyright 2012-2019 Medkey
  */
-class ServiceController extends ActiveController
+class ServiceController extends Controller
 {
+    /**
+     * @deprecated
+     */
     public $modelClass = Service::class;
 
-
     /**
-     * @inheritdoc
+     * {@inheritDoc}
      */
-    public function actions()
+    public function behaviors()
     {
-        return [];
+        return array_merge(parent::behaviors(), [
+            'authenticator' => [
+                'class' => QueryParamAuth::class,
+                'isSession' => false,
+                'optional' => [
+                    '*',
+                ],
+            ],
+            'access' => [
+                'class' => AccessControl::class,
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'roles' => ['@'],
+                    ],
+                ],
+                'denyCallback' => function () {
+                    throw new ForbiddenHttpException(\Yii::t('yii', 'You are not allowed to perform this action.'));
+                }
+            ],
+        ]);
     }
 
-    /**
-     * @inheritdoc
-     */
-    public function verbs()
+    public function actionSpecialityList()
     {
-        return [];
+        $services = Service::find()->notDeleted()->all();
+        $result = [];
+        foreach ($services as $service) {
+            $result[] = $service->toArray();
+        }
+        return $this->asJson($result);
     }
 
     public function actionValidateCreate()

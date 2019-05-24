@@ -3,36 +3,21 @@ import './Schedule.css';
 import ScheduleColumn from "./ScheduleColumn";
 import DatePicker from 'react-datepicker';
 import DatePickerInput from './DatePickerInput';
-import 'react-datepicker/dist/react-datepicker.css';
+import "react-datepicker/dist/react-datepicker.css";
 import Select from 'react-select';
 
-// const options = [
-//     { value: 'chocolate', label: 'Chocolate' },
-//     { value: 'strawberry', label: 'Strawberry' },
-//     { value: 'vanilla', label: 'Vanilla' }
-// ];
-
 class Schedule extends React.Component {
-    constructor(props) {
-        super(props);
-        this.handleChange = this.handleChange.bind(this);
-    }
 
     componentDidUpdate() { // todo in render func
-        if (this.props.employees.isFetching) {
+        if (this.props.isFetching) {
             $('.b-schedule').loading('start');
         } else {
             $('.b-schedule').loading('stop');
         }
     }
 
-    handleChange = (selectedOption) => {
-        this.setState({ selectedOption });
-        console.log(`Option selected:`, selectedOption);
-    }
-
     render() {
-        const { selectedOption } = {};
+        // const { selectedOption } = {};
         let options  = [];
         let props = this.props;
         props.specialities.forEach(function (value) {
@@ -41,16 +26,19 @@ class Schedule extends React.Component {
         return (
             <div className="b-schedule">
                 <div className="filter">
-                    <label>
-                        Специальность&nbsp;
-                        <Select
-                            value={selectedOption}
-                            onChange={this.handleChange}
-                            options={options}
-                        />
-                    </label>
+                    Специальность&nbsp;
+                    <Select
+                        // value={selectedOption}
+                        onChange={this.props.onChangeSpeciality}
+                        options={options}
+                    />
                     <div className="calendar">
-                        <DatePicker popperPlacement="left-start" customInput={<DatePickerInput />} onChange={this.props.onChangeDate} selected={this.props.employees.employees.date} dateFormat="L" locale="en-US"/>
+                        <DatePicker
+                            selected={this.props.employees.filterDate}
+                            minDate={new Date()}
+                            onChange={this.props.onChangeDate}
+                            customInput={<DatePickerInput />}
+                        />
                     </div>
                 </div>
                 <div className="schedule">

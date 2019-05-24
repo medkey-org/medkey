@@ -1,17 +1,18 @@
 import { combineReducers } from 'redux';
-import moment from "moment";
 
 const employees = (state = {}, action) => {
     if (action.type === 1) {
         return Object.assign({}, state, {
             employees: action.employees || [],
-            date: action.date,
-            isFetching: false,
+            filterDate: action.filterDate,
         });
-    } else if (action.type === 2) {
-        return Object.assign({}, state, {
-            isFetching: action.isFetching,
-        });
+    }
+    return state;
+};
+
+const isFetching = (state = false, action) => {
+    if (action.type === 2) {
+        return action.isFetching || false;
     }
     return state;
 };
@@ -39,21 +40,32 @@ const specialities = (state = {}, action) => {
     return state;
 };
 
+const services = (state = {}, action) => {
+    if (action.type === 6) {
+        return Object.assign({}, state, {
+            services: action.services || [],
+        })
+    }
+    return state;
+};
+
 const reducerApp = combineReducers({
     employees,
-    // ehr,
-    specialities
+    specialities,
+    services,
+    isFetching
 });
 
 const initWorkplaceState = {
-    // ehr: {
-    //     ehr: {}, isFetching: false
-    // },
     employees: {
-        employees: [], date: moment(), isFetching: false
+        employees: [], filterDate: new Date()
     },
     specialities: {
         specialities: []
     },
+    services: {
+        services: []
+    },
+    isFetching: false
 };
 export { reducerApp, initWorkplaceState };
