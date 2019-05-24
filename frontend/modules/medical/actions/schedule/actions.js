@@ -1,13 +1,14 @@
-import moment from 'moment';
 
 // action types
 // todo в отдельный файл
-const TYPE_RECEIVE_EMPLOYEES = 1;
-const TYPE_FETCHIHG = 2;
+const TYPE_FETCH_EMPLOYEES = 1;
+const TYPE_FETCHING = 2;
 const TYPE_FETCH_SPECIALITIES = 5;
+const TYPE_FETCH_SERVICES = 6;
 
 export function fetchSpecialities() {
     return dispatch => {
+        dispatch(fetching(true));
         fetch('/medical/rest/speciality/speciality-list', {
             'method': 'POST',
             'headers': {
@@ -21,12 +22,62 @@ export function fetchSpecialities() {
                 type: TYPE_FETCH_SPECIALITIES,
                 specialities: data
             });
+        }).finally(function () {
+            dispatch(fetching(false));
         });
     }
 }
 
+// filter date
+export function changeDate(date) {
+    return dispatch => {
+        dispatch(fetchEmployees(date));
+    };
+}
+
+export function changeSpeciality(specialityId) {
+    if (!specialityId.hasOwnProperty('value')) {
+        console.warn('Warn');
+        return null;
+    }
+    return dispatch => {
+        dispatch(fetchServices(specialityId.value));
+    };
+}
+
+export function fetching(isFetching = false) {
+    return {
+        type: TYPE_FETCHING,
+        isFetching: isFetching
+    };
+}
+
+function fetchServices(specialityId) {
+    return dispatch => {
+        dispatch(fetching(true));
+        fetch('/medical/rest/service/speciality-list?speciality_id=' + specialityId, {
+            'method': 'POST',
+            'headers': {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+            },
+            // 'mode': 'cors'
+        }).then(function (response) {
+            return response.json();
+        }).then(function (data) {
+            dispatch({
+                type: TYPE_FETCH_SERVICES,
+                services: data
+            });
+        }).finally(function () {
+            dispatch(fetching(false));
+        });
+    };
+}
+
 function fetchEmployees(date) {
     return dispatch => {
+        dispatch(fetching(true));
         fetch('/organization/rest/employee/employees-with-attendance-by-date?date=' + date, { // todo HOST config
             'method': 'POST',
             'headers': {
@@ -38,28 +89,13 @@ function fetchEmployees(date) {
             return response.json();
         }).then(function (data) {
             dispatch({
-                type: TYPE_RECEIVE_EMPLOYEES,
-                date: date,
+                type: TYPE_FETCH_EMPLOYEES,
+                filterDate: date,
                 employees: data
             });
+        }).finally(function () {
+            dispatch(fetching(false));
         });
-    };
-}
-
-export function changeDate(e) {
-    return dispatch => {
-        dispatch({
-            type: TYPE_FETCHIHG,
-            isFetching: true
-        });
-        let d = null;
-        if (e === undefined) {
-            d = moment();
-        } else {
-            d = e;
-        }
-        console.log(d);
-        dispatch(fetchEmployees(d));
     };
 }
 

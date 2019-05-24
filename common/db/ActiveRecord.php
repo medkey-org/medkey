@@ -577,7 +577,6 @@ class ActiveRecord extends \yii\db\ActiveRecord implements PrepareModelInterface
 
     /**
      * @return ActiveQuery
-     * @throws \yii\base\InvalidConfigException
      */
     public static function find()
     {
