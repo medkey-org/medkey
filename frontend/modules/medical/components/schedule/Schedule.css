@@ -64,3 +64,6 @@
     border-right: 1px black solid;
     background-color: #bfd1e0;
 }
+.filter {
+    position: relative;
+}

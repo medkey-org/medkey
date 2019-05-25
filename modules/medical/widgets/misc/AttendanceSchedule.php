@@ -22,7 +22,7 @@ class AttendanceSchedule extends Widget
 //                'data-id' => $speciality->id,
 //            ]);
 //        }
-        echo Html::beginDiv(['id' => 'service-list']);
+        echo Html::beginDiv(['id' => 'schedule']);
         echo Html::endDiv();
         echo \Yii::$app->view->registerJs(<<<JS
         registerAttendanceSchedule();

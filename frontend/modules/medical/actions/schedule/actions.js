@@ -1,10 +1,55 @@
-
-// action types
-// todo в отдельный файл
+// todo in file for reducers
 const TYPE_FETCH_EMPLOYEES = 1;
 const TYPE_FETCHING = 2;
 const TYPE_FETCH_SPECIALITIES = 5;
 const TYPE_FETCH_SERVICES = 6;
+
+// filters
+const TYPE_FILTER_SPECIALITY = 7;
+const TYPE_FILTER_SERVICE = 8;
+const TYPE_FILTER_DATE = 9;
+
+export function changeDate(date) {
+    return dispatch => {
+        dispatch(filterDate(date));
+        dispatch(fetchEmployees(date));
+    };
+}
+
+function filterDate(value) {
+    return {
+        type: TYPE_FILTER_DATE,
+        value: value
+    };
+}
+
+export function changeSpeciality(specialityId) {
+    if (!specialityId.hasOwnProperty('value')) {
+        console.warn('Warn');
+        return null;
+    }
+    return dispatch => {
+        dispatch(filterSpeciality(specialityId.value));
+        dispatch(fetchServices(specialityId.value));
+    };
+}
+
+export function changeService(serviceId) {
+    if (!serviceId.hasOwnProperty('value')) {
+        console.warn('Warn');
+        return null;
+    }
+    return dispatch => {
+        dispatch(filterService(serviceId.value));
+    };
+}
+
+export function fetching(isFetching = false) {
+    return {
+        type: TYPE_FETCHING,
+        isFetching: isFetching
+    };
+}
 
 export function fetchSpecialities() {
     return dispatch => {
@@ -26,30 +71,6 @@ export function fetchSpecialities() {
             dispatch(fetching(false));
         });
     }
-}
-
-// filter date
-export function changeDate(date) {
-    return dispatch => {
-        dispatch(fetchEmployees(date));
-    };
-}
-
-export function changeSpeciality(specialityId) {
-    if (!specialityId.hasOwnProperty('value')) {
-        console.warn('Warn');
-        return null;
-    }
-    return dispatch => {
-        dispatch(fetchServices(specialityId.value));
-    };
-}
-
-export function fetching(isFetching = false) {
-    return {
-        type: TYPE_FETCHING,
-        isFetching: isFetching
-    };
 }
 
 function fetchServices(specialityId) {
@@ -96,6 +117,20 @@ function fetchEmployees(date) {
         }).finally(function () {
             dispatch(fetching(false));
         });
+    };
+}
+
+function filterSpeciality(value) {
+    return {
+        type: TYPE_FILTER_SPECIALITY,
+        value: value
+    };
+}
+
+function filterService(value) {
+    return {
+        type: TYPE_FILTER_SERVICE,
+        value: value,
     };
 }
 
