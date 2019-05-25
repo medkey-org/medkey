@@ -11,6 +11,8 @@ use app\modules\medical\application\PolicyService;
 use app\modules\medical\application\PolicyServiceInterface;
 use app\modules\medical\application\ReferralService;
 use app\modules\medical\application\ReferralServiceInterface;
+use app\modules\medical\application\ScheduleService;
+use app\modules\medical\application\ScheduleServiceInterface;
 use app\modules\medical\application\ServicePriceService;
 use app\modules\medical\application\ServicePriceServiceInterface;
 use yii\base\BootstrapInterface;
@@ -23,7 +25,7 @@ use yii\base\BootstrapInterface;
 class Bootstrap implements BootstrapInterface
 {
     /**
-     * @inheritdoc
+     * {@inheritDoc}
      */
     public function bootstrap($app)
     {
@@ -34,6 +36,7 @@ class Bootstrap implements BootstrapInterface
             PatientServiceInterface::class => PatientService::class,
             PolicyServiceInterface::class => PolicyService::class,
             ServicePriceServiceInterface::class => ServicePriceService::class,
+            ScheduleServiceInterface::class => ScheduleService::class,
         ]);
     }
 }

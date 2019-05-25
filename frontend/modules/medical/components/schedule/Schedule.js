@@ -23,9 +23,9 @@ class Schedule extends React.Component {
 
     handleSubmit(e) {
         e.preventDefault();
-        console.log(this.props.filters.specialityId);
-        console.log(this.props.filters.serviceId);
-        console.log(this.props.filters.date);
+        // console.log(this.props.filters.specialityId);
+        // console.log(this.props.filters.serviceId);
+        // console.log(this.props.filters.date);
     }
 
     render() {
