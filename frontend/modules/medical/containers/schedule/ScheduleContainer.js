@@ -1,13 +1,14 @@
 import { connect } from 'react-redux';
 import Schedule from '../../components/schedule/Schedule';
-import {changeDate, changeSpeciality} from '../../actions/schedule/actions';
+import {changeDate, changeSpeciality, changeService} from '../../actions/schedule/actions';
 
 const mapStateToProps = (state) => {
     return {
         employees: state.employees,
         specialities: state.specialities.specialities,
         isFetching: state.isFetching,
-        services: state.services
+        services: state.services.services,
+        filters: state.filters
     };
 };
 
@@ -18,6 +19,9 @@ const mapDispatchToProps = (dispatch) => {
         },
         onChangeSpeciality: (e) => {
             dispatch(changeSpeciality(e));
+        },
+        onChangeService: (e) => {
+            dispatch(changeService(e));
         }
     }
 };

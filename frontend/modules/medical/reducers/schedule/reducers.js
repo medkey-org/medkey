@@ -49,10 +49,28 @@ const services = (state = {}, action) => {
     return state;
 };
 
+const filters = (state = {}, action) => {
+    if (action.type === 7) {
+        return Object.assign({}, state, {
+            specialityId: action.value || '',
+        })
+    } else if (action.type === 8) {
+        return Object.assign({}, state, {
+            serviceId: action.value || '',
+        })
+    } else if (action.type === 9) {
+        return Object.assign({}, state, {
+            date: action.value || '',
+        })
+    }
+    return state;
+};
+
 const reducerApp = combineReducers({
     employees,
     specialities,
     services,
+    filters,
     isFetching
 });
 
@@ -65,6 +83,11 @@ const initWorkplaceState = {
     },
     services: {
         services: []
+    },
+    filters: {
+        specialityId: '',
+        serviceId: '',
+        date: '',
     },
     isFetching: false
 };

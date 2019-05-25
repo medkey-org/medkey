@@ -13,13 +13,13 @@ window.registerAttendanceSchedule = function () {
     let store = createStore(reducerApp, initWorkplaceState, applyMiddleware(thunk));
     render(
         <Provider store={store}>
-            <div className="b-workplace">
+            <div className="">
                 <ScheduleContainer/>
             </div>
         </Provider>,
-        document.getElementById('service-list')
+        document.getElementById('schedule')
     );
     store.dispatch(fetching());
     store.dispatch(changeDate(new Date()));
     store.dispatch(fetchSpecialities());
-}
+};

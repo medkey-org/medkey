@@ -5,7 +5,7 @@ class DatePickerInput extends React.Component {
     render () {
         return (
             <button
-                className="example-custom-input"
+                className="example-custom-input btn btn-default"
                 onClick={this.props.onClick}>
                 {this.props.value}
             </button>
