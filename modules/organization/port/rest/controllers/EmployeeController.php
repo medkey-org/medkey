@@ -36,14 +36,14 @@ class EmployeeController extends Controller
      * @param EmployeeServiceInterface $manager
      * @param array $config
      */
-    public function __construct($id, Module $module, EmployeeServiceInterface $manager, array $config = [])
+    public function __construct($id, $module, EmployeeServiceInterface $manager, array $config = [])
     {
         $this->employeeService = $manager;
         parent::__construct($id, $module, $config);
     }
 
     /**
-     * @inheritdoc
+     * {@inheritDoc}
      */
     public function behaviors()
     {
