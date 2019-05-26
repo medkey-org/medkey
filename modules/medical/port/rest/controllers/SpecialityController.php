@@ -26,7 +26,7 @@ class SpecialityController extends Controller
      * @see \yii\base\Model::scenarios()
      */
     public $updateScenario = ActiveRecord::SCENARIO_UPDATE;
-    
+
     public $modelClass = Speciality::class;
 
     /**
@@ -121,7 +121,9 @@ class SpecialityController extends Controller
 
     public function actionSpecialityList()
     {
-        $specialities = Speciality::find()->notDeleted()->all();
+        $specialities = Speciality::find()
+            ->notDeleted()
+            ->all();
         $result = [];
         foreach ($specialities as $speciality) {
             $result[] = $speciality->toArray();

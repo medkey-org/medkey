@@ -51,9 +51,14 @@ class ServiceController extends Controller
         ]);
     }
 
-    public function actionSpecialityList()
+    public function actionServiceList($speciality_id)
     {
-        $services = Service::find()->notDeleted()->all();
+        $services = Service::find()
+            ->notDeleted()
+            ->andWhere([
+                '[[service]].[[speciality_id]]' => $speciality_id
+            ])
+            ->all();
         $result = [];
         foreach ($services as $service) {
             $result[] = $service->toArray();

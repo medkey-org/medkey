@@ -8,6 +8,7 @@ const TYPE_FETCH_SERVICES = 6;
 const TYPE_FILTER_SPECIALITY = 7;
 const TYPE_FILTER_SERVICE = 8;
 const TYPE_FILTER_DATE = 9;
+const TYPE_CLEAR_SERVICES = 10;
 
 export function changeDate(date) {
     return dispatch => {
@@ -23,6 +24,12 @@ function filterDate(value) {
     };
 }
 
+function clearFilterService() {
+    return {
+        type: TYPE_CLEAR_SERVICES
+    }
+}
+
 export function changeSpeciality(specialityId) {
     if (!specialityId.hasOwnProperty('value')) {
         console.warn('Warn');
@@ -31,6 +38,7 @@ export function changeSpeciality(specialityId) {
     return dispatch => {
         dispatch(filterSpeciality(specialityId.value));
         dispatch(fetchServices(specialityId.value));
+        dispatch(clearFilterService());
     };
 }
 
@@ -76,7 +84,7 @@ export function fetchSpecialities() {
 function fetchServices(specialityId) {
     return dispatch => {
         dispatch(fetching(true));
-        fetch('/medical/rest/service/speciality-list?speciality_id=' + specialityId, {
+        fetch('/medical/rest/service/service-list?speciality_id=' + specialityId, {
             'method': 'POST',
             'headers': {
                 'Accept': 'application/json',
