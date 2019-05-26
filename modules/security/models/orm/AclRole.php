@@ -57,8 +57,8 @@ class AclRole extends ActiveRecord implements RoleInterface
     public function attributeLabelsOverride()
     {
         return [
-            'name' => SecurityModule::t('role','Name'),
-            'short_name' => SecurityModule::t('role','Short name'),
+            'name' => SecurityModule::t('role','Role name'),
+            'short_name' => SecurityModule::t('role','Short role name'),
             'description' => SecurityModule::t('role','Description'),
         ];
     }
