@@ -157,7 +157,7 @@ class User extends ActiveRecord implements IdentityInterface
     public function attributeLabelsOverride()
     {
         return [
-            'login' => SecurityModule::t('user','Login'),
+            'login' => SecurityModule::t('user','User login'),
             'password_hash' => SecurityModule::t('user','Password'),
             'acl_role_id' => SecurityModule::t('user','Role'),
             'status' => SecurityModule::t('user','Status'),

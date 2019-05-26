@@ -4,7 +4,7 @@ return [
     'User' => 'Пользователь',
     'Active' => 'Активный',
     'Inactive' => 'Неактивный',
-    'Login' => 'Логин',
+    'User login' => 'Логин',
     'Password' => 'Пароль',
     'Re-enter password' => 'Повторите пароль',
     'Role' => 'Роль',
