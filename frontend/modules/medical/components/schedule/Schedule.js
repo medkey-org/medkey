@@ -44,18 +44,19 @@ class Schedule extends React.Component {
             <div className="b-schedule">
                 <div className="filter">
                     <form action="medical/rest/schedule/..." onSubmit={this.handleSubmit}>
-                    Специальность&nbsp;
+                    Специальности&nbsp;
                     <Select
                         className="select-speciality"
                         value={selectedSpecialityOption}
                         onChange={this.props.onChangeSpeciality}
                         options={specialityOptions}
                     />
-                    Услуга&nbsp;
+                    Услуги&nbsp;
                     <Select
                         className="select-service"
                         value={selectedServiceOption}
                         onChange={this.props.onChangeService}
+                        isMulti
                         options={serviceOptions}
                     />
                     Дата&nbsp;

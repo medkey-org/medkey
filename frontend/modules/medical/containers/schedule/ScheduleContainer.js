@@ -21,7 +21,7 @@ const mapDispatchToProps = (dispatch) => {
             dispatch(changeSpeciality(e));
         },
         onChangeService: (e) => {
-            dispatch(changeService(e));
+            // dispatch(changeService(e));
         }
     }
 };

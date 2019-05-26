@@ -54,13 +54,20 @@ const filters = (state = {}, action) => {
         return Object.assign({}, state, {
             specialityId: action.value || '',
         })
-    } else if (action.type === 8) {
+    }
+    if (action.type === 8) {
         return Object.assign({}, state, {
             serviceId: action.value || '',
         })
-    } else if (action.type === 9) {
+    }
+    if (action.type === 9) {
         return Object.assign({}, state, {
             date: action.value || '',
+        })
+    }
+    if (action.type === 10) {
+        return Object.assign({}, state, {
+            serviceId: '',
         })
     }
     return state;
