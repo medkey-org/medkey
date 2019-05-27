@@ -30,15 +30,14 @@ function clearFilterService() {
     }
 }
 
-export function changeSpeciality(specialityId) {
-    if (!specialityId.hasOwnProperty('value')) {
-        console.warn('Warn');
-        return null;
-    }
+export function changeSpeciality(specialityIds) {
     return dispatch => {
-        dispatch(filterSpeciality(specialityId.value));
-        dispatch(fetchServices(specialityId.value));
+        dispatch(filterSpeciality(specialityIds));
         dispatch(clearFilterService());
+        if (specialityIds.length > 0) {
+            console.warn('Warn');
+            dispatch(fetchServices(specialityIds));
+        }
     };
 }
 
@@ -81,10 +80,18 @@ export function fetchSpecialities() {
     }
 }
 
-function fetchServices(specialityId) {
+function fetchServices(specialityIds) {
     return dispatch => {
         dispatch(fetching(true));
-        fetch('/medical/rest/service/service-list?speciality_id=' + specialityId, {
+        let ids = [];
+        specialityIds.forEach(function (elem) {
+            if (!elem.hasOwnProperty('value')) {
+                console.warn('Warn own value property');
+                return false;
+            }
+            ids.push(elem.value);
+        });
+        fetch('/medical/rest/service/service-list?speciality_ids=' + ids.join(', '), {
             'method': 'POST',
             'headers': {
                 'Accept': 'application/json',

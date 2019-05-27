@@ -52,12 +52,12 @@ const services = (state = {}, action) => {
 const filters = (state = {}, action) => {
     if (action.type === 7) {
         return Object.assign({}, state, {
-            specialityId: action.value || '',
+            specialityId: action.value || [],
         })
     }
     if (action.type === 8) {
         return Object.assign({}, state, {
-            serviceId: action.value || '',
+            serviceId: action.value || [],
         })
     }
     if (action.type === 9) {
@@ -67,7 +67,7 @@ const filters = (state = {}, action) => {
     }
     if (action.type === 10) {
         return Object.assign({}, state, {
-            serviceId: '',
+            serviceId: [],
         })
     }
     return state;
@@ -92,8 +92,8 @@ const initWorkplaceState = {
         services: []
     },
     filters: {
-        specialityId: '',
-        serviceId: '',
+        specialityId: [],
+        serviceId: [],
         date: '',
     },
     isFetching: false
