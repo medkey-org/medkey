@@ -38,8 +38,8 @@ class Schedule extends React.Component {
         props.services.forEach(function (value) {
             serviceOptions.push({value: value.id, label: value.title})
         });
-        const { selectedSpecialityOption } = this.props.filters.specialityId;
-        const { selectedServiceOption } = this.props.filters.serviceId;
+        const { selectedSpecialityOption } = props.filters.specialityId;
+        const { selectedServiceOption } = props.filters.serviceId;
         return (
             <div className="b-schedule">
                 <div className="filter">
@@ -49,6 +49,7 @@ class Schedule extends React.Component {
                         className="select-speciality"
                         value={selectedSpecialityOption}
                         onChange={this.props.onChangeSpeciality}
+                        isMulti
                         options={specialityOptions}
                     />
                     Услуги&nbsp;
