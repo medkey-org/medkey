@@ -106,6 +106,10 @@ module.exports = {
                     // flot
                     vendorPath + '/machour/yii2-jquery-flot/assets/jquery.flot.js',
 
+                    // ckeditor
+
+                    vendorPath + '/@ckeditor/ckeditor5-build-decoupled-document/build/ckeditor.js',
+
                     // application
                     assetPath + '/js/core/Component.js',
                     assetPath + '/js/core/Request.js',

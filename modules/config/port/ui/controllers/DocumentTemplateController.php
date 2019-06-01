@@ -6,7 +6,7 @@ use app\common\web\Controller;
 use app\modules\config\entities\DirectoryEntity;
 
 /**
- * Class DocumentController
+ * Class DocumentTemplateController
  * @package Module\Config
  * @copyright 2012-2019 Medkey
  */
