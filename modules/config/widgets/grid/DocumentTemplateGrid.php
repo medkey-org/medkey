@@ -5,10 +5,9 @@ use app\common\db\ActiveRecord;
 use app\common\grid\GridView;
 use app\common\helpers\Html;
 use app\common\helpers\Url;
-use app\modules\config\models\finders\DirectoryFinder;
+use app\modules\config\application\DocumentServiceInterface;
 use app\common\wrappers\Block;
 use app\modules\config\ConfigModule;
-use app\modules\config\application\DirectoryServiceInterface;
 
 /**
  * Directory list widget class
@@ -21,16 +20,19 @@ class DocumentTemplateGrid extends GridView
      * @var bool
      */
     public $wrapper = true;
-
+    /**
+     * @var DocumentServiceInterface
+     */
+    private $documentService;
 
     /**
      * DirectoryGrid constructor.
-     * @param DirectoryServiceInterface $directoryService
+     * @param DocumentServiceInterface $documentService
      * @param array $config
      */
-    public function __construct(DirectoryServiceInterface $directoryService, array $config = [])
+    public function __construct(DocumentServiceInterface $documentService, array $config = [])
     {
-        $this->directoryService = $directoryService;
+        $this->documentService = $documentService;
         parent::__construct($config);
     }
 
@@ -39,11 +41,11 @@ class DocumentTemplateGrid extends GridView
      */
     public function init()
     {
-
+        $this->dataProvider = $this->documentService->getTemplateList();
         $this->columns = [
             [
                 'attribute' => 'label',
-                'label' => ConfigModule::t('common', 'Name of directory'),
+                'label' => ConfigModule::t('document', 'Template name'),
                 'value' => function ($model) {
                     return Html::a(Html::encode($model['label']), Url::to([
                         '/config/ui/directory/view',
@@ -53,7 +55,7 @@ class DocumentTemplateGrid extends GridView
                 'format' => 'raw',
             ],
             [
-                'header' => ConfigModule::t('common', 'Count values'),
+                'header' => ConfigModule::t('document', 'Count values'),
                 'value' => function ($model) {
                     /** @var ActiveRecord $modelClass */
                     $modelClass = $model['ormClass'];
@@ -72,7 +74,7 @@ class DocumentTemplateGrid extends GridView
     {
         return [
             'wrapperClass' => Block::class,
-            'header' => ConfigModule::t('common', 'Directories')
+            'header' => ConfigModule::t('document', 'Document templates')
         ];
     }
 }
