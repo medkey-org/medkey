@@ -13,7 +13,7 @@ const TYPE_CLEAR_SERVICES = 10;
 export function changeDate(date) {
     return dispatch => {
         dispatch(filterDate(date));
-        dispatch(fetchEmployees(date));
+        // dispatch(fetchEmployees(date));
     };
 }
 
@@ -35,17 +35,14 @@ export function changeSpeciality(specialityIds) {
         dispatch(filterSpeciality(specialityIds));
         dispatch(clearFilterService());
         if (specialityIds.length > 0) {
-            console.warn('Warn');
             dispatch(fetchServices(specialityIds));
+        } else {
+            console.warn('Warn. SpecialityIds is empty');
         }
     };
 }
 
 export function changeService(serviceId) {
-    if (!serviceId.hasOwnProperty('value')) {
-        console.warn('Warn');
-        return null;
-    }
     return dispatch => {
         dispatch(filterService(serviceId.value));
     };
@@ -126,7 +123,7 @@ function fetchEmployees(date) {
         }).then(function (data) {
             dispatch({
                 type: TYPE_FETCH_EMPLOYEES,
-                filterDate: date,
+                // filterDate: date,
                 employees: data
             });
         }).finally(function () {

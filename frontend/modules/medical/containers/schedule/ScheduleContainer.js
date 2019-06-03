@@ -18,10 +18,11 @@ const mapDispatchToProps = (dispatch) => {
             dispatch(changeDate(e));
         },
         onChangeSpeciality: (e) => {
+            // document.getElementsByClassName('select-service')[0].dispatchEvent(new Event('clear'));
             dispatch(changeSpeciality(e));
         },
         onChangeService: (e) => {
-            // dispatch(changeService(e));
+            dispatch(changeService(e));
         }
     }
 };

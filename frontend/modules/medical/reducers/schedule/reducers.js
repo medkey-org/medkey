@@ -4,7 +4,7 @@ const employees = (state = {}, action) => {
     if (action.type === 1) {
         return Object.assign({}, state, {
             employees: action.employees || [],
-            filterDate: action.filterDate,
+            // filterDate: action.filterDate,
         });
     }
     return state;
