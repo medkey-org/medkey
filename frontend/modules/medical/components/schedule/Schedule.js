@@ -64,13 +64,13 @@ class Schedule extends React.Component {
                     <div className="calendar">
                         <DatePicker
                             className="select-date"
-                            selected={this.props.employees.filterDate}
+                            selected={this.props.filters.date}
                             minDate={new Date()}
                             onChange={this.props.onChangeDate}
                             customInput={<DatePickerInput />}
                         />
                     </div>
-                        <button type="submit">Найти</button>
+                        <button className="submit" type="submit">Найти</button>
                     </form>
                 </div>
                 <div className="schedule">

@@ -39,7 +39,7 @@ class ScheduleController extends Controller
                     [
                         'allow' => true,
                         'roles' => ['@'],
-                    ],
+                          ],
                 ],
                 'denyCallback' => function () {
                     throw new ForbiddenHttpException(\Yii::t('yii', 'You are not allowed to perform this action.'));
