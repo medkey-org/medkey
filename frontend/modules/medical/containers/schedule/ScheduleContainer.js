@@ -15,7 +15,6 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         onChangeDate: (e) => {
-            e.preventDefault();
             dispatch(changeDate(e));
         },
         onChangeSpeciality: (e) => {
@@ -26,7 +25,6 @@ const mapDispatchToProps = (dispatch) => {
             dispatch(changeService(e));
         },
         onSubmitFilter: (e) => {
-            e.preventDefault();
             dispatch(submitFilter(e))
         },
     }

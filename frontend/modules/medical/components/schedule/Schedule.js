@@ -10,7 +10,6 @@ import ReactDOM from 'react-dom';
 class Schedule extends React.Component {
     constructor(props) {
         super(props);
-        this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     componentDidUpdate() { // todo in render func
@@ -19,13 +18,6 @@ class Schedule extends React.Component {
         } else {
             $(ReactDOM.findDOMNode(this)).loading('stop');
         }
-    }
-
-    handleSubmit(e) {
-        e.preventDefault();
-        // console.log(this.props.filters.specialityId);
-        // console.log(this.props.filters.serviceId);
-        // console.log(this.props.filters.date);
     }
 
     render() {
@@ -43,7 +35,7 @@ class Schedule extends React.Component {
         return (
             <div className="b-schedule">
                 <div className="filter">
-                    <form action="" onSubmit={this.props.onSubmitFilter}>
+                    {/*<form action="" onSubmit={this.props.onSubmitFilter}>*/}
                     Специальности&nbsp;
                     <Select
                         className="select-speciality"
@@ -70,8 +62,8 @@ class Schedule extends React.Component {
                             customInput={<DatePickerInput />}
                         />
                     </div>
-                        <button className="submit" type="submit">Найти</button>
-                    </form>
+                        <button className="submit" onClick={this.props.onSubmitFilter}>Найти</button>
+                    {/*</form>*/}
                 </div>
                 <div className="schedule">
                     {this.props.employees.employees.map(employee => <ScheduleColumn employee={employee}/>)}
