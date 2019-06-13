@@ -30,6 +30,12 @@ function clearFilterService() {
     }
 }
 
+export function submitFilter() {
+    return (dispatch, getState) => {
+        dispatch(fetchEmployees(getState().filters.date, getState().filters.specialityId, getState().filters.serviceId))
+    };
+}
+
 export function changeSpeciality(specialityIds) {
     return dispatch => {
         dispatch(filterSpeciality(specialityIds));
@@ -108,16 +114,20 @@ function fetchServices(specialityIds) {
     };
 }
 
-function fetchEmployees(date) {
+function fetchEmployees(date, specialityIds, serviceIds) {
     return dispatch => {
         dispatch(fetching(true));
-        fetch('/organization/rest/employee/employees-with-attendance-by-date?date=' + date, { // todo HOST config
+        fetch('/medical/rest/schedule/get-schedule', { // todo HOST config
             'method': 'POST',
             'headers': {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
             },
-            // 'mode': 'cors'
+            'body': JSON.stringify({
+                date: date,
+                specialityIds: specialityIds,
+                serviceIds: serviceIds
+            })
         }).then(function (response) {
             return response.json();
         }).then(function (data) {

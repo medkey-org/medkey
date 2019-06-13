@@ -18,13 +18,13 @@ class ScheduleService extends ApplicationService implements ScheduleServiceInter
         parent::__construct($config);
     }
 
-    public function getSchedule(string $date, string $specialityId = null, string $serviceId = null)
+    public function getSchedule(string $date, array $specialityIds = [], array $serviceIds = [])
     {
         // TODO status filter
         $employees = Employee::find()
             ->notDeleted()
             ->andFilterWhere([
-                '[[employee]].[[speciality_id]]' => $specialityId,
+                '[[employee]].[[speciality_id]]' => $specialityIds,
             ])
             ->all();
 
