@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import Schedule from '../../components/schedule/Schedule';
-import {changeDate, changeSpeciality, changeService} from '../../actions/schedule/actions';
+import {submitFilter, changeDate, changeSpeciality, changeService} from '../../actions/schedule/actions';
 
 const mapStateToProps = (state) => {
     return {
@@ -15,6 +15,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         onChangeDate: (e) => {
+            e.preventDefault();
             dispatch(changeDate(e));
         },
         onChangeSpeciality: (e) => {
@@ -23,7 +24,11 @@ const mapDispatchToProps = (dispatch) => {
         },
         onChangeService: (e) => {
             dispatch(changeService(e));
-        }
+        },
+        onSubmitFilter: (e) => {
+            e.preventDefault();
+            dispatch(submitFilter(e))
+        },
     }
 };
 

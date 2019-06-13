@@ -43,7 +43,7 @@ class Schedule extends React.Component {
         return (
             <div className="b-schedule">
                 <div className="filter">
-                    <form action="medical/rest/schedule/..." onSubmit={this.handleSubmit}>
+                    <form action="" onSubmit={this.props.onSubmitFilter}>
                     Специальности&nbsp;
                     <Select
                         className="select-speciality"
@@ -74,7 +74,7 @@ class Schedule extends React.Component {
                     </form>
                 </div>
                 <div className="schedule">
-                    {this.props.employees.employees.map(employee => <ScheduleColumn employee={employee} clickPatient={this.props.onClickPatient}/>)}
+                    {this.props.employees.employees.map(employee => <ScheduleColumn employee={employee}/>)}
                 </div>
             </div>
         );

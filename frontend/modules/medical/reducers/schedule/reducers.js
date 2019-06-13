@@ -78,7 +78,7 @@ const reducerApp = combineReducers({
     specialities,
     services,
     filters,
-    isFetching
+    isFetching,
 });
 
 const initWorkplaceState = {
