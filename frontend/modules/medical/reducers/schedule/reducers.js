@@ -83,7 +83,7 @@ const reducerApp = combineReducers({
 
 const initWorkplaceState = {
     employees: {
-        employees: [], filterDate: new Date()
+        employees: [],
     },
     specialities: {
         specialities: []

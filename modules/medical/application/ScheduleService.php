@@ -22,6 +22,7 @@ class ScheduleService extends ApplicationService implements ScheduleServiceInter
     {
         // TODO status filter
         $employees = Employee::find()
+            ->joinWith(['speciality'])
             ->notDeleted()
             ->andFilterWhere([
                 '[[employee]].[[speciality_id]]' => $specialityIds,
@@ -33,7 +34,7 @@ class ScheduleService extends ApplicationService implements ScheduleServiceInter
             array_push(
                 $result,
                 array_merge(
-                    $employee->toArray(),
+                    $employee->toArray([], ['speciality']),
                     ['schedule' => $this->workplanService->getScheduleMedworkerTimes($employee->id, $date)]
                 )
             );
