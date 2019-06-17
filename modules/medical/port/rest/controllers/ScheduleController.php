@@ -1,12 +1,9 @@
 <?php
 namespace app\modules\medical\port\rest\controllers;
 
-use app\common\filters\QueryParamAuth;
 use app\common\helpers\ArrayHelper;
 use app\common\web\Controller;
 use app\modules\medical\application\ScheduleServiceInterface;
-use yii\filters\AccessControl;
-use yii\web\ForbiddenHttpException;
 
 class ScheduleController extends Controller
 {
