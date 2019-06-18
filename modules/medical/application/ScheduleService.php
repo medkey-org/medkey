@@ -35,7 +35,7 @@ class ScheduleService extends ApplicationService implements ScheduleServiceInter
                 $result,
                 array_merge(
                     $employee->toArray([], ['speciality']),
-                    ['schedule' => $this->workplanService->getScheduleMedworkerTimes($employee->id, $date)]
+                    ['schedule' => $this->workplanService->getScheduleMedworkerTimesWithAttendances($employee->id, $date)]
                 )
             );
         }

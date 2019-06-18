@@ -16,6 +16,7 @@ use app\modules\medical\models\orm\Attendance;
 use app\modules\medical\models\form\Attendance as AttendanceForm;
 use app\modules\medical\models\orm\Patient;
 use app\modules\medical\models\orm\Referral;
+use app\modules\organization\models\orm\Employee;
 use yii\base\Model;
 use yii\data\DataProviderInterface;
 
@@ -184,6 +185,20 @@ class AttendanceService extends ApplicationService implements AttendanceServiceI
     public function aclAlias()
     {
         return MedicalModule::t('attendance', 'Appointment');
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getAttendancesByEmployeeIdAndDate($employeeId, $date)
+    {
+        return Attendance::find()
+            ->notDeleted()
+            ->where([
+                '[[attendance]].[[employee_id]]' => $employeeId,
+                'cast(datetime as DATE)' => $date,
+            ])
+            ->all();
     }
 
     /**

@@ -46,4 +46,5 @@ interface AttendanceServiceInterface
      * @return Attendance
      */
     public function createAttendanceBySchedule(Dto $dto) : Attendance;
+    public function getAttendancesByEmployeeIdAndDate($employeeId, $date);
 }

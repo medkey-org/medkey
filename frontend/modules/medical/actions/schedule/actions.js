@@ -114,7 +114,7 @@ function fetchServices(specialityIds) {
     };
 }
 
-function fetchEmployees(date, specialityIds, serviceIds) {
+export function fetchEmployees(date, specialityIds, serviceIds) {
     return dispatch => {
         dispatch(fetching(true));
         fetch('/medical/rest/schedule/get-schedule', { // todo HOST config
