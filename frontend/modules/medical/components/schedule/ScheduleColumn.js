@@ -12,16 +12,16 @@ class ScheduleColumn extends React.Component {
                 </div>
                 {Object.entries(this.props.employee.schedule).map(([k, v]) => (
                     <div>
-
                         <div className="schedule__speciality">
                             {this.props.employee.speciality.title} (кабинет №: {k})
                         </div>
                         <div className="schedule__patient-record">
-                                {v.map( schedule => (
+                                {v.length > 0 ? v.map( schedule => (
                                     <div className="record-time">
-                                        {schedule}
+                                        {schedule.time}
+                                        {schedule.attendace_id}
                                     </div>
-                                ))}
+                                )) : <div>Нет расписания</div> }
                         </div>
                     </div>
                 ))}
