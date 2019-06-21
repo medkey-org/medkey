@@ -211,7 +211,7 @@ class WorkplanService extends ApplicationService implements WorkplanServiceInter
 
     public function getScheduleMedworkerTimesWithAttendances($employeeId, $date)
     {
-        $date = \Yii::$app->formatter->asDate($date, CommonHelper::FORMAT_DATE_DB);
+        $date = \Yii::$app->formatter->asDate($date, CommonHelper::FORMAT_DATE_DB); // format date from frontend
         $workplans = $this->getWorkplansByExistsRules($employeeId, $date);
 
         // готовим одним пакетом записи для отображения в расписании
@@ -237,6 +237,9 @@ class WorkplanService extends ApplicationService implements WorkplanServiceInter
 
                 if (isset($attendanceMap[$dt])) {
                     $prepare['attendance_id'] = $attendanceMap[$dt]['id'];
+                    if (isset($attendanceMap[$dt]['ehr']) && isset($attendanceMap[$dt]['ehr']['patient'])) {
+                        $prepare['patientFullName'] = $attendanceMap[$dt]['ehr']['patient']['fullName'];
+                    }
                 }
 
                 array_push(

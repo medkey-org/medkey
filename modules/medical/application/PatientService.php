@@ -50,14 +50,6 @@ class PatientService extends ApplicationService implements PatientServiceInterfa
         return MedicalModule::t('patient', 'Patient');
     }
 
-    /**
-     * @param string|integer $patientId
-     * @param string[] $emails
-     * @return void|null
-     * @throws ApplicationServiceException
-     * @throws Exception
-     * @throws InvalidConfigException
-     */
     protected function saveEmails($patientId, $emails)
     {
         $patient = Patient::findOneEx($patientId);
@@ -88,14 +80,6 @@ class PatientService extends ApplicationService implements PatientServiceInterfa
         }
     }
 
-    /**
-     * @param string|integer $patientId
-     * @param string[] $phones
-     * @return void|null
-     * @throws ApplicationServiceException
-     * @throws Exception
-     * @throws InvalidConfigException
-     */
     protected function savePhones($patientId, $phones)
     {
         $patient = Patient::findOneEx($patientId);
@@ -126,13 +110,6 @@ class PatientService extends ApplicationService implements PatientServiceInterfa
         }
     }
 
-    /**
-     * @param string|integer $patientId
-     * @param string[] $addresses
-     * @return void|null
-     * @throws Exception
-     * @throws InvalidConfigException
-     */
     protected function saveAddresses($patientId, $addresses)
     {
         $patient = Patient::findOneEx($patientId);
@@ -307,6 +284,7 @@ class PatientService extends ApplicationService implements PatientServiceInterfa
         $phones = ArrayHelper::toArray($model->phones);
         $emails = ArrayHelper::toArray($model->emails);
         $addresses = ArrayHelper::toArray($model->addresses);
+        $ehr = ArrayHelper::toArray($model->ehr);
         $patientForm = new PatientForm();
         if ($model->isNewRecord) {
             $patientForm->setScenario('create');
@@ -316,6 +294,7 @@ class PatientService extends ApplicationService implements PatientServiceInterfa
         $patientForm->phones = $phones;
         $patientForm->emails = $emails;
         $patientForm->addresses = $addresses;
+        $patientForm->ehr = $ehr;
         if (isset($model->passport)) {
             $patientForm->passportSeries = $model->passport->series;
             $patientForm->passportNumber = $model->passport->number;

@@ -6,10 +6,11 @@ use app\common\web\View;
 use app\common\widgets\Widget;
 use app\common\wrappers\DynamicModal;
 use app\modules\medical\MedicalModule;
-use app\modules\medical\models\orm\Speciality;
 
 class AttendanceSchedule extends Widget
 {
+    public $ehrId;
+
     /**
      * {@inheritDoc}
      */
@@ -25,7 +26,7 @@ class AttendanceSchedule extends Widget
         echo Html::beginDiv(['id' => 'schedule']);
         echo Html::endDiv();
         echo \Yii::$app->view->registerJs(<<<JS
-        registerAttendanceSchedule();
+        registerAttendanceSchedule($this->ehrId);
 JS
 , View::POS_END);
     }

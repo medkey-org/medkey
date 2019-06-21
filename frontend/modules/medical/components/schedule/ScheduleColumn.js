@@ -17,9 +17,9 @@ class ScheduleColumn extends React.Component {
                         </div>
                         <div className="schedule__patient-record">
                                 {v.length > 0 ? v.map( schedule => (
-                                    <div className="record-time">
+                                    <div className="record-time" data-attendance_id = {schedule.attendance_id}>
                                         {schedule.time}
-                                        {schedule.attendace_id}
+                                        <b>{schedule.patientFullName !== undefined ? ' - '+ schedule.patientFullName: '' }</b>
                                     </div>
                                 )) : <div>Нет расписания</div> }
                         </div>

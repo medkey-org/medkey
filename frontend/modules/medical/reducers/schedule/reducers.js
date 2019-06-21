@@ -82,6 +82,7 @@ const reducerApp = combineReducers({
 });
 
 const initWorkplaceState = {
+    ehrId: 0,
     employees: {
         employees: [],
     },

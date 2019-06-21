@@ -4,6 +4,7 @@ import {submitFilter, changeDate, changeSpeciality, changeService} from '../../a
 
 const mapStateToProps = (state) => {
     return {
+        patientId: state.patientId,
         employees: state.employees,
         specialities: state.specialities.specialities,
         isFetching: state.isFetching,
