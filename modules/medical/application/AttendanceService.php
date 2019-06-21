@@ -193,6 +193,7 @@ class AttendanceService extends ApplicationService implements AttendanceServiceI
     public function getAttendancesByEmployeeIdAndDate($employeeId, $date)
     {
         return Attendance::find()
+            ->joinWith(['ehr.patient'])
             ->notDeleted()
             ->where([
                 '[[attendance]].[[employee_id]]' => $employeeId,

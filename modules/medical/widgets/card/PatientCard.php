@@ -86,7 +86,7 @@ class PatientCard extends CardView
                 'class' => WidgetLoaderButton::class,
                 'widgetClass' => AttendanceSchedule::class,
                 'widgetConfig' => [
-                    'model' => $this->model,
+//                    'ehrId' => isset($this->model->ehr) ,
                 ],
                 'disabled' => false,
                 'value' => MedicalModule::t('referral', 'Create attendance'),

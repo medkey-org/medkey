@@ -35,6 +35,8 @@ class Patient extends Model
     public $sex;
     public $status;
 
+    public $ehr;
+
     public $phones;
     public $emails;
     public $addresses;
