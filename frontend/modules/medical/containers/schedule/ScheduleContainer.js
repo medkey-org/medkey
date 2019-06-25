@@ -1,15 +1,16 @@
 import { connect } from 'react-redux';
 import Schedule from '../../components/schedule/Schedule';
-import {submitFilter, changeDate, changeSpeciality, changeService} from '../../actions/schedule/actions';
+import {submitFilter, changeDate, changeSpeciality, changeService, attendanceEhr} from '../../actions/schedule/actions';
 
 const mapStateToProps = (state) => {
     return {
-        patientId: state.patientId,
+        // patientId: state.patientId,
         employees: state.employees,
         specialities: state.specialities.specialities,
         isFetching: state.isFetching,
         services: state.services.services,
-        filters: state.filters
+        filters: state.filters,
+        ehr: state.ehr,
     };
 };
 
@@ -26,8 +27,11 @@ const mapDispatchToProps = (dispatch) => {
             dispatch(changeService(e));
         },
         onSubmitFilter: (e) => {
-            dispatch(submitFilter(e))
+            dispatch(submitFilter(e));
         },
+        onAttendanceEhr: (e) => {
+            dispatch(attendanceEhr(e));
+        }
     }
 };
 

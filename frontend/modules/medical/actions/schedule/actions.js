@@ -9,6 +9,7 @@ const TYPE_FILTER_SPECIALITY = 7;
 const TYPE_FILTER_SERVICE = 8;
 const TYPE_FILTER_DATE = 9;
 const TYPE_CLEAR_SERVICES = 10;
+const TYPE_ATTENDANCE_EHR = 11;
 
 export function changeDate(date) {
     return dispatch => {
@@ -28,6 +29,13 @@ function clearFilterService() {
     return {
         type: TYPE_CLEAR_SERVICES
     }
+}
+
+export function attendanceEhr() {
+    return {
+        type: TYPE_ATTENDANCE_EHR,
+
+    };
 }
 
 export function submitFilter() {
