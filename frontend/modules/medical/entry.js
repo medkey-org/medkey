@@ -9,7 +9,9 @@ import {changeDate, fetching, fetchSpecialities, fetchEmployees} from './actions
 import ScheduleContainer from './containers/schedule/ScheduleContainer';
 
 window.registerAttendanceSchedule = function (ehrId) {
-    initWorkplaceState.ehrId = ehrId;
+    initWorkplaceState.ehr = {
+        id: ehrId
+    };
     let store = createStore(reducerApp, initWorkplaceState, applyMiddleware(thunk));
     render(
         <Provider store={store}>
