@@ -73,16 +73,23 @@ const filters = (state = {}, action) => {
     return state;
 };
 
+const ehr = (state = {}, action) => {
+    return state;
+};
+
 const reducerApp = combineReducers({
     employees,
     specialities,
     services,
     filters,
     isFetching,
+    ehr
 });
 
 const initWorkplaceState = {
-    ehrId: 0,
+    ehr: {
+        id: 0,
+    },
     employees: {
         employees: [],
     },
