@@ -5,6 +5,7 @@ class ScheduleColumn extends React.Component {
         super(props);
     }
     render() {
+        let props = this.props;
         return (
             <div className="schedule__column">
                 <div className="schedule__employee">
@@ -19,7 +20,7 @@ class ScheduleColumn extends React.Component {
                                 {v.length > 0 ? v.map( schedule => (
                                     <div сс = {schedule.attendance_id} className="record-time" data-attendance_id = {schedule.attendance_id}>
                                         {schedule.time}
-                                        <b>{schedule.patientFullName !== undefined ? ' - '+ schedule.patientFullName: '' }</b>
+                                        <b onClick={props.onAttendanceEhr}>{schedule.patientFullName !== undefined ? ' - '+ schedule.patientFullName: ' записать ehr № ' + props.ehr.id}</b>
                                     </div>
                                 )) : '<div>Нет расписания</div>' }
                         </div>
