@@ -40,7 +40,7 @@ class Schedule extends React.Component {
                     <Select
                         className="select-speciality"
                         value={selectedSpecialityOption}
-                        onChange={this.props.onChangeSpeciality}
+                        onChange={props.onChangeSpeciality}
                         isMulti
                         options={specialityOptions}
                     />
@@ -48,7 +48,7 @@ class Schedule extends React.Component {
                     <Select
                         className="select-service"
                         value={selectedServiceOption}
-                        onChange={this.props.onChangeService}
+                        onChange={props.onChangeService}
                         isMulti
                         options={serviceOptions}
                     />
@@ -56,17 +56,17 @@ class Schedule extends React.Component {
                     <div className="calendar">
                         <DatePicker
                             className="select-date"
-                            selected={this.props.filters.date}
+                            selected={props.filters.date}
                             minDate={new Date()}
-                            onChange={this.props.onChangeDate}
+                            onChange={props.onChangeDate}
                             customInput={<DatePickerInput />}
                         />
                     </div>
-                        <button className="submit" onClick={this.props.onSubmitFilter}>Найти</button>
+                        <button className="submit" onClick={props.onSubmitFilter}>Найти</button>
                     {/*</form>*/}
                 </div>
                 <div className="schedule">
-                    {this.props.employees.employees.map(employee => <ScheduleColumn ehr={this.props.ehr} onAttendanceEhr={this.props.onAttendanceEhr} employee={employee}/>)}
+                    {props.employees.employees.map(employee => <ScheduleColumn ehr={props.ehr} onAttendanceEhr={props.onAttendanceEhr} employee={employee}/>)}
                 </div>
             </div>
         );

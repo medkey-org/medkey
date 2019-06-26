@@ -56,6 +56,26 @@ class AttendanceService extends ApplicationService implements AttendanceServiceI
         return $attendance;
     }
 
+    public function createAttendanceByPatientSchedule($params): Attendance
+    {
+//        if (!$this->isAllowed('createAttendanceBySchedule')) {
+//            throw new AccessApplicationServiceException(MedicalModule::t('attendance', 'Access restricted'));
+//        }
+//        $referral = Referral::findOneEx($dto->referralId);
+        $attendance = new Attendance([
+            'scenario' => ActiveRecord::SCENARIO_CREATE
+        ]);
+        $attendance->ehr_id = $params['ehrId'];
+        $attendance->employee_id = $params['employeeId'];
+        $attendance->datetime = $params['datetime'];
+//        $attendance->cabinet_id = $params['cabinetNumber'];
+        if (!$attendance->save()) {
+            throw new ApplicationServiceException(MedicalModule::t('attendance', 'Can\'t save record. Reason: ') . Json::encode($attendance->getErrors()));
+        }
+//        $attendance->link('referrals', $referral);
+        return $attendance;
+    }
+
     /**
      * @todo delete dto entity
      * {@inheritdoc}
