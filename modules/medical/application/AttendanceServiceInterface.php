@@ -26,25 +26,26 @@ interface AttendanceServiceInterface
      * @param $datetime
      * @return Attendance Record Id or empty string
      */
-    public function getAttendanceByEhrIdAndEmployeeIdAndDatetime(string $ehrId, string $employeeId, $datetime) : ?Attendance;
+    public function getAttendanceByEhrIdAndEmployeeIdAndDatetime(string $ehrId, string $employeeId, $datetime): ?Attendance;
 
     /**
      * @param string|integer $attendanceId
      * @param string|integer $referralId
      * @return Attendance
      */
-    public function cancelAttendance(string $attendanceId, string $referralId) : Attendance;
+    public function cancelAttendance(string $attendanceId, string $referralId): Attendance;
 
     /**
      * @param Model $form
      * @return ActiveDataProvider
      */
-    public function getAttendanceList(Model $form) : DataProviderInterface;
+    public function getAttendanceList(Model $form): DataProviderInterface;
 
     /**
      * @param Dto $dto
      * @return Attendance
      */
-    public function createAttendanceBySchedule(Dto $dto) : Attendance;
+    public function createAttendanceBySchedule(Dto $dto): Attendance;
+    public function createAttendanceByPatientSchedule($params): Attendance;
     public function getAttendancesByEmployeeIdAndDate($employeeId, $date);
 }

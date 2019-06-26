@@ -40,6 +40,12 @@ class AttendanceController extends Controller
         return $this->attendanceService->createAttendanceBySchedule($dto);
     }
 
+    public function actionCreateByPatientSchedule()
+    {
+        $params = \Yii::$app->request->getBodyParams();
+        return $this->attendanceService->createAttendanceByPatientSchedule($params);
+    }
+
     public function actionCancelBySchedule($attendanceId, $referralId)
     {
         return $this->attendanceService->cancelAttendance($attendanceId, $referralId);

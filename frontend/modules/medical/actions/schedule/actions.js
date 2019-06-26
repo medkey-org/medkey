@@ -31,11 +31,33 @@ function clearFilterService() {
     }
 }
 
-export function attendanceEhr() {
-    return {
-        type: TYPE_ATTENDANCE_EHR,
-
-    };
+export function attendanceEhr(e) {
+    return (dispatch, getState) => {
+        dispatch(fetching(true));
+        fetch('/medical/rest/attendance/create-by-patient-schedule', {
+            'method': 'POST',
+            'headers': {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+            },
+            'body': JSON.stringify({
+                datetime: e.currentTarget.dataset.datetime,
+                ehrId: e.currentTarget.dataset.ehr_id,
+                employeeId: e.currentTarget.dataset.employee_id,
+                cabinetNumber: e.currentTarget.dataset.cabinet
+            })
+        }).then(function (response) {
+            return response.json();
+        }).then(function (data) {
+            dispatch(fetchEmployees(
+                getState().filters.date,
+                getState().filters.specialityId,
+                getState().filters.serviceId)
+            )
+        }).finally(function () {
+            dispatch(fetching(false));
+        });
+    }
 }
 
 export function submitFilter() {
@@ -116,8 +138,6 @@ function fetchServices(specialityIds) {
                 type: TYPE_FETCH_SERVICES,
                 services: data
             });
-        }).finally(function () {
-            dispatch(fetching(false));
         });
     };
 }

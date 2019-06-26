@@ -9,20 +9,20 @@ class ScheduleColumn extends React.Component {
         return (
             <div className="schedule__column">
                 <div className="schedule__employee">
-                    {this.props.employee.last_name} {this.props.employee.first_name.charAt(0) + '.'} {this.props.employee.middle_name.charAt(0) + '.'}
+                    {props.employee.last_name} {props.employee.first_name.charAt(0) + '.'} {props.employee.middle_name.charAt(0) + '.'}
                 </div>
-                {Object.entries(this.props.employee.schedule).map(([k, v]) => (
+                {Object.entries(props.employee.schedule).map(([k, v]) => (
                     <div>
                         <div className="schedule__speciality">
-                            {this.props.employee.speciality.title} (кабинет №: {k})
+                            {props.employee.speciality.title} (кабинет №: {k})
                         </div>
                         <div className="schedule__patient-record">
-                                {v.length > 0 ? v.map( schedule => (
-                                    <div сс = {schedule.attendance_id} className="record-time" data-attendance_id = {schedule.attendance_id}>
-                                        {schedule.time}
-                                        <b onClick={props.onAttendanceEhr}>{schedule.patientFullName !== undefined ? ' - '+ schedule.patientFullName: ' записать ehr № ' + props.ehr.id}</b>
-                                    </div>
-                                )) : '<div>Нет расписания</div>' }
+                            {v.length > 0 ? v.map( schedule => (
+                                <div сс = {schedule.attendance_id} className="record-time">
+                                    {schedule.time}
+                                    <b onClick={props.onAttendanceEhr} data-employee_id = {props.employee.id} data-cabinet = {k} data-datetime = {schedule.time} data-ehr_id = {props.ehr.id} data-attendance_id = {schedule.attendance_id}>{schedule.patientFullName !== undefined ? ' - '+ schedule.patientFullName: ' записать ehr № ' + props.ehr.id}</b>
+                                </div>
+                            )) : 'Нет расписания' }
                         </div>
                     </div>
                 ))}
