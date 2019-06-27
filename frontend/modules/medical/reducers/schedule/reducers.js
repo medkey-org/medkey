@@ -1,10 +1,10 @@
 import { combineReducers } from 'redux';
 
-const employees = (state = {}, action) => {
+const schedule = (state = {}, action) => {
     if (action.type === 1) {
         return Object.assign({}, state, {
             employees: action.employees || [],
-            // filterDate: action.filterDate,
+            date: action.date || '',
         });
     }
     return state;
@@ -78,7 +78,7 @@ const ehr = (state = {}, action) => {
 };
 
 const reducerApp = combineReducers({
-    employees,
+    schedule,
     specialities,
     services,
     filters,
@@ -90,7 +90,8 @@ const initWorkplaceState = {
     ehr: {
         id: 0,
     },
-    employees: {
+    schedule: {
+        date: '',
         employees: [],
     },
     specialities: {

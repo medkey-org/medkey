@@ -34,6 +34,7 @@ function clearFilterService() {
 export function attendanceEhr(e) {
     return (dispatch, getState) => {
         dispatch(fetching(true));
+        console.log(getState().schedule.date)
         fetch('/medical/rest/attendance/create-by-patient-schedule', {
             'method': 'POST',
             'headers': {
@@ -41,21 +42,18 @@ export function attendanceEhr(e) {
                 'Content-Type': 'application/json',
             },
             'body': JSON.stringify({
-                datetime: e.currentTarget.dataset.datetime,
+                date: getState().schedule.date.getFullYear() + '-' + (String(getState().schedule.date.getMonth()+1)).padStart(2, '0') + '-' + String(getState().schedule.date.getDate()).padStart(2, '0'),
+                time: e.currentTarget.dataset.time,
                 ehrId: e.currentTarget.dataset.ehr_id,
                 employeeId: e.currentTarget.dataset.employee_id,
-                cabinetNumber: e.currentTarget.dataset.cabinet
+                cabinetNumber: e.currentTarget.dataset.cabinet,
             })
-        }).then(function (response) {
-            return response.json();
-        }).then(function (data) {
+        }).then(function () {
             dispatch(fetchEmployees(
                 getState().filters.date,
                 getState().filters.specialityId,
                 getState().filters.serviceId)
             )
-        }).finally(function () {
-            dispatch(fetching(false));
         });
     }
 }
@@ -138,6 +136,8 @@ function fetchServices(specialityIds) {
                 type: TYPE_FETCH_SERVICES,
                 services: data
             });
+        }).finally(function () {
+            dispatch(fetching(false));
         });
     };
 }
@@ -162,7 +162,8 @@ export function fetchEmployees(date, specialityIds, serviceIds) {
             dispatch({
                 type: TYPE_FETCH_EMPLOYEES,
                 // filterDate: date,
-                employees: data
+                employees: data,
+                date: date
             });
         }).finally(function () {
             dispatch(fetching(false));

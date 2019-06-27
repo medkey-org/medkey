@@ -21,8 +21,9 @@ window.registerAttendanceSchedule = function (ehrId) {
         </Provider>,
         document.getElementById('schedule')
     );
+    let date = new Date();
     store.dispatch(fetching());
-    store.dispatch(changeDate(new Date()));
+    store.dispatch(changeDate(date));
     store.dispatch(fetchSpecialities());
-    store.dispatch(fetchEmployees(new Date(), [], []));
+    store.dispatch(fetchEmployees(date, [], []));
 };
