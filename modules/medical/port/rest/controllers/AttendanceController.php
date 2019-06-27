@@ -2,12 +2,15 @@
 namespace app\modules\medical\port\rest\controllers;
 
 use app\common\dto\Dto;
+use app\common\filters\QueryParamAuth;
 use app\common\rest\Controller;
 use app\common\widgets\ActiveForm;
 use app\modules\medical\models\orm\Attendance;
 use app\modules\medical\models\form\Attendance as AttendanceForm;
 use app\modules\medical\application\AttendanceServiceInterface;
 use yii\base\Module;
+use yii\filters\AccessControl;
+use yii\web\ForbiddenHttpException;
 
 /**
  * Class AttendanceController
@@ -20,6 +23,34 @@ class AttendanceController extends Controller
      * @var AttendanceServiceInterface
      */
     public $attendanceService;
+
+    /**
+     * {@inheritDoc}
+     */
+    public function behaviors()
+    {
+        return array_merge(parent::behaviors(), [
+            'authenticator' => [
+                'class' => QueryParamAuth::class,
+                'isSession' => false,
+                'optional' => [
+                    '*',
+                ],
+            ],
+            'access' => [
+                'class' => AccessControl::class,
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'roles' => ['@'],
+                    ],
+                ],
+                'denyCallback' => function () {
+                    throw new ForbiddenHttpException(\Yii::t('yii', 'You are not allowed to perform this action.'));
+                }
+            ],
+        ]);
+    }
 
     /**
      * AttendanceController constructor.

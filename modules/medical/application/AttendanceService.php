@@ -56,18 +56,39 @@ class AttendanceService extends ApplicationService implements AttendanceServiceI
         return $attendance;
     }
 
+    /**
+     * @todo rename into bySchedule
+     * {@inheritdoc}
+     */
+    public function cancelAttendanceBySchedulePatient(string $attendanceId, string $referralId): Attendance
+    {
+//        $referral = Referral::findOneEx($referralId);
+        $attendance = Attendance::findOneEx($attendanceId);
+        $attendance->setScenario(ActiveRecord::SCENARIO_UPDATE);
+        $attendance->status = Attendance::STATUS_CANCEL;
+        if (!$attendance->save()) {
+            throw new ApplicationServiceException(MedicalModule::t('attendance', 'Can\'t save record. Reason: ') . Json::encode($attendance->getErrors()));
+        }
+//        $attendance->unlink('referrals', $referral, true);
+        return $attendance;
+    }
+
     public function createAttendanceByPatientSchedule($params): Attendance
     {
 //        if (!$this->isAllowed('createAttendanceBySchedule')) {
 //            throw new AccessApplicationServiceException(MedicalModule::t('attendance', 'Access restricted'));
 //        }
 //        $referral = Referral::findOneEx($dto->referralId);
+        if (empty($params['ehrId']) || empty($params['employeeId']) || empty($params['date']) || empty($params['time'])) {
+            throw new ApplicationServiceException("error validation");
+        }
+        $datetime = \Yii::$app->formatter->asDate($params['date'], CommonHelper::FORMAT_DATE_DB) . ' ' . $params['time'];
         $attendance = new Attendance([
             'scenario' => ActiveRecord::SCENARIO_CREATE
         ]);
         $attendance->ehr_id = $params['ehrId'];
         $attendance->employee_id = $params['employeeId'];
-        $attendance->datetime = $params['datetime'];
+        $attendance->datetime = $datetime;
 //        $attendance->cabinet_id = $params['cabinetNumber'];
         if (!$attendance->save()) {
             throw new ApplicationServiceException(MedicalModule::t('attendance', 'Can\'t save record. Reason: ') . Json::encode($attendance->getErrors()));
@@ -218,6 +239,13 @@ class AttendanceService extends ApplicationService implements AttendanceServiceI
             ->where([
                 '[[attendance]].[[employee_id]]' => $employeeId,
                 'cast(datetime as DATE)' => $date,
+                '[[attendance]].[[status]]' => [
+                    Attendance::STATUS_NEW,
+                    Attendance::STATUS_PROGRESS,
+                    Attendance::STATUS_ARCHIVE,
+                    Attendance::STATUS_ABSENCE,
+                    Attendance::STATUS_CONFIRM
+                ],
             ])
             ->all();
     }
