@@ -4,6 +4,7 @@ namespace app\modules\workplan\models\orm;
 use app\common\db\ActiveRecord;
 use app\common\helpers\CommonHelper;
 use app\common\validators\ForeignKeyValidator;
+use app\modules\organization\models\orm\Cabinet;
 use app\modules\organization\models\orm\Employee;
 use app\modules\workplan\WorkplanModule;
 
@@ -76,6 +77,11 @@ class Workplan extends ActiveRecord
     public function getEmployee()
     {
         return $this->hasOne(Employee::class, ['id' => 'employee_id']);
+    }
+
+    public function getCabinet()
+    {
+        return $this->hasOne(Cabinet::class, ['id' => 'cabinet_id']);
     }
 
     public function getWorkplanToWeeks()

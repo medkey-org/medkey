@@ -35,7 +35,6 @@ class ClientHelper
             'baseUrl' => \Yii::$app->request->baseUrl,
             'removeDelay' => self::REMOVE_DELAY,
             'widgetLoader' => getenv('WIDGET_LOADER_URL'),
-            'systemDomain' => getenv('JETHUNTER_DOMAIN'),
             'login' => \Yii::$app->user->isGuest ? null : \Yii::$app->user->identity->login,
         ];
     }

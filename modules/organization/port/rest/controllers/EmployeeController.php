@@ -36,14 +36,14 @@ class EmployeeController extends Controller
      * @param EmployeeServiceInterface $manager
      * @param array $config
      */
-    public function __construct($id, Module $module, EmployeeServiceInterface $manager, array $config = [])
+    public function __construct($id, $module, EmployeeServiceInterface $manager, array $config = [])
     {
         $this->employeeService = $manager;
         parent::__construct($id, $module, $config);
     }
 
     /**
-     * @inheritdoc
+     * {@inheritDoc}
      */
     public function behaviors()
     {
@@ -86,10 +86,6 @@ class EmployeeController extends Controller
         return [];
     }
 
-    /**
-     * @param string $q
-     * @return ActiveDataProvider
-     */
     public function actionIndex($q)
     {
         /* @var $modelClass ActiveRecordInterface */

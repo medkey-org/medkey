@@ -575,6 +575,9 @@ class ActiveRecord extends \yii\db\ActiveRecord implements PrepareModelInterface
 //            ->andOnCondition(['!=', $relation->alias() . '.[[is_deleted]]', self::IS_DELETE_TRUE]);
 //    }
 
+    /**
+     * @return ActiveQuery
+     */
     public static function find()
     {
 	    /** @var ActiveQuery $query */

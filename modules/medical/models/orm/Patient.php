@@ -104,6 +104,17 @@ class Patient extends ActiveRecord
         ];
     }
 
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getEhr()
+    {
+        return $this->hasOne(Ehr::class, ['patient_id' => 'id'])
+            ->where([
+                '[[ehr]].[[status]]' => Ehr::STATUS_ACTIVE
+            ]);
+    }
+
     public function getPolicies()
     {
         return $this->hasMany(Policy::class, ['patient_id' => 'id']);

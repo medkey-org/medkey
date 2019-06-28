@@ -2,24 +2,28 @@ import React from 'react';
 import { render } from 'react-dom';
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
-import { createStore, applyMiddleware } from 'redux';
-import './components/index.css';
-import { reducerApp, initWorkplaceState } from './reducers/reducers';
-import { changeDate } from './actions/actions';
-import ScheduleContainer from './containers/ScheduleContainer';
-import PatientContainer from './containers/PatientContainer';
+import { createStore,  applyMiddleware } from 'redux';
+import './components/schedule/index.css';
+import { reducerApp, initWorkplaceState } from './reducers/schedule/reducers';
+import {changeDate, fetching, fetchSpecialities, fetchEmployees} from './actions/schedule/actions';
+import ScheduleContainer from './containers/schedule/ScheduleContainer';
 
-if (document.getElementById('app-workplace')) {
-    // todo придумать помодульную декомпозицию
+window.registerAttendanceSchedule = function (ehrId) {
+    initWorkplaceState.ehr = {
+        id: ehrId
+    };
     let store = createStore(reducerApp, initWorkplaceState, applyMiddleware(thunk));
-    store.dispatch(changeDate());
     render(
         <Provider store={store}>
-            <div className="b-workplace">
-                <PatientContainer/>
+            <div className="">
                 <ScheduleContainer/>
             </div>
         </Provider>,
-        document.getElementById('app-workplace')
+        document.getElementById('schedule')
     );
-}
+    let date = new Date();
+    store.dispatch(fetching());
+    store.dispatch(changeDate(date));
+    store.dispatch(fetchSpecialities());
+    store.dispatch(fetchEmployees(date, [], []));
+};

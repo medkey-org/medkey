@@ -4,7 +4,7 @@
     /*align-items: flex-start;*/
     flex-direction: column;
     /*flex-basis: 0;*/
-    width: 65%;
+    width: 100%;
     /*flex-wrap: nowrap;*/
     justify-content: flex-end;
 }
@@ -14,7 +14,7 @@
     font-size: 14px;
 }
 .calendar {
-    text-align: right;
+    /*text-align: right;*/
 }
 .btn-calendar {
     border-radius: 0 !important;
@@ -43,7 +43,7 @@
     border-bottom: 1px black solid;
 }
 .schedule__patient-record {
-    display: flex;
+    /*display: flex;*/
 }
 .schedule__patient-record {
     border-bottom: 1px black solid;
@@ -60,7 +60,14 @@
 }
 .record-time {
     padding: 5px;
-    text-align: center;
-    border-right: 1px black solid;
+    cursor: pointer;
+    /*text-align: center;*/
+    border-bottom: 1px black solid;
     background-color: #bfd1e0;
+}
+.record-time:hover {
+    text-decoration: underline;
+}
+.filter {
+    position: relative;
 }

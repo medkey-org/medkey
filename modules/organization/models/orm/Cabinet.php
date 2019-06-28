@@ -4,6 +4,7 @@ namespace app\modules\organization\models\orm;
 use app\common\db\ActiveRecord;
 use app\common\validators\ForeignKeyValidator;
 use app\modules\organization\OrganizationModule;
+use yii\db\ActiveQueryInterface;
 
 /**
  * Class Cabinet
@@ -16,7 +17,10 @@ class Cabinet extends ActiveRecord
     {
         // todo возможно required organization_id и department_id
         return [
-            [ ['number'], 'unique', 'targetAttribute' => ['number', 'department_id'] ],
+            [ ['number'], 'unique', 'filter' => function (ActiveQueryInterface $query) {
+                return $query
+                    ->notDeleted();
+            },], // todo возможно + в рамках department
             [ ['number'], 'string' ], // todo возможно не только int
             [ ['number'], 'required' ],
             [ ['description'], 'string' ],

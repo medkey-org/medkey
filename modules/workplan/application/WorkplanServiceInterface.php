@@ -55,4 +55,5 @@ interface WorkplanServiceInterface
      * @return Workplan
      */
     public function getWorkplanForm($raw, $scenario = 'create');
+    public function getScheduleMedworkerTimesWithAttendances($employeeId, $date);
 }
