@@ -1,11 +1,14 @@
 import React from 'react';
 import './Schedule.css';
 import ScheduleColumn from "./ScheduleColumn";
-import DatePicker from 'react-datepicker';
+import DatePicker, { registerLocale } from 'react-datepicker';
+import ru from "date-fns/locale/ru";
 import DatePickerInput from './DatePickerInput';
 import "react-datepicker/dist/react-datepicker.css";
 import Select from 'react-select';
 import ReactDOM from 'react-dom';
+
+registerLocale("ru", ru);
 
 class Schedule extends React.Component {
     constructor(props) {
@@ -34,7 +37,7 @@ class Schedule extends React.Component {
         const { selectedServiceOption } = props.filters.serviceId;
         return (
             <div className="b-schedule">
-                <div className="filter">
+                <div className="b-schedule-filter">
                     {/*<form action="" onSubmit={this.props.onSubmitFilter}>*/}
                     Специальности&nbsp;
                     <Select
@@ -61,8 +64,8 @@ class Schedule extends React.Component {
                             onChange={props.onChangeDate}
                             customInput={<DatePickerInput />}
                         />
+                        &nbsp;<button className="btn btn-default submit" onClick={props.onSubmitFilter}>Найти</button>
                     </div>
-                        <button className="submit" onClick={props.onSubmitFilter}>Найти</button>
                     {/*</form>*/}
                 </div>
                 <div className="schedule">
