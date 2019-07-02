@@ -34,27 +34,42 @@ function clearFilterService() {
 export function attendanceEhr(e) {
     return (dispatch, getState) => {
         dispatch(fetching(true));
-        console.log(getState().schedule.date)
-        fetch('/medical/rest/attendance/create-by-patient-schedule', {
-            'method': 'POST',
-            'headers': {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
-            },
-            'body': JSON.stringify({
-                date: getState().schedule.date.getFullYear() + '-' + (String(getState().schedule.date.getMonth()+1)).padStart(2, '0') + '-' + String(getState().schedule.date.getDate()).padStart(2, '0'),
-                time: e.currentTarget.dataset.time,
-                ehrId: e.currentTarget.dataset.ehr_id,
-                employeeId: e.currentTarget.dataset.employee_id,
-                cabinetNumber: e.currentTarget.dataset.cabinet,
-            })
-        }).then(function () {
-            dispatch(fetchEmployees(
-                getState().filters.date,
-                getState().filters.specialityId,
-                getState().filters.serviceId)
-            )
-        });
+        if (e.currentTarget.dataset.attendance_id) {
+            fetch('/medical/rest/attendance/cancel-by-schedule?attendanceId=' + e.currentTarget.dataset.attendance_id, {
+                'method': 'GET',
+                'headers': {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                },
+            }).then(function () {
+                dispatch(fetchEmployees(
+                    getState().filters.date,
+                    getState().filters.specialityId,
+                    getState().filters.serviceId)
+                )
+            });
+        } else {
+            fetch('/medical/rest/attendance/create-by-patient-schedule', {
+                'method': 'POST',
+                'headers': {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                },
+                'body': JSON.stringify({
+                    date: getState().schedule.date.getFullYear() + '-' + (String(getState().schedule.date.getMonth()+1)).padStart(2, '0') + '-' + String(getState().schedule.date.getDate()).padStart(2, '0'),
+                    time: e.currentTarget.dataset.time,
+                    ehrId: e.currentTarget.dataset.ehr_id,
+                    employeeId: e.currentTarget.dataset.employee_id,
+                    cabinetNumber: e.currentTarget.dataset.cabinet,
+                })
+            }).then(function () {
+                dispatch(fetchEmployees(
+                    getState().filters.date,
+                    getState().filters.specialityId,
+                    getState().filters.serviceId)
+                )
+            });
+        }
     }
 }
 
