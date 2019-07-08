@@ -62,6 +62,8 @@ export function attendanceEhr(e) {
                     employeeId: e.currentTarget.dataset.employee_id,
                     cabinetNumber: e.currentTarget.dataset.cabinet,
                 })
+            }).then(function (response) {
+                return response.json();
             }).then(function () {
                 dispatch(fetchEmployees(
                     getState().filters.date,

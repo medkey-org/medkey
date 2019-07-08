@@ -10,7 +10,6 @@ use app\common\helpers\Json;
 use app\common\service\ApplicationService;
 use app\common\service\exception\AccessApplicationServiceException;
 use app\common\service\exception\ApplicationServiceException;
-use app\modules\medical\application\AttendanceService;
 use app\modules\medical\application\AttendanceServiceInterface;
 use app\modules\medical\models\orm\Attendance;
 use app\modules\workplan\models\finders\WorkplanFilter;
