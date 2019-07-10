@@ -77,7 +77,12 @@ const ehr = (state = {}, action) => {
     return state;
 };
 
+const scheduleDuration = (state = {}, action) => {
+    return state;
+};
+
 const reducerApp = combineReducers({
+    scheduleDuration,
     schedule,
     specialities,
     services,
@@ -87,6 +92,7 @@ const reducerApp = combineReducers({
 });
 
 const initWorkplaceState = {
+    scheduleDuration: 0, // in seconds
     ehr: {
         id: 0,
     },

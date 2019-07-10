@@ -20,7 +20,15 @@ class ScheduleColumn extends React.Component {
                             {v.length > 0 ? v.map( schedule => (
                                 <div сс = {schedule.attendance_id} className="record-time">
                                     <span>{schedule.time}</span>
-                                    <span onClick={props.onAttendanceEhr} data-employee_id = {props.employee.id} data-cabinet = {k} data-date = {props.date} data-time = {schedule.time} data-ehr_id = {props.ehr.id} data-attendance_id = {schedule.attendance_id}>{schedule.patientFullName !== undefined ? ' - '+ schedule.patientFullName + ' (отменить запись)' : ' (записать)'}</span>
+                                    <span
+                                        onClick={props.onAttendanceEhr}
+                                        data-employee_id = {props.employee.id}
+                                        data-cabinet = {k}
+                                        data-date = {props.date}
+                                        data-time = {schedule.time}
+                                        data-ehr_id = {props.ehr.id}
+                                        data-attendance_id = {schedule.attendance_id}>{schedule.patientFullName !== undefined ? ' - '+ schedule.patientFullName + ' (отменить запись)' : ' (записать)'}
+                                    </span>
                                 </div>
                             )) : 'Нет расписания' }
                         </div>

@@ -69,7 +69,7 @@ class Schedule extends React.Component {
                     {/*</form>*/}
                 </div>
                 <div className="schedule">
-                    {props.schedule.employees.map(employee => <ScheduleColumn date={props.schedule.date} ehr={props.ehr} onAttendanceEhr={props.onAttendanceEhr} employee={employee}/>)}
+                    {props.schedule.employees.map(employee => <ScheduleColumn scheduleDuration={props.scheduleDuration} date={props.schedule.date} ehr={props.ehr} onAttendanceEhr={props.onAttendanceEhr} employee={employee}/>)}
                 </div>
             </div>
         );

@@ -6,6 +6,7 @@ use app\common\web\View;
 use app\common\widgets\Widget;
 use app\common\wrappers\DynamicModal;
 use app\modules\medical\MedicalModule;
+use app\modules\medical\models\orm\Attendance;
 
 class AttendanceSchedule extends Widget
 {
@@ -16,6 +17,7 @@ class AttendanceSchedule extends Widget
      */
     public function run()
     {
+        $duration = Attendance::ATTENDANCE_DURATION;
 //        $specialities = Speciality::find()->all();
 //        foreach ($specialities as $speciality) {
 //            echo Html::div($speciality->title, [
@@ -26,7 +28,7 @@ class AttendanceSchedule extends Widget
         echo Html::beginDiv(['id' => 'schedule']);
         echo Html::endDiv();
         echo \Yii::$app->view->registerJs(<<<JS
-        registerAttendanceSchedule($this->ehrId);
+        registerAttendanceSchedule($this->ehrId, $duration);
 JS
 , View::POS_END);
     }
