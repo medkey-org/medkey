@@ -1,6 +1,6 @@
 import React from 'react';
 import './Schedule.css';
-import ScheduleColumn from "./ScheduleColumn";
+import ScheduleColumn_old from "./ScheduleColumn";
 import DatePicker, { registerLocale } from 'react-datepicker';
 import ru from "date-fns/locale/ru";
 import DatePickerInput from './DatePickerInput';
@@ -69,7 +69,7 @@ class Schedule extends React.Component {
                     {/*</form>*/}
                 </div>
                 <div className="schedule">
-                    {props.schedule.employees.map(employee => <ScheduleColumn scheduleDuration={props.scheduleDuration} date={props.schedule.date} ehr={props.ehr} onAttendanceEhr={props.onAttendanceEhr} employee={employee}/>)}
+                    {props.schedule.employees.map(employee => <ScheduleColumn_old scheduleDuration={props.scheduleDuration} date={props.schedule.date} ehr={props.ehr} onAttendanceEhr={props.onAttendanceEhr} employee={employee}/>)}
                 </div>
             </div>
         );
