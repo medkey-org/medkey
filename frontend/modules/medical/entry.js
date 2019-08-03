@@ -8,7 +8,11 @@ import { reducerApp, initWorkplaceState } from './reducers/schedule/reducers';
 import {changeDate, fetching, fetchSpecialities, fetchEmployees} from './actions/schedule/actions';
 import ScheduleContainer from './containers/schedule/ScheduleContainer';
 
-window.registerAttendanceSchedule = function (ehrId, scheduleDuration) {
+window.registerSchedule = function (
+    ehrId,
+    scheduleDuration,
+    elementId = 'schedule',
+) {
     initWorkplaceState.ehr = {
         id: ehrId,
     };
@@ -20,7 +24,7 @@ window.registerAttendanceSchedule = function (ehrId, scheduleDuration) {
                 <ScheduleContainer/>
             </div>
         </Provider>,
-        document.getElementById('schedule')
+        document.getElementById(elementId)
     );
     let date = new Date();
     store.dispatch(fetching());

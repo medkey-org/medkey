@@ -185,10 +185,13 @@ class WorkplanService extends ApplicationService implements WorkplanServiceInter
     public function getScheduleMedworkerTimes($employeeId, $date)
     {
         $workplans = $this->getWorkplansByExistsRules($employeeId, $date);
+        if(empty($workplans)) {
+            return [];
+        }
+
         $attendances = $this->attendanceService->getAttendancesByEmployeeIdAndDate($employeeId, $date);
-//        if(empty($workplans)) {
-//            return \Yii::t('app', 'Не рабочий день');
-//        }
+
+
         $duration = Attendance::ATTENDANCE_DURATION; // seconds
         $scheduleTimes = []; // cabinet_id to times
         foreach ($workplans as $workplan) {
@@ -203,6 +206,7 @@ class WorkplanService extends ApplicationService implements WorkplanServiceInter
                 $delta = $delta - $duration;
                 $i++;
             }
+
             $scheduleTimes[$workplan->cabinet->number] = array_unique($scheduleTimes[$workplan->cabinet->number]);
         }
         return $scheduleTimes;

@@ -19,7 +19,6 @@ use app\modules\medical\widgets\grid\EhrGrid;
 use app\modules\medical\widgets\grid\PatientAttendanceGrid;
 use app\modules\medical\widgets\grid\PolicyGrid;
 use app\modules\medical\widgets\misc\AttendanceSchedule;
-use app\modules\medical\widgets\misc\ListMedworkerSchedule;
 use yii\helpers\HtmlPurifier;
 use yii\widgets\MaskedInput;
 

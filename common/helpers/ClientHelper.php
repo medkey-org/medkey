@@ -31,11 +31,11 @@ class ClientHelper
     {
         return [
             // todo window.onerror - global errors handler
-            'module' => \Yii::$app->controller->module->id, // TODO SUBMODULE
+            'module' => Html::encode(\Yii::$app->controller->module->id), // TODO SUBMODULE
             'baseUrl' => \Yii::$app->request->baseUrl,
             'removeDelay' => self::REMOVE_DELAY,
             'widgetLoader' => getenv('WIDGET_LOADER_URL'),
-            'login' => \Yii::$app->user->isGuest ? null : \Yii::$app->user->identity->login,
+            'login' => Html::encode(\Yii::$app->user->isGuest ? null : \Yii::$app->user->identity->login),
         ];
     }
 

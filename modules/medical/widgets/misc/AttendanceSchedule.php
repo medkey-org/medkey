@@ -28,7 +28,7 @@ class AttendanceSchedule extends Widget
         echo Html::beginDiv(['id' => 'schedule']);
         echo Html::endDiv();
         echo \Yii::$app->view->registerJs(<<<JS
-        registerAttendanceSchedule($this->ehrId, $duration);
+        registerSchedule($this->ehrId, $duration);
 JS
 , View::POS_END);
     }
