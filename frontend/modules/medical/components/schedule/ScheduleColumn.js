@@ -22,28 +22,28 @@ class ScheduleColumn extends React.Component {
                             {props.employee.speciality.title} (кабинет №: {k})
                         </div>
                         <div className="schedule__patient-record">
-                            {times.map(function (time) {
+                            {/*{times.map(function (time) {*/}
+                            {/*    return (*/}
+                            {/*        <div class="record-time">*/}
 
-                                return (
-                                    <span>{v}</span>
-                                )
-                            })}
-                        dsdsadsa
+                            {/*        </div>*/}
+                            {/*    )*/}
+                            {/*})}*/}
 
-                            {/*{v.length > 0 ? v.map( schedule => (*/}
-                            {/*    <div сс = {schedule.attendance_id} className="record-time">*/}
-                            {/*        <span>{schedule.time}</span>*/}
-                            {/*        <span*/}
-                            {/*            onClick={props.onAttendanceEhr}*/}
-                            {/*            data-employee_id = {props.employee.id}*/}
-                            {/*            data-cabinet = {k}*/}
-                            {/*            data-date = {props.date}*/}
-                            {/*            data-time = {schedule.time}*/}
-                            {/*            data-ehr_id = {props.ehr.id}*/}
-                            {/*            data-attendance_id = {schedule.attendance_id}>{schedule.patientFullName !== undefined ? ' - '+ schedule.patientFullName + ' (отменить запись)' : ' (записать)'}*/}
-                            {/*        </span>*/}
-                            {/*    </div>*/}
-                            {/*)) : 'Нет расписания' }*/}
+                            {v.length > 0 ? v.map( schedule => (
+                                <div сс = {schedule.attendance_id} className="record-time">
+                                    <span>{schedule.time}</span>
+                                    <span
+                                        onClick={props.onAttendanceEhr}
+                                        data-employee_id = {props.employee.id}
+                                        data-cabinet = {k}
+                                        data-date = {props.date}
+                                        data-time = {schedule.time}
+                                        data-ehr_id = {props.ehr.id}
+                                        data-attendance_id = {schedule.attendance_id}>{schedule.patientFullName !== undefined ? ' - '+ schedule.patientFullName + '(ОТМЕНИТЬ)' : '(ЗАПИСАТЬ)'}
+                                    </span>
+                                </div>
+                            )) : 'Нет расписания' }
                         </div>
                     </div>
                 ))}
