@@ -43,16 +43,22 @@ class AttendanceService extends ApplicationService implements AttendanceServiceI
      * @todo rename into bySchedule
      * {@inheritdoc}
      */
-    public function cancelAttendance(string $attendanceId, string $referralId): Attendance
+    public function cancelAttendance(string $attendanceId, string $referralId = ''): Attendance
     {
-        $referral = Referral::findOneEx($referralId);
         $attendance = Attendance::findOneEx($attendanceId);
         $attendance->setScenario(ActiveRecord::SCENARIO_UPDATE);
         $attendance->status = Attendance::STATUS_CANCEL;
         if (!$attendance->save()) {
             throw new ApplicationServiceException(MedicalModule::t('attendance', 'Can\'t save record. Reason: ') . Json::encode($attendance->getErrors()));
         }
-        $attendance->unlink('referrals', $referral, true);
+
+        if (!empty($referralId)) {
+            $referral = Referral::findOne($referralId);
+            if ($referral) {
+                $attendance->unlink('referrals', $referral, true);
+            }
+
+        }
         return $attendance;
     }
 

@@ -10,7 +10,6 @@ use app\common\helpers\Json;
 use app\common\service\ApplicationService;
 use app\common\service\exception\AccessApplicationServiceException;
 use app\common\service\exception\ApplicationServiceException;
-use app\modules\medical\application\AttendanceService;
 use app\modules\medical\application\AttendanceServiceInterface;
 use app\modules\medical\models\orm\Attendance;
 use app\modules\workplan\models\finders\WorkplanFilter;
@@ -186,10 +185,13 @@ class WorkplanService extends ApplicationService implements WorkplanServiceInter
     public function getScheduleMedworkerTimes($employeeId, $date)
     {
         $workplans = $this->getWorkplansByExistsRules($employeeId, $date);
+        if(empty($workplans)) {
+            return [];
+        }
+
         $attendances = $this->attendanceService->getAttendancesByEmployeeIdAndDate($employeeId, $date);
-//        if(empty($workplans)) {
-//            return \Yii::t('app', 'Не рабочий день');
-//        }
+
+
         $duration = Attendance::ATTENDANCE_DURATION; // seconds
         $scheduleTimes = []; // cabinet_id to times
         foreach ($workplans as $workplan) {
@@ -204,6 +206,7 @@ class WorkplanService extends ApplicationService implements WorkplanServiceInter
                 $delta = $delta - $duration;
                 $i++;
             }
+
             $scheduleTimes[$workplan->cabinet->number] = array_unique($scheduleTimes[$workplan->cabinet->number]);
         }
         return $scheduleTimes;

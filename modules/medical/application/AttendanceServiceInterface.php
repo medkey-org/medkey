@@ -33,7 +33,7 @@ interface AttendanceServiceInterface
      * @param string|integer $referralId
      * @return Attendance
      */
-    public function cancelAttendance(string $attendanceId, string $referralId): Attendance;
+    public function cancelAttendance(string $attendanceId, string $referralId = ''): Attendance;
 
     /**
      * @param Model $form

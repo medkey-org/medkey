@@ -19,7 +19,6 @@ use app\modules\medical\widgets\grid\EhrGrid;
 use app\modules\medical\widgets\grid\PatientAttendanceGrid;
 use app\modules\medical\widgets\grid\PolicyGrid;
 use app\modules\medical\widgets\misc\AttendanceSchedule;
-use app\modules\medical\widgets\misc\ListMedworkerSchedule;
 use yii\helpers\HtmlPurifier;
 use yii\widgets\MaskedInput;
 
@@ -86,7 +85,7 @@ class PatientCard extends CardView
                 'class' => WidgetLoaderButton::class,
                 'widgetClass' => AttendanceSchedule::class,
                 'widgetConfig' => [
-                    'ehrId' => !empty($this->model->ehr) ? $this->model->ehr['id'] : 0,
+                    'ehrId' => !empty($this->model) && !empty($this->model->ehr) && !empty($this->model->ehr['id']) ? $this->model->ehr['id'] : 0,
                 ],
                 'disabled' => false,
                 'value' => MedicalModule::t('referral', 'Create attendance'),

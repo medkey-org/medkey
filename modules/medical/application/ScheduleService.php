@@ -31,11 +31,15 @@ class ScheduleService extends ApplicationService implements ScheduleServiceInter
 
         $result = [];
         foreach($employees as $employee) {
+            $schedule = $this->workplanService->getScheduleMedworkerTimesWithAttendances($employee->id, $date);
+            if (empty($schedule)) {
+                continue;
+            }
             array_push(
                 $result,
                 array_merge(
                     $employee->toArray([], ['speciality']),
-                    ['schedule' => $this->workplanService->getScheduleMedworkerTimesWithAttendances($employee->id, $date)]
+                    ['schedule' =>$schedule]
                 )
             );
         }

@@ -77,7 +77,7 @@ class AttendanceController extends Controller
         return $this->attendanceService->createAttendanceByPatientSchedule($params);
     }
 
-    public function actionCancelBySchedule($attendanceId, $referralId)
+    public function actionCancelBySchedule($attendanceId, $referralId = '')
     {
         return $this->attendanceService->cancelAttendance($attendanceId, $referralId);
     }
