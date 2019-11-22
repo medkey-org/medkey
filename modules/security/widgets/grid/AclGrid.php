@@ -133,7 +133,7 @@ class AclGrid extends GridView
                     if (!ClassHelper::implementsInterface($service, ApplicationResourceInterface::class)) {
                         throw new InvalidValueException(SecurityModule::t('acl', 'Given incorrect interface'));
                     }
-                    return (new $service)->aclAlias();
+                    return \Yii::createObject($service)->aclAlias();
                 }
             ],
             [
@@ -144,7 +144,7 @@ class AclGrid extends GridView
                     if (!ClassHelper::implementsInterface($service, ApplicationResourceInterface::class)) {
                         throw new InvalidValueException(SecurityModule::t('acl', 'Given incorrect interface'));
                     }
-                    $priv = (new $service)->getPrivileges();
+                    $priv = \Yii::createObject($service)->getPrivileges();
                     return !empty($priv[$model->action]) ? $priv[$model->action] : '';
                 }
             ],
