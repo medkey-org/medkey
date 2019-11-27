@@ -55,14 +55,9 @@ class AttendanceGrid extends GridView
     /**
      * @var bool
      */
-    public $visibleActionButtons = false;
+    public $visibleActionButtons = true;
+    public $actionButtonTemplate = '{refresh}{ehr-record}';
 
-    /**
-     * AttendanceGrid constructor.
-     * @param ReferralServiceInterface $referralService
-     * @param AttendanceServiceInterface $attendanceService
-     * @param array $config
-     */
     public function __construct(ReferralServiceInterface $referralService, AttendanceServiceInterface $attendanceService, array $config = [])
     {
         $this->attendanceService = $attendanceService;
@@ -78,31 +73,52 @@ class AttendanceGrid extends GridView
         $this->filterModel = AttendanceFilter::ensure($this->filterModel, 'search', $this->formData);
         $this->filterModel->referralId = $this->referralId;
         $this->filterModel->patientId = $this->patientId;
+
+        $employee = \Yii::$app->user->getIdentity()->employee;
+        if (isset($employee)) {
+            $this->filterModel->employeeId = $employee->id;
+        }
+
         $this->dataProvider = $this->attendanceService->getAttendanceList($this->filterModel);
-        $this->actionButtons['create'] = [
+//        $this->actionButtons['create'] = [
+//            'class' => LinkActionButton::class,
+//            'url' => ['/medical/ui/attendance/view', 'scenario' => ActiveRecord::SCENARIO_CREATE],
+//            'isDynamicModel' => false,
+//            'isAjax' => false,
+//            'disabled' => false,
+//            'value' => '',
+//            'options' => [
+//                'class' => 'btn btn-xs btn-primary',
+//                'icon' => 'plus',
+//            ],
+//        ];
+//        $this->actionButtons['delete'] = [
+//            'class' => LinkActionButton::class,
+//            'url' => ['/medical/rest/attendance/delete'],
+//            'isDynamicModel' => true,
+//            'isAjax' => true,
+//            'disabled' => true,
+//            'isConfirm' => true,
+//            'afterUpdateBlock' => $this,
+//            'value' => '',
+//            'options' => [
+//                'class' => 'btn btn-xs btn-danger',
+//                'icon' => 'remove',
+//            ],
+//        ];
+        $this->actionButtons['ehr-record'] = [
             'class' => LinkActionButton::class,
-            'url' => ['/medical/ui/attendance/view', 'scenario' => ActiveRecord::SCENARIO_CREATE],
-            'isDynamicModel' => false,
+            'url' => ['/medical/ui/ehr-record/view'],
+            'isDynamicModel' => true,
             'isAjax' => false,
-            'disabled' => false,
+            'disabled' => true,
+            'isConfirm' => false,
+            'afterUpdateBlock' => $this,
             'value' => '',
+            'primaryAttribute' => 'ehrId',
             'options' => [
                 'class' => 'btn btn-xs btn-primary',
                 'icon' => 'plus',
-            ],
-        ];
-        $this->actionButtons['delete'] = [
-            'class' => LinkActionButton::class,
-            'url' => ['/medical/rest/attendance/delete'],
-            'isDynamicModel' => true,
-            'isAjax' => true,
-            'disabled' => true,
-            'isConfirm' => true,
-            'afterUpdateBlock' => $this,
-            'value' => '',
-            'options' => [
-                'class' => 'btn btn-xs btn-danger',
-                'icon' => 'remove',
             ],
         ];
         $this->columns = [
@@ -122,29 +138,29 @@ class AttendanceGrid extends GridView
                     'class' => 'col-xs-2'
                 ],
             ],
-            [
-                'attribute' => 'employee_id',
-                'value' => function (Attendance $model) {
-                    if ($model->employee instanceof Employee) {
-                        return $model->employee->fullName;
-                    }
-                    return '';
-                },
-                'filter' => function () {
-                    return Select2::widget([
-                        'model' => $this->filterModel,
-                        'attribute' => 'employeeId',
-                        'data' => ArrayHelper::map(Employee::find()->notDeleted()->all(), 'id', 'fullName'),
-                        'options' => [
-                            'id' => UniqueKey::generate('employeeId'),
-                            'placeholder' => \Yii::t('app', 'Select value...'),
-                        ],
-                        'pluginOptions' => [
-                            'allowClear' => true,
-                        ]
-                    ]);
-                }
-            ],
+//            [
+//                'attribute' => 'employee_id',
+//                'value' => function (Attendance $model) {
+//                    if ($model->employee instanceof Employee) {
+//                        return $model->employee->fullName;
+//                    }
+//                    return '';
+//                },
+//                'filter' => function () {
+//                    return Select2::widget([
+//                        'model' => $this->filterModel,
+//                        'attribute' => 'employeeId',
+//                        'data' => ArrayHelper::map(Employee::find()->notDeleted()->all(), 'id', 'fullName'),
+//                        'options' => [
+//                            'id' => UniqueKey::generate('employeeId'),
+//                            'placeholder' => \Yii::t('app', 'Select value...'),
+//                        ],
+//                        'pluginOptions' => [
+//                            'allowClear' => true,
+//                        ]
+//                    ]);
+//                }
+//            ],
             [
                 'attribute' => 'ehr_id',
                 'value' => function (Attendance $model) {

@@ -77,7 +77,7 @@ class GridView extends \yii\grid\GridView implements WidgetClientInterface, Wrap
      */
     public $clickable = true;
     /**
-     * @var array|boolean
+     * @var array
      */
     public $actionButtons = [];
     /**

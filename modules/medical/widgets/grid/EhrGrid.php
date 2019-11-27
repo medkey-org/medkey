@@ -8,7 +8,6 @@ use app\common\grid\GridView;
 use app\common\helpers\ArrayHelper;
 use app\common\helpers\Html;
 use app\common\helpers\Url;
-use app\modules\medical\MedicalModule;
 use app\modules\medical\models\finders\EhrFilter;
 use app\modules\medical\models\orm\Ehr;
 use app\modules\medical\models\orm\Patient;
@@ -16,7 +15,6 @@ use app\modules\medical\application\EhrServiceInterface;
 use app\modules\medical\application\PatientServiceInterface;
 use kartik\select2\Select2;
 use yii\web\JsExpression;
-use app\modules\medical\models\form\Patient as PatientForm;
 
 /**
  * EHR registry grid
