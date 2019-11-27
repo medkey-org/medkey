@@ -140,7 +140,7 @@ class AclGrid extends GridView
                 'attribute' => 'action',
                 'value' => function (Acl $model) {
                     /** @var ApplicationResourceInterface $service */
-                    $service = \Yii::$ap->acl->getResourceClass($model->module, $model->entity_type, $model->type);
+                    $service = \Yii::$app->acl->getResourceClass($model->module, $model->entity_type, $model->type);
                     if (!ClassHelper::implementsInterface($service, ApplicationResourceInterface::class)) {
                         throw new InvalidValueException(SecurityModule::t('acl', 'Given incorrect interface'));
                     }
