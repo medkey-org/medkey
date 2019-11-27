@@ -33,13 +33,13 @@ class RegisterModal extends Modal
     public function init()
     {
         $this->header = \Yii::t('app', 'Action approval');
-        $this->footer = Html::button('Yes', [
+        $this->footer = Html::button(\Yii::t('app', 'Yes'), [
                 'class' => 'btn btn-primary',
                 'id' => 'confirm-ok',
                 'icon' => 'glyphicon glyphicon-ok',
             ])
             . '&nbsp'
-            . Html::button('No', [
+            . Html::button(\Yii::t('app', 'No'), [
                 'class' => 'btn btn-danger',
                 'id' => 'confirm-cancel',
                 'icon' => 'glyphicon glyphicon-remove',
