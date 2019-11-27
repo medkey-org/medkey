@@ -14,4 +14,5 @@ return [
     'Update record' => 'Обновить запись',
     'Directory' => 'Справочник',
     'Directory list' => 'Список справочников',
+    'Speciality' => 'Специальность',
 ];

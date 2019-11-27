@@ -69,6 +69,10 @@ return [
     'Workflow statuses' => 'Статусы бизнес-процессов',
     'Common settings' => 'Общие настройки',
     'Logout' => 'Выйти',
+    'Action approval' => 'Подтвердите действие',
+    'Yes' => 'Да',
+    'No' => 'Нет',
+    
     /**
      * Addresses
      */

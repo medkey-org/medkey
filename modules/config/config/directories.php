@@ -267,7 +267,7 @@ return [
                     'short_title',
                     'description',
                     [
-                        'header' => \app\modules\config\ConfigModule::t('directory', 'Services'),
+                        'header' => \app\modules\config\ConfigModule::t('directory', 'Speciality'),
                         'attribute' => 'speciality.title'
                     ],
                 ]
