@@ -11,4 +11,5 @@ return [
     'Get All Settings' => 'Получить все настройки',
     'Application title' => 'Название приложение',
     'Language' => 'Язык',
+    'Update record' => 'Обновить запись',
 ];
