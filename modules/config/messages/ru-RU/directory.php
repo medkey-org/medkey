@@ -2,7 +2,7 @@
 
 return [
     'Positions' => 'Должности',
-    'Organizations structure' => 'Структура организаций',
+    'Organizations structure' => 'Организация',
     'Departments' => 'Подразделения',
     'Cabinets' => 'Кабинеты',
     'Organization' => 'Организация',

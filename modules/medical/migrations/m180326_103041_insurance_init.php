@@ -14,7 +14,7 @@ class m180326_103041_insurance_init extends Migration
      */
     public function safeUp()
     {
-        $this->createAllTables('{{%insurance}}', [
+        $this->createBothTables('{{%insurance}}', [
             'code' => $this->integer(),
             'title' => $this->text(),
             'short_title' => $this->string(),
@@ -26,6 +26,6 @@ class m180326_103041_insurance_init extends Migration
      */
     public function safeDown()
     {
-        $this->dropAllTables('{{%insurance}}');
+        $this->dropBothTables('{{%insurance}}');
     }
 }

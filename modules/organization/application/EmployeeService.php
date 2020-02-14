@@ -14,6 +14,7 @@ use app\common\logic\orm\Phone;
 use app\common\service\ApplicationService;
 use app\common\service\exception\AccessApplicationServiceException;
 use app\common\service\exception\ApplicationServiceException;
+use app\modules\crm\models\orm\EmployeeToSpeciality;
 use app\modules\organization\models\finders\EmployeeFinder;
 use app\modules\organization\models\orm\Employee;
 use app\modules\organization\OrganizationModule;
@@ -151,6 +152,7 @@ class EmployeeService extends ApplicationService implements EmployeeServiceInter
             $this->savePhones($model->id, $employeeForm->phones);
             $this->saveEmails($model->id, $employeeForm->emails);
             $this->saveAddresses($model->id, $employeeForm->addresses);
+            $this->saveSpecialities($model->id, $employeeForm->specialities);
 
             if (is_array($employeeForm->emails)) {
                 foreach ($employeeForm->emails as $email) {
@@ -186,7 +188,7 @@ class EmployeeService extends ApplicationService implements EmployeeServiceInter
             $this->savePhones($model->id, $employeeForm->phones);
             $this->saveEmails($model->id, $employeeForm->emails);
             $this->saveAddresses($model->id, $employeeForm->addresses);
-
+            $this->saveSpecialities($model->id, $employeeForm->specialities);
             if (is_array($employeeForm->emails)) {
                 foreach ($employeeForm->emails as $email) {
                     if (empty($email['type']) || empty($email['address'])) {
@@ -293,6 +295,31 @@ class EmployeeService extends ApplicationService implements EmployeeServiceInter
         }
     }
 
+    private function saveSpecialities($employeeId, $specialities)
+    {
+        $employee = Employee::findOneEx($employeeId);
+        $q = EmployeeToSpeciality::find()
+            ->where([
+                'employee_id' => $employee->id
+            ])
+            ->notDeleted();
+        $exists = $q->all();
+        foreach ($exists as $p) {
+            $p->delete();
+        }
+        if (!is_array($specialities)) {
+            return null;
+        }
+        foreach ($specialities as $specialityId) {
+            $model = new EmployeeToSpeciality();
+            $model->speciality_id = $specialityId;
+            $model->employee_id = $employee->id;
+            if (!$model->save()) {
+                throw new ApplicationServiceException(OrganizationModule::t('employee', 'Can\'t save employee\'s specialities') . ': ' . Json::encode($model->getErrors()));
+            }
+        }
+    }
+
     /**
      * @param string $raw
      * @return EmployeeForm
@@ -310,7 +337,8 @@ class EmployeeService extends ApplicationService implements EmployeeServiceInter
         $employeeForm->emails = ArrayHelper::toArray($model->emails);
         $employeeForm->addresses = ArrayHelper::toArray($model->addresses);
         $employeeForm->user = ArrayHelper::toArray(!$model->user ? [] : $model->user);
-        $employeeForm->speciality = ArrayHelper::toArray(!$model->speciality ? [] : $model->speciality);
+        $employeeForm->specialities = ArrayHelper::getColumn($model->specialities, 'id');
+
         return $employeeForm;
     }
 

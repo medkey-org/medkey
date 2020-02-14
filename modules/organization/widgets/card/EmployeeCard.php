@@ -2,6 +2,7 @@
 namespace app\modules\organization\widgets\card;
 
 use app\common\card\CardView;
+use app\common\helpers\ArrayHelper;
 use app\common\helpers\CommonHelper;
 use app\common\helpers\Html;
 use app\common\helpers\Url;
@@ -13,6 +14,7 @@ use app\common\wrappers\Block;
 use app\modules\medical\models\orm\Speciality;
 use app\modules\organization\application\EmployeeServiceInterface;
 use app\modules\organization\models\orm\Employee;
+use app\modules\organization\models\orm\Position;
 use app\modules\organization\OrganizationModule;
 use yii\helpers\HtmlPurifier;
 use yii\widgets\MaskedInput;
@@ -124,7 +126,6 @@ class EmployeeCard extends CardView
                                 'attribute' => 'first_name'
                             ],
                             [
-//                                'colSize' => 4,
                                 'attribute' => 'birthday',
                                 'scenarios' => [
                                     'default' => [
@@ -162,6 +163,79 @@ class EmployeeCard extends CardView
                                 'attribute' => 'middle_name',
                             ],
                             [
+                                'attribute' => 'position_id',
+                                'scenarios' => [
+                                    'create' => [
+                                        'value' => function ($model, ActiveForm $form) {
+                                            return $form->field($model, 'position_id')
+                                                ->select2(ArrayHelper::map(Position::find()->notDeleted()->all(), 'id', function ($row) {
+                                                    return empty($row) ?: $row->title;
+                                                }), [])
+                                                ->label(false);
+                                        }
+                                    ],
+                                    'update' => [
+                                        'value' => function ($model, ActiveForm $form) {
+                                            return $form->field($model, 'position_id')
+                                                ->select2(ArrayHelper::map(Position::find()->notDeleted()->all(), 'id', function ($row) {
+                                                    return empty($row) ?: $row->title;
+                                                }), [])
+                                                ->label(false);
+                                        }
+                                    ],
+                                    'default' => [
+                                        'value' => function( $model) {
+                                            $p = Position::find()->where(['id' => $model->position_id])->one();
+                                            if (isset($p)) {
+                                                return $p->title;
+                                            }
+                                            return "";
+                                        }
+                                    ]
+                                ]
+                            ]
+                        ]
+                    ],
+                    [
+                        'items' => [
+                            [
+                                'attribute' => 'specialities',
+                                'scenarios' => [
+                                    'default' => [
+                                        'value' => function (EmployeeForm $model) {
+                                            $result = "";
+                                            $specialities = Speciality::find()->where([
+                                                'id' => $model->specialities
+                                            ])->all();
+                                            foreach ($specialities as $speciality) {
+                                                $result .= $speciality->title . " ";
+                                            }
+                                            return $result;
+                                        }
+                                    ],
+                                    'create' => [
+                                        'value' => function (EmployeeForm $model, ActiveForm $form) {
+                                            return $form
+                                                ->field($model, 'specialities')
+                                                ->select2(Speciality::listAll(), [
+                                                    'multiple' => true
+                                                ])
+                                                ->label(false);
+                                        },
+                                    ],
+                                    'update' => [
+                                        'value' => function (EmployeeForm $model, ActiveForm $form) {
+                                            return $form
+                                                ->field($model, 'specialities')
+                                                ->select2(Speciality::listAll(), [
+                                                    'multiple' => true
+                                                ])
+                                                ->label(false);
+                                        },
+                                    ]
+                                ],
+                            ],
+                            [
                                 'attribute' => 'user_id',
                                 'scenarios' => [
                                     'default' => [
@@ -186,40 +260,6 @@ class EmployeeCard extends CardView
                                     ]
                                 ],
                             ],
-                        ]
-                    ],
-                    [
-                        'items' => [
-                            [
-                                'attribute' => 'speciality_id',
-                                'colSize' => 6,
-                                'scenarios' => [
-                                    'default' => [
-                                        'value' => function (EmployeeForm $model) {
-                                            if (!empty($model['speciality']) && !empty($model['speciality']['title'])) {
-                                                return Html::encode($model['speciality']['title']);
-                                            }
-                                            return '';
-                                        }
-                                    ],
-                                    'create' => [
-                                        'value' => function (EmployeeForm $model, ActiveForm $form) {
-                                            return $form
-                                                ->field($model, 'speciality_id')
-                                                ->select2(Speciality::listAll())
-                                                ->label(false);
-                                        },
-                                    ],
-                                    'update' => [
-                                        'value' => function (EmployeeForm $model, ActiveForm $form) {
-                                            return $form
-                                                ->field($model, 'speciality_id')
-                                                ->select2(Speciality::listAll())
-                                                ->label(false);
-                                        },
-                                    ]
-                                ],
-                            ]
                         ]
                     ],
                 ],

@@ -14,7 +14,7 @@ class m181221_162828_speciality extends Migration
      */
     public function safeUp()
     {
-        $this->createAllTables('{{%speciality}}', [
+        $this->createBothTables('{{%speciality}}', [
             'title' => $this->string(),
             'short_title' => $this->string(),
             'description' => $this->text()
@@ -26,6 +26,6 @@ class m181221_162828_speciality extends Migration
      */
     public function safeDown()
     {
-        $this->dropAllTables('{{%speciality}}');
+        $this->dropBothTables('{{%speciality}}');
     }
 }
