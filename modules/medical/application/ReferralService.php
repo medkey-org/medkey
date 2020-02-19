@@ -155,8 +155,8 @@ class ReferralService extends ApplicationService implements ReferralServiceInter
     {
         $referral = Referral::findOneEx($referralId);
         $result = [];
-        foreach ($referral->referralItems as $item) {
-            $service = $item->service;
+        foreach ($referral->referralItems as $referral) {
+            $service = $referral->service;
             if (!$service instanceof Service) {
                 throw new ApplicationServiceException(MedicalModule::t('referral', 'Can\'t find service for one or more of order\'s positions'));
             }
@@ -164,7 +164,7 @@ class ReferralService extends ApplicationService implements ReferralServiceInter
             if (!$speciality instanceof Speciality) {
                 throw new ApplicationServiceException(MedicalModule::t('referral', 'Can\'t find speciality for service') . ' ' . $service->title);
             }
-            $employees = $item->service->speciality->employees;
+            $employees = $speciality->employees;
             foreach ($employees as $employee) {
                 $result[] = $employee->id;
             }
