@@ -39,7 +39,7 @@ class Employee extends Model
     public $phones = [];
 
     // relations from AR
-    public $speciality;
+    public $specialities;
     public $user;
 
     /**
@@ -48,6 +48,7 @@ class Employee extends Model
     public function rules()
     {
         return [
+            ['specialities', 'safe'],
             [ ['phones'],
                 'validatePhones',
             ],
@@ -60,7 +61,7 @@ class Employee extends Model
             [ ['first_name', 'last_name', 'sex', 'birthday', 'user_id'],
                 'required',
             ],
-            [ ['user_id'], ForeignKeyValidator::class, ],
+            [ ['user_id', 'position_id'], ForeignKeyValidator::class, ],
             [ ['first_name', 'last_name', 'middle_name'],
                 'string',
             ],
@@ -68,7 +69,7 @@ class Employee extends Model
             [ ['status', 'sex', 'education'],
                 'integer',
             ],
-            [ 'speciality_id', ForeignKeyValidator::class ],
+//            [ 'speciality_id', ForeignKeyValidator::class ],
             [ ['birthday'],
                 'filter',
                 'filter' => function () {
@@ -181,7 +182,8 @@ class Employee extends Model
             'emails' => OrganizationModule::t('common', 'E-mails'),
             'addresses' => OrganizationModule::t('common', 'Addresses'),
             'phones' => OrganizationModule::t('employee', 'Phones'),
-            'speciality_id' => OrganizationModule::t('employee', 'Speciality'),
+            'specialities' => OrganizationModule::t('employee', 'Specialities'),
+            'position_id' => OrganizationModule::t('employee', 'Position')
         ];
     }
 }

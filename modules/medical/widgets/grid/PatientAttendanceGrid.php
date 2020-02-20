@@ -131,9 +131,9 @@ class PatientAttendanceGrid extends GridView
                     $result = '';
                     if ($model->employee instanceof Employee) {
                         $result = $model->employee->fullName;
-                        if ($model->employee->speciality instanceof Speciality) {
-                            $result .= ' (' . $model->employee->speciality->title . ')';
-                        }
+//                        if ($model->employee->speciality instanceof Speciality) {
+//                            $result .= ' (' . $model->employee->speciality->title . ')';
+//                        }
                     }
                     return $result;
                 },

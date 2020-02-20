@@ -32,7 +32,7 @@ class Service extends ActiveRecord
 
     public function getSpeciality()
     {
-        return $this->hasOne(Speciality::className(), ['id' => 'speciality_id']);
+        return $this->hasOne(Speciality::class, ['id' => 'speciality_id']);
     }
 
     /**

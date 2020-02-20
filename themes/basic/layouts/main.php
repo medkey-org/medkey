@@ -94,6 +94,11 @@ AppAsset::register($this);
                             'visible' => \Yii::$container->get(\app\modules\security\application\UserServiceInterface::class)->isAllowed('getUserList'),
                         ],
                         [
+                            'label' => \Yii::t('app', 'Employees'),
+                            'url' => ['/organization/ui/employee/index'],
+                            'visible' => \Yii::$container->get(\app\modules\security\application\UserServiceInterface::class)->isAllowed('getUserList'),
+                        ],
+                        [
                             'label' => \Yii::t('app', 'Roles'),
                             'url' => ['/security/ui/acl-role/index'],
                             'visible' => \Yii::$container->get(\app\modules\security\application\AclServiceInterface::class)->isAllowed('getAclRoleList'),

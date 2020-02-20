@@ -2,6 +2,7 @@
 namespace app\modules\medical\models\orm;
 
 use app\common\db\ActiveRecord;
+use app\modules\crm\models\orm\EmployeeToSpeciality;
 use app\modules\medical\MedicalModule;
 use app\modules\organization\models\orm\Employee;
 
@@ -37,9 +38,26 @@ class Speciality extends ActiveRecord
 //        return $this->hasMany(EmployeeToSpeciality::class, ['speciality_id' => 'id']);
 //    }
 
+//    public function getEmployees()
+//    {
+//        return $this->hasMany(Employee::class, ['speciality_id' => 'id']);
+//    }
+
+    public function getEmployeeToSpeciality()
+    {
+        return $this->hasMany(EmployeeToSpeciality::class, ['speciality_id' => 'id']);
+    }
+
+//    public function getSpeciality()
+//    {
+//        return $this->hasOne(Speciality::class, ['id' => 'speciality_id'])
+//            ->via('employeeToSpeciality');
+//    }
+
     public function getEmployees()
     {
-        return $this->hasMany(Employee::class, ['speciality_id' => 'id']);
+        return $this->hasMany(Employee::class, ['id' => 'employee_id'])
+            ->via('employeeToSpeciality');
     }
 
     /**

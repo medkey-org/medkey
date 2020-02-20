@@ -21,5 +21,6 @@ return [
     'Can\'t save employee\'s address(es)' => 'Не удалось сохранить адрес(а) сотрудника',
 
     'Speciality' => 'Специальность',
-
+    'Specialities' => 'Специальности',
+    'Position' => 'Должность',
 ];

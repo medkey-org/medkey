@@ -9,6 +9,7 @@ use app\common\logic\orm\HumanTrait;
 use app\common\logic\orm\PhoneTrait;
 use app\common\logic\orm\Phone;
 use app\common\validators\ForeignKeyValidator;
+use app\modules\crm\models\orm\EmployeeToSpeciality;
 use app\modules\medical\models\orm\Attendance;
 use app\modules\medical\models\orm\Speciality;
 use app\modules\organization\OrganizationModule;
@@ -55,9 +56,26 @@ class Employee extends ActiveRecord
         return $this->hasOne(User::class, ['id' => 'user_id']);
     }
 
-    public function getSpeciality()
+    public function getPosition()
     {
-        return $this->hasOne(Speciality::class, ['id' => 'speciality_id']);
+        return $this->hasOne(Position::class, ['id' => 'position_id']);
+    }
+
+    public function getEmployeeToSpeciality()
+    {
+        return $this->hasMany(EmployeeToSpeciality::class, ['employee_id' => 'id']);
+    }
+
+//    public function getSpeciality()
+//    {
+//        return $this->hasOne(Speciality::class, ['id' => 'speciality_id'])
+//            ->via('employeeToSpeciality');
+//    }
+
+    public function getSpecialities()
+    {
+        return $this->hasMany(Speciality::class, ['id' => 'speciality_id'])
+            ->via('employeeToSpeciality');
     }
 
     public function getAttendances()
@@ -80,11 +98,11 @@ class Employee extends ActiveRecord
                 'string',
             ],
             [ ['skype_code'], 'unique' ],
-            [ ['user_id'], ForeignKeyValidator::class, ],
+            [ ['user_id', 'position_id'], ForeignKeyValidator::class, ],
             [ ['status', 'sex', 'education'],
                 'integer',
             ],
-            [ 'speciality_id', ForeignKeyValidator::class ],
+//            [ 'speciality_id', ForeignKeyValidator::class ],
             [ ['birthday'],
                 'filter',
                 'filter' => function () {
@@ -111,7 +129,7 @@ class Employee extends ActiveRecord
             'phones' => OrganizationModule::t('common', 'Phones'),
             'phone.phone' => OrganizationModule::t('common', 'Phone(s)'),
             'emails' => OrganizationModule::t('common', 'E-mail'),
-            'speciality_id' => OrganizationModule::t('employee', 'Speciality'),
+//            'speciality_id' => OrganizationModule::t('employee', 'Speciality'),
         ];
     }
 }

@@ -14,7 +14,7 @@ class m181221_162352_cabinet extends Migration
      */
     public function safeUp()
     {
-        $this->createAllTables('{{%cabinet}}', [
+        $this->createBothTables('{{%cabinet}}', [
             'number' => $this->string(),
             'description' => $this->text(),
             'organization_id' => $this->foreignKeyId(),
@@ -27,6 +27,6 @@ class m181221_162352_cabinet extends Migration
      */
     public function safeDown()
     {
-        $this->dropAllTables('{{%cabinet}}');
+        $this->dropBothTables('{{%cabinet}}');
     }
 }
