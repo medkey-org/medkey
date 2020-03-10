@@ -334,7 +334,7 @@ class OrderCard extends CardView
             'referrals' => [
                 'value' => function ($model) {
                     return ReferralGrid::widget([
-                        'order' => $model,
+                        'orderId' => $model->id,
                         'actionButtonTemplate' => '{refresh}{record}',
                     ]);
                 },

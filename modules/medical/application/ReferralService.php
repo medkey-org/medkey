@@ -91,6 +91,7 @@ class ReferralService extends ApplicationService implements ReferralServiceInter
         if (!$this->isAllowed('getReferralList')) {
             throw new AccessApplicationServiceException(MedicalModule::t('referral', 'Access restricted'));
         }
+
         $query = Referral::find();
         if (!empty($form->patientId)) {
             $query
@@ -100,9 +101,15 @@ class ReferralService extends ApplicationService implements ReferralServiceInter
                     Patient::tableColumns('id') => $form->patientId,
                 ]);
         }
+
+        if (!empty($form->orderId)) {
+            $query->andWhere([
+                'order_id' => $form->orderId,
+            ]);
+        }
+
         $query
             ->andFilterWhere([
-                'order_id' => $form->orderId,
                 'ehr_id' => $form->ehrId,
                 'status' => $form->status,
                 'cast(updated_at as date)' =>

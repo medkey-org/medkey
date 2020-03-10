@@ -35,7 +35,7 @@ class ReferralGrid extends GridView
     /**
      * @var Order
      */
-    public $order;
+    public $orderId;
     /**
      * @var Ehr
      */
@@ -67,10 +67,9 @@ class ReferralGrid extends GridView
     public function init()
     {
         $this->filterModel = ReferralFilter::ensure($this->filterModel, 'search', $this->formData);
-        $this->order = Order::ensureWeak($this->order);
         $this->ehr = Ehr::ensureWeak($this->ehr);
         empty($this->ehr->id) ?: $this->filterModel->ehrId = $this->ehr->id;
-        empty($this->order->id) ?: $this->filterModel->orderId = $this->order->id;
+        empty($this->orderId) ?: $this->filterModel->orderId = $this->orderId;
         $this->dataProvider = $this->referralService->getReferralList($this->filterModel);
         $this->actionButtons['create'] = [
             'class' => LinkActionButton::class,
