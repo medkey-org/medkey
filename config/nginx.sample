@@ -1,0 +1,31 @@
+server {
+    charset utf-8;
+    client_max_body_size 128M;
+
+    listen 80; ## listen for ipv4
+    #listen [::]:80 default_server ipv6only=on; ## listen for ipv6
+
+    root        /var/www/medkey/web;
+    index       index.php;
+
+    access_log  /var/log/medkey-access.log;
+    error_log   /var/log/medkey-error.log;
+
+    location / {
+        # Redirect everything that isn't a real file to index.php
+        try_files $uri $uri/ /index.php?$args;
+    }
+
+    location ~ \.php$ {
+        include fastcgi_params;
+
+        fastcgi_pass unix:/run/php/php7.4-fpm.sock;
+
+        fastcgi_param SCRIPT_FILENAME $document_root/$fastcgi_script_name;
+        try_files $uri =404;
+    }
+
+    location ~ /\.(ht|svn|git) {
+        deny all;
+    }
+}
