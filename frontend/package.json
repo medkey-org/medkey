@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "dependencies": {
-    "moment": "^2.22.2",
+    "moment": "^2.29.4",
     "popper.js": "^1.14.4",
     "prop-types": "^15.6.2",
     "react": "^16.8.6",
